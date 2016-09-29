@@ -1,6 +1,6 @@
-app.directive('fullstackLogo', function () {
+app.directive('dishdLogo', function () {
     return {
         restrict: 'E',
-        templateUrl: 'js/common/directives/fullstack-logo/fullstack-logo.html'
+        templateUrl: 'js/common/directives/dishd-logo/dishd-logo.html'
     };
 });
