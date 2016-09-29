@@ -10,6 +10,9 @@ let Ingredient = db.define('ingredient', {
 	},
 	name: {
 		type: Sequelize.STRING
+	},
+	category: {
+		type: Sequelize.STRING
 	}
 }, {
 	// OPTIONS

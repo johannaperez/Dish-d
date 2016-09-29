@@ -9,6 +9,18 @@ const Ingredient = require('./server/db/models/ingredient-model.js');
 
 let data = require('./server/db-setup/api-responses.json');
 
+let ingredients = [];
+
+data.recipes.forEach(recipe => {
+	recipe.extendedIngredients.forEach(ingredient => {
+		ingredients.push({
+			apiIngId: ingredient.id,
+			name: ingredient.name,
+			category: ingredient.aisle
+		});
+	})
+});
+
 
 db.sync({force: true})
 .then(() => {
@@ -17,9 +29,26 @@ db.sync({force: true})
 		delete recipe.id;
 		return Recipe.create(recipe);
 	});
-	return Promise.all(recipePromises);
+
+	let ingredientPromises = ingredients.map(ingredient => {
+		return Ingredient.findOrCreate({
+			where: {
+				apiIngId: ingredient.apiIngId
+			}, 
+			defaults: { 
+				name: ingredient.name,
+				category: ingredient.category
+			}
+		})
+		.then(ing => {
+			return ing[0]
+		});
+	});
+
+	return Promise.all(recipePromises.concat(ingredientPromises));
 })
 .then(() => {
+  // console.log('INGREDIENTS', ingredients);
   console.log(chalk.green('seed successful'));
 })
 .catch(err => {
