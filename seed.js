@@ -1,57 +1,60 @@
-/*
+'use strict';
 
-This seed file is only a placeholder. It should be expanded and altered
-to fit the development of your application.
+const chalk = require('chalk');
+const Promise = require('bluebird');
 
-It uses the same file the server uses to establish
-the database connection:
---- server/db/index.js
+const db = require('./server/db/_db.js');
+const Recipe = require('./server/db/models/recipe-model.js');
+const Ingredient = require('./server/db/models/ingredient-model.js');
 
-The name of the database used is set in your environment files:
---- server/env/*
+let data = require('./server/db-setup/api-responses.json');
 
-This seed file has a safety check to see if you already have users
-in the database. If you are developing multiple applications with the
-fsg scaffolding, keep in mind that fsg always uses the same database
-name in the environment files.
+let ingredients = [];
 
-*/
+data.recipes.forEach(recipe => {
+	recipe.extendedIngredients.forEach(ingredient => {
+		ingredients.push({
+			apiIngId: ingredient.id,
+			name: ingredient.name,
+			category: ingredient.aisle
+		});
+	})
+});
 
-var chalk = require('chalk');
-var db = require('./server/db');
-var User = db.model('user');
-var Promise = require('sequelize').Promise;
 
-var seedUsers = function () {
+db.sync({force: true})
+.then(() => {
+	let recipePromises = data.recipes.map(recipe => {
+		recipe.apiRecipeId = recipe.id;
+		delete recipe.id;
+		return Recipe.create(recipe);
+	});
 
-    var users = [
-        {
-            email: 'testing@fsa.com',
-            password: 'password'
-        },
-        {
-            email: 'obama@gmail.com',
-            password: 'potus'
-        }
-    ];
+	let ingredientPromises = ingredients.map(ingredient => {
+		return Ingredient.findOrCreate({
+			where: {
+				apiIngId: ingredient.apiIngId
+			}, 
+			defaults: { 
+				name: ingredient.name,
+				category: ingredient.category
+			}
+		})
+		.then(ing => {
+			return ing[0]
+		});
+	});
 
-    var creatingUsers = users.map(function (userObj) {
-        return User.create(userObj);
-    });
-
-    return Promise.all(creatingUsers);
-
-};
-
-db.sync({ force: true })
-    .then(function () {
-        return seedUsers();
-    })
-    .then(function () {
-        console.log(chalk.green('Seed successful!'));
-        process.exit(0);
-    })
-    .catch(function (err) {
-        console.error(err);
-        process.exit(1);
-    });
+	return Promise.all(recipePromises.concat(ingredientPromises));
+})
+.then(() => {
+  // console.log('INGREDIENTS', ingredients);
+  console.log(chalk.green('seed successful'));
+})
+.catch(err => {
+  console.log(chalk.red(err));
+})
+.finally(() => {
+  db.close();
+  return null;
+});

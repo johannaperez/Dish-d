@@ -1,9 +1,11 @@
 'use strict';
-var db = require('./_db');
+const db = require('./_db');
+
+const User = require('./models/user-model.js');
+const Recipe = require('./models/recipe-model.js');
+const Ingredient = require('./models/ingredient-model.js');
+
+Recipe.hasMany(Ingredient);
+
+
 module.exports = db;
-
-// eslint-disable-next-line no-unused-vars
-var User = require('./models/user');
-
-// if we had more models, we could associate them in this file
-// e.g. User.hasMany(Reports)
