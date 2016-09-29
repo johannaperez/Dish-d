@@ -1,17 +1,22 @@
-<nav>
-    <div>
-        <div>
-            <dishd-logo></dishd-logo>
+<nav layout="row">
+    <md-content>
+        <div flex class="navcontainer">
+                <dishd-logo></dishd-logo>
+            <ul class="navitems">
+                <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
+                    <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
+                </li>
+            </ul>
+            <md-button ng-show="!user" ui-sref="login">Login</md-button>
+            <div ng-show="user" class="welcome">
+                <span>Welcome, {{ user.email }}!</span>
+                <a ng-click="logout()">Logout</a>
+            </div>
         </div>
-        <ul>
-            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
-                <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-            </li>
-        </ul>
-        <button ng-show="!user" ui-sref="login" class="login-button">Login</button>
-        <div ng-show="user" class="welcome">
-            <span>Welcome, {{ user.email }}!</span>
-            <a ng-click="logout()">Logout</a>
-        </div>
-    </div>
+        <md-nav-bar md-selected-nav-item="currentNavItem">
+          <md-nav-item md-nav-click="goto('page1')" name="page1">Page One</md-nav-item>
+          <md-nav-item md-nav-sref="app.page2" name="page2">Page Two</md-nav-item>
+          <md-nav-item md-nav-href="#page3" name="page3">Page Three</md-nav-item>
+        </md-nav-bar>
+    </md-content>
 </nav>

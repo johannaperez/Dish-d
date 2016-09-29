@@ -1,23 +1,35 @@
 navbar {
-
-  display: block;
   background: white;
-  border-bottom: 1px solid black;
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  justify-content: center;
+  // width: 100vw;
+  height: 20vh;
 
+  .navcontainer {
+    width: 90vw;
+    flex-flow: row wrap;
+  }
   .container {
     width: 91%;
     max-width: 1340px;
     padding-top: 20px;
   }
 
-  fullstack-logo {
+  dishd-logo {
     margin-top: 5px;
     margin-right: 20px;
     width: 40px;
   }
 
+  .navitems {
+    width: 40px;
+  }
+
   a {
     color: black;
+    text-decoration: none;
     font-size: 16px;
   }
 
