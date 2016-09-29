@@ -1,11 +1,15 @@
-#login-form{
-    display: flex;
-
-    flex-direction: column;
-    justify-content: center;
-    width: 80vw;
-    height: 100vh;
-    md-button {
+#login-page{
+    h1{
       align-self: center;
     }
 }
+
+#login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10vw;
+    width: 80vw;
+    height: 100vh;
+}
+

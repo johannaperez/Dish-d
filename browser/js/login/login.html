@@ -22,19 +22,19 @@
  -->
 
 <div id="login-page" layout="column" ng-cloak>
-  <br/>
-  <md-content class="md-no-momentum" flex>
+  <h1>Login to Dish'd!</h1>
+  <md-content class="md-no-momentum" style="{'padding-top': '10px'}"flex>
     <form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)">
         <md-input-container class="md-block">
-          <md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
           <input ng-model="login.email" type="email" placeholder="Email (required)" ng-required="true">
         </md-input-container>
 
         <md-input-container class="md-block">
-          <md-icon md-svg-src="img/icons/ic_phone_24px.svg"></md-icon>
           <input type="password" ng-model="login.password" id="login-password" placeholder="Password (required)" ng-required="true">
         </md-input-container>
-        <md-button class = "md-raised" type="submit">Submit</md-button>
+        <div>
+        <md-button type="submit">Submit</md-button>
+        </div>
     </form>
   </md-content>
 </div>
