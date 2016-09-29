@@ -1,16 +1,40 @@
-<form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)">
+<!-- <div ng-cloak-class="md-inline-form" layout="column">
+  <md-content layout-gt-sm="row" layout-padding>
+    <form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)">
+        <div type="danger" ng-show="error">
+            {{ error }}
+        </div>
+        <div layout-gt-sm="row">
 
-    <div type="danger" ng-show="error">
-        {{ error }}
-    </div>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label for="email">Email</label>
+                <input type="text" ng-model="login.email" id="email" >
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label for="login-password">Password</label>
+                <input type="password" ng-model="login.password" id="login-password">
+            </md-input-container>
+            <md-button class = "md-raised" type="submit">Submit</md-button>
+            </div>
+    </form>
+  </md-content>
+</div>
+ -->
 
-    <div>
-        <label for="email">Email address</label>
-        <input type="text" ng-model="login.email" id="email" placeholder="Enter email">
-    </div>
-    <div>
-        <label for="login-password">Password</label>
-        <input type="password" ng-model="login.password" id="login-password" placeholder="Password">
-    </div>
-    <button type="submit">Submit</button>
-</form>
+<div id="login-page" layout="column" ng-cloak>
+  <br/>
+  <md-content class="md-no-momentum" flex>
+    <form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)">
+        <md-input-container class="md-block">
+          <md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
+          <input ng-model="login.email" type="email" placeholder="Email (required)" ng-required="true">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+          <md-icon md-svg-src="img/icons/ic_phone_24px.svg"></md-icon>
+          <input type="password" ng-model="login.password" id="login-password" placeholder="Password (required)" ng-required="true">
+        </md-input-container>
+        <md-button class = "md-raised" type="submit">Submit</md-button>
+    </form>
+  </md-content>
+</div>

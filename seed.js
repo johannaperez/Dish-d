@@ -26,12 +26,20 @@ var seedUsers = function () {
 
     var users = [
         {
-            email: 'testing@fsa.com',
+            email: 'harry@hogwarts.com',
+            password: 'password'
+        },
+         {
+            email: 'ron@hogwarts.com',
             password: 'password'
         },
         {
-            email: 'obama@gmail.com',
-            password: 'potus'
+            email: 'hermione@hogwarts.com',
+            password: 'password'
+        },
+        {
+            email: 'draco@hogwarts.com',
+            password: 'password'
         }
     ];
 

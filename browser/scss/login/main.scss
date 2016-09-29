@@ -1,4 +1,11 @@
-#login-form {
-  width: 60%;
-  margin: 0 auto;
+#login-form{
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    width: 80vw;
+    height: 100vh;
+    md-button {
+      align-self: center;
+    }
 }
