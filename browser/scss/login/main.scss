@@ -1,21 +1,28 @@
-#login-page{
-  background-color: #FAFAFA;
-  height: 85vh;
+@mixin form-page {
+    background-color: #FAFAFA;
     h1, p{
       align-self: center;
     }
 }
 
-#login-form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 10vw;
-    width: 80vw;
-    div{
+@mixin form-body{
       display: flex;
+      flex-direction: column;
       justify-content: center;
-    }
+      margin-left: 10vw;
+      width: 80vw;
+      div{
+        display: flex;
+        justify-content: center;
+      }
+}
+
+#login-page{
+  @include form-page;
+}
+
+#login-form{
+  @include form-body;
 }
 
 
