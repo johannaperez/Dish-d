@@ -7,17 +7,11 @@ const Recipe = require('./models/recipe-model.js');
 const Ingredient = require('./models/ingredient-model.js');
 
 
-Ingredient.belongsToMany(Recipe, { through: 'recipe_ingredients', as: 'Recipes'});
-Recipe.belongsToMany(Ingredient, { through: 'recipe_ingredients', as: 'Ingredients'});
+Ingredient.belongsToMany(Recipe, { through: 'recipes_ingredients', as: 'recipes'});
+Recipe.belongsToMany(Ingredient, { through: 'recipes_ingredients', as: 'ingredients'});
 
 // User.hasOne(UserPrefs);
 // UserPrefs.belongsTo(User);
-
-
-db.sync({force: true})
-.then(()=>{
-	console.log('FINSIHED!');
-});
 
 
 module.exports = db;
