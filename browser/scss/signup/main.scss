@@ -1,0 +1,11 @@
+md-content {
+  width: 100vw;
+
+  #signup-page{
+    @include form-page;
+  }
+
+  #signup-form{
+    @include form-body;
+  }
+}
