@@ -5,4 +5,4 @@ public
 .DS_Store
 coverage
 server/db-setup
-env/development
+server/env/development
