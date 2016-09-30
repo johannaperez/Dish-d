@@ -3,7 +3,7 @@
 const chalk = require('chalk');
 const Promise = require('bluebird');
 
-const db = require('./server/db/_db.js');
+const db = require('./server/db/index.js');
 const Recipe = require('./server/db/models/recipe-model.js');
 const Ingredient = require('./server/db/models/ingredient-model.js');
 
@@ -27,8 +27,13 @@ db.sync({force: true})
 	let recipePromises = data.recipes.map(recipe => {
 		recipe.apiRecipeId = recipe.id;
 		delete recipe.id;
-		return Recipe.create(recipe);
-	});
+		return Recipe.findOrCreate({
+			where: {
+				apiRecipeId: recipe.apiRecipeId
+			}, 
+			defaults: recipe
+		});
+	})
 
 	let ingredientPromises = ingredients.map(ingredient => {
 		return Ingredient.findOrCreate({
@@ -47,14 +52,37 @@ db.sync({force: true})
 
 	return Promise.all(recipePromises.concat(ingredientPromises));
 })
+.then(()=>{
+	return Recipe.findAll();
+})
+.then((recipes)=>{
+	recipes.forEach(recipe => {
+
+		recipe.extendedIngredients.forEach(ingredient => {
+
+		    let id = ingredient.id;
+			Ingredient.findOne({
+				where: {
+					apiIngId: id
+				}
+			})
+			.then(ingredient => {
+				recipe.addIngredient(ingredient);
+			})
+			.catch(err => {
+  				console.log(chalk.blue(err));
+			})
+		})
+	})
+})
 .then(() => {
-  // console.log('INGREDIENTS', ingredients);
   console.log(chalk.green('seed successful'));
 })
 .catch(err => {
   console.log(chalk.red(err));
 })
 .finally(() => {
-  db.close();
+  // db.close();
+  console.log('SEEDED THE DATABASE>>>>> OR TRIED TO');
   return null;
 });
