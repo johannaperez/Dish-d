@@ -1,0 +1,21 @@
+md-content {
+  width: 100vw;
+  #signup-page{
+    background-color: #FAFAFA;
+      h1, p{
+        align-self: center;
+      }
+  }
+
+  #signup-form{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left: 10vw;
+      width: 80vw;
+      div{
+        display: flex;
+        justify-content: center;
+      }
+  }
+}
