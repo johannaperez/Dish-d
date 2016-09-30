@@ -1,4 +1,34 @@
-#login-form {
-  width: 60%;
-  margin: 0 auto;
+#login-page{
+  background-color: #FAFAFA;
+    h1{
+      align-self: center;
+    }
+}
+
+#login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10vw;
+    width: 80vw;
+    div{
+      display: flex;
+      justify-content: center;
+    }
+}
+
+
+/*ng-md-icon{
+  align-self: center;
+  vertical-align: center;
+}*/
+
+.md-fab {
+  font-size: 2.8rem;
+  display: block;
+}
+
+ng-md-icon {
+  width : 2.8rem;
+  height: 2.8rem;
 }

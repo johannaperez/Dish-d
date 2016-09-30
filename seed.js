@@ -12,13 +12,13 @@ let data = require('./server/db-setup/api-responses.json');
 let ingredients = [];
 
 data.recipes.forEach(recipe => {
-	recipe.extendedIngredients.forEach(ingredient => {
-		ingredients.push({
-			apiIngId: ingredient.id,
-			name: ingredient.name,
-			category: ingredient.aisle
-		});
-	})
+  recipe.extendedIngredients.forEach(ingredient => {
+    ingredients.push({
+      apiIngId: ingredient.id,
+      name: ingredient.name,
+      category: ingredient.aisle
+    });
+  })
 });
 
 
@@ -34,8 +34,8 @@ db.sync({force: true})
 		return Ingredient.findOrCreate({
 			where: {
 				apiIngId: ingredient.apiIngId
-			}, 
-			defaults: { 
+			},
+			defaults: {
 				name: ingredient.name,
 				category: ingredient.category
 			}
