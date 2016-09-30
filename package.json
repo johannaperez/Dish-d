@@ -1,7 +1,7 @@
 {
-  "name": "FullstackGeneratedApp",
+  "name": "Dish'd",
   "version": "1.0.0",
-  "description": "A generated project at Fullstack Academy",
+  "description": "A generated project at Grace Hopper Academy",
   "author": "Johanna Perez, Galen Corey, Danielle YoungSmith, Lisa Veras",
   "main": "server/start.js",
   "scripts": {
