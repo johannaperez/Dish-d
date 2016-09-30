@@ -20,21 +20,21 @@ describe('Members Route', function () {
         User = db.model('user');
     });
 
-	describe('Unauthenticated request', function () {
+	// describe('Unauthenticated request', function () {
 
-		var guestAgent;
+	// 	var guestAgent;
 
-		beforeEach('Create guest agent', function () {
-			guestAgent = supertest.agent(app);
-		});
+	// 	beforeEach('Create guest agent', function () {
+	// 		guestAgent = supertest.agent(app);
+	// 	});
 
-		it('should get a 401 response', function (done) {
-			guestAgent.get('/api/members/secret-stash')
-				.expect(401)
-				.end(done);
-		});
+	// 	it('should get a 401 response', function (done) {
+	// 		guestAgent.get('/api/members/secret-stash')
+	// 			.expect(401)
+	// 			.end(done);
+	// 	});
 
-	});
+	// });
 
 	describe('Authenticated request', function () {
 
