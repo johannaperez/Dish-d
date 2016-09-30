@@ -30,7 +30,7 @@ db.sync({force: true})
 		return Recipe.findOrCreate({
 			where: {
 				apiRecipeId: recipe.apiRecipeId
-			}, 
+			},
 			defaults: recipe
 		});
 	})
@@ -50,30 +50,30 @@ db.sync({force: true})
 		});
 	});
 
-	return Promise.all(recipePromises.concat(ingredientPromises));
+	return Promise.all([...recipePromises, ...ingredientPromises]);
 })
-.then(()=>{
+.then(() => {
 	return Recipe.findAll();
 })
-.then((recipes)=>{
+.then((recipes) => {
+  let promises = [];
 	recipes.forEach(recipe => {
-
 		recipe.extendedIngredients.forEach(ingredient => {
-
-		    let id = ingredient.id;
+		  let id = ingredient.id;
 			Ingredient.findOne({
 				where: {
 					apiIngId: id
 				}
 			})
 			.then(ingredient => {
-				recipe.addIngredient(ingredient);
+				promises.push(recipe.addIngredient(ingredient));
 			})
 			.catch(err => {
-  				console.log(chalk.blue(err));
+				console.log(chalk.blue(err));
 			})
 		})
 	})
+  return Promise.all(promises);
 })
 .then(() => {
   console.log(chalk.green('seed successful'));
@@ -82,7 +82,7 @@ db.sync({force: true})
   console.log(chalk.red(err));
 })
 .finally(() => {
-  // db.close();
+  db.close();
   console.log('SEEDED THE DATABASE>>>>> OR TRIED TO');
   return null;
 });
