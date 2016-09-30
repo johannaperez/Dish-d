@@ -24,6 +24,7 @@ data.recipes.forEach(recipe => {
 
 db.sync({force: true})
 .then(() => {
+  console.log('synced db');
 	let recipePromises = data.recipes.map(recipe => {
 		recipe.apiRecipeId = recipe.id;
 		delete recipe.id;
@@ -32,27 +33,25 @@ db.sync({force: true})
 				apiRecipeId: recipe.apiRecipeId
 			},
 			defaults: recipe
-		});
+		})
+    .then(recps => recps[0]);
 	})
 
 	let ingredientPromises = ingredients.map(ingredient => {
-		return Ingredient.findOrCreate({
+		// ingredient.apiIngId =
+    return Ingredient.findOrCreate({
 			where: {
 				apiIngId: ingredient.apiIngId
 			},
-			defaults: {
-				name: ingredient.name,
-				category: ingredient.category
-			}
+			defaults: ingredient
 		})
-		.then(ing => {
-			return ing[0]
-		});
+		.then(ing => ing[0]);
 	});
 
 	return Promise.all([...recipePromises, ...ingredientPromises]);
 })
 .then(() => {
+  console.log('created recipes/ingredients');
 	return Recipe.findAll();
 })
 .then((recipes) => {
@@ -60,17 +59,16 @@ db.sync({force: true})
 	recipes.forEach(recipe => {
 		recipe.extendedIngredients.forEach(ingredient => {
 		  let id = ingredient.id;
-			Ingredient.findOne({
+
+			let promise = Ingredient.findOne({
 				where: {
 					apiIngId: id
 				}
 			})
 			.then(ingredient => {
-				promises.push(recipe.addIngredient(ingredient));
+				recipe.addIngredient(ingredient);
 			})
-			.catch(err => {
-				console.log(chalk.blue(err));
-			})
+      promises.push(promise);
 		})
 	})
   return Promise.all(promises);
@@ -80,9 +78,11 @@ db.sync({force: true})
 })
 .catch(err => {
   console.log(chalk.red(err));
+  console.log(chalk.red(err.stack));
 })
 .finally(() => {
+   console.log('closing db');
   db.close();
-  console.log('SEEDED THE DATABASE>>>>> OR TRIED TO');
+  process.exit(0)
   return null;
 });
