@@ -24,28 +24,28 @@ data.recipes.forEach(recipe => {
 
 db.sync({force: true})
 .then(() => {
-  let recipePromises = data.recipes.map(recipe => {
-    recipe.apiRecipeId = recipe.id;
-    delete recipe.id;
-    return Recipe.create(recipe);
-  });
+	let recipePromises = data.recipes.map(recipe => {
+		recipe.apiRecipeId = recipe.id;
+		delete recipe.id;
+		return Recipe.create(recipe);
+	});
 
-  let ingredientPromises = ingredients.map(ingredient => {
-    return Ingredient.findOrCreate({
-      where: {
-        apiIngId: ingredient.apiIngId
-      },
-      defaults: {
-        name: ingredient.name,
-        category: ingredient.category
-      }
-    })
-    .then(ing => {
-      return ing[0]
-    });
-  });
+	let ingredientPromises = ingredients.map(ingredient => {
+		return Ingredient.findOrCreate({
+			where: {
+				apiIngId: ingredient.apiIngId
+			},
+			defaults: {
+				name: ingredient.name,
+				category: ingredient.category
+			}
+		})
+		.then(ing => {
+			return ing[0]
+		});
+	});
 
-  return Promise.all(recipePromises.concat(ingredientPromises));
+	return Promise.all(recipePromises.concat(ingredientPromises));
 })
 .then(() => {
   // console.log('INGREDIENTS', ingredients);
