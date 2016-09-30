@@ -1,4 +1,29 @@
 navbar {
+    display: flex;
+    .navcontainer {
+        width: 100vw;
+        height: 20vh;
+        align-items: center;
+        justify-content: space-around;
+        display: flex;
+        flex-direction: row;
+        #navitems {
+            display: inline-flex;
+           li {
+            list-style-type: none;
+              padding-left: 10px;
+              padding-right: 10px;
+            a {
+              text-decoration: none;
+            }
+          }
+        }
+    }
+}
+
+
+/*
+navbar {
   background: white;
   display: flex;
   align-items: center;
@@ -71,3 +96,4 @@ navbar {
   }
 
 }
+*/
