@@ -1,7 +1,7 @@
 <md-content class="md-no-momentum" flex>
     <div id="login-page" layout="column" ng-cloak>
         <h1>Login to Dish'd!</h1>
-        <p>New to Dish'd? <a>sign up here!</a></p>
+        <p>New to Dish'd? <a ui-sref="signup">Sign up here!</a></p>
         <form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)">
             <md-input-container class="md-block">
                 <input ng-model="login.email" type="email" placeholder="Email (required)" ng-required="true">
