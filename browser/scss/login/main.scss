@@ -8,9 +8,8 @@
 @mixin form-body{
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      margin-left: 10vw;
-      width: 80vw;
+      align-self: center;
+      width: 60vw;
       div{
         display: flex;
         justify-content: center;
