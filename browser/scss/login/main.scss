@@ -1,8 +1,6 @@
 @mixin form-page {
     background-color: #FAFAFA;
-    h1, p{
-      align-self: center;
-    }
+    align-items: center;
 }
 
 @mixin form-body{
