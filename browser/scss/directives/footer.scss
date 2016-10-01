@@ -1,0 +1,28 @@
+footer {
+    display: flex;
+    .footercontainer {
+        width: 100vw;
+        height: 10vh;
+        align-items: center;
+        justify-content: space-around;
+        display: flex;
+        background-color: black;
+        .link {
+            color: #FDFDFD;
+            cursor: pointer;
+            border-bottom: 1px dotted #9a9a9a;
+            font-size: 14px;
+        }
+        .copyright {
+            color: #FDFDFD;
+        }
+        .social {
+            color: #FDFDFD;
+            justify-content: space-around;
+            align-items: center;
+            ng-md-icon {
+                fill: #FDFDFD;
+            }
+        }
+    }
+}
