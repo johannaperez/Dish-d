@@ -1,6 +1,9 @@
 @mixin form-page {
     background-color: #FAFAFA;
     align-items: center;
+    a {
+      border-bottom: 1px dotted #9a9a9a;
+    }
 }
 
 @mixin form-body{
@@ -16,24 +19,15 @@
 
 #login-page{
   @include form-page;
+  .oauth {
+    align-items: center;
+    a {
+      border-bottom: none;
+      padding: 5px;
+    }
+  }
 }
 
 #login-form{
   @include form-body;
-}
-
-
-/*ng-md-icon{
-  align-self: center;
-  vertical-align: center;
-}*/
-
-.md-fab {
-  font-size: 2.8rem;
-  display: block;
-}
-
-ng-md-icon {
-  width : 2.8rem;
-  height: 2.8rem;
 }
