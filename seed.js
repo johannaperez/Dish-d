@@ -26,7 +26,6 @@ data.forEach(recipe => {
   })
 });
 
-
 db.sync({force: true})
 .then(() => {
   console.log('synced db');

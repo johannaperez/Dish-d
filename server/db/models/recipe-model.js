@@ -75,8 +75,6 @@ let Recipe = db.define('recipe', {
       var ingredients = this.extendedIngredients.map(function(ingredient){
         return ingredient.name;
       })
-
-      var importantIngredients =
       // figure out important ingredients
       // find other recipes in which that is an important ingredient
     }
