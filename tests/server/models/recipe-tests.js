@@ -6,7 +6,7 @@ var Sequelize = require('sequelize');
 var db = require('../../../server/db');
 
 var Recipe = db.model('recipe');
-var Promise = require('bluebird'); 
+var Promise = require('bluebird');
 
 xdescribe('compare ingredients helper function', function(){
 
@@ -21,6 +21,12 @@ describe('Recipe model', function () {
 
         describe('getRelatedMeals', function () {
 
+            var fakeUser = {
+                getAllOkRecipes: function(){
+                    return recipes;
+                }
+            }
+
             var recipes = [
                 {title: "Chocolate Cake",
                 instructions: 'make it!',
@@ -28,7 +34,7 @@ describe('Recipe model', function () {
                 preparationMinutes: 10,
                 cookingMinutes: 10,
                 extendedIngredients: [
-                    {name: 'chocolate', id: 1}, 
+                    {name: 'chocolate', id: 1},
                     {name: 'eggs', id: 2}
                 ]
                 },
@@ -56,20 +62,20 @@ describe('Recipe model', function () {
             ];
 
             var createRecipes = function () {
-                let promises = recipes.map(rec => Recipe.create(rec)); 
-                return Promise.all(promises); 
+                let promises = recipes.map(rec => Recipe.create(rec));
+                return Promise.all(promises);
             }
 
              it('should recognize two recipes with related ingredients', function () {
                 createRecipes().then(function ([rec1, rec2, rec3]) {
-                    let simRecipe = user.sanitize();
-                    expect(user.password).to.be.ok;
-                    expect(user.salt).to.be.ok;
-                    expect(sanitizedUser.password).to.be.undefined;
-                    expect(sanitizedUser.salt).to.be.undefined;
+                    rec1.getRelatedMeals(fakeUser)
+                    .then(function(simRecipes){
+                        expect(simRecipes).to.be.an('array');
+                        expect(simRecipes[0].title).to.be.equal("Chocolate Chip Cookies");
+                    });
                 });
             });
-           
+
         });
 
 });

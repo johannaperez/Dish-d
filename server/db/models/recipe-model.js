@@ -69,17 +69,57 @@ let Recipe = db.define('recipe', {
 	}
 }, {
 	// OPTIONS
-  instanceMethods: {
-    getRelatedMeals: function(){
+  getterMethods: {
+
+    importantIngredients: function(){
       var title = this.title;
-      var ingredients = this.extendedIngredients.map(function(ingredient){
-        return ingredient.name;
+      var ingredients = this.extendedIngredients.filter(function(ingredient){
+        var name = ingredient.name;
+        return title.toLowerCase().includes(name.toLowerCase());
+      });
+
+      return ingredients;
+    } // END IMPORTANT
+
+  },
+
+  instanceMethods: {
+
+    getRelatedMeals: function(User){
+      var ingredients = this.importantIngredients();
+      if (!ingredients) return [];
+
+      return User.getAllOkayRecipes()
+      .then(function(recipes) {
+        recipes = recipes.filter(function(recipe){
+          return compareIngredients(recipe.importantIngredients, ingredients) > 0;
+        });
+
+        return recipes;
       })
-      // figure out important ingredients
-      // find other recipes in which that is an important ingredient
+      .then(function(similarRecipes){
+        return similarRecipes;
+      })
+      .catch(function(err){
+        console.log(err);
+      });
+
+      }
     }
-  }
+
 });
 
+function compareIngredients (ingredients1, ingredients2){
+
+  let ing1 = ingredients1.map(ing => ing.id);
+  let ing2 = ingredients2.map(ing => ing.id);
+
+  let count = 0;
+  for (let i = 0; i < ing1.length; i++){
+    if (ing2.includes(ing1[i])) count++;
+  }
+
+  return count;
+}
 
 module.exports = Recipe;
