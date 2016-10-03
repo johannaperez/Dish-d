@@ -9,8 +9,8 @@ const Ingredient = require('./server/db/models/ingredient-model.js');
 
 let data = require('./server/db-setup/api-responses.json');
 let data2 = require('./server/db-setup/api-responses2.json');
-let data3 = require('./server/db-setup/api-responses2.json');
-let data4 = require('./server/db-setup/api-responses2.json');
+let data3 = require('./server/db-setup/api-responses3.json');
+let data4 = require('./server/db-setup/api-responses4.json');
 
 data = [... data.recipes, ...data2.recipes, ...data3.recipes, ...data4.recipes];
 
@@ -40,7 +40,10 @@ db.sync({force: true})
 			defaults: recipe
 		})
     .then(recps => recps[0])
-    .catch(err => console.log(chalk.blue('Recipe not loaded,' + err)));
+    .catch(err => {
+      if (err.toString().split(':')[0] === 'SequelizeValidationError') return;
+      else throw err;
+    });
 	});
 
 	let ingredientPromises = ingredients.map(ingredient => {
@@ -64,19 +67,23 @@ db.sync({force: true})
   let promises = [];
 
 	recipes.forEach(recipe => {
+    if (recipe.title === 'Southwestern Mini Meatloaves') console.dir(recipe.extendedIngredients)
 		recipe.extendedIngredients.forEach(ingredient => {
 		  let id = ingredient.id;
-
+      let ingrr = ingredient;
 			let promise = Ingredient.findOne({
 				where: {
 					apiIngId: id
 				}
 			})
 			.then(ingredient2 => {
+        if (!ingredient2) throw Error ("ingredient not found", ingredient2);
 			   return recipe.addIngredient(ingredient2);
 			}) // might be an error here with repeated ingredients...
-      .catch(err =>
-           console.log(chalk.magenta(err, recipe.title)));
+      .catch(err => {
+        if (err === 'SequelizeUniqueConstraintError: Validation error') return;
+        else throw err;
+      });
 
       promises.push(promise);
 
