@@ -15,13 +15,15 @@ let Recipe = db.define('recipe', {
 		type: Sequelize.INTEGER
 	},
 	image: {
-		type: Sequelize.STRING
+		type: Sequelize.STRING,
+    allowNull: false
 	},
 	imageType: {
 		type: Sequelize.STRING
 	},
 	instructions: {
-		type: Sequelize.TEXT
+		type: Sequelize.TEXT,
+    allowNull: false
 	},
 	vegetarian: {
 		type: Sequelize.BOOLEAN
@@ -42,10 +44,12 @@ let Recipe = db.define('recipe', {
 		type: Sequelize.INTEGER
 	},
 	preparationMinutes: {
-		type: Sequelize.INTEGER
+		type: Sequelize.INTEGER,
+    allowNull: false
 	},
 	cookingMinutes: {
-		type: Sequelize.INTEGER
+		type: Sequelize.INTEGER,
+    allowNull: false
 	},
 	sourceUrl: {
 		type: Sequelize.STRING

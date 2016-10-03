@@ -34,7 +34,8 @@ db.sync({force: true})
 			},
 			defaults: recipe
 		})
-    .then(recps => recps[0]);
+    .then(recps => recps[0])
+    .catch(err => console.log(chalk.blue("recipe not loaded, " + err)));
 	})
 
 	let ingredientPromises = ingredients.map(ingredient => {
