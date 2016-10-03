@@ -71,7 +71,12 @@ let Recipe = db.define('recipe', {
 	// OPTIONS
   instanceMethods: {
     getRelatedMeals: function(){
-      // get ingredients
+      var title = this.title;
+      var ingredients = this.extendedIngredients.map(function(ingredient){
+        return ingredient.name;
+      })
+
+      var importantIngredients =
       // figure out important ingredients
       // find other recipes in which that is an important ingredient
     }
