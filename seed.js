@@ -8,10 +8,15 @@ const Recipe = require('./server/db/models/recipe-model.js');
 const Ingredient = require('./server/db/models/ingredient-model.js');
 
 let data = require('./server/db-setup/api-responses.json');
+let data2 = require('./server/db-setup/api-responses2.json');
+let data3 = require('./server/db-setup/api-responses2.json');
+let data4 = require('./server/db-setup/api-responses2.json');
+
+data = [... data.recipes, ...data2.recipes, ...data3.recipes, ...data4.recipes];
 
 let ingredients = [];
 
-data.recipes.forEach(recipe => {
+data.forEach(recipe => {
   recipe.extendedIngredients.forEach(ingredient => {
     ingredients.push({
       apiIngId: ingredient.id,
@@ -25,7 +30,7 @@ data.recipes.forEach(recipe => {
 db.sync({force: true})
 .then(() => {
   console.log('synced db');
-	let recipePromises = data.recipes.map(recipe => {
+	let recipePromises = data.map(recipe => {
 		recipe.apiRecipeId = recipe.id;
 		delete recipe.id;
 		return Recipe.findOrCreate({
@@ -35,7 +40,7 @@ db.sync({force: true})
 			defaults: recipe
 		})
     .then(recps => recps[0])
-    .catch(err => console.log(chalk.blue("recipe not loaded, " + err)));
+    .catch(err => console.log(chalk.blue('Recipe not loaded,' + err)));
 	});
 
 	let ingredientPromises = ingredients.map(ingredient => {
@@ -51,13 +56,12 @@ db.sync({force: true})
 	return Promise.all([...recipePromises, ...ingredientPromises]);
 })
 .then(() => {
-  console.log('created recipes/ingredients');
+  console.log('Created recipes & ingredients');
 	return Recipe.findAll();
 })
 .then((recipes) => {
 
   let promises = [];
-  let ingredientCool = {};
 
 	recipes.forEach(recipe => {
 		recipe.extendedIngredients.forEach(ingredient => {
@@ -68,12 +72,11 @@ db.sync({force: true})
 					apiIngId: id
 				}
 			})
-			.then(ingredient => {
-        ingredientCool = ingredient;
-			   return recipe.addIngredient(ingredient);
-			})
+			.then(ingredient2 => {
+			   return recipe.addIngredient(ingredient2);
+			}) // might be an error here with repeated ingredients...
       .catch(err =>
-           console.log(chalk.magenta(err, ingredientCool.name, recipe.title)));
+           console.log(chalk.magenta(err, recipe.title)));
 
       promises.push(promise);
 
@@ -91,6 +94,6 @@ db.sync({force: true})
 .finally(() => {
   console.log('closing db');
   db.close();
-  // process.exit(0)
+  process.exit(0);
   return null;
 });
