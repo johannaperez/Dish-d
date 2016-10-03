@@ -69,6 +69,13 @@ let Recipe = db.define('recipe', {
 	}
 }, {
 	// OPTIONS
+  instanceMethods: {
+    getRelatedMeals: function(){
+      // get ingredients
+      // figure out important ingredients
+      // find other recipes in which that is an important ingredient
+    }
+  }
 });
 
 
