@@ -14,9 +14,15 @@ body {
   }
 }
 
+a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
 #main {
-  padding-top: 60px;
-  margin: 0 auto;
+  display: flex;
+  height: 85vh;
 }
 
 @import 'directives/main';
@@ -24,3 +30,4 @@ body {
 @import 'about/main';
 @import 'tutorial/main';
 @import 'login/main';
+@import 'signup/main';

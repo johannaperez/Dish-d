@@ -1,4 +1,36 @@
-#login-form {
-  width: 60%;
-  margin: 0 auto;
+@mixin form-page {
+    background-color: #FAFAFA;
+    align-items: center;
+    a {
+      border-bottom: 1px dotted #9a9a9a;
+    }
+}
+
+@mixin form-body{
+      display: flex;
+      flex-direction: column;
+      align-self: center;
+      width: 60vw;
+      div{
+        display: flex;
+        justify-content: center;
+      }
+}
+
+#login-page{
+  @include form-page;
+  .oauth {
+    align-items: center;
+    a {
+      border-bottom: none;
+      padding: 5px;
+    }
+    #signup {
+      border-bottom: 1px dotted #9a9a9a;
+    }
+  }
+}
+
+#login-form{
+  @include form-body;
 }

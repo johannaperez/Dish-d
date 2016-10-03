@@ -1,16 +1,27 @@
-<form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)">
+<md-content flex>
+    <div id="login-page" layout="column" ng-cloak>
+        <h1>Login to Dish'd!</h1>
+        <form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)">
+            <md-input-container class="md-block">
+                <input ng-model="login.email" type="email" placeholder="Email (required)" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <input type="password" ng-model="login.password" id="login-password" placeholder="Password (required)" ng-required="true">
+            </md-input-container>
+            <div>
+                <md-button type="submit">Submit</md-button>
+            </div>
+            <div class="oauth">
+                <p>New to Dish'd? <a id="signup" ui-sref="signup">Sign up here! </a>
+                Or, with: </p>
+                <a href="/auth/google">
+                    <ng-md-icon icon="google-plus-box" size="40"></ng-md-icon>
+                </a>
+                <a href="/auth/facebook">
+                    <ng-md-icon icon="facebook-box" size="40"></ng-md-icon>
+                </a>
+            </div>
+        </form>
+    </div>
+</md-content>
 
-    <div type="danger" ng-show="error">
-        {{ error }}
-    </div>
-
-    <div>
-        <label for="email">Email address</label>
-        <input type="text" ng-model="login.email" id="email" placeholder="Enter email">
-    </div>
-    <div>
-        <label for="login-password">Password</label>
-        <input type="password" ng-model="login.password" id="login-password" placeholder="Password">
-    </div>
-    <button type="submit">Submit</button>
-</form>
