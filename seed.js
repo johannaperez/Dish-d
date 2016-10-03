@@ -36,10 +36,9 @@ db.sync({force: true})
 		})
     .then(recps => recps[0])
     .catch(err => console.log(chalk.blue("recipe not loaded, " + err)));
-	})
+	});
 
 	let ingredientPromises = ingredients.map(ingredient => {
-		// ingredient.apiIngId =
     return Ingredient.findOrCreate({
 			where: {
 				apiIngId: ingredient.apiIngId
@@ -56,7 +55,10 @@ db.sync({force: true})
 	return Recipe.findAll();
 })
 .then((recipes) => {
+
   let promises = [];
+  let ingredientCool = {};
+
 	recipes.forEach(recipe => {
 		recipe.extendedIngredients.forEach(ingredient => {
 		  let id = ingredient.id;
@@ -67,10 +69,15 @@ db.sync({force: true})
 				}
 			})
 			.then(ingredient => {
-				recipe.addIngredient(ingredient);
+        ingredientCool = ingredient;
+			   return recipe.addIngredient(ingredient);
 			})
+      .catch(err =>
+           console.log(chalk.magenta(err, ingredientCool.name, recipe.title)));
+
       promises.push(promise);
-		})
+
+    })
 	})
   return Promise.all(promises);
 })
@@ -82,8 +89,8 @@ db.sync({force: true})
   console.log(chalk.red(err.stack));
 })
 .finally(() => {
-   console.log('closing db');
+  console.log('closing db');
   db.close();
-  process.exit(0)
+  // process.exit(0)
   return null;
 });
