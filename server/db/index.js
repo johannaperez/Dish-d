@@ -13,5 +13,4 @@ Recipe.belongsToMany(Ingredient, { through: 'recipes_ingredients', as: 'ingredie
 User.hasOne(UserPref);
 UserPref.belongsTo(User);
 
-
 module.exports = db;
