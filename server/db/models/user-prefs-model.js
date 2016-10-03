@@ -49,8 +49,4 @@ let UserPrefs = db.define('userPrefs', {
 });
 
 
-[prawns, eggs, cashews]
-
-
-
 module.exports = UserPrefs
