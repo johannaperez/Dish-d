@@ -1,10 +1,10 @@
-'use strict';
+// 'use strict';
 
 const Sequelize = require('sequelize');
 const db = require('../_db.js');
 const Recipe = require('./recipe-model.js');
 
-let UserPrefs = db.define('userPrefs', {
+let UserPref = db.define('userPrefs', {
 	// SCHEMA
 	vegetarian: {
 		type: Sequelize.BOOLEAN,
@@ -28,8 +28,8 @@ let UserPrefs = db.define('userPrefs', {
 }, {
 	// OPTIONS
 	instanceMethods: {
-		return getAllOkayRecipes() => {
-			Recipe.findAll({
+		getAllOkayRecipes: () => {
+			return Recipe.findAll({
 				where: this
 			})
 			.then(boolRecipes => {
@@ -37,7 +37,7 @@ let UserPrefs = db.define('userPrefs', {
 				boolRecipes.forEach(recipe => {
 					recipe.extendedIngredients.forEach(ingredient => {
 						if (this.dislikes.includes(ingredient)) {
-							break;
+							return;
 						}
 					})
 					filteredRecipes.push(recipe);
@@ -49,4 +49,4 @@ let UserPrefs = db.define('userPrefs', {
 });
 
 
-module.exports = UserPrefs
+module.exports = UserPref
