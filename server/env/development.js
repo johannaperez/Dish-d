@@ -8,12 +8,12 @@ module.exports = {
   },
   FACEBOOK: {
     clientID: '1798317553747617',
-    clientSecret: '1f4efd52e49a5366c8a50b8b3647f42f',
+    clientSecret: '4f698c66684cf989dddeb6cce4fb3355',
     callbackURL: 'http://localhost:1337/auth/facebook/callback'
   },
   GOOGLE: {
     clientID: '405517878236-493ai7memfuvad4dpmi4haniq0o1dshl.apps.googleusercontent.com',
-    clientSecret: 'pxot-QA273WNhdRAHBzNbZq1',
+    clientSecret: 'k3d-wl6X3_K23Vhw0d1EmoOu',
     callbackURL: 'http://localhost:1337/auth/google/callback'
   },
   LOGGING: true,

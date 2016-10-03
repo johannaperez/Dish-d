@@ -14,8 +14,15 @@ body {
   }
 }
 
+a {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
 #main {
   display: flex;
+  height: 85vh;
 }
 
 @import 'directives/main';

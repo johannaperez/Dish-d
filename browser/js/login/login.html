@@ -1,7 +1,6 @@
-<md-content class="md-no-momentum" flex>
+<md-content flex>
     <div id="login-page" layout="column" ng-cloak>
         <h1>Login to Dish'd!</h1>
-        <p>New to Dish'd? <a ui-sref="signup">Sign up here!</a></p>
         <form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)">
             <md-input-container class="md-block">
                 <input ng-model="login.email" type="email" placeholder="Email (required)" ng-required="true">
@@ -12,17 +11,14 @@
             <div>
                 <md-button type="submit">Submit</md-button>
             </div>
-            <div>
-                <h4>Or, log in with an external provider: </h4>
+            <div class="oauth">
+                <p>New to Dish'd? <a id="signup" ui-sref="signup">Sign up here! </a>
+                Or, with: </p>
                 <a href="/auth/google">
-                <md-button class="md-fab md-accent provider-button">
                     <ng-md-icon icon="google-plus-box" size="40"></ng-md-icon>
-                </md-button>
                 </a>
                 <a href="/auth/facebook">
-                <md-button class="md-fab md-primary provider-button">
                     <ng-md-icon icon="facebook-box" size="40"></ng-md-icon>
-                </md-button>
                 </a>
             </div>
         </form>

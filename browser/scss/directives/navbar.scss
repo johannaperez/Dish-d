@@ -9,6 +9,8 @@ navbar {
         flex-direction: row;
         #navitems {
             display: inline-flex;
+//for MyAccount link
+            align-items: flex-end;
            li {
             list-style-type: none;
               padding-left: 10px;

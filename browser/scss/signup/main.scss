@@ -1,11 +1,26 @@
-md-content {
-  width: 100vw;
+@mixin form-page {
+    background-color: #FAFAFA;
+    align-items: center;
+    a {
+        border-bottom: 1px dotted #9a9a9a;
+    }
+}
 
-  #signup-page{
+@mixin form-body {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    width: 60vw;
+    div {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+#signup-page {
     @include form-page;
-  }
+}
 
-  #signup-form{
+#signup-form {
     @include form-body;
-  }
 }
