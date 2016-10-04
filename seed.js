@@ -14,9 +14,6 @@ let data4 = require('./server/db-setup/api-responses4.json');
 
 data = [... data.recipes, ...data2.recipes, ...data3.recipes, ...data4.recipes];
 
-
-//data = data.recipes;
-
 let ingredients = [];
 
 data.forEach(recipe => {
@@ -28,7 +25,6 @@ data.forEach(recipe => {
     });
   })
 });
-
 
 db.sync({force: true})
 .then(() => {
