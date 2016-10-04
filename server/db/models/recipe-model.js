@@ -86,7 +86,7 @@ let Recipe = db.define('recipe', {
   instanceMethods: {
 
     getRelatedMeals: function(User){
-      var ingredients = this.importantIngredients();
+      var ingredients = this.importantIngredients;
       if (!ingredients) return [];
 
       return User.getAllOkayRecipes()

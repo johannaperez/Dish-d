@@ -8,11 +8,6 @@ var db = require('../../../server/db');
 var Recipe = db.model('recipe');
 var Promise = require('bluebird');
 
-xdescribe('compare ingredients helper function', function(){
-
-
-});
-
 describe('Recipe model', function () {
 
     beforeEach('Sync DB', function () {
@@ -22,8 +17,10 @@ describe('Recipe model', function () {
         describe('getRelatedMeals', function () {
 
             var fakeUser = {
-                getAllOkRecipes: function(){
-                    return recipes;
+                getAllOkayRecipes: function(){
+                    return new Promise(function(resolve){
+                        return recipes;
+                    })
                 }
             }
 
@@ -71,11 +68,21 @@ describe('Recipe model', function () {
                     rec1.getRelatedMeals(fakeUser)
                     .then(function(simRecipes){
                         expect(simRecipes).to.be.an('array');
-                        expect(simRecipes[0].title).to.be.equal("Chocolate Chip Cookies");
+                        expect(simRecipes).to.have.length(1);
+                        expect(simRecipes[0].title).to.be.equal('Chocolate Chip Cookies');
+                    });
+                });
+            });
+
+            it('should return an empty array if there are no matching recipes', function () {
+                createRecipes().then(function ([rec1, rec2, rec3]) {
+                    rec3.getRelatedMeals(fakeUser)
+                    .then(function(simRecipes){
+                        expect(simRecipes).to.be.an('array');
+                        expect(simRecipes).to.have.length(0);
                     });
                 });
             });
 
         });
-
 });
