@@ -20,6 +20,9 @@ describe('User Preference model', function() {
     var recipes = [{
         title: 'this is vegetarian!',
         vegetarian: true,
+        vegan: false,
+        glutenFree: false,
+        dairyFree: false,
         image: 'http',
         instructions: '1, 2, 3',
         preparationMinutes: 5,
@@ -28,6 +31,9 @@ describe('User Preference model', function() {
     }, {
         title: 'this is MEAT!',
         vegetarian: false,
+        vegan: false,
+        glutenFree: false,
+        dairyFree: false,
         image: 'http',
         instructions: '1, 2, 3',
         preparationMinutes: 5,
@@ -36,6 +42,9 @@ describe('User Preference model', function() {
     }, {
         title: 'omelette',
         vegetarian: true,
+        vegan: false,
+        glutenFree: false,
+        dairyFree: false,
         image: 'http',
         instructions: '1, 2, 3',
         preparationMinutes: 5,
@@ -55,17 +64,14 @@ describe('User Preference model', function() {
                 recipes.forEach(function(recipe) {
                     promises.push(Recipe.create(recipe));
                 });
-                Promise.all(promises)
-                    .then(function() {
-                        UserPref.findAll()
-                            .then(function(foundPref) {
-                                preference = foundPref;
-                            })
-                            .catch(console.error)
-                    })
-                    .catch(console.error)
+                return Promise.all(promises)
+                .then(function([pref, rec1, rec2, rec3]) {
+                    preference = pref;
+                })
+                .catch(console.error)
             })
             .catch(console.error);
+
     });
 
     describe('gets user preferences', function() {
@@ -82,8 +88,11 @@ describe('User Preference model', function() {
 
         describe('filters recipes based on preferences', function() {
             it('filters by restrictions and dislikes', function() {
-                expect(preference.getAllOkayRecipes()).to.be.an('array');
-                expect(preference.getAllOkayRecipes().length).to.equal(1);
+                preference.getAllOkayRecipes()
+                .then(function(recipes){
+                    expect(recipes).to.be.an('array');
+                    expect(recipes.length).to.equal(1);
+                })
             })
 
             it('returns vegetarian recipes', function() {
@@ -96,8 +105,4 @@ describe('User Preference model', function() {
         })
     })
 });
-
-
-
-
 

@@ -28,15 +28,24 @@ let UserPref = db.define('userPrefs', {
 }, {
 	// OPTIONS
 	instanceMethods: {
-		getAllOkayRecipes: () => {
+		getAllOkayRecipes: function() {
+            var dislikes = this.dislikes;
+            var prefs = {
+                vegetarian: this.vegetarian,
+                vegan: this.vegan,
+                glutenFree: this.glutenFree,
+                dairyFree: this.dairyFree
+            }
 			return Recipe.findAll({
-				where: this
-			})
-			.then(boolRecipes => {
+                where: prefs
+            })
+			.then(function (boolRecipes) {
+                console.log('RECIPES  UNGH', boolRecipes.length)
 				let filteredRecipes = [];
-				boolRecipes.forEach(recipe => {
-					recipe.extendedIngredients.forEach(ingredient => {
-						if (this.dislikes.includes(ingredient.name)) {
+				boolRecipes.forEach(function(recipe) {
+					recipe.extendedIngredients.forEach(function(ingredient) {
+                        console.log('THIS', Object.keys(this))
+						if (dislikes.includes(ingredient.name)) {
 							return;
 						}
 					})
