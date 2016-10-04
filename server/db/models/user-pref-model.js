@@ -36,7 +36,7 @@ let UserPref = db.define('userPrefs', {
 				let filteredRecipes = [];
 				boolRecipes.forEach(recipe => {
 					recipe.extendedIngredients.forEach(ingredient => {
-						if (this.dislikes.includes(ingredient)) {
+						if (this.dislikes.includes(ingredient.name)) {
 							return;
 						}
 					})
@@ -49,4 +49,4 @@ let UserPref = db.define('userPrefs', {
 });
 
 
-module.exports = UserPref
+module.exports = UserPref;
