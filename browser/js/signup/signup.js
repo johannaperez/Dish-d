@@ -14,7 +14,7 @@ app.controller('SignupCtrl', function ($scope, AuthService, $state) {
     $scope.sendSignup = function (user) {
         $scope.error = null;
         AuthService.signup(user).then(function () {
-            $state.go('prefs');
+            $state.go('prefs', {userId: $scope.user.id});
         }).catch(function () {
             $scope.error = 'An account already exists with this email.';
         });

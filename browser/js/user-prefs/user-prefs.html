@@ -1,14 +1,15 @@
 <md-content flex>
     <div id="prefspage">
         <div class="dietary">
+            <pre>{{myPrefs}}</pre>
             <h3>Any dietary preferences?</h3>
-            <md-button>Vegetarian</md-button>
-            <md-button>Gluten Free</md-button>
-            <md-button>Dairy Free</md-button>
-            <md-button>Vegan</md-button>
+            <md-button ng-click="myPrefs.vegetarian = !myPrefs.vegetarian">Vegetarian</md-button>
+            <md-button ng-click="myPrefs.glutenFree = !myPrefs.glutenFree">Gluten Free</md-button>
+            <md-button ng-click="myPrefs.dairyFree = !myPrefs.dairyFree">Dairy Free</md-button>
+            <md-button ng-click="myPrefs.vegan = !myPrefs.vegan">Vegan</md-button>
         </div>
         <div class="dislikes">
-        <h3>Any allergies or strong dislikes?</h3>
+            <h3>Any allergies or strong dislikes?</h3>
             <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMatches(searchText)" md-item-text="item.display" placeholder="dislikes">
                 <md-item-template>
                     <span md-highlight-text="searchText">{{item.display}}</span>
@@ -21,13 +22,15 @@
         <div class="num">
             <h3>How many people are eating?</h3>
             <md-slider flex class="md-primary" md-discrete ng-model="numpeople" step="1" min="1" max="6" aria-label="rating">
-      </md-slider>
+            </md-slider>
         </div>
         <div class="time">
             <h3>How much time do you have?</h3>
-        <md-slider flex class="md-primary" md-discrete ng-model="cooktime" step="5" min="10" max="60" aria-label="rating">
-      </md-slider>
-</md-slider>
-</div>
+            <md-slider flex class="md-primary" md-discrete ng-model="cooktime" step="5" min="10" max="60" aria-label="rating">
+            </md-slider>
+        </div>
+        <div>
+            <md-button>SAVE PREFS</md-button>
+        </div>
     </div>
 </md-content>
