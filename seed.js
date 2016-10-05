@@ -76,11 +76,11 @@ db.sync({force: true})
 				}
 			})
 			.then(ingredient2 => {
-        if (!ingredient2) throw Error ("ingredient not found", ingredient2);
-			   return recipe.addIngredient(ingredient2);
+        if (!ingredient2) return;
+        return recipe.addIngredient(ingredient2);
 			}) // might be an error here with repeated ingredients...
       .catch(err => {
-        if (err === 'SequelizeUniqueConstraintError: Validation error') return;
+        if (err.name === 'SequelizeUniqueConstraintError') return;
         else throw err;
       });
 
