@@ -68,10 +68,7 @@ describe('User Preference model', function() {
                 .then(function([pref, rec1, rec2, rec3]) {
                     preference = pref;
                 })
-                .catch(console.error)
             })
-            .catch(console.error);
-
     });
 
     describe('gets user preferences', function() {

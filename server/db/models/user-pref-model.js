@@ -39,10 +39,10 @@ let UserPref = db.define('userPrefs', {
 			return Recipe.findAll({
                 where: prefs
             })
-			.then(function (boolRecipes) {
+			.then(boolRecipes => {
 				let filteredRecipes = [];
-				boolRecipes.forEach(function(recipe) {
-					recipe.extendedIngredients.forEach(function(ingredient) {
+				boolRecipes.forEach(recipe => {
+					recipe.extendedIngredients.forEach(ingredient => {
 						if (!dislikes.includes(ingredient.name)) {
 							filteredRecipes.push(recipe);
 						}
