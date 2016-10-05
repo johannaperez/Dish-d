@@ -16,14 +16,14 @@ let Recipe = db.define('recipe', {
 	},
 	image: {
 		type: Sequelize.STRING,
-    	allowNull: false
+		allowNull: false
 	},
 	imageType: {
 		type: Sequelize.STRING
 	},
 	instructions: {
 		type: Sequelize.TEXT,
-    	allowNull: false
+		allowNull: false
 	},
 	vegetarian: {
 		type: Sequelize.BOOLEAN
@@ -45,11 +45,11 @@ let Recipe = db.define('recipe', {
 	},
 	preparationMinutes: {
 		type: Sequelize.INTEGER,
-    	allowNull: false
+		allowNull: false
 	},
 	cookingMinutes: {
 		type: Sequelize.INTEGER,
-    	allowNull: false
+		allowNull: false
 	},
 	sourceUrl: {
 		type: Sequelize.STRING
@@ -174,7 +174,38 @@ let Recipe = db.define('recipe', {
 
 			return Promise.all(recipes);
 		});
-      }
+      },
+
+    classMethods: {
+		// return x number of random recipes, considering what the user likes
+		randomRecipes: function (User, numOfRecipes){
+
+			return User.getAllOkayRecipes().
+			then(function(recipes){
+				var indices = [];
+					// get a bunch of random indecies so you can look up those recipes
+					while (indices.length < numOfRecipes - 1){
+						var max = Math.floor(recipes.length);
+						var random = Math.floor(Math.random() * max + 1);
+						if (!indices.includes(random)) {
+							indices.push(random);
+						}
+				}
+
+				return indices;
+			})
+			.then(function(indices){
+				var recipePromises = [];
+				indices.forEach(function(index){
+					recipePromises.push(Recipe.findById(index))
+				})
+
+				return Promise.all(recipePromises);
+			})
+
+		}
+    } // end class methods
+
     }
 
 });
