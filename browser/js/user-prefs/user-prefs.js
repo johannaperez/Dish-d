@@ -6,7 +6,7 @@ app.config(function ($stateProvider){
     });
 });
 
-app.controller('PrefsCtrl', function ($scope, $state, PrefsFactory, $stateParams) {
+app.controller('PrefsCtrl', function ($scope, $log, $state, PrefsFactory, $stateParams) {
 
     PrefsFactory.getInitialPrefs($stateParams.userId)
     .then(prefs => {
@@ -22,12 +22,20 @@ app.controller('PrefsCtrl', function ($scope, $state, PrefsFactory, $stateParams
         else {
             $scope.myPrefs = prefs;
         }
-    });
+    })
+    .catch($log.error);
+
+    PrefsFactory.getAllIngredients()
+    .then(ings => {
+        // console.log('INGS??', ings)
+        $scope.allIngs = ings;
+    })
+    .catch($log.error);
 
     $scope.saveToMyPrefs = function(){
         return PrefsFactory.saveMyPrefs($stateParams.userId)
         .then(function(pref){
-            $scope.myPrefs.push(pref);
+            $scope.myPrefs.dislikes.push(pref);
         })
     };
 
@@ -42,8 +50,12 @@ app.factory('PrefsFactory', function($http, $log){
     let prefsObj = {
         getInitialPrefs: function(userId){
             return $http.get(`/api/users/${userId}/preferences`)
-            .then(sendResponse)
-            .catch($log.error);
+            .then(sendResponse);
+        },
+
+        getAllIngredients: function(){
+            return $http.get('/api/ingredients')
+            .then(sendResponse);
         },
 
         //save my selected prefs
@@ -52,7 +64,6 @@ app.factory('PrefsFactory', function($http, $log){
             .then(sendResponse)
             .catch($log.error);
         }
-
     }
 
     return prefsObj;

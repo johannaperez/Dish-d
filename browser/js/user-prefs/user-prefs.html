@@ -1,7 +1,6 @@
 <md-content flex>
     <div id="prefspage">
         <div class="dietary">
-            <pre>{{myPrefs}}</pre>
             <h3>Any dietary preferences?</h3>
             <md-button ng-click="myPrefs.vegetarian = !myPrefs.vegetarian">Vegetarian</md-button>
             <md-button ng-click="myPrefs.glutenFree = !myPrefs.glutenFree">Gluten Free</md-button>
@@ -10,9 +9,9 @@
         </div>
         <div class="dislikes">
             <h3>Any allergies or strong dislikes?</h3>
-            <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="item in getMatches(searchText)" md-item-text="item.display" placeholder="dislikes">
+            <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="ing in allIngs" md-item-text="ing.name" placeholder="dislikes">
                 <md-item-template>
-                    <span md-highlight-text="searchText">{{item.display}}</span>
+                    <span md-highlight-text="searchText">{{ing.name}}</span>
                 </md-item-template>
                 <md-not-found>
                     No matches found.
