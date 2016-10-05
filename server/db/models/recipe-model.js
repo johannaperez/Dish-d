@@ -16,14 +16,14 @@ let Recipe = db.define('recipe', {
 	},
 	image: {
 		type: Sequelize.STRING,
-    allowNull: false
+    	allowNull: false
 	},
 	imageType: {
 		type: Sequelize.STRING
 	},
 	instructions: {
 		type: Sequelize.TEXT,
-    allowNull: false
+    	allowNull: false
 	},
 	vegetarian: {
 		type: Sequelize.BOOLEAN
@@ -45,11 +45,11 @@ let Recipe = db.define('recipe', {
 	},
 	preparationMinutes: {
 		type: Sequelize.INTEGER,
-    allowNull: false
+    	allowNull: false
 	},
 	cookingMinutes: {
 		type: Sequelize.INTEGER,
-    allowNull: false
+    	allowNull: false
 	},
 	sourceUrl: {
 		type: Sequelize.STRING
