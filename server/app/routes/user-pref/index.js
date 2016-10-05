@@ -9,26 +9,30 @@ const router = require('express').Router();
 
 // Create new preferences
 router.post('/:userId', (req, res, next) => {
-	
+	UserPref.create(req.body)
+	.then(createdPref => {
+		User.setUserPref(createdPref.id)
+		.then(user => {
+			res.json(user)	// change this to redirect??
+		})
+	})
+	.catch(next);
 });
 
 // Get a particular user's preferences
 router.get('/:userId', (req, res, next) => {
 	User.findById(req.params.userId, {
-		include: [UserPref]
+		include: [ UserPref ]
 	})
-	// .then(foundUser => {
-	// 	UserPref.findById(foundUser.userPrefId)
-	// 	.then(prefs => {
-	// 		res.json(prefs);
-	// 	})
-	// })
+	.then(pref => {
+		res.status(200).json(pref);
+	})
 	.catch(next);
 });
 
 // Edit preferences (POST or PUT???)
 router.put('/:userId', (req, res, next) => {
-
+	
 });
 
 
