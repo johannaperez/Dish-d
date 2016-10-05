@@ -126,6 +126,8 @@ let Recipe = db.define('recipe', {
 		})
 		.then(function(allRecipes){
 			// at this point you should have an array of arrays of recipes.
+			// each array is the recipes for an ingredient.
+			// we care about the recipes that appear the most often across the ingredients.
 			allRecipes = [].concat.apply([], allRecipes);
 			allRecipes.forEach(function(recipe){
 				if (recipeCount[recipe.id]){
@@ -137,8 +139,9 @@ let Recipe = db.define('recipe', {
 			})
 
 			var maxMeals = 0;
-			//this is the number of meals in a week so its only ever like 5
-
+			// this is the number of meals in a week so its only ever like 5
+			// now we have an object of recipes. key is the recipe id and count is the number of times the recipe appears.
+			// we want to loop through the object and return numOfMeals with the highest count value;
 			for (var recipe in recipeCount){
 				if (recipeCount[recipe] >= maxMeals){
 					maxMeals = recipeCount[recipe];

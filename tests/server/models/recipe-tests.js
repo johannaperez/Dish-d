@@ -131,7 +131,8 @@ describe('Recipe model', function () {
             name: 'chocolate'
         }
 
-
+        // this creates all the recipes and ingredients and then sets an association.
+        // it will return a promise for the recipe for the ChocolateCake.
         let createRecipe = function () {
             let promises = [Ingredient.create(egg), Ingredient.create(chocolate)];
             let recipe = {};
