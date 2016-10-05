@@ -16,7 +16,19 @@ router.get('/', (req, res, next) => {
 	.catch(next);
 });
 
-// Create new preferences
+// GET one user
+router.get('/:userId', (req, res, next) => {
+	User.findById(req.params.userId)
+	.then(foundUser => {
+		if (!foundUser) res.sendStatus(404);
+		else {
+			res.status(200).json(foundUser);
+		}
+	})
+	.catch(next);
+});
+
+// Create new preference
 router.post('/:userId/preferences', (req, res, next) => {
 	req.body.userId = req.params.userId;
 	UserPref.create(req.body)
@@ -26,7 +38,7 @@ router.post('/:userId/preferences', (req, res, next) => {
 	.catch(next);
 });
 
-// Get a particular user loaded with their preferences
+// Get a user's preference
 router.get('/:userId/preferences', (req, res, next) => {
 	UserPref.findOne({
 		where: {
@@ -39,7 +51,7 @@ router.get('/:userId/preferences', (req, res, next) => {
 	.catch(next);
 });
 
-// Edit user preferences
+// Edit a user's preference
 router.put('/:userId/preferences', (req, res, next) => {
 	UserPref.findOne({
 		where: {
