@@ -54,5 +54,4 @@ let UserPref = db.define('userPrefs', {
 	}
 });
 
-
 module.exports = UserPref;
