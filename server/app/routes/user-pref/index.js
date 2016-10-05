@@ -31,9 +31,9 @@ router.get('/:userId', (req, res, next) => {
 });
 
 // Edit preferences (POST or PUT???)
-router.put('/:userId', (req, res, next) => {
-	
-});
+// router.put('/:userId', (req, res, next) => {
+
+// });
 
 
 module.exports = router;
