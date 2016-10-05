@@ -15,13 +15,15 @@ let Recipe = db.define('recipe', {
 		type: Sequelize.INTEGER
 	},
 	image: {
-		type: Sequelize.STRING
+		type: Sequelize.STRING,
+    	allowNull: false
 	},
 	imageType: {
 		type: Sequelize.STRING
 	},
 	instructions: {
-		type: Sequelize.TEXT
+		type: Sequelize.TEXT,
+    	allowNull: false
 	},
 	vegetarian: {
 		type: Sequelize.BOOLEAN
@@ -42,10 +44,12 @@ let Recipe = db.define('recipe', {
 		type: Sequelize.INTEGER
 	},
 	preparationMinutes: {
-		type: Sequelize.INTEGER
+		type: Sequelize.INTEGER,
+    	allowNull: false
 	},
 	cookingMinutes: {
-		type: Sequelize.INTEGER
+		type: Sequelize.INTEGER,
+    	allowNull: false
 	},
 	sourceUrl: {
 		type: Sequelize.STRING
@@ -65,7 +69,57 @@ let Recipe = db.define('recipe', {
 	}
 }, {
 	// OPTIONS
+  getterMethods: {
+
+    importantIngredients: function(){
+      var title = this.title;
+      var ingredients = this.extendedIngredients.filter(function(ingredient){
+        var name = ingredient.name;
+        return title.toLowerCase().includes(name.toLowerCase());
+      });
+
+      return ingredients;
+    } // END IMPORTANT
+
+  },
+
+  instanceMethods: {
+
+    getRelatedMeals: function(User){
+      var ingredients = this.importantIngredients;
+      if (!ingredients) return [];
+
+      return User.getAllOkayRecipes()
+      .then(function(recipes) {
+        recipes = recipes.filter(function(recipe){
+          return compareIngredients(recipe.importantIngredients, ingredients) > 0;
+        });
+
+        return recipes;
+      })
+      .then(function(similarRecipes){
+        return similarRecipes;
+      })
+      .catch(function(err){
+        console.log(err);
+      });
+
+      }
+    }
+
 });
 
+function compareIngredients (ingredients1, ingredients2){
+
+  let ing1 = ingredients1.map(ing => ing.id);
+  let ing2 = ingredients2.map(ing => ing.id);
+
+  let count = 0;
+  for (let i = 0; i < ing1.length; i++){
+    if (ing2.includes(ing1[i])) count++;
+  }
+
+  return count;
+}
 
 module.exports = Recipe;

@@ -7,29 +7,6 @@ navbar {
         justify-content: space-around;
         display: flex;
         flex-direction: row;
-        #navitems {
-            display: inline-flex;
-//for MyAccount link
-            align-items: flex-end;
-           li {
-            list-style-type: none;
-              padding-left: 10px;
-              padding-right: 10px;
-            a {
-              text-decoration: none;
-            }
-          }
-        }
     }
 }
 
-/*
-  .welcome {
-    float: right;
-    margin-top: 12px;
-    span {
-      color: black;
-      font-size: 16px;
-      margin-right: 5px;
-    }
-*/
