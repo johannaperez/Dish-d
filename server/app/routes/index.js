@@ -5,6 +5,7 @@ var router = require('express').Router(); // eslint-disable-line new-cap
 router.use('/members', require('./members'));
 router.use('/signup', require('./signup'));
 router.use('/users', require('./user'));
+router.use('/ingredients', require('./ingredients'));
 
 // Make sure this is after all of
 // the registered routes!
