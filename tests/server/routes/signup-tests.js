@@ -33,7 +33,7 @@ describe('Signup Route', function () {
         .expect(201)
         .end(function (err, response) {
         if (err) return done(err);
-          expect(response.body.email).to.be.equal('minerva@hogwarts.com');
+          expect(response.body.user.email).to.be.equal('minerva@hogwarts.com');
           done();
       });
     });
