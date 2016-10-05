@@ -1,7 +1,6 @@
 'use strict';
 
 const db = require('../../../db');
-const User = db.model('user');
 const Ingredient = db.model('ingredient');
 const router = require('express').Router();
 
