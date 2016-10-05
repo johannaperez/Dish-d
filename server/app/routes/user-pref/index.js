@@ -2,7 +2,7 @@
 
 const db = require('../../../db');
 const User = db.model('user');
-const UserPref = db.model('userPref');
+const UserPref = db.model('userPrefs');
 const router = require('express').Router();
 
 // Mounted on /api/preferences
