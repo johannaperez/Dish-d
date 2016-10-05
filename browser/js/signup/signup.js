@@ -12,7 +12,6 @@ app.controller('SignupCtrl', function ($scope, AuthService, $state) {
     $scope.user = {};
 
     $scope.sendSignup = function (user) {
-        console.log("ENTERED FRONT END ROUTE");
         $scope.error = null;
         AuthService.signup(user).then(function () {
             $state.go('prefs');
