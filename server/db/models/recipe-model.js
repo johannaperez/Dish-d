@@ -165,12 +165,11 @@ let Recipe = db.define('recipe', {
 
 			// [{id1, count1}, {id2, count2}].... reduce to[sequelize recipe 1, sequelize recipe 2...]
 			recipes = recipes.map(function(recipeObj){
-				var id = recipeObj.id;
+				var id = recipeObj.recipe;
 				return Recipe.findById(id);
 			})
 
 			return Promise.all(recipes);
-
 		});
       }
     }
