@@ -18,7 +18,7 @@ describe('User Preference model', function() {
     };
 
     var recipes = [{
-        title: 'this is vegetarian!',
+        title: 'Carrot Soup',
         vegetarian: true,
         vegan: false,
         glutenFree: false,
@@ -29,7 +29,7 @@ describe('User Preference model', function() {
         cookingMinutes: 10,
         extendedIngredients: [{ name: 'carrots' }]
     }, {
-        title: 'this is MEAT!',
+        title: 'Lamb Popsicles',
         vegetarian: false,
         vegan: false,
         glutenFree: false,
@@ -40,7 +40,7 @@ describe('User Preference model', function() {
         cookingMinutes: 10,
         extendedIngredients: [{ name: 'lamb chops' }]
     }, {
-        title: 'omelette',
+        title: 'Omelette',
         vegetarian: true,
         vegan: false,
         glutenFree: false,
@@ -93,14 +93,20 @@ describe('User Preference model', function() {
                     expect(recipes).to.be.an('array');
                     expect(recipes.length).to.equal(1);
                 })
-            })
+            });
 
             it('returns vegetarian recipes', function() {
-                expect(preference.getAllOkayRecipes()[0].title).to.equal('this is vegetarian!');
+                preference.getAllOkayRecipes()
+                .then(function(recipes){
+                    expect(recipes[0].title).to.equal('Carrot Soup');
+                })
             });
 
             it('returns recipes without eggs', function() {
-                expect(preference.getAllOkayRecipes()[0].title).to.equal('this is vegetarian!');
+                preference.getAllOkayRecipes()
+                .then(function(recipes){
+                    expect(recipes[0].title).to.not.equal('Lamb Popsicles');
+                })
             });
         })
     })

@@ -40,16 +40,13 @@ let UserPref = db.define('userPrefs', {
                 where: prefs
             })
 			.then(function (boolRecipes) {
-                console.log('RECIPES  UNGH', boolRecipes.length)
 				let filteredRecipes = [];
 				boolRecipes.forEach(function(recipe) {
 					recipe.extendedIngredients.forEach(function(ingredient) {
-                        console.log('THIS', Object.keys(this))
-						if (dislikes.includes(ingredient.name)) {
-							return;
+						if (!dislikes.includes(ingredient.name)) {
+							filteredRecipes.push(recipe);
 						}
 					})
-					filteredRecipes.push(recipe);
 				})
 				return filteredRecipes;
 			})
