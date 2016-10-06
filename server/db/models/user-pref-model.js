@@ -25,6 +25,14 @@ let UserPref = db.define('userPrefs', {
 	dislikes: {
 		type: Sequelize.ARRAY(Sequelize.JSON),
 		defaultValue: []
+	},
+	numPeople: {
+		type: Sequelize.INTEGER,
+		defaultValue: 1
+	},
+	availableTime: {
+		type: Sequelize.INTEGER,
+		defaultValue: 0
 	}
 }, {
 	// OPTIONS
@@ -42,9 +50,12 @@ let UserPref = db.define('userPrefs', {
             })
 			.then(boolRecipes => {
 				let filteredRecipes = [];
+				let dislikeNames = dislikes.map(dislike => {
+					return dislike.name;
+				})
 				boolRecipes.forEach(recipe => {
 					recipe.extendedIngredients.forEach(ingredient => {
-						if (!dislikes.includes(ingredient.name)) {
+						if (!dislikeNames.includes(ingredient.name)) {
 							filteredRecipes.push(recipe);
 						}
 					})

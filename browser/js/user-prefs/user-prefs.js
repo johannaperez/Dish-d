@@ -8,11 +8,9 @@ app.config(function ($stateProvider){
 
 app.controller('PrefsCtrl', function ($scope, $log, $state, PrefsFactory, $stateParams) {
 
-    // $scope.frontendDislikes = [];
-
     PrefsFactory.getInitialPrefs($stateParams.userId)
     .then(prefs => {
-            $scope.myPrefs = prefs;
+        $scope.myPrefs = prefs;
     })
     .catch($log.error);
 
@@ -24,7 +22,7 @@ app.controller('PrefsCtrl', function ($scope, $log, $state, PrefsFactory, $state
     .catch($log.error);
 
 
-    $scope.queryFilter = (query) => {
+    $scope.queryFilter = query => {
         if (query) {
             return $scope.allIngs.filter(ing => {
                 return ing.name.includes(query)
@@ -46,7 +44,7 @@ app.controller('PrefsCtrl', function ($scope, $log, $state, PrefsFactory, $state
 
     $scope.savePrefs = () => {
         return PrefsFactory.savePrefs($stateParams.userId, $scope.myPrefs);
-    }
+    };
 });
 
 
