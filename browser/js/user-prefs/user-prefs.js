@@ -8,22 +8,11 @@ app.config(function ($stateProvider){
 
 app.controller('PrefsCtrl', function ($scope, $log, $state, PrefsFactory, $stateParams) {
 
-    $scope.frontendDislikes = [];
+    // $scope.frontendDislikes = [];
 
     PrefsFactory.getInitialPrefs($stateParams.userId)
     .then(prefs => {
-        if (!prefs) {
-            $scope.myPrefs = {
-                vegetarian: false,
-                vegan: false,
-                dairyFree: false,
-                glutenFree: false,
-                dislikes: []
-            };
-        }
-        else {
             $scope.myPrefs = prefs;
-        }
     })
     .catch($log.error);
 
@@ -46,18 +35,18 @@ app.controller('PrefsCtrl', function ($scope, $log, $state, PrefsFactory, $state
         }
     };
 
-
     $scope.addDislikes = selectedItem => {
-        $scope.myPrefs.dislikes.push(selectedItem.id);  // ing ID for db
-        $scope.frontendDislikes.push(selectedItem);     // whole ingredient object
-        $scope.searchText = '';                         // reset search bar
+        if (selectedItem !== null) $scope.myPrefs.dislikes.push(selectedItem);
+        $scope.searchText = ''; // reset search bar
     };
 
     $scope.removeDislike = itemToDelete => {
-        $scope.myPrefs.dislikes.splice($scope.myPrefs.dislikes.indexOf(itemToDelete.id), 1);
-        $scope.frontendDislikes.splice($scope.frontendDislikes.indexOf(itemToDelete), 1);
+        $scope.myPrefs.dislikes.splice($scope.myPrefs.dislikes.indexOf(itemToDelete), 1);
     };
 
+    $scope.savePrefs = () => {
+        return PrefsFactory.savePrefs($stateParams.userId, $scope.myPrefs);
+    }
 });
 
 
@@ -67,7 +56,7 @@ app.factory('PrefsFactory', function($http, $log){
         return response.data;
     }
 
-    let prefsObj = {
+    let obj = {
         getInitialPrefs: userId => {
             return $http.get(`/api/users/${userId}/preferences`)
             .then(sendResponse);
@@ -78,14 +67,13 @@ app.factory('PrefsFactory', function($http, $log){
             .then(sendResponse);
         },
 
-        //save my selected prefs
-        saveMyPrefs: userId => {
-            return $http.post(`/api/users/${userId}/preferences`)
+        savePrefs: (userId, prefsObj) => {
+            return $http.put(`/api/users/${userId}/preferences`, prefsObj)
             .then(sendResponse)
             .catch($log.error);
         }
     }
 
-    return prefsObj;
+    return obj;
 })
 

@@ -9,8 +9,7 @@
         </div>
         <div class="dislikes">
             <h3>Any allergies or strong dislikes?</h3>
-            <!-- <pre>frontend Dislikes: {{ frontendDislikes | json }}</pre> -->
-            <!-- <pre>db Dislikes: {{ myPrefs.dislikes | json }}</pre> -->
+            <!-- <pre>prefs: {{ myPrefs | json }}</pre> -->
             <md-autocomplete 
                 md-selected-item="selectedItem" 
                 md-search-text="searchText" 
@@ -26,7 +25,7 @@
                 </md-not-found>
             </md-autocomplete>
             <section id="dislike" layout="row">
-                <div ng-show="frontendDislikes.length" ng-repeat="ing in frontendDislikes">
+                <div ng-show="myPrefs.dislikes.length" ng-repeat="ing in myPrefs.dislikes">
                     <md-button>{{ing.name}}<md-button ng-click="removeDislike(ing)" class="delete">x</md-button></md-button>  
                 </div>
             </section>
@@ -37,12 +36,12 @@
             </md-slider>
         </div>
         <div class="time">
-            <h3>How much time do you have?</h3>
+            <h3>How much time do you have? (mins)</h3>
             <md-slider flex class="md-primary" md-discrete ng-model="cooktime" step="5" min="10" max="60" aria-label="rating">
             </md-slider>
         </div>
         <div>
-            <md-button>SAVE PREFS</md-button>
+            <md-button ng-click="savePrefs()">SAVE PREFERENCES</md-button>
         </div>
     </div>
 </md-content>

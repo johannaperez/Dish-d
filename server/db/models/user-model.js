@@ -4,6 +4,7 @@ var _ = require('lodash');
 var Sequelize = require('sequelize');
 
 var db = require('../_db');
+var UserPref = require('./user-pref-model.js');
 
 module.exports = db.define('user', {
     email: {
@@ -65,7 +66,10 @@ module.exports = db.define('user', {
     },
     hooks: {
         beforeCreate: setSaltAndPassword,
-        beforeUpdate: setSaltAndPassword
+        beforeUpdate: setSaltAndPassword,
+        afterCreate: function(user) {
+            return UserPref.create({ userId: user.id })
+        }
     }
 });
 

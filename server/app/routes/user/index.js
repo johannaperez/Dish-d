@@ -28,16 +28,6 @@ router.get('/:userId', (req, res, next) => {
 	.catch(next);
 });
 
-// Create new preference
-router.post('/:userId/preferences', (req, res, next) => {
-	req.body.userId = req.params.userId;
-	UserPref.create(req.body)
-	.then(createdPref => {
-		res.status(201).json(createdPref);
-	})
-	.catch(next);
-});
-
 // Get a user's preference
 router.get('/:userId/preferences', (req, res, next) => {
 	UserPref.findOne({

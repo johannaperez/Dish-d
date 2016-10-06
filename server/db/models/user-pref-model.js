@@ -23,7 +23,8 @@ let UserPref = db.define('userPrefs', {
 		defaultValue: false
 	},
 	dislikes: {
-		type: Sequelize.ARRAY(Sequelize.STRING)
+		type: Sequelize.ARRAY(Sequelize.JSON),
+		defaultValue: []
 	}
 }, {
 	// OPTIONS
