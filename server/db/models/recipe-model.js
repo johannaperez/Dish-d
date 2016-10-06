@@ -66,6 +66,9 @@ let Recipe = db.define('recipe', {
 	// extendendedIngredients (loop), get id (in ingredient model, call apiIngId)
 	extendedIngredients: {
 		type: Sequelize.ARRAY(Sequelize.JSON)
+	},
+	mealsWithSimilarIngredients: {
+		type: Sequelize.ARRAY(Sequelize.INTEGER)
 	}
 }, {
 	// OPTIONS
@@ -109,8 +112,7 @@ let Recipe = db.define('recipe', {
       // if you have one meal, get numofMeals that have ingredients in common
       // returns recipes that have the most possible ingredients in common
     getMealsWithSimilarIngredients: function(numOfMeals){
-		numOfMeals = Number(numOfMeals); // just in case...
-
+		var theRecipe = this;
 		var recipeCount = {};
 		var recipes = [];
 		var promises = [];
@@ -118,9 +120,9 @@ let Recipe = db.define('recipe', {
 		return this.getIngredients().
 		then(function(ingredients){
 
-		ingredients.forEach(function(ingredient){
-			promises.push(ingredient.getRecipes());
-		})
+			ingredients.forEach(function(ingredient){
+				promises.push(ingredient.getRecipes());
+			})
 
 		return Promise.all(promises);
 		})
@@ -138,41 +140,37 @@ let Recipe = db.define('recipe', {
 				}
 			})
 
-			var maxMeals = 0;
-			// this is the number of meals in a week so its only ever like 5
+			var minMeals = 0;
 			// now we have an object of recipes. key is the recipe id and count is the number of times the recipe appears.
 			// we want to loop through the object and return numOfMeals with the highest count value;
-			for (var recipe in recipeCount){
-				if (recipeCount[recipe] >= maxMeals){
-					maxMeals = recipeCount[recipe];
-
+			for (var recipeId in recipeCount){
+				if (Number(recipeId) !== theRecipe.id){
 					if (recipes.length < numOfMeals){
-						recipes.push({recipe: recipe, count: recipeCount[recipe]});
+						recipes.push({recipeId: recipeId, count: recipeCount[recipeId]});
 					}
-					else {
+
+					else if (recipeCount[recipeId] >= minMeals){
 						var smallestIndex = 0;
-						var smallestVal = maxMeals;
+						var smallestVal = minMeals;
 
-						for (var i = 0; i < recipes.length; i++){
-							if (recipes[i] < smallestVal){
-								smallestVal = recipes[i];
-								smallestIndex = i;
+							for (var i = 0; i < recipes.length; i++){
+								if (recipes[i].count <= smallestVal){
+									smallestVal = recipes[i];
+									smallestIndex = i;
+								}
 							}
-						}
 
-						recipes[smallestIndex] = {recipe: recipe, count: recipeCount[recipe]};
-
+							recipes[smallestIndex] = {recipeId: recipeId, count: recipeCount[recipeId]};
 					}
+					minMeals = Math.min(...recipes.map((elem) => elem.count));
 				}
 			} // end looking through recipe count
 
-			// [{id1, count1}, {id2, count2}].... reduce to[sequelize recipe 1, sequelize recipe 2...]
 			recipes = recipes.map(function(recipeObj){
-				var id = recipeObj.recipe;
-				return Recipe.findById(id);
+				return recipeObj.recipeId;
 			})
 
-			return Promise.all(recipes);
+			return recipes;
 		});
       },
 
@@ -182,25 +180,19 @@ let Recipe = db.define('recipe', {
 
 			return User.getAllOkayRecipes().
 			then(function(recipes){
-				var indices = [];
-					// get a bunch of random indecies so you can look up those recipes
-					while (indices.length < numOfRecipes - 1){
-						var max = Math.floor(recipes.length);
-						var random = Math.floor(Math.random() * max + 1);
+				let indices = [];
+				let max = Math.floor(recipes.length);
+				// get a bunch of random indecies so you can look up those recipes
+					while (indices.length < numOfRecipes){
+						let random = Math.round(Math.random() * max);
 						if (!indices.includes(random)) {
 							indices.push(random);
 						}
 				}
 
-				return indices;
-			})
-			.then(function(indices){
-				var recipePromises = [];
-				indices.forEach(function(index){
-					recipePromises.push(Recipe.findById(index))
+				return indices.map(function(index){
+					return recipes[index];
 				})
-
-				return Promise.all(recipePromises);
 			})
 
 		}
