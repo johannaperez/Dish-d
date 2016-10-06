@@ -177,5 +177,69 @@ xdescribe('Recipe model', function () {
         });
     });
 
+    describe('randomRecipes', function () {
+
+        var fakeUser = {
+            getAllOkayRecipes: function(){
+                return new Promise(function(resolve){
+                    return recipes;
+                })
+            }
+        }
+
+        var recipes = [
+            {title: "Chocolate Cake",
+            instructions: 'make it!',
+            image:'img.jpg',
+            preparationMinutes: 10,
+            cookingMinutes: 10,
+            extendedIngredients: [
+                {name: 'chocolate', id: 1},
+                {name: 'eggs', id: 2}
+            ]
+            },
+            {title: "Chocolate Chip Cookies",
+            instructions: 'make it!',
+            image:'img.jpg',
+            preparationMinutes: 10,
+            cookingMinutes: 10,
+            extendedIngredients: [
+                {name: 'chocolate', id: 1},
+                {name: 'flour', id: 3}
+            ]
+            },
+            {title: "Chicken Nuggets",
+            instructions: 'make it!',
+            image:'img.jpg',
+            preparationMinutes: 10,
+            cookingMinutes: 10,
+            extendedIngredients: [
+                {name: 'chicken', id: 400},
+                {name: 'nuggets', id: 323}
+            ]
+            }
+
+        ];
+
+
+        // this creates all the recipes and ingredients and then sets an association.
+        // it will return a promise for the recipe for the ChocolateCake.
+        var createRecipes = function () {
+            let promises = recipes.map(rec => Recipe.create(rec));
+            return Promise.all(promises);
+        }
+
+        it('should return an array of the correct length', function () {
+            return createRecipes().then(function (rec) {
+                // return Recipe.randomRecipes(fakeUser, 2)
+                // .then(function(result){
+                //     expect(result).to.be.an('array');
+                //     // expect(result[0].title).to.be.equals('Chocolate Chip Cookies');
+                // })
+            });
+        });
+
+    });
+
 });
 

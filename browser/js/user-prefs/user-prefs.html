@@ -11,12 +11,12 @@
         <div class="dislikes">
             <h3>Any allergies or strong dislikes?</h3>
             <pre>prefs: {{ myPrefs | json }}</pre>
-            <md-autocomplete 
-                md-selected-item="selectedItem" 
-                md-search-text="searchText" 
-                md-items="ing in queryFilter(searchText) | orderBy: 'name'" 
-                md-item-text="ing.name" 
-                placeholder="dislikes" 
+            <md-autocomplete
+                md-selected-item="selectedItem"
+                md-search-text="searchText"
+                md-items="ing in queryFilter(searchText) | orderBy: 'name'"
+                md-item-text="ing.name"
+                placeholder="dislikes"
                 md-selected-item-change="addDislikes(selectedItem)">
                 <md-item-template>
                     <span md-highlight-text="searchText">{{ing.name}}</span>
@@ -27,7 +27,7 @@
             </md-autocomplete>
             <section id="dislike" layout="row">
                 <div ng-show="myPrefs.dislikes.length" ng-repeat="ing in myPrefs.dislikes">
-                    <md-button>{{ing.name}}<md-button ng-click="removeDislike(ing)" class="delete">x</md-button></md-button>  
+                    <md-button>{{ing.name}}<md-button ng-click="removeDislike(ing)" class="delete">x</md-button></md-button>
                 </div>
             </section>
         </div>

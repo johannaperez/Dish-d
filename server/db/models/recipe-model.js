@@ -4,71 +4,74 @@ const Sequelize = require('sequelize');
 const db = require('../_db.js');
 
 let Recipe = db.define('recipe', {
-	// SCHEMA
-	apiRecipeId: {
-		type: Sequelize.INTEGER
-	},
-	title: {
-		type: Sequelize.STRING
-	},
-	readyInMinutes: {
-		type: Sequelize.INTEGER
-	},
-	image: {
-		type: Sequelize.STRING,
-    	allowNull: false
-	},
-	imageType: {
-		type: Sequelize.STRING
-	},
-	instructions: {
-		type: Sequelize.TEXT,
-    	allowNull: false
-	},
-	vegetarian: {
-		type: Sequelize.BOOLEAN
-	},
-	vegan: {
-		type: Sequelize.BOOLEAN
-	},
-	glutenFree: {
-		type: Sequelize.BOOLEAN
-	},
-	dairyFree: {
-		type: Sequelize.BOOLEAN
-	},
-	ketogenic: {
-		type: Sequelize.BOOLEAN
-	},
-	servings: {
-		type: Sequelize.INTEGER
-	},
-	preparationMinutes: {
-		type: Sequelize.INTEGER,
-    	allowNull: false
-	},
-	cookingMinutes: {
-		type: Sequelize.INTEGER,
-    	allowNull: false
-	},
-	sourceUrl: {
-		type: Sequelize.STRING
-	},
-	spoonacularSourceUrl: {
-		type: Sequelize.STRING
-	},
-	creditText: {
-		type: Sequelize.STRING
-	},
-	sourceName: {
-		type: Sequelize.STRING
-	},
-	// extendendedIngredients (loop), get id (in ingredient model, call apiIngId)
-	extendedIngredients: {
-		type: Sequelize.ARRAY(Sequelize.JSON)
-	}
+    // SCHEMA
+    apiRecipeId: {
+        type: Sequelize.INTEGER
+    },
+    title: {
+        type: Sequelize.STRING
+    },
+    readyInMinutes: {
+        type: Sequelize.INTEGER
+    },
+    image: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    imageType: {
+        type: Sequelize.STRING
+    },
+    instructions: {
+        type: Sequelize.TEXT,
+        allowNull: false
+    },
+    vegetarian: {
+        type: Sequelize.BOOLEAN
+    },
+    vegan: {
+        type: Sequelize.BOOLEAN
+    },
+    glutenFree: {
+        type: Sequelize.BOOLEAN
+    },
+    dairyFree: {
+        type: Sequelize.BOOLEAN
+    },
+    ketogenic: {
+        type: Sequelize.BOOLEAN
+    },
+    servings: {
+        type: Sequelize.INTEGER
+    },
+    preparationMinutes: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    cookingMinutes: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
+    sourceUrl: {
+        type: Sequelize.STRING
+    },
+    spoonacularSourceUrl: {
+        type: Sequelize.STRING
+    },
+    creditText: {
+        type: Sequelize.STRING
+    },
+    sourceName: {
+        type: Sequelize.STRING
+    },
+    // extendendedIngredients (loop), get id (in ingredient model, call apiIngId)
+    extendedIngredients: {
+        type: Sequelize.ARRAY(Sequelize.JSON)
+    },
+    mealsWithSimilarIngredients: {
+        type: Sequelize.ARRAY(Sequelize.INTEGER)
+    }
 }, {
-	// OPTIONS
+    // OPTIONS
   getterMethods: {
 
     importantIngredients: function(){
@@ -109,72 +112,92 @@ let Recipe = db.define('recipe', {
       // if you have one meal, get numofMeals that have ingredients in common
       // returns recipes that have the most possible ingredients in common
     getMealsWithSimilarIngredients: function(numOfMeals){
-		numOfMeals = Number(numOfMeals); // just in case...
+        var theRecipe = this;
+        var recipeCount = {};
+        var recipes = [];
+        var promises = [];
 
-		var recipeCount = {};
-		var recipes = [];
-		var promises = [];
+        return this.getIngredients().
+        then(function(ingredients){
 
-		return this.getIngredients().
-		then(function(ingredients){
+            ingredients.forEach(function(ingredient){
+                promises.push(ingredient.getRecipes());
+            })
 
-		ingredients.forEach(function(ingredient){
-			promises.push(ingredient.getRecipes());
-		})
+        return Promise.all(promises);
+        })
+        .then(function(allRecipes){
+            // at this point you should have an array of arrays of recipes.
+            // each array is the recipes for an ingredient.
+            // we care about the recipes that appear the most often across the ingredients.
+            allRecipes = [].concat.apply([], allRecipes);
+            allRecipes.forEach(function(recipe){
+                if (recipeCount[recipe.id]){
+                    recipeCount[recipe.id]++;
+                }
+                else {
+                    recipeCount[recipe.id] = 1;
+                }
+            })
 
-		return Promise.all(promises);
-		})
-		.then(function(allRecipes){
-			// at this point you should have an array of arrays of recipes.
-			// each array is the recipes for an ingredient.
-			// we care about the recipes that appear the most often across the ingredients.
-			allRecipes = [].concat.apply([], allRecipes);
-			allRecipes.forEach(function(recipe){
-				if (recipeCount[recipe.id]){
-					recipeCount[recipe.id]++;
-				}
-				else {
-					recipeCount[recipe.id] = 1;
-				}
-			})
+            var minMeals = 0;
+            // now we have an object of recipes. key is the recipe id and count is the number of times the recipe appears.
+            // we want to loop through the object and return numOfMeals with the highest count value;
+            for (var recipeId in recipeCount){
+                if (Number(recipeId) !== theRecipe.id){
+                    if (recipes.length < numOfMeals){
+                        recipes.push({recipeId: recipeId, count: recipeCount[recipeId]});
+                    }
 
-			var maxMeals = 0;
-			// this is the number of meals in a week so its only ever like 5
-			// now we have an object of recipes. key is the recipe id and count is the number of times the recipe appears.
-			// we want to loop through the object and return numOfMeals with the highest count value;
-			for (var recipe in recipeCount){
-				if (recipeCount[recipe] >= maxMeals){
-					maxMeals = recipeCount[recipe];
+                    else if (recipeCount[recipeId] >= minMeals){
+                        var smallestIndex = 0;
+                        var smallestVal = minMeals;
 
-					if (recipes.length < numOfMeals){
-						recipes.push({recipe: recipe, count: recipeCount[recipe]});
-					}
-					else {
-						var smallestIndex = 0;
-						var smallestVal = maxMeals;
+                            for (var i = 0; i < recipes.length; i++){
+                                if (recipes[i].count <= smallestVal){
+                                    smallestVal = recipes[i];
+                                    smallestIndex = i;
+                                }
+                            }
 
-						for (var i = 0; i < recipes.length; i++){
-							if (recipes[i] < smallestVal){
-								smallestVal = recipes[i];
-								smallestIndex = i;
-							}
-						}
+                            recipes[smallestIndex] = {recipeId: recipeId, count: recipeCount[recipeId]};
+                    }
+                    minMeals = Math.min(...recipes.map((elem) => elem.count));
+                }
+            } // end looking through recipe count
 
-						recipes[smallestIndex] = {recipe: recipe, count: recipeCount[recipe]};
+            recipes = recipes.map(function(recipeObj){
+                return recipeObj.recipeId;
+            })
 
-					}
-				}
-			} // end looking through recipe count
+            return recipes;
+        });
+      },
 
-			// [{id1, count1}, {id2, count2}].... reduce to[sequelize recipe 1, sequelize recipe 2...]
-			recipes = recipes.map(function(recipeObj){
-				var id = recipeObj.recipe;
-				return Recipe.findById(id);
-			})
+    classMethods: {
+        // return x number of random recipes, considering what the user likes
+        randomRecipes: function (User, numOfRecipes){
 
-			return Promise.all(recipes);
-		});
-      }
+            return User.getAllOkayRecipes().
+            then(function(recipes){
+                let indices = [];
+                let max = Math.floor(recipes.length);
+                // get a bunch of random indecies so you can look up those recipes
+                    while (indices.length < numOfRecipes){
+                        let random = Math.round(Math.random() * max);
+                        if (!indices.includes(random)) {
+                            indices.push(random);
+                        }
+                }
+
+                return indices.map(function(index){
+                    return recipes[index];
+                })
+            })
+
+        }
+    } // end class methods
+
     }
 
 });
