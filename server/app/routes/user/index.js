@@ -2,8 +2,11 @@
 
 const db = require('../../../db');
 const User = db.model('user');
+const Recipe = db.model('recipe');
+const Ingredient = db.model('ingredient');
 const UserPref = db.model('userPrefs');
 const router = require('express').Router();
+const getMeals = require('./meal-generator').getMeals;
 
 // Mounted on /api/users
 
@@ -55,6 +58,26 @@ router.put('/:userId/preferences', (req, res, next) => {
 		res.status(200).json(updatedPref);
 	})
 	.catch(next);
+});
+
+// Edit a user's meals
+router.get('/:userId/meals', (req, res, next) => {
+
+	let id = req.params.userId;
+	let urPromise = [];
+
+	urPromise.push(Recipe.findById(1));
+	urPromise.push(User.findById(id));
+
+	Promise.all(urPromise)
+	.then(function([rec, usr]){
+		return getMeals(rec, usr);
+	})
+	.then(function(mealPlan){
+		res.send(mealPlan);
+	})
+	.catch(next);
+
 });
 
 
