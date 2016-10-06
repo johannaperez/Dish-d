@@ -14,7 +14,7 @@ describe('User Preference model', function() {
 
     var newUserPref = {
         vegetarian: true,
-        dislikes: ['eggs']
+        dislikes: [{name: 'eggs'}]
     };
 
     var recipes = [{

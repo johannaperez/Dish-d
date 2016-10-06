@@ -10,36 +10,43 @@ app.controller('PrefsCtrl', function ($scope, $log, $state, PrefsFactory, $state
 
     PrefsFactory.getInitialPrefs($stateParams.userId)
     .then(prefs => {
-        if (!prefs) {
-            $scope.myPrefs = {
-                vegetarian: false,
-                vegan: false,
-                dairyFree: false,
-                glutenFree: false,
-                dislikes: []
-            };
-        }
-        else {
-            $scope.myPrefs = prefs;
-        }
+        $scope.myPrefs = prefs;
     })
     .catch($log.error);
 
+
     PrefsFactory.getAllIngredients()
     .then(ings => {
-        // console.log('INGS??', ings)
         $scope.allIngs = ings;
     })
     .catch($log.error);
 
-    $scope.saveToMyPrefs = function(){
-        return PrefsFactory.saveMyPrefs($stateParams.userId)
-        .then(function(pref){
-            $scope.myPrefs.dislikes.push(pref);
-        })
+
+    $scope.queryFilter = query => {
+        if (query) {
+            return $scope.allIngs.filter(ing => {
+                return ing.name.includes(query)
+            });
+        }
+        else {
+            return $scope.allIngs;
+        }
     };
 
+    $scope.addDislikes = selectedItem => {
+        if (selectedItem !== null) $scope.myPrefs.dislikes.push(selectedItem);
+        $scope.searchText = ''; // reset search bar
+    };
+
+    $scope.removeDislike = itemToDelete => {
+        $scope.myPrefs.dislikes.splice($scope.myPrefs.dislikes.indexOf(itemToDelete), 1);
+    };
+
+    $scope.savePrefs = () => {
+        return PrefsFactory.savePrefs($stateParams.userId, $scope.myPrefs);
+    };
 });
+
 
 app.factory('PrefsFactory', function($http, $log){
 
@@ -47,25 +54,23 @@ app.factory('PrefsFactory', function($http, $log){
         return response.data;
     }
 
-    let prefsObj = {
-        getInitialPrefs: function(userId){
+    let obj = {
+        getInitialPrefs: userId => {
             return $http.get(`/api/users/${userId}/preferences`)
             .then(sendResponse);
         },
 
-        getAllIngredients: function(){
+        getAllIngredients: () => {
             return $http.get('/api/ingredients')
             .then(sendResponse);
         },
 
-        //save my selected prefs
-        saveMyPrefs: function(userId){
-            return $http.post(`/api/users/${userId}/preferences`)
+        savePrefs: (userId, prefsObj) => {
+            return $http.put(`/api/users/${userId}/preferences`, prefsObj)
             .then(sendResponse)
             .catch($log.error);
         }
     }
 
-    return prefsObj;
+    return obj;
 })
-

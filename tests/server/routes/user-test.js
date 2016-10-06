@@ -42,13 +42,13 @@ describe('User Route', function () {
       guestAgent = supertest.agent(app);
     });
 
-    it('should get a 201 response with the NEW preference as the body', function (done) {
-      guestAgent.post('/api/users/1/preferences')
+    it('should get a 200 response with the updated preference as the body', function (done) {
+      guestAgent.put('/api/users/1/preferences')
       .send({
         vegetarian: true,
-        dislikes: ['eggs', 'soup'],
+        dislikes: [{name: 'eggs'}, {name: 'soup'}],
       })
-      .expect(201)
+      .expect(200)
       .end(function (err, response) {
         if (err) return done(err);
         expect(response.body.vegetarian).to.be.equal(true);
