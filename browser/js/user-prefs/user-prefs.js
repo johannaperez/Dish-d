@@ -27,19 +27,27 @@ app.controller('PrefsCtrl', function ($scope, $log, $state, PrefsFactory, $state
 
     PrefsFactory.getAllIngredients()
     .then(ings => {
-        // console.log('INGS??', ings)
         $scope.allIngs = ings;
     })
     .catch($log.error);
 
-    $scope.saveToMyPrefs = function(){
-        return PrefsFactory.saveMyPrefs($stateParams.userId)
-        .then(function(pref){
-            $scope.myPrefs.dislikes.push(pref);
-        })
+    $scope.queryFilter = (query) => {
+        if (query) {
+            return $scope.allIngs.filter(ing => {
+                return ing.name.includes(query)
+            });
+        }
+        else {
+            return $scope.allIngs;
+        }
     };
 
+    // $scope.updateDislikes = function(){
+        
+    // };
+
 });
+
 
 app.factory('PrefsFactory', function($http, $log){
 
