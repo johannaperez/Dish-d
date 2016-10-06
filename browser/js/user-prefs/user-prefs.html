@@ -9,7 +9,16 @@
         </div>
         <div class="dislikes">
             <h3>Any allergies or strong dislikes?</h3>
-            <md-autocomplete md-selected-item="selectedItem" md-search-text="searchText" md-items="ing in queryFilter(searchText) | orderBy: 'name'" md-item-text="ing.name" placeholder="dislikes">
+            <pre>prefs: {{ myPrefs.dislikes | json }}</pre>
+            <pre>searched: {{searchText | json }}</pre>
+            <pre>selected: {{ selectedItem | json }}</pre>
+            <md-autocomplete 
+                md-selected-item="selectedItem" 
+                md-search-text="searchText" 
+                md-items="ing in queryFilter(searchText) | orderBy: 'name'" 
+                md-item-text="ing.name" 
+                placeholder="dislikes" 
+                md-selected-item-change="updateDislikes(selectedItem)">
                 <md-item-template>
                     <span md-highlight-text="searchText">{{ing.name}}</span>
                 </md-item-template>

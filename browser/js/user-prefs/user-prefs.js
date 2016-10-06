@@ -8,6 +8,8 @@ app.config(function ($stateProvider){
 
 app.controller('PrefsCtrl', function ($scope, $log, $state, PrefsFactory, $stateParams) {
 
+    $scope.frontendDislikes = [];
+
     PrefsFactory.getInitialPrefs($stateParams.userId)
     .then(prefs => {
         if (!prefs) {
@@ -25,11 +27,13 @@ app.controller('PrefsCtrl', function ($scope, $log, $state, PrefsFactory, $state
     })
     .catch($log.error);
 
+
     PrefsFactory.getAllIngredients()
     .then(ings => {
         $scope.allIngs = ings;
     })
     .catch($log.error);
+
 
     $scope.queryFilter = (query) => {
         if (query) {
@@ -42,9 +46,11 @@ app.controller('PrefsCtrl', function ($scope, $log, $state, PrefsFactory, $state
         }
     };
 
-    // $scope.updateDislikes = function(){
-        
-    // };
+
+    $scope.updateDislikes = selectedItem => {
+        $scope.myPrefs.dislikes.push(selectedItem.id);  // ing ID for db
+        $scope.frontendDislikes.push(selectedItem);     // whole ingredient object
+    };
 
 });
 
@@ -56,18 +62,18 @@ app.factory('PrefsFactory', function($http, $log){
     }
 
     let prefsObj = {
-        getInitialPrefs: function(userId){
+        getInitialPrefs: userId => {
             return $http.get(`/api/users/${userId}/preferences`)
             .then(sendResponse);
         },
 
-        getAllIngredients: function(){
+        getAllIngredients: () => {
             return $http.get('/api/ingredients')
             .then(sendResponse);
         },
 
         //save my selected prefs
-        saveMyPrefs: function(userId){
+        saveMyPrefs: userId => {
             return $http.post(`/api/users/${userId}/preferences`)
             .then(sendResponse)
             .catch($log.error);
