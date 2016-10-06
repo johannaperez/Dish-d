@@ -1,0 +1,32 @@
+#meals {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    height: 85vh;
+    .meal {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .days {
+        align-items: center;
+        justify-content: center;
+    }
+    md-card {
+        height: 55vh;
+        width: 60vw;
+        md-card-content .md-media-xl {
+            height: 50vh;
+            width: 40vw;
+        }
+        .recipe {
+            width: 18vw !important
+        }
+        // md-card-title: {
+        //     width: 18vw !important
+        // }
+    }
+}
+
