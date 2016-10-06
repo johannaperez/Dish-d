@@ -66,10 +66,8 @@ db.sync({force: true})
   let promises = [];
 
 	recipes.forEach(recipe => {
-    if (recipe.title === 'Southwestern Mini Meatloaves') console.dir(recipe.extendedIngredients)
 		recipe.extendedIngredients.forEach(ingredient => {
 		  let id = ingredient.id;
-      let ingrr = ingredient;
 			let promise = Ingredient.findOne({
 				where: {
 					apiIngId: id
@@ -91,11 +89,28 @@ db.sync({force: true})
   return Promise.all(promises);
 })
 .then(() => {
+
+  return Recipe.findAll()
+  .then((recipes) => {
+
+    let recipePromises = recipes.map(function(recipe){
+      return recipe.getMealsWithSimilarIngredients(10)
+      .then(function(meals){
+        return recipe.update({
+          mealsWithSimilarIngredients: meals
+        });
+      });
+
+    })
+
+    return Promise.all(recipePromises);
+  })
+})
+.then(() => {
   console.log(chalk.green('seed successful'));
 })
 .catch(err => {
   console.log(chalk.red(err));
-  console.log(chalk.red(err.stack));
 })
 .finally(() => {
   console.log('closing db');
@@ -103,3 +118,22 @@ db.sync({force: true})
   process.exit(0);
   return null;
 });
+
+// Recipe.findById(1)
+// .then((recipes) => {
+
+//     let recipePromises = [recipes].map(function(recipe){
+//       return recipe.getMealsWithSimilarIngredients(5)
+//       .then(function(meals){
+//         return recipe.update({
+//           mealsWithSimilarIngredients: meals
+//         });
+//       });
+
+//     })
+
+//     return Promise.all(recipePromises);
+//   })
+// .then(() => {
+//   console.log(chalk.green('seed successful'));
+// })
