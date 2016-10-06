@@ -6,16 +6,17 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('SignupCtrl', function ($scope, AuthService, $state) {
+app.controller('SignupCtrl', function ($scope, $log, AuthService, $state, Session) {
 
     $scope.error = null;
     $scope.user = {};
 
-    $scope.sendSignup = function (loginInfo) {
+    $scope.sendSignup = function (user) {
         $scope.error = null;
-        AuthService.signup(loginInfo).then(function () {
-            $state.go('home');
-        }).catch(function () {
+        AuthService.signup(user).then(function () {
+            $state.go('prefs', {userId: Session.user.id});
+        })
+        .catch(function () {
             $scope.error = 'An account already exists with this email.';
         });
     };
@@ -26,3 +27,4 @@ app.controller('SignupCtrl', function ($scope, AuthService, $state) {
         return {abbrev: state};
       });
 });
+
