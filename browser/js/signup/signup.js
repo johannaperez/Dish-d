@@ -11,10 +11,11 @@ app.controller('SignupCtrl', function ($scope, AuthService, $state) {
     $scope.error = null;
     $scope.user = {};
 
-    $scope.sendSignup = function (loginInfo) {
+    $scope.sendSignup = function (user) {
+        console.log("ENTERED FRONT END ROUTE");
         $scope.error = null;
-        AuthService.signup(loginInfo).then(function () {
-            $state.go('home');
+        AuthService.signup(user).then(function () {
+            $state.go('prefs');
         }).catch(function () {
             $scope.error = 'An account already exists with this email.';
         });
