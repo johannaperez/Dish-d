@@ -9,7 +9,7 @@ var Recipe = db.model('recipe');
 var Ingredient = db.model('ingredient');
 var Promise = require('bluebird');
 
-describe('Recipe model', function () {
+xdescribe('Recipe model', function () {
 
     beforeEach('Sync DB', function () {
        return db.sync({force: true});
