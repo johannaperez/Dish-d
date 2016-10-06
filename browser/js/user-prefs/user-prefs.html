@@ -9,16 +9,15 @@
         </div>
         <div class="dislikes">
             <h3>Any allergies or strong dislikes?</h3>
-            <pre>prefs: {{ myPrefs.dislikes | json }}</pre>
-            <pre>searched: {{searchText | json }}</pre>
-            <pre>selected: {{ selectedItem | json }}</pre>
+            <!-- <pre>frontend Dislikes: {{ frontendDislikes | json }}</pre> -->
+            <!-- <pre>db Dislikes: {{ myPrefs.dislikes | json }}</pre> -->
             <md-autocomplete 
                 md-selected-item="selectedItem" 
                 md-search-text="searchText" 
                 md-items="ing in queryFilter(searchText) | orderBy: 'name'" 
                 md-item-text="ing.name" 
                 placeholder="dislikes" 
-                md-selected-item-change="updateDislikes(selectedItem)">
+                md-selected-item-change="addDislikes(selectedItem)">
                 <md-item-template>
                     <span md-highlight-text="searchText">{{ing.name}}</span>
                 </md-item-template>
@@ -26,6 +25,11 @@
                     No matches found.
                 </md-not-found>
             </md-autocomplete>
+            <section id="dislike" layout="row">
+                <div ng-show="frontendDislikes.length" ng-repeat="ing in frontendDislikes">
+                    <md-button>{{ing.name}}<md-button ng-click="removeDislike(ing)" class="delete">x</md-button></md-button>  
+                </div>
+            </section>
         </div>
         <div class="num">
             <h3>How many people are eating?</h3>
@@ -42,3 +46,4 @@
         </div>
     </div>
 </md-content>
+

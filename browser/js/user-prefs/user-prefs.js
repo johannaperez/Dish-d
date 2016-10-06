@@ -47,9 +47,15 @@ app.controller('PrefsCtrl', function ($scope, $log, $state, PrefsFactory, $state
     };
 
 
-    $scope.updateDislikes = selectedItem => {
+    $scope.addDislikes = selectedItem => {
         $scope.myPrefs.dislikes.push(selectedItem.id);  // ing ID for db
         $scope.frontendDislikes.push(selectedItem);     // whole ingredient object
+        $scope.searchText = '';                         // reset search bar
+    };
+
+    $scope.removeDislike = itemToDelete => {
+        $scope.myPrefs.dislikes.splice($scope.myPrefs.dislikes.indexOf(itemToDelete.id), 1);
+        $scope.frontendDislikes.splice($scope.frontendDislikes.indexOf(itemToDelete), 1);
     };
 
 });
