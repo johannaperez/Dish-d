@@ -2,6 +2,7 @@
 
 const Sequelize = require('sequelize');
 const db = require('../_db.js');
+const User = require('./user-model.js');
 
 let Recipe = db.define('recipe', {
     // SCHEMA
@@ -172,14 +173,21 @@ let Recipe = db.define('recipe', {
 
             return recipes;
         });
-      },
+      }
+
+    }, // end of instance methods
+
 
     classMethods: {
         // return x number of random recipes, considering what the user likes
-        randomRecipes: function (User, numOfRecipes){
+        randomRecipes: function (userId, numOfRecipes){
 
-            return User.getAllOkayRecipes().
-            then(function(recipes){
+            console.dir(User);
+            return User.findById(userId)
+            .then(function(user){
+                return user.getAllOkayRecipes();
+            })
+            .then(function(recipes){
                 let indices = [];
                 let max = Math.floor(recipes.length);
                 // get a bunch of random indecies so you can look up those recipes
@@ -197,8 +205,6 @@ let Recipe = db.define('recipe', {
 
         }
     } // end class methods
-
-    }
 
 });
 

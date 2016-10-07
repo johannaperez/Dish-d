@@ -31,8 +31,8 @@ module.exports = {
 		//Fill in with random meals to get the total back up to 10
 		.then(function(filteredMeals){
 			let numMissing = 10 - filteredMeals.length;
-			// return filteredMeals.concat(Recipe.randomRecipes(user, numMissing));
-			return filteredMeals;
+			return filteredMeals.concat(Recipe.randomRecipes(userId, numMissing));
+			//return filteredMeals;
 		})
 		.catch((error) => {
 			console.log(error);
