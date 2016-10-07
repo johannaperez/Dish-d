@@ -46,15 +46,13 @@ let UserPref = db.define('userPrefs', {
 	// OPTIONS
 	instanceMethods: {
 		getAllOkayRecipes: function() {
-			// capture instance properties
-            var prefs = {
-                vegetarian: this.vegetarian,
-                vegan: this.vegan,
-                glutenFree: this.glutenFree,
-                dairyFree: this.dairyFree,
-                lowFodmap: this.lowFodmap,
-                whole30: this.whole30
-            };
+			// capture instance properties if true
+			var prefs = {};
+
+			Object.keys(this.dataValues).forEach(key => {
+				if (this[key] === true) prefs[key] = true;
+			});
+
             var dislikes = this.dislikes;
             var availableTime = this.availableTime;
 
