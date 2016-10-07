@@ -200,7 +200,7 @@ let Recipe = db.define('recipe', {
                 return userPreferences.getAllOkayRecipes();
             })
             .then(function(recipes){
-                console.log('FOUNT SOME CUTE recipes', recipes)
+                //console.log('FOUNT SOME CUTE recipes', recipes)
                 let indices = [];
                 let max = Math.floor(recipes.length);
                 // get a bunch of random indecies so you can look up those recipes
@@ -215,7 +215,7 @@ let Recipe = db.define('recipe', {
                     return recipes[index];
                 })
 
-                console.log("RETURNING", toReturn);
+                //console.log("RETURNING", toReturn);
                 return toReturn;
             })
         }
