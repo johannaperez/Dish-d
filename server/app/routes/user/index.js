@@ -10,6 +10,8 @@ const getMeals = require('./meal-generator').getMeals;
 
 // Mounted on /api/users
 
+router.use('/:userId/meals', require('./meal-routes.js')); 
+
 // GET all users (ADMIN)
 router.get('/', (req, res, next) => {
 	User.findAll()
@@ -60,22 +62,7 @@ router.put('/:userId/preferences', (req, res, next) => {
 	.catch(next);
 });
 
-// Edit a user's meals
-// todo Create router.params with user id OR merge params in router options
-router.get('/:userId/meals', (req, res, next) => {
 
-	let id = req.params.userId;
-	// todo once user has favorites, use this as starting meal 
-	Recipe.randomRecipes(id, 1)
-	.then(function([rec]){
-		return getMeals(rec, id);
-	})
-	.then(function(mealPlan){
-		res.send(mealPlan);
-	})
-	.catch(next);
-
-});
 
 
 module.exports = router;
