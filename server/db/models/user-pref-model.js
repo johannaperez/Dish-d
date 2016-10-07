@@ -83,7 +83,7 @@ let UserPref = db.define('userPrefs', {
 
             let approved = true;
             for (let pref in prefs){
-                if (prefs[pref] !== recipe[pref]) {
+                if (prefs[pref] !== recipe[pref] && prefs[pref]) {
                     approved = false;
                     break;
                 }
