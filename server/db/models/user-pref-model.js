@@ -22,6 +22,14 @@ let UserPref = db.define('userPrefs', {
 		type: Sequelize.BOOLEAN,
 		defaultValue: false
 	},
+	lowFodmap: {
+		type: Sequelize.BOOLEAN,
+		defaultValue: false
+	},
+	whole30: {
+		type: Sequelize.BOOLEAN,
+		defaultValue: false
+	},
 	dislikes: {
 		type: Sequelize.ARRAY(Sequelize.JSON),
 		defaultValue: []
@@ -38,13 +46,13 @@ let UserPref = db.define('userPrefs', {
 	// OPTIONS
 	instanceMethods: {
 		getAllOkayRecipes: function() {
-			// capture instance properties
-            var prefs = {
-                vegetarian: this.vegetarian,
-                vegan: this.vegan,
-                glutenFree: this.glutenFree,
-                dairyFree: this.dairyFree
-            };
+			// capture instance properties if true
+			var prefs = {};
+
+			Object.keys(this.dataValues).forEach(key => {
+				if (this[key] === true) prefs[key] = true;
+			});
+
             var dislikes = this.dislikes;
             var availableTime = this.availableTime;
 
