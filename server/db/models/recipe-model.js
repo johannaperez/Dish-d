@@ -3,6 +3,7 @@
 const Sequelize = require('sequelize');
 const db = require('../_db.js');
 const User = require('./user-model.js');
+const UserPref = require('./user-pref-model.js');
 
 let Recipe = db.define('recipe', {
     // SCHEMA
@@ -182,10 +183,21 @@ let Recipe = db.define('recipe', {
         // return x number of random recipes, considering what the user likes
         randomRecipes: function (userId, numOfRecipes){
 
-            console.dir(User);
-            return User.findById(userId)
-            .then(function(user){
-                return user.getAllOkayRecipes();
+            // console.dir(User);
+            // var User = this.modelManager.models[2];
+            // return User.findById(userId)
+            // .then(function(user){
+            //     console.log('You found a nice user!!', user);
+            //     return user.getAllOkayRecipes();
+            // })
+            var UserPref = this.modelManager.models[1];
+            return UserPref.findOne({
+                where: {
+                    userId: userId
+                }
+            })
+            .then(function(userPreferences){
+                return userPreferences.getAllOkayRecipes();
             })
             .then(function(recipes){
                 let indices = [];
@@ -198,11 +210,11 @@ let Recipe = db.define('recipe', {
                         }
                 }
 
-                return indices.map(function(index){
+                let toReturn = indices.map(function(index){
                     return recipes[index];
                 })
+                return toReturn;
             })
-
         }
     } // end class methods
 

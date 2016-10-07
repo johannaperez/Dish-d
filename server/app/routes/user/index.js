@@ -61,6 +61,7 @@ router.put('/:userId/preferences', (req, res, next) => {
 });
 
 // Edit a user's meals
+// todo Create router.params with user id OR merge params in router options
 router.get('/:userId/meals', (req, res, next) => {
 
 	let id = req.params.userId;
