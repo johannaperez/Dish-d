@@ -14,42 +14,58 @@ describe('User Preference model', function() {
 
     var newUserPref = {
         vegetarian: true,
-        dislikes: [{name: 'eggs'}]
+        dislikes: [{name: 'eggs'}],
+        availableTime: 30,
     };
 
     var recipes = [{
         title: 'Carrot Soup',
-        vegetarian: true,
+        vegetarian: true,       // passes
         vegan: false,
         glutenFree: false,
         dairyFree: false,
         image: 'http',
         instructions: '1, 2, 3',
+        readyInMinutes: 15,     // passes
         preparationMinutes: 5,
         cookingMinutes: 10,
-        extendedIngredients: [{ name: 'carrots' }]
+        extendedIngredients: [{ name: 'carrots' }]      // passes
     }, {
         title: 'Lamb Popsicles',
-        vegetarian: false,
+        vegetarian: false,      // doesn't pass (TEST VEG)
         vegan: false,
         glutenFree: false,
         dairyFree: false,
         image: 'http',
         instructions: '1, 2, 3',
+        readyInMinutes: 15,     // passes
         preparationMinutes: 5,
         cookingMinutes: 10,
-        extendedIngredients: [{ name: 'lamb chops' }]
+        extendedIngredients: [{ name: 'lamb chops' }]   // passes
     }, {
         title: 'Omelette',
-        vegetarian: true,
+        vegetarian: true,       // passes
         vegan: false,
         glutenFree: false,
         dairyFree: false,
         image: 'http',
         instructions: '1, 2, 3',
+        readyInMinutes: 15,     // passes
         preparationMinutes: 5,
         cookingMinutes: 10,
-        extendedIngredients: [{ name: 'eggs' }]
+        extendedIngredients: [{ name: 'eggs' }]     // doesn't pass (TEST DISLIKES)
+    }, {
+        title: 'zuccini bread',
+        vegetarian: true,           // passes
+        vegan: false,
+        glutenFree: false,
+        dairyFree: false,
+        image: 'http',
+        instructions: '1, 2, 3',
+        readyInMinutes: 200,         // doesn't pass (TEST AVAIL-TIME)
+        preparationMinutes: 5,
+        cookingMinutes: 115,
+        extendedIngredients: [{ name: 'zuccini' }]  // passes
     }]
 
     var preference = {};
@@ -65,13 +81,23 @@ describe('User Preference model', function() {
                     promises.push(Recipe.create(recipe));
                 });
                 return Promise.all(promises)
-                .then(function([pref, rec1, rec2, rec3]) {
+                .then(function([pref, rec1, rec2, rec3, rec4]) {
                     preference = pref;
                 })
             })
     });
 
     describe('gets user preferences', function() {
+
+        describe('all recipes were seeded', function() {
+            it('has 4 recipes in db', function() {
+                Recipe.findAll()
+                .then(function(allRecipes) {
+                    expect(allRecipes.length).to.equal(4);
+                    expect(allRecipes[3].title).to.equal('zuccini bread');
+                });
+            });
+        });
 
         describe('returns a new user preference instance', function() {
             it('has an updated vegetarian boolean status', function() {
