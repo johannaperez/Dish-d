@@ -22,7 +22,7 @@ describe('User Route', function () {
   // };
 
   beforeEach('Sync DB', function () {
-      return db.sync({ force: true })
+      return db.sync()
   });
 
   beforeEach('Create app, seed User', function () {

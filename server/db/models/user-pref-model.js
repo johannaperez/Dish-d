@@ -32,7 +32,7 @@ let UserPref = db.define('userPrefs', {
 	},
 	availableTime: {
 		type: Sequelize.INTEGER,
-		defaultValue: 0
+		defaultValue: 30
 	}
 }, {
 	// OPTIONS
@@ -47,6 +47,7 @@ let UserPref = db.define('userPrefs', {
             };
             var dislikes = this.dislikes;
             var availableTime = this.availableTime;
+            console.log('AVAILABLETHYME', availableTime)
 
             // filter by dietary preferences
 			return Recipe.findAll({
@@ -65,6 +66,7 @@ let UserPref = db.define('userPrefs', {
 						}
 					})
 				});
+				//console.log('DEEZ', dislikeFilteredRecipes);
 				// filter by available time
 				let filteredRecipes = dislikeFilteredRecipes.filter(recipe => {
 					return recipe.readyInMinutes <= availableTime;
@@ -83,7 +85,7 @@ let UserPref = db.define('userPrefs', {
 
             let approved = true;
             for (let pref in prefs){
-                if (prefs[pref] !== recipe[pref] && prefs[pref]) {
+                if (prefs[pref] !== recipe[pref]) {
                     approved = false;
                     break;
                 }
