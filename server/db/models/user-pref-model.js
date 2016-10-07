@@ -22,6 +22,14 @@ let UserPref = db.define('userPrefs', {
 		type: Sequelize.BOOLEAN,
 		defaultValue: false
 	},
+	lowFodmap: {
+		type: Sequelize.BOOLEAN,
+		defaultValue: false
+	},
+	whole30: {
+		type: Sequelize.BOOLEAN,
+		defaultValue: false
+	},
 	dislikes: {
 		type: Sequelize.ARRAY(Sequelize.JSON),
 		defaultValue: []
@@ -43,7 +51,9 @@ let UserPref = db.define('userPrefs', {
                 vegetarian: this.vegetarian,
                 vegan: this.vegan,
                 glutenFree: this.glutenFree,
-                dairyFree: this.dairyFree
+                dairyFree: this.dairyFree,
+                lowFodmap: this.lowFodmap,
+                whole30: this.whole30
             };
             var dislikes = this.dislikes;
             var availableTime = this.availableTime;
