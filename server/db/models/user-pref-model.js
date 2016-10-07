@@ -38,28 +38,37 @@ let UserPref = db.define('userPrefs', {
 	// OPTIONS
 	instanceMethods: {
 		getAllOkayRecipes: function() {
-            var dislikes = this.dislikes;
+			// capture instance properties
             var prefs = {
                 vegetarian: this.vegetarian,
                 vegan: this.vegan,
                 glutenFree: this.glutenFree,
                 dairyFree: this.dairyFree
-            }
+            };
+            var dislikes = this.dislikes;
+            var availableTime = this.availableTime;
+
+            // filter by dietary preferences
 			return Recipe.findAll({
                 where: prefs
             })
+            // filter out recipes with disliked ingredients
 			.then(boolRecipes => {
-				let filteredRecipes = [];
+				let dislikeFilteredRecipes = [];
 				let dislikeNames = dislikes.map(dislike => {
 					return dislike.name;
-				})
+				});
 				boolRecipes.forEach(recipe => {
 					recipe.extendedIngredients.forEach(ingredient => {
 						if (!dislikeNames.includes(ingredient.name)) {
-							filteredRecipes.push(recipe);
+							dislikeFilteredRecipes.push(recipe);
 						}
 					})
-				})
+				});
+				// filter by available time
+				let filteredRecipes = dislikeFilteredRecipes.filter(recipe => {
+					return recipe.readyInMinutes <= availableTime;
+				});
 				return filteredRecipes;
 			})
 		}
@@ -67,3 +76,19 @@ let UserPref = db.define('userPrefs', {
 });
 
 module.exports = UserPref;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
