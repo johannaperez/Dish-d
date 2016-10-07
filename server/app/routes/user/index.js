@@ -65,9 +65,9 @@ router.put('/:userId/preferences', (req, res, next) => {
 router.get('/:userId/meals', (req, res, next) => {
 
 	let id = req.params.userId;
-					// todo get random recipe that is cool...
-	Recipe.findById(1)
-	.then(function(rec){
+	// todo once user has favorites, use this as starting meal 
+	Recipe.randomRecipes(id, 1)
+	.then(function([rec]){
 		return getMeals(rec, id);
 	})
 	.then(function(mealPlan){
