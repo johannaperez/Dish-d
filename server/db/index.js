@@ -10,7 +10,7 @@ const Ingredient = require('./models/ingredient-model.js');
 Ingredient.belongsToMany(Recipe, { through: 'recipes_ingredients', as: 'recipes' });
 Recipe.belongsToMany(Ingredient, { through: 'recipes_ingredients', as: 'ingredients' });
 
-// UserPref.belongsTo(User);	// UserPref has userId column
-User.belongsTo(UserPref);
+UserPref.belongsTo(User);	// UserPref has userId column
+// User.belongsTo(UserPref);
 
 module.exports = db;

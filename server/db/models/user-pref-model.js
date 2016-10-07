@@ -64,13 +64,14 @@ let UserPref = db.define('userPrefs', {
 			})
 		},
         isOkayRecipe: function (recipe) {
-        	const prefs = {
+
+			const prefs = {
                 vegetarian: this.vegetarian,
                 vegan: this.vegan,
                 glutenFree: this.glutenFree,
                 dairyFree: this.dairyFree
             }
-            
+
             let approved = true;
             for (let pref in prefs){
                 if (prefs[pref] !== recipe[pref]) {

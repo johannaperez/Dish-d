@@ -64,14 +64,10 @@ router.put('/:userId/preferences', (req, res, next) => {
 router.get('/:userId/meals', (req, res, next) => {
 
 	let id = req.params.userId;
-	let urPromise = [];
-
-	urPromise.push(Recipe.findById(1));
-	urPromise.push(User.findById(id));
-
-	Promise.all(urPromise)
-	.then(function([rec, usr]){
-		return getMeals(rec, usr);
+					// todo get random recipe that is cool...
+	Recipe.findById(1)
+	.then(function(rec){
+		return getMeals(rec, id);
 	})
 	.then(function(mealPlan){
 		res.send(mealPlan);

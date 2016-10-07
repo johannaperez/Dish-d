@@ -4,23 +4,35 @@ const Recipe = db.model('recipe');
 const Ingredient = db.model('ingredient');
 const UserPref = db.model('userPrefs');
 const router = require('express').Router();
+const Promise = require('bluebird');
 
 // both recipe and user are sequelize instances
 module.exports = {
 
-	getMeals: function(recipe, user){
-		console.log('Trying to get recipes');
+	getMeals: function(recipe, userId){
 		//get list of 10 associated meals given the first recipe
 		let mealPlan = recipe.mealsWithSimilarIngredients;
 		//Filter that list by user restrictions
-		return user.getuserPrefs()
+		return UserPref.findOne(
+		{
+			where: {
+				userId: userId
+			}
+		})
 		.then(function(prefs){
-			return mealPlan.filter(prefs.isOkayRecipe)
+			let mealPromises = mealPlan.map((recId) => Recipe.findById(recId));
+
+			return Promise.all(mealPromises)
+			.then(function(fullMealPlan){
+				return fullMealPlan.filter(prefs.isOkayRecipe, prefs)
+			})
+
 		})
 		//Fill in with random meals to get the total back up to 10
 		.then(function(filteredMeals){
 			let numMissing = 10 - filteredMeals.length;
-			return filteredMeals.concat(Recipe.randomRecipes(user, numMissing));
+			// return filteredMeals.concat(Recipe.randomRecipes(user, numMissing));
+			return filteredMeals;
 		})
 		.catch((error) => {
 			console.log(error);
