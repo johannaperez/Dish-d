@@ -12,10 +12,16 @@ app.config(function ($stateProvider) {
         // that controls access to this state. Refer to app.js.
         data: {
             authenticate: true
-        }
+        },
+        controller: 'MyAccountCtrl'
     });
 
 });
+
+app.controller('MyAccountCtrl', function($scope, Session){
+
+    $scope.userId = Session.user.id;
+})
 
 app.factory('SecretStash', function ($http) {
 
