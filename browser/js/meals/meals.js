@@ -17,12 +17,11 @@ app.controller('MealsCtrl', function($scope){
     }
     ];
 
-    // $scope.mealsLoaded = true;
-    // $scope.slickCurrentIndex = 0;
     $scope.slickConfig = {
-        // adaptiveHeight: true,
-        initialSlide: 1,
-        // mobileFirst: true,
+        adaptiveHeight: true,
+        // initialSlide: 0,
+        mobileFirst: true,
+        slidesToScroll: 1,
         slideToShow: 1,
         method: {}
     }

@@ -12,6 +12,9 @@
         justify-content: center;
         height: 100vh;
     }
+    .slick-container {
+        width: 60vw;
+    }
     .slick-prev,
     .slick-next {
         display: none !important;
@@ -21,23 +24,12 @@
         justify-content: center;
     }
     md-card {
-        //     md-card-content .md-media-xl {
-        //         // height: 50vh;
-        //         // width: 40vw;
-        //     }
+        md-card-content .md-media-xl {
+            height: 50vh;
+            width: 40vw;
+        }
         .recipe {
             width: 18vw !important
         }
     }
 }
-
-.slick-container {
-    width: 400px;
-    height: 400px;
-    border: 1px solid grey;
-}
-
-// .slick-item {
-//     width: 100px;
-//     height: 100px;
-// }
