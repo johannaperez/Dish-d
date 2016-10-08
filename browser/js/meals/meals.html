@@ -13,40 +13,42 @@
                 <md-button class="md-fab">wed</md-button>
             </div>
         </section>
-        <section layout="row" flex>
-            <div class="meal">
-                <md-button class="md-fab" ng-click="slickConfig.method.slickPrev()">
-                    <</md-button>
-                        <slick slides-to-show=1>
-                            <md-card>
-                                <md-card-content layout="row" layout-align="space-between">
-                                    <div class="md-media-xl card-media" style="background: url(https://lighterphotos-production.s3.amazonaws.com/uploads/recipe/image/1519/SuperSeedSalad6773.jpg) no-repeat center;">
-                                    </div>
-                                    <div class="recipe" layout="column">
-                                        <md-card-title>
-                                            <md-card-title-text>
-                                                <span class="md-headline">Recipe Title</span>
-                                            </md-card-title-text>
-                                        </md-card-title>
-                                        <md-card-actions layout="row">
-                                            <md-button class="md-icon-button" aria-label="Favorite">
-                                                <ng-md-icon icon="favorite"></ng-md-icon>
-                                            </md-button>
-                                            <md-button class="md-icon-button" aria-label="Settings">
-                                                <ng-md-icon icon="shopping_basket"></ng-md-icon>
-                                            </md-button>
-                                            <md-button class="md-icon-button" aria-label="Share">
-                                                <ng-md-icon icon="dehaze"></ng-md-icon>
-                                            </md-button>
-                                        </md-card-actions>
-                                    </div>
-                                </md-card-content>
-                            </md-card>
-                        </slick>
-                        <md-button class="md-fab" ng-click="slickConfig.method.slickNext()">></md-button>
-            </div>
-        </section>
-        <section>
+        <section class="mealsMain" layout="row" flex>
+
+                <md-button class="md-fab" ng-click="slickConfig.method.slickPrev()"><</md-button>
+                <!-- <div class="slick-container"> -->
+                        <slick class="slick-container" settings="slickConfig" slides-to-scroll=1 >
+                        <div class=slick-item ng-repeat="meal in meals">
+                        <!-- <recipe></recipe> -->
+                        <!-- <div  ng-include="'recipe-card.html'"></div> -->
+                                <md-card >
+                                    <md-card-content layout="row" layout-align="space-between">
+                                        <div class="md-media-xl card-media" style="background: url({{meal.url}}) no-repeat center; ">
+                                        </div>
+                                        <div class="recipe" layout="column">
+                                            <md-card-title>
+                                                <md-card-title-text>
+                                                    <span class="md-headline">{{meal.title}}</span>
+                                                </md-card-title-text>
+                                            </md-card-title>
+                                            <md-card-actions layout="row">
+                                                <md-button class="md-icon-button" aria-label="Favorite">
+                                                    <ng-md-icon icon="favorite"></ng-md-icon>
+                                                </md-button>
+                                                <md-button class="md-icon-button" aria-label="Settings">
+                                                    <ng-md-icon icon="shopping_basket"></ng-md-icon>
+                                                </md-button>
+                                                <md-button class="md-icon-button" aria-label="Share">
+                                                    <ng-md-icon icon="dehaze"></ng-md-icon>
+                                                </md-button>
+                                            </md-card-actions>
+                                        </div>
+                                    </md-card-content>
+                                </md-card>
+                                </div>
+                            </slick>
+                            <!-- </div> -->
+                <md-button class="md-fab" ng-click="slickConfig.method.slickNext()">></md-button>
         </section>
     </div>
 </md-content>
