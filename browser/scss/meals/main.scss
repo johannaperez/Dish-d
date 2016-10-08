@@ -5,18 +5,25 @@
     justify-content: center;
     width: 100vw;
     height: 85vh;
-    .meal {
+    .mealsMain {
         display: flex;
         align-items: center;
+        flex-driection: row;
         justify-content: center;
+        height: 100vh;
+    }
+    .slick-container {
+        width: 60vw;
+    }
+    .slick-prev,
+    .slick-next {
+        display: none !important;
     }
     .days {
         align-items: center;
         justify-content: center;
     }
     md-card {
-        height: 55vh;
-        width: 60vw;
         md-card-content .md-media-xl {
             height: 50vh;
             width: 40vw;
@@ -24,9 +31,5 @@
         .recipe {
             width: 18vw !important
         }
-        // md-card-title: {
-        //     width: 18vw !important
-        // }
     }
 }
-
