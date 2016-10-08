@@ -8,7 +8,7 @@ var Recipe = db.model('recipe');
 
 var supertest = require('supertest');
 
-describe('Meal Plan Route', function () {
+xdescribe('Meal Plan Route', function () {
 
     var app, User;
 

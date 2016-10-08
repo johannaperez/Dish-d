@@ -7,7 +7,7 @@ var db = require('../../../server/db');
 
 var supertest = require('supertest');
 
-describe('Signup Route', function () {
+xdescribe('Signup Route', function () {
 
     var app, User;
 
