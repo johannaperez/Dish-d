@@ -39,6 +39,12 @@ let Recipe = db.define('recipe', {
     dairyFree: {
         type: Sequelize.BOOLEAN
     },
+    lowFodmap: {
+        type: Sequelize.BOOLEAN,
+    },
+    whole30: {
+        type: Sequelize.BOOLEAN,
+    },
     ketogenic: {
         type: Sequelize.BOOLEAN
     },
