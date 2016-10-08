@@ -7,16 +7,6 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('MealsCtrl', function($scope, MealFactory, Session){
-    // $scope.meals = [ //array of meal suggestions go here
-    // {
-    //     title: 'salad',
-    //     url: 'https://lighterphotos-production.s3.amazonaws.com/uploads/recipe/image/1519/SuperSeedSalad6773.jpg'
-    //     },
-    //     {
-    //     title: 'other thing',
-    //     url: `https://lighterphotos-production.s3.amazonaws.com/uploads/recipe/image/1084/2EnergizingMuesliFreshBerries__MelissaBlackall__-8.jpg`
-    // }
-    // ];
 
     $scope.meals = [];
 
@@ -24,6 +14,9 @@ app.controller('MealsCtrl', function($scope, MealFactory, Session){
     .then(function(meals){
         $scope.meals = meals;
         console.log($scope.meals)
+    })
+    .then(function(){
+        $scope.mealsLoaded = true;
     })
     // todo add error handling here.
 
@@ -47,6 +40,6 @@ app.factory('MealFactory', function($http){
             return response.data;
         });
     };
-
     return MealFactory;
 });
+
