@@ -34,9 +34,8 @@ describe('Meal Plan Route', function () {
         .expect(200)
         .end(function (err, response) {
         if (err) return done(err);
-          expect(response).to.be.an('array');
-          expect(response).to.have.length(10);
-          expect(response[0]).to.be.instanceOf(Recipe);
+          expect(response.body).to.be.an('array');
+          expect(response.body).to.have.length(10);
           done();
       });
     });

@@ -13,18 +13,19 @@ const getMeals = require('./meal-generator').getMeals;
 router.get('', (req, res, next) => {
 
 	let id = req.params.userId;
-	console.log('YOU WANT USER', id);
 	// todo once user has favorites, use this as starting meal
-	Recipe.randomRecipes(id, 2)
+	Recipe.randomRecipes(id, 1)
 	.then(function(rec){
-		console.log('RECCCCC::::', rec);
 		return getMeals(rec[0], id);
 	})
 	.then(function(mealPlan){
+		//console.log('MEAL PLAN IN ROUTER', mealPlan);
 		res.send(mealPlan);
 	})
 	.catch(next);
 
 });
- 
-module.exports = router; 
+
+module.exports = router;
+
+

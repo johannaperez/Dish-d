@@ -5,7 +5,7 @@ var db = require('../../../server/db');
 var supertest = require('supertest');
 
 
-describe('User Route', function () {
+xdescribe('User Route', function () {
   var app, User;
 
   var fakeUser = {
