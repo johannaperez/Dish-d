@@ -2,6 +2,8 @@
 
 const Sequelize = require('sequelize');
 const db = require('../_db.js');
+const User = require('./user-model.js');
+// const UserPref = require('./user-pref-model.js');
 
 let Recipe = db.define('recipe', {
     // SCHEMA
@@ -36,6 +38,12 @@ let Recipe = db.define('recipe', {
     },
     dairyFree: {
         type: Sequelize.BOOLEAN
+    },
+    lowFodmap: {
+        type: Sequelize.BOOLEAN,
+    },
+    whole30: {
+        type: Sequelize.BOOLEAN,
     },
     ketogenic: {
         type: Sequelize.BOOLEAN
@@ -172,14 +180,32 @@ let Recipe = db.define('recipe', {
 
             return recipes;
         });
-      },
+      }
+
+    }, // end of instance methods
+
 
     classMethods: {
         // return x number of random recipes, considering what the user likes
-        randomRecipes: function (User, numOfRecipes){
+        randomRecipes: function (userId, numOfRecipes){
 
-            return User.getAllOkayRecipes().
-            then(function(recipes){
+            // console.dir(User);
+            // var User = this.modelManager.models[2];
+            // return User.findById(userId)
+            // .then(function(user){
+            //     console.log('You found a nice user!!', user);
+            //     return user.getAllOkayRecipes();
+            // })
+            var UserPref = this.modelManager.models[1];
+            return UserPref.findOne({
+                where: {
+                    userId: userId
+                }
+            })
+            .then(function(userPreferences){
+                return userPreferences.getAllOkayRecipes();
+            })
+            .then(function(recipes){
                 let indices = [];
                 let max = Math.floor(recipes.length);
                 // get a bunch of random indecies so you can look up those recipes
@@ -189,7 +215,6 @@ let Recipe = db.define('recipe', {
                             indices.push(random);
                         }
                 }
-
                 return indices.map(function(index){
                     return recipes[index];
                 })
@@ -197,8 +222,6 @@ let Recipe = db.define('recipe', {
 
         }
     } // end class methods
-
-    }
 
 });
 

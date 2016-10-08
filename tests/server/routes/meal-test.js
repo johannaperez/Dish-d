@@ -4,10 +4,11 @@ var expect = require('chai').expect;
 var Sequelize = require('sequelize');
 
 var db = require('../../../server/db');
+var Recipe = db.model('recipe'); 
 
 var supertest = require('supertest');
 
-xdescribe('Signup Route', function () {
+xdescribe('Meal Plan Route', function () {
 
     var app, User;
 
@@ -20,7 +21,7 @@ xdescribe('Signup Route', function () {
         User = db.model('user');
     });
 
-  describe('Signup route', function () {
+  describe('get meal plan route', function () {
 
     var guestAgent;
 
@@ -28,16 +29,16 @@ xdescribe('Signup Route', function () {
       guestAgent = supertest.agent(app);
     });
 
-    it('should get a 201 response with the new user as the body', function (done) {
-      guestAgent.post('/api/signup/').send({email: 'minerva@hogwarts.com', password: '123'})
-        .expect(201)
+    it('should get an array of 10 recipes as a response', function (done) {
+      guestAgent.get('/api/users/1/meals')
+        .expect(200)
         .end(function (err, response) {
         if (err) return done(err);
-          expect(response.body.user.email).to.be.equal('minerva@hogwarts.com');
+          expect(response.body).to.be.an('array');
+          expect(response.body).to.have.length(10);
           done();
       });
     });
 
   });
 });
-

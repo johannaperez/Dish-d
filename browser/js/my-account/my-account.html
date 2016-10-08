@@ -1,5 +1,36 @@
-<md-content flex>
-    <h1>My Account</h1>
-    <md-button ui-sref="meals">My Meals</md-button>
-    <md-button ui-sref="prefs">Edit Preferences</md-button>
+<md-content id="myacct">
+    <section class="container">
+        <div class="item">
+            <section>
+                <h1>My Account Prefs</h1>
+                <dishd-logo></dishd-logo>
+                <div>Prefs Buttons</div>
+                <md-button ui-sref="meals">My Meals</md-button>
+                <md-button ui-sref="prefs({userId: userId})">Edit Preferences</md-button>
+            </section>
+        </div>
+        <div class="item">
+            <section>
+                <h1>I Ate</h1>
+                <dishd-logo></dishd-logo>
+                <div>Data Visualization for foods eaten</div>
+            </section>
+        </div>
+    </section>
+    <section class="container">
+        <div class="item">
+            <section>
+                <h1>I Cooked x Times This Week</h1>
+                <dishd-logo></dishd-logo>
+                <div>Data Visualization for Times Cooked (monthly, weekly ??)</div>
+            </section>
+        </div>
+        <div class="item">
+            <section>
+                <h1>My average price per meal</h1>
+                <dishd-logo></dishd-logo>
+                <div>How many meals did I make based on the amt spent on groceries</div>
+            </section>
+        </div>
+    </section>
 </md-content>

@@ -6,8 +6,11 @@ app.config(function ($stateProvider){
     });
 });
 
-app.controller('PrefsCtrl', function ($scope, $log, $state, PrefsFactory, $stateParams) {
+app.controller('PrefsCtrl', function ($scope, $log, $state, PrefsFactory, $stateParams, Session) {
 
+    // console.log('Session id', Session.user.id);
+    // console.log('State params', $stateParams.userId);
+    $scope.userId = Session.user.id;
     PrefsFactory.getInitialPrefs($stateParams.userId)
     .then(prefs => {
         $scope.myPrefs = prefs;

@@ -6,6 +6,8 @@ const Promise = require('bluebird');
 const db = require('./server/db/index.js');
 const Recipe = require('./server/db/models/recipe-model.js');
 const Ingredient = require('./server/db/models/ingredient-model.js');
+const User = require('./server/db/models/user-model.js');
+
 
 let data = require('./server/db-setup/api-responses.json');
 let data2 = require('./server/db-setup/api-responses2.json');
@@ -104,6 +106,17 @@ db.sync({force: true})
     })
 
     return Promise.all(recipePromises);
+  })
+})
+.then(() =>{
+  return User.create({
+    email: 'harry@hognwarts.com',
+    password: 'iloveron',
+    firstName: 'Harry',
+    lastName: 'Potter',
+    city: 'New York',
+    state: 'New York',
+    country: 'United Kingdom'
   })
 })
 .then(() => {

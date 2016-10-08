@@ -7,12 +7,12 @@ var db = require('../../../server/db');
 
 var supertest = require('supertest');
 
-describe('Members Route', function () {
+xdescribe('Members Route', function () {
 
     var app, User;
 
     beforeEach('Sync DB', function () {
-        return db.sync({ force: true });
+        return db.sync();
     });
 
     beforeEach('Create app', function () {

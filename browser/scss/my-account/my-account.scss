@@ -1,0 +1,24 @@
+#myacct {
+    .container {
+        display: flex;
+        height: 42.5vh;
+        width: 100vw;
+    }
+    .item {
+        box-sizing: border-box;
+        padding: 20px;
+        flex: 1;
+        text-align: center;
+    }
+    .item:nth-child(2) {
+        flex: 1;
+    }
+    @media screen and (max-width:990px) {
+        .container {
+            flex-wrap: wrap;
+        }
+        .item:first-child {
+            flex-basis: 100%;
+        }
+    }
+}
