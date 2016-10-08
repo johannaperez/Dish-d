@@ -40,7 +40,7 @@ let UserPref = db.define('userPrefs', {
 	},
 	availableTime: {
 		type: Sequelize.INTEGER,
-		defaultValue: 0
+		defaultValue: 30
 	}
 }, {
 	// OPTIONS
@@ -74,8 +74,8 @@ let UserPref = db.define('userPrefs', {
 					})
 				});
 				// filter by available time
-				let filteredRecipes = dislikeFilteredRecipes.filter(recipe => {
-					return recipe.readyInMinutes <= availableTime;
+				let filteredRecipes = dislikeFilteredRecipes.filter(recp => {
+					return Number(recp.readyInMinutes) <= Number(availableTime);
 				});
 				return filteredRecipes;
 			})
@@ -88,13 +88,35 @@ let UserPref = db.define('userPrefs', {
                 glutenFree: this.glutenFree,
                 dairyFree: this.dairyFree
             }
+            const dislikes = this.dislikes;
+            const availableTime = this.availableTime;
 
             let approved = true;
             for (let pref in prefs){
-                if (prefs[pref] !== recipe[pref]) {
+
+                if (prefs[pref] !== recipe[pref] && prefs[pref]) {
                     approved = false;
                     break;
                 }
+                if (recipe.readyInMinutes > availableTime){
+					approved = false;
+					break;
+                }
+
+                let dislikeIds = dislikes.map(dislike => {
+					return dislike.id;
+				});
+
+				let ingredientIds = recipe.extendedIngredients.map(ingredient => {
+					return ingredient.id;
+				});
+
+				dislikeIds.forEach(function(dislikeId){
+					if (ingredientIds.includes(dislikeId)){
+						approved = false;
+					}
+				});
+
             }
             return approved;
         }

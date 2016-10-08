@@ -27,3 +27,14 @@ app.controller('MealsCtrl', function($scope){
         method: {}
     }
 });
+
+app.factory('MealFactory', function($http){
+
+    let MealFactory = {};
+
+    MealFactory.getMealPlan = function(userId){
+        return $http.get(`api/users/${userId}/meals`);
+    };
+
+    return MealFactory;
+});

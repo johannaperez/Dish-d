@@ -15,14 +15,17 @@ router.get('', (req, res, next) => {
 	let id = req.params.userId;
 	// todo once user has favorites, use this as starting meal
 	Recipe.randomRecipes(id, 1)
-	.then(function([rec]){
-		return getMeals(rec, id);
+	.then(function(rec){
+		return getMeals(rec[0], id);
 	})
 	.then(function(mealPlan){
+		//console.log('MEAL PLAN IN ROUTER', mealPlan);
 		res.send(mealPlan);
 	})
 	.catch(next);
 
 });
 
-module.exports = router; 
+module.exports = router;
+
+
