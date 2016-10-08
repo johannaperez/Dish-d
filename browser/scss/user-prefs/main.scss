@@ -5,4 +5,11 @@
     justify-content: center;
     width: 100vw;
     height: 85vh;
+	.chosen {
+		background-color: #68EFAD !important;
+	};
+	.delete:hover {
+		background-color: #68EFAD;
+		opacity: 0.8;
+	}
 }
