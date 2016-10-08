@@ -2,10 +2,15 @@
 
 const db = require('../../../db');
 const User = db.model('user');
+const Recipe = db.model('recipe');
+const Ingredient = db.model('ingredient');
 const UserPref = db.model('userPrefs');
 const router = require('express').Router();
+const getMeals = require('./meal-generator').getMeals;
 
 // Mounted on /api/users
+
+router.use('/:userId/meals', require('./meal-routes.js')); 
 
 // GET all users (ADMIN)
 router.get('/', (req, res, next) => {
@@ -56,6 +61,8 @@ router.put('/:userId/preferences', (req, res, next) => {
 	})
 	.catch(next);
 });
+
+
 
 
 module.exports = router;
