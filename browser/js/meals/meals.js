@@ -7,7 +7,8 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('MealsCtrl', function($scope){
-    $scope.meals = [{
+    $scope.meals = [ //array of meal suggestions go here
+    {
         title: 'salad',
         url: 'https://lighterphotos-production.s3.amazonaws.com/uploads/recipe/image/1519/SuperSeedSalad6773.jpg'
         },
