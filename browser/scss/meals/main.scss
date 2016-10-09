@@ -11,6 +11,12 @@
         flex-driection: row;
         justify-content: center;
         height: 100vh;
+        .sliderbtn {
+            display: flex;
+            align-self: center;
+            color: white;
+            fill: white;
+        }
     }
     .slick-container {
         width: 60vw;

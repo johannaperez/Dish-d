@@ -15,7 +15,7 @@
         </section>
         <section class="mealsMain" layout="row" flex>
             <md-button class="md-fab" ng-click="slickConfig.method.slickPrev()">
-                <</md-button>
+                <ng-md-icon class="sliderbtn" icon="navigate_before" size="40px"></ng-md-icon></md-button>
                     <div class="slick-container">
                         <slick settings="slickConfig" slides-to-scroll=1 ng-if="mealsLoaded">
                             <div ng-repeat="meal in meals">
@@ -46,7 +46,7 @@
                             </div>
                         </slick>
                     </div>
-                    <md-button class="md-fab" ng-click="slickConfig.method.slickNext()">></md-button>
+                    <md-button class="md-fab" ng-click="slickConfig.method.slickNext()"><ng-md-icon class="sliderbtn" icon="navigate_next" size="40px"></ng-md-icon></md-button>
         </section>
         <section>
             <md-button>SAVE MEAL PLAN</md-button>
