@@ -15,6 +15,6 @@ UserPref.belongsTo(User);	// UserPref has userId column
 // User.belongsTo(UserPref);
 
 MealPlan.belongsTo(User);
-MealPlan.belongsToMany(Recipe, {through: 'meal-plans_recipes'});
+// MealPlan.belongsToMany(Recipe, {through: 'meal-plans_recipes'});
 
 module.exports = db;
