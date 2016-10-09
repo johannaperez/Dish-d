@@ -32,7 +32,7 @@ app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog){
      $scope.showRecipe = function(ev) {
     $mdDialog.show({
       // controller: MealsCtrl,
-      template: `<md-dialog aria-label="Recipe" controller="MealsCtrl"> <md-content class="md-padding"> <md-card>
+      template: `<md-dialog aria-label="Recipe" > <md-content class="md-padding"> <md-card>
                                     <md-card-content layout="row" layout-align="space-between">
                                         <div class="md-media-xl card-media" style="background: url({{meal.image}}) center; background-size: cover; background-position: center; ">
                                         </div>
