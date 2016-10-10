@@ -1,6 +1,8 @@
 navbar {
+    // background-color: transparent;
+    height: 10vh;
     md-content {
-        z-index: 100;
+        background-color: transparent;
     }
     display: flex;
     .navcontainer {
