@@ -3,46 +3,71 @@ app.controller('CategoriesCtrl', ($scope) => {
 		chart: {
 			type: 'sunburstChart',
 			height: 300,
-			color: d3.scale.category20c(),
+			color: d3.scale.category20b(),
 			duration: 250
 		}
 	};
 
 	$scope.data = [{
-		name: 'I ate...',
+		name: 'This week\'s meal ingredients',
 		children: [
 			{
 				name: 'Dairy',
-				children: [
-					{name: 'milk', size: 5000}
-				]
+				children: []
 			}, {
-				name: 'Meat, eggs, nuts',
+				name: 'Meat, eggs, beans, nuts',
 				children: [
-					{name: 'eggs', size: 3000}
+					{name: 'canned chickpeas', size: 30},
+					{name: 'hummus', size: 30000},
+					{name: 'ground lamb', size: 3000},
+					{name: 'pecans', size: 3000},
 				]
 			}, {
 				name: 'Fats, oils, sweets',
 				children: [
-					{name: 'donuts', size: 1000}
+					{name: 'honey', size: 3000},
+					{name: 'olive oil', size: 30},
+					{name: 'coconut oil', size: 30}
 				]
 			}, {
 				name: 'Vegetables',
 				children: [
-					{name: 'carrots', size: 8000}
+					{name: 'chile garlic sauce', size: 8000},
+					{name: 'garlic', size: 300000},
+					{name: 'greens', size: 3000},
+					{name: 'tomato', size: 3000},
+					{name: 'shallot', size: 3000},
+					{name: 'butternut squash', size: 3000},
+					{name: 'celery', size: 3000},
+					{name: 'yellow onion', size: 3000}
 				]
 			}, {
 				name: 'Fruits',
 				children: [
-					{name: 'strawberries', size: 3000}
+					{name: 'lemon', size: 3000},
+					{name: 'dried cherries', size: 3000},
+					{name: 'juice of lemon', size: 3000},
+					{name: 'bosc pear', size: 3000},
+					{name: 'dried cranberries', size: 3000}
 				]
 			}, {
 				name: 'Carbs',
 				children: [
-					{name: 'tortelini', size: 9000}
+					{name: 'oat flour', size: 9000},
+					{name: 'wild rice', size: 3000}
 				]
 			}
 		]
 	}]; // end of data
+
+
+	/* recipe.extendedIngredients.pyramidCat
+		- fats, oils, sweets
+		- dairy
+		- meat, beans, nuts, eggs
+		- vegetables
+		- fruits
+		- carbs
+	*/
 
 });

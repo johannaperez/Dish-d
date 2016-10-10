@@ -26,6 +26,7 @@
       {
         "id": 16058,
         "aisle": "Canned and Jarred",
+        "pyramidCat": "meat, beans, nuts, eggs",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/chickpeas.jpg",
         "name": "canned chickpeas",
         "amount": 15,
@@ -43,6 +44,7 @@
       {
         "id": 93749,
         "aisle": "Ethnic Foods",
+        "pyramidCat": "vegetables",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/chili-garlic-sauce.jpg",
         "name": "chile garlic sauce",
         "amount": 4,
@@ -50,18 +52,6 @@
         "unitShort": "servings",
         "unitLong": "servings",
         "originalString": "Garlic Dill sauce",
-        "metaInformation": []
-      },
-      {
-        "id": 93749,
-        "aisle": "Ethnic Foods",
-        "image": "https://spoonacular.com/cdn/ingredients_100x100/chili-garlic-sauce.jpg",
-        "name": "chili garlic sauce",
-        "amount": 4,
-        "unit": "servings",
-        "unitShort": "servings",
-        "unitLong": "servings",
-        "originalString": "Chili Garlic Sauce or Sriracha",
         "metaInformation": []
       },
       {
@@ -79,6 +69,7 @@
       {
         "id": 11215,
         "aisle": "Produce",
+        "pyramidCat": "vegetables",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/garlic.jpg",
         "name": "garlic",
         "amount": 3,
@@ -93,6 +84,7 @@
       {
         "id": 21052,
         "aisle": "Produce",
+        "pyramidCat": "vegetables",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/mixed-greens-or-mesclun.jpg",
         "name": "greens",
         "amount": 4,
@@ -107,6 +99,7 @@
       {
         "id": 16158,
         "aisle": "Refrigerated",
+        "pyramidCat": "meat, beans, nuts, eggs",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/hummus.jpg",
         "name": "hummus",
         "amount": 5,
@@ -119,6 +112,7 @@
       {
         "id": 9150,
         "aisle": "Produce",
+        "pyramidCat": "fruits",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/lemon.jpg",
         "name": "lemon",
         "amount": 1,
@@ -133,6 +127,7 @@
       {
         "id": 20132,
         "aisle": "Health Foods",
+        "pyramidCat": "carbs",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/brown-flour.jpg",
         "name": "oat flour",
         "amount": 0.25,
@@ -176,6 +171,7 @@
       {
         "id": 11529,
         "aisle": "Produce",
+        "pyramidCat": "vegetables",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/tomatoes-canned.jpg",
         "name": "tomato",
         "amount": 4,
@@ -264,6 +260,7 @@
       {
         "id": 93822,
         "aisle": "Produce",
+        "pyramidCat": "fruits",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/cherries-dried.jpg",
         "name": "dried cherries",
         "amount": 1,
@@ -308,6 +305,7 @@
       {
         "id": 11215,
         "aisle": "Produce",
+        "pyramidCat": "vegetables",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/garlic.jpg",
         "name": "garlic",
         "amount": 2,
@@ -322,6 +320,7 @@
       {
         "id": 17224,
         "aisle": "Meat",
+        "pyramidCat": "meat, beans, nuts, eggs",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/meat-ground.jpg",
         "name": "ground lamb",
         "amount": 1,
@@ -334,6 +333,7 @@
       {
         "id": 19296,
         "aisle": "Nut butters, Jams, and Honey",
+        "pyramidCat": "fats, oils, sweets",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/honey.jpg",
         "name": "honey",
         "amount": 3,
@@ -346,6 +346,7 @@
       {
         "id": 9152,
         "aisle": "Produce",
+        "pyramidCat": "fruits",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/lemon-juice.jpg",
         "name": "juice of lemon",
         "amount": 0.5,
@@ -360,6 +361,7 @@
       {
         "id": 4053,
         "aisle": "Oil, Vinegar, Salad Dressing",
+        "pyramidCat": "fats, oils, sweets",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/olive-oil.jpg",
         "name": "olive oil",
         "amount": 3,
@@ -402,6 +404,7 @@
       {
         "id": 11677,
         "aisle": "Produce",
+        "pyramidCat": "vegetables",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/shallots.jpg",
         "name": "shallot",
         "amount": 1,
@@ -461,6 +464,7 @@
       {
         "id": 11485,
         "aisle": "Produce",
+        "pyramidCat": "vegetables",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/butternut-squash.jpg",
         "name": "butternut squash",
         "amount": 4,
@@ -476,6 +480,7 @@
       {
         "id": 12142,
         "aisle": "Savory Snacks",
+        "pyramidCat": "meat, beans, nuts, eggs",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/pecans.jpg",
         "name": "pecans",
         "amount": 1,
@@ -490,6 +495,7 @@
       {
         "id": 20088,
         "aisle": "Pasta and Rice",
+        "pyramidCat": "carbs",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/wild-rice-cooked.png",
         "name": "wild rice",
         "amount": 2,
@@ -527,6 +533,7 @@
       {
         "id": 9252,
         "aisle": "Produce",
+        "pyramidCat": "fruits",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/pears-bosc.jpg",
         "name": "bosc pear",
         "amount": 1,
@@ -543,6 +550,7 @@
       {
         "id": 11485,
         "aisle": "Produce",
+        "pyramidCat": "vegetables",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/butternut-squash.jpg",
         "name": "butternut squash",
         "amount": 4,
@@ -558,6 +566,7 @@
       {
         "id": 11143,
         "aisle": "Produce",
+        "pyramidCat": "vegetables",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/celery.jpg",
         "name": "celery",
         "amount": 2,
@@ -572,6 +581,7 @@
       {
         "id": 4047,
         "aisle": "Health Foods",
+        "pyramidCat": "fats, oils, sweets",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/oil-coconut.jpg",
         "name": "coconut oil",
         "amount": 3,
@@ -584,6 +594,7 @@
       {
         "id": 9079,
         "aisle": "Produce",
+        "pyramidCat": "fruits",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/dried-cranberries.jpg",
         "name": "dried cranberries",
         "amount": 1,
@@ -641,6 +652,7 @@
       {
         "id": 11215,
         "aisle": "Produce",
+        "pyramidCat": "vegetables",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/garlic.jpg",
         "name": "garlic",
         "amount": 4,
@@ -653,6 +665,7 @@
       {
         "id": 11215,
         "aisle": "Produce",
+        "pyramidCat": "vegetables",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/garlic.jpg",
         "name": "garlic",
         "amount": 5,
@@ -691,6 +704,7 @@
       {
         "id": 12142,
         "aisle": "Savory Snacks",
+        "pyramidCat": "meat, beans, nuts, eggs",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/pecans.jpg",
         "name": "pecans",
         "amount": 1,
@@ -733,6 +747,7 @@
       {
         "id": 20088,
         "aisle": "Pasta and Rice",
+        "pyramidCat": "carbs",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/wild-rice-cooked.png",
         "name": "wild rice",
         "amount": 2,
@@ -747,6 +762,7 @@
       {
         "id": 10511282,
         "aisle": "Produce",
+        "pyramidCat": "vegetables",
         "image": "https://spoonacular.com/cdn/ingredients_100x100/brown-onion.jpg",
         "name": "yellow onion",
         "amount": 1,
