@@ -14,7 +14,7 @@ app.controller('ListCtrl', function($scope, ListFactory, Session) {
   ListFactory.getGroceryList(Session.user.id)
   .then(function(groceryList){
     console.log(groceryList);
-    $scope.item = groceryList;
+    $scope.items = groceryList;
   });
 
 

@@ -1,9 +1,9 @@
 <md-content flex>
 <div id="groceries">
 <div class="groceries">
-    <md-subheader class="md-no-sticky">Grocery List</md-subheader>
-  <md-list-item ng-repeat="item in items">
-    <p> {{ item }} </p>
+  <md-subheader class="md-no-sticky">Grocery List</md-subheader>
+  <md-list-item ng-repeat="(key, value) in items">
+    <p> {{ key }} || {{value.amount}} {{value.unit}}</p>
     <md-checkbox class="md-secondary" ng-model="item.wanted"></md-checkbox>
   </md-list-item>
   </div>
