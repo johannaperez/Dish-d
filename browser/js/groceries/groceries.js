@@ -2,19 +2,27 @@ app.config(function ($stateProvider) {
     $stateProvider.state('groceries', {
         url: '/groceries',
         templateUrl: 'js/groceries/groceries.html',
-        controller: 'ListCtrl'
+        controller: 'ListCtrl',
+        resolve: {
+            currentUser: function(AuthService){
+                return AuthService.getLoggedInUser();
+            }
+        },
+        data: {
+            authenticate: true
+        }
     });
 });
 
-app.controller('ListCtrl', function($scope, ListFactory, Session) {
+app.controller('ListCtrl', function($scope, ListFactory, currentUser) {
 
   $scope.sections = {};
 
 
-  ListFactory.getGroceryList(Session.user.id)
+  ListFactory.getGroceryList(currentUser.id)
   .then(function(groceryList){
     $scope.sections = groceryList;
-    $scope.headers = Object.keys(groceryList); 
+    $scope.headers = Object.keys(groceryList);
   });
 
   $scope.round = function(number){
