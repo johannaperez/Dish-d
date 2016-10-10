@@ -20,8 +20,8 @@
                                                 </md-card-title-text>
                                             </md-card-title>
                                             <md-card-actions layout="row">
-                                                <md-button class="md-icon-button" aria-label="Favorite">
-                                                    <ng-md-icon icon="favorite"></ng-md-icon>
+                                                <md-button class="md-icon-button" aria-label="add to my meals" ng-click="selectMeal(meal)">
+                                                    <ng-md-icon icon="add"></ng-md-icon>
                                                 </md-button>
                                                 <md-button class="md-icon-button" aria-label="Recipe" ng-href="{{meal.sourceUrl}}" target="_blank">
                                                     <i class="material-icons">room_service</i>
@@ -37,14 +37,16 @@
                     <section class="meals" flex>
                     <div><h3>My Meals</h3></div>
                     <div>
-                    <ul>
-                        <li>Meal 1</li>
-                        <li>Meal 2</li>
-                        <li>Meal 3</li>
+                    <ul ng-repeat="selectedMeal in selectedMeals">
+                        <li>{{ selectedMeal.title }}
+                            <md-button class="md-icon-button md-mini" ng-click="removeMeal(selectedMeal.id)" aria-label="Remove Recipe">
+                                <ng-md-icon icon="backspace"></ng-md-icon>
+                            </md-button>
+                        </li>
                     </ul>
                     </div>
                     <section>
-            <md-button flex layout="row" ui-sref="groceries"><div>ADD TO GROCERY LIST</div><i class="material-icons s">shopping_basket</i></md-button>
+            <md-button flex layout="row" ng-show="selectedMeals.length"><div>ADD GROCERIES</div><i class="material-icons s" >shopping_basket</i></md-button>
         </section>
                     </section>
         </section>

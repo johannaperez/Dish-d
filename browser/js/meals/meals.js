@@ -9,17 +9,20 @@ app.config(function ($stateProvider) {
 app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog){
 
     $scope.meals = [];
+    $scope.selectedMeals = [];
 
+    //fetch meals to display
     MealFactory.getMealPlan(Session.user.id)
     .then(function(meals){
         $scope.meals = meals;
-        console.log($scope.meals)
     })
     .then(function(){
         $scope.mealsLoaded = true;
     })
     // todo add error handling here.
 
+
+    //slick functionality
     $scope.slickConfig = {
         adaptiveHeight: true,
         // initialSlide: 0,
@@ -29,6 +32,25 @@ app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog){
         method: {}
     }
 
+    //select meals
+    $scope.selectMeal = function(meal){
+      let chosenIds = $scope.selectedMeals.map(meal => meal.id);
+          if(!chosenIds.includes(meal.id)){
+               $scope.selectedMeals.push(meal);
+          }
+    }
+
+    $scope.removeMeal = function(mealId){
+        $scope.selectedMeals.forEach((meal, i) => {
+            if (meal.id === mealId){
+                $scope.selectedMeals.splice(i, 1);
+            }
+        })
+        console.log('SELECTED MEALS', $scope.selectedMeals);
+    }
+
+    //card to show a recipe detail
+    //todo move template to separate file
      $scope.showRecipe = function(ev) {
     $mdDialog.show({
       // controller: MealsCtrl,
