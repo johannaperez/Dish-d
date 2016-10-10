@@ -20,10 +20,10 @@ app.controller('SpendingCtrl', ($scope) => {
             },
 
             yAxis: {
-            	axisLabel: 'price per serving'
+	          	axisLabel: 'price per serving'
             }
 		},
-	}
+	};
 
 	$scope.data = [{
 		key: 'Marley Spoon',

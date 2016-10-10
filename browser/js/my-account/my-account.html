@@ -13,8 +13,11 @@
         <div class="item">
             <section>
                 <h1>I Ate</h1>
-                <dishd-logo></dishd-logo>
-                <div>Data Visualization for foods eaten</div>
+                <div id="categoriesVis">
+                    <div ng-controller="CategoriesCtrl">
+                        <nvd3 options="options" data="data"></nvd3>
+                    </div>
+                </div>
             </section>
         </div>
     </section>
