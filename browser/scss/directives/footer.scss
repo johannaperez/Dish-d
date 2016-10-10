@@ -1,4 +1,7 @@
 footer {
+    md-content {
+        z-index: 100;
+    }
     display: flex;
     .footercontainer {
         width: 100vw;

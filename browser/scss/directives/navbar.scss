@@ -1,8 +1,12 @@
 navbar {
+    md-content {
+        z-index: 100;
+    }
     display: flex;
     .navcontainer {
+        // z-index: 100;
         width: 100vw;
-        height: 15vh;
+        height: 10vh;
         align-items: center;
         justify-content: space-around;
         display: flex;
