@@ -1,13 +1,8 @@
 <md-content flex>
     <div id="meals">
-        <h1>Meals Dish'ng Up This Week</h1>
-        <section layout="row">
-            <!-- these buttons need to dynamically ng-repeat and give correct num days a person plans to cook for the week -->
-            <div class="days">
-                <md-button class="md-fab"><div class="numbtn">1</div></md-button>
-                <md-button class="md-fab"><ng-md-icon class="btn" aria-label="Add" icon="add" size="40px"  ></ng-md-icon></md-button>
-            </div>
-        </section>
+    <div class="heading" flex layout="row">
+        <h1>Dish'ng Up This Week</h1>
+        </div>
         <section class="mealsMain" layout="row" flex>
             <md-button class="md-fab" aria-label="Previous" ng-click="slickConfig.method.slickPrev()">
                 <ng-md-icon class="btn" icon="navigate_before" size="40px"></ng-md-icon></md-button>
@@ -39,9 +34,23 @@
                         </slick>
                     </div>
                     <md-button class="md-fab" aria-label="Next" ng-click="slickConfig.method.slickNext()"><ng-md-icon class="btn" icon="navigate_next" size="40px"></ng-md-icon></md-button>
+                    <section class="meals" flex>
+                    <div><h3>My Meals</h3></div>
+                    <div>
+                    <ul>
+                        <li>Meal 1</li>
+                        <li>Meal 2</li>
+                        <li>Meal 3</li>
+                    </ul>
+                    </div>
+                    <section>
+            <md-button flex layout="row" ui-sref="groceries"><div>ADD TO GROCERY LIST</div><i class="material-icons s">shopping_basket</i></md-button>
         </section>
-        <section>
+                    </section>
+        </section>
+        <!-- <section>
             <md-button flex layout="row" ui-sref="groceries"><div>SAVE MEALS</div><i class="material-icons s">shopping_basket</i></md-button>
-        </section>
+        </section> -->
+
     </div>
 </md-content>
