@@ -8,9 +8,9 @@ app.config(function ($stateProvider) {
 
 app.controller('homeCtrl', ['$scope', function ($scope) {
         $scope.resources = [
-            'http://techslides.com/demos/sample-videos/small.webm',
+            '*.webm',
             '*.ogv',
-            '*.mp4',
+            'http://ak0.picdn.net/shutterstock/videos/261040/preview/stock-footage-cooking-salad-sequence-vegetables-table-top.mp4',
             '*.swf'
         ];
         $scope.poster = 'http://placehold.it/2000&text=you%20may%20want%20to%20have%20a%20poster';
