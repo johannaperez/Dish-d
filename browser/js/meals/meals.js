@@ -6,7 +6,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog){
+app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog, $log, $state){
 
     $scope.meals = [];
     $scope.selectedMeals = [];
@@ -19,7 +19,8 @@ app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog){
     .then(function(){
         $scope.mealsLoaded = true;
     })
-    // todo add error handling here.
+    .catch($log.error);
+
 
 
     //slick functionality
@@ -46,7 +47,15 @@ app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog){
                 $scope.selectedMeals.splice(i, 1);
             }
         })
-        console.log('SELECTED MEALS', $scope.selectedMeals);
+    }
+
+    $scope.addGroceries = function(){
+        console.log(Session.user.id)
+        MealFactory.addMealPlan(Session.user.id, $scope.selectedMeals)
+        .then(function(){
+            $state.go('groceries');
+        })
+        .catch($log.error)
     }
 
     //card to show a recipe detail
@@ -96,6 +105,13 @@ app.factory('MealFactory', function($http){
             return response.data;
         });
     };
+
+    MealFactory.addMealPlan = function(userId, mealPlan){
+        let mealIds = mealPlan.map(meal => meal.id);
+        return $http.post(`api/users/${userId}/meals`, {mealPlan: mealIds});
+    }
+
+
     return MealFactory;
 });
 
