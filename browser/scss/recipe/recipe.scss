@@ -1,0 +1,16 @@
+md-dialog {
+    min-width: 80%;
+    min-height: 80%;
+    md-card {
+        md-card-content .md-media-xl {
+            height: 50vh;
+            width: 40vw;
+        }
+        md-card-actions {
+            justify-content: flex-end;
+        }
+        .recipe {
+            width: 18vw !important
+        }
+    }
+}
