@@ -1,0 +1,202 @@
+{
+  "importantIngredients": [],
+  "id": 76,
+  "apiRecipeId": 619384,
+  "title": "Baked Falafel Burgers",
+  "readyInMinutes": 60,
+  "image": "https://spoonacular.com/recipeImages/Baked-Falafel-Burgers-619384.jpg",
+  "imageType": "jpg",
+  "instructions": "Add parsley, garlic, lemon juice, cumin and a healthy pinch each salt and pepper to a food processor and mix to combine.Add chickpeas and pulse until incorporated but still slightly chunky. You want to maintain a bit of texture.Transfer to a mixing bowl and add nut meal (or oat flour) and mix again until a loose dough is formed that's firm enough to be handled. Taste and adjust seasonings as needed. I added a touch more salt.Draw an x in the dough to form 4 sections, then use your hands to form into 4 large patties roughly 1/2-inch thick.Place on a foil-lined baking sheet and refrigerate or freeze for 15 minutes to firm up. Preheat oven to 375 degrees F in the meantime.OPTIONAL STEP: For a little extra crust on the outside, before baking heat a large skillet over medium to medium-high heat and add 2 Tbsp olive or canola oil. Swirl to coat pan, then add falafel. Carefully flip once golden brown  about 3-4 minutes - and then cook on the other side until golden brown as well - 3-4 more minutes. Return to baking sheet to continue baking. Otherwise, just add them straight to the oven for baking.Bake for a total of 30-40 minutes, flipping once at the halfway point for even cooking. The longer you bake them, the firmer theyll get!Serve warm wrapped in a pita or chard bun and desired sauces / toppings. Alternatively, serve atop a salad and use the garlic sauce as a dressing.Burgers will store in the fridge, layered with parchment paper in an airtight container, for several days. Freeze to keep longer.",
+  "vegetarian": true,
+  "vegan": true,
+  "glutenFree": true,
+  "dairyFree": true,
+  "lowFodmap": false,
+  "whole30": false,
+  "ketogenic": false,
+  "servings": 4,
+  "preparationMinutes": 20,
+  "cookingMinutes": 40,
+  "sourceUrl": "http://minimalistbaker.com/baked-falafel-burgers/",
+  "spoonacularSourceUrl": "https://spoonacular.com/baked-falafel-burgers-619384",
+  "creditText": "Minimalist Baker",
+  "sourceName": "Minimalist Baker",
+  "extendedIngredients": [
+    {
+      "id": 16058,
+      "aisle": "Canned and Jarred",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/chickpeas.jpg",
+      "name": "canned chickpeas",
+      "amount": 15,
+      "unit": "ounce",
+      "unitShort": "oz",
+      "unitLong": "ounces",
+      "originalString": "1 15-ounce can chickpeas, well rinsed and drained",
+      "metaInformation": [
+        "rinsed",
+        "drained",
+        "well",
+        "canned"
+      ]
+    },
+    {
+      "id": 93749,
+      "aisle": "Ethnic Foods",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/chili-garlic-sauce.jpg",
+      "name": "chile garlic sauce",
+      "amount": 4,
+      "unit": "servings",
+      "unitShort": "servings",
+      "unitLong": "servings",
+      "originalString": "Garlic Dill sauce",
+      "metaInformation": []
+    },
+    {
+      "id": 93749,
+      "aisle": "Ethnic Foods",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/chili-garlic-sauce.jpg",
+      "name": "chili garlic sauce",
+      "amount": 4,
+      "unit": "servings",
+      "unitShort": "servings",
+      "unitLong": "servings",
+      "originalString": "Chili Garlic Sauce or Sriracha",
+      "metaInformation": []
+    },
+    {
+      "id": 1002014,
+      "aisle": "Spices and Seasonings",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/ground-cumin.jpg",
+      "name": "cumin",
+      "amount": 1.25,
+      "unit": "tsp",
+      "unitShort": "t",
+      "unitLong": "teaspoons",
+      "originalString": "1 1/4 tsp cumin",
+      "metaInformation": []
+    },
+    {
+      "id": 11215,
+      "aisle": "Produce",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/garlic.jpg",
+      "name": "garlic",
+      "amount": 3,
+      "unit": "cloves",
+      "unitShort": "cloves",
+      "unitLong": "cloves",
+      "originalString": "3 large cloves garlic",
+      "metaInformation": [
+        "large"
+      ]
+    },
+    {
+      "id": 21052,
+      "aisle": "Produce",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/mixed-greens-or-mesclun.jpg",
+      "name": "greens",
+      "amount": 4,
+      "unit": "servings",
+      "unitShort": "servings",
+      "unitLong": "servings",
+      "originalString": "Pita or sturdy greens, such as chard or collard greens",
+      "metaInformation": [
+        " such as chard or collard greens"
+      ]
+    },
+    {
+      "id": 16158,
+      "aisle": "Refrigerated",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/hummus.jpg",
+      "name": "hummus",
+      "amount": 5,
+      "unit": "",
+      "unitShort": "",
+      "unitLong": "",
+      "originalString": "5 minute Hummus",
+      "metaInformation": []
+    },
+    {
+      "id": 9150,
+      "aisle": "Produce",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/lemon.jpg",
+      "name": "lemon",
+      "amount": 1,
+      "unit": "",
+      "unitShort": "",
+      "unitLong": "",
+      "originalString": "1 large lemon ( - 2 1/2 Tbsp juice)",
+      "metaInformation": [
+        "large"
+      ]
+    },
+    {
+      "id": 20132,
+      "aisle": "Health Foods",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/brown-flour.jpg",
+      "name": "oat flour",
+      "amount": 0.25,
+      "unit": "cup",
+      "unitShort": "c",
+      "unitLong": "cups",
+      "originalString": "1/4 - 1/2 cup ground raw walnuts, pecans, almonds or GF oat flour",
+      "metaInformation": [
+        "raw"
+      ]
+    },
+    {
+      "id": 11297,
+      "aisle": "Produce",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/parsley.jpg",
+      "name": "parsley",
+      "amount": 2,
+      "unit": "cups",
+      "unitShort": "c",
+      "unitLong": "cups",
+      "originalString": "1 bundle fresh parsley ( - 2 cups chopped)",
+      "metaInformation": [
+        "fresh",
+        "chopped"
+      ]
+    },
+    {
+      "id": 1012047,
+      "aisle": "Spices and Seasonings",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/salt.jpg",
+      "name": "sea salt",
+      "amount": 0.5,
+      "unit": "tsp",
+      "unitShort": "t",
+      "unitLong": "teaspoons",
+      "originalString": "1/2 tsp sea salt + black pepper",
+      "metaInformation": [
+        "black"
+      ]
+    },
+    {
+      "id": 11529,
+      "aisle": "Produce",
+      "image": "https://spoonacular.com/cdn/ingredients_100x100/tomatoes-canned.jpg",
+      "name": "tomato",
+      "amount": 4,
+      "unit": "servings",
+      "unitShort": "servings",
+      "unitLong": "servings",
+      "originalString": "Tomato, Lettuce, Onion",
+      "metaInformation": []
+    }
+  ],
+  "mealsWithSimilarIngredients": [
+    163,
+    165,
+    166,
+    37,
+    175,
+    15,
+    197,
+    200,
+    204,
+    229
+  ],
+  "createdAt": "2016-10-08T22:41:17.218Z",
+  "updatedAt": "2016-10-08T22:41:47.677Z"
+}
