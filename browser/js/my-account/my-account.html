@@ -1,4 +1,5 @@
 <md-content id="myacct">
+<navbar></navbar>
     <section class="container">
         <div class="item">
             <section>
@@ -20,9 +21,12 @@
     <section class="container">
         <div class="item">
             <section>
-                <h1>I Cooked x Times This Week</h1>
-                <dishd-logo></dishd-logo>
-                <div>Data Visualization for Times Cooked (monthly, weekly ??)</div>
+                <h1>I Saved</h1>
+                <div id="spendingVis">
+                    <div ng-controller="SpendingCtrl">
+                        <nvd3 options="options" data="data"></nvd3>
+                    </div>
+                </div>
             </section>
         </div>
         <div class="item">
