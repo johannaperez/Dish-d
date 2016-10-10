@@ -30,13 +30,19 @@ module.exports = db.define('mealPlan', {
 						if (!groceryList[ingredient.name]){
 							groceryList[ingredient.name] = {
 								amount: ingredient.amount,
-								unit: ingredient.unitShort
+								unit: ingredient.unitShort //
 							}
 						}
 						// if you have seen this ingredient before, conver the unit and then add the amount;
 						else {
 							let unit = groceryList[ingredient.name].unit;
-							let convertedAmount = convert(ingredient.amount).from(ingredient.unitShort).to(unit);
+							let convertedAmount = '';
+							try { //
+								convertedAmount = convert(ingredient.amount).from(ingredient.unitShort).to(unit);
+							}
+							catch (error) {
+								convertedAmount = ingredient.unitShort;
+							}
 
 							groceryList[ingredient.name].amount += convertedAmount;
 						}
