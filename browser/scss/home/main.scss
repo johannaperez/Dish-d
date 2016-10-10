@@ -1,8 +1,3 @@
-.bg-video {
-    width: 100vw;
-    height: 90vh;
-}
-
 #logo {
     z-index: 100;
     display: flex;
@@ -12,4 +7,10 @@
     width: 100vw;
     height: 90vh;
     // color: white;
+}
+
+vid-bg video{
+    object-fit: cover !important;
+    width: 100vw !important;
+    height: 90vh !important;
 }
