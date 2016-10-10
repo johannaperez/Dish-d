@@ -11,16 +11,30 @@ app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog, $l
     $scope.meals = [];
     $scope.selectedMeals = [];
 
-    //fetch meals to display
-    MealFactory.getMealPlan(Session.user.id)
+    //Fetch a fresh set of meals
+    $scope.refreshMeals = function(){
+        //prevent slick jankyness
+        $scope.mealsLoaded = false;
+         MealFactory.getMealPlan(Session.user.id)
         .then(function(meals) {
             $scope.meals = meals;
+            console.log(meals);
         })
         .then(function() {
             $scope.mealsLoaded = true;
         })
         .catch($log.error);
-
+    }
+    // //fetch meals to display
+    // MealFactory.getMealPlan(Session.user.id)
+    //     .then(function(meals) {
+    //         $scope.meals = meals;
+    //     })
+    //     .then(function() {
+    //         $scope.mealsLoaded = true;
+    //     })
+    //     .catch($log.error);
+    $scope.refreshMeals();
 
 
     //slick functionality
