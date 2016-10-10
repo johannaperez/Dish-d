@@ -15,8 +15,6 @@ app.config(function($stateProvider) {
 });
 
 app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $state, currentUser) {
-
-    console.log(currentUser.id);
     $scope.meals = [];
     $scope.selectedMeals = [];
 

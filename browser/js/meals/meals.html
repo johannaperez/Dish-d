@@ -1,5 +1,6 @@
 <md-content flex>
 <navbar></navbar>
+<!--choosing meals view -->
     <div id="meals">
     <div class="heading" flex layout="row">
         <h1>Dish'ng Up This Week</h1>
@@ -22,7 +23,7 @@
                                                 </md-card-title-text>
                                             </md-card-title>
                                             <md-card-actions layout="row">
-                                                <md-button class="md-icon-button" aria-label="add to my meals" ng-click="selectMeal(meal)">
+                                                <md-button class="md-icon-button" aria-label="add to my meals" ng-click="selectMeal(meal)" ng-disabled="selectedMeals.length > 4">
                                                     <ng-md-icon icon="add"></ng-md-icon>
                                                 </md-button>
                                                 <md-button class="md-icon-button" aria-label="Recipe" ng-href="{{meal.sourceUrl}}" target="_blank">
@@ -37,7 +38,7 @@
                     </div>
                     <md-button class="md-fab" aria-label="Next" ng-click="slickConfig.method.slickNext()"><ng-md-icon class="btn" icon="navigate_next" size="40px"></ng-md-icon></md-button>
                     <section class="meals" flex>
-                    <div><h3>My Meals</h3></div>
+                    <div><h3>Choose up to 5 meals:</h3></div>
                     <div>
                     <ul ng-repeat="selectedMeal in selectedMeals">
                         <li>{{ selectedMeal.title }}
@@ -50,8 +51,8 @@
                     <section>
             <md-button flex layout="row" ng-show="selectedMeals.length" ng-click="addGroceries()"><div>ADD GROCERIES</div><i class="material-icons s" >shopping_basket</i></md-button>
         </section>
-                    </section>
         </section>
-
+        </section>
     </div>
+<!-- view chosen meals view -->
 </md-content>
