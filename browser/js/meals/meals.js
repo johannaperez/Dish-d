@@ -11,11 +11,24 @@ app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog, $l
     $scope.meals = [];
     $scope.selectedMeals = [];
 
+    //fetch meals to display on page load
+    MealFactory.getMealPlan(Session.user.id)
+    .then(function(meals) {
+        $scope.meals = meals;
+        if (meals.length < 10) $scope.selectedMeals = meals;
+        console.log(meals);
+    })
+    .then(function() {
+        $scope.mealsLoaded = true;
+    })
+    .catch($log.error);
+
     //Fetch a fresh set of meals
     $scope.refreshMeals = function(){
         //prevent slick jankyness
         $scope.mealsLoaded = false;
-         MealFactory.getMealPlan(Session.user.id)
+        $scope.selectedMeals = [];
+         MealFactory.refreshMeals(Session.user.id)
         .then(function(meals) {
             $scope.meals = meals;
             console.log(meals);
@@ -25,8 +38,6 @@ app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog, $l
         })
         .catch($log.error);
     }
-    //fetch meals to display on page load
-    $scope.refreshMeals();
 
     //slick functionality
     $scope.slickConfig = {
@@ -114,6 +125,13 @@ app.factory('MealFactory', function($http) {
     MealFactory.addMealPlan = function(userId, mealPlan) {
         let mealIds = mealPlan.map(meal => meal.id);
         return $http.post(`api/users/${userId}/meals`, { mealPlan: mealIds });
+    }
+
+    MealFactory.refreshMeals = function(userId) {
+        return $http.put(`api/users/${userId}/meals`)
+        .then(function(response) {
+                return response.data;
+        });
     }
 
 

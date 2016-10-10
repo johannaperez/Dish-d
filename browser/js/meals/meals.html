@@ -3,6 +3,7 @@
     <div id="meals">
     <div class="heading" flex layout="row">
         <h1>Dish'ng Up This Week</h1>
+        <md-button flex class="md-raised" layout="row" ng-click="refreshMeals()"><div>Get Fresh Meals</div></md-button>
         </div>
         <section class="mealsMain" layout="row" flex>
             <md-button class="md-fab" aria-label="Previous" ng-click="slickConfig.method.slickPrev()">
@@ -50,9 +51,6 @@
             <md-button flex layout="row" ng-show="selectedMeals.length" ng-click="addGroceries()"><div>ADD GROCERIES</div><i class="material-icons s" >shopping_basket</i></md-button>
         </section>
                     </section>
-        </section>
-        <section>
-            <md-button flex layout="row" ng-click="refreshMeals()"><div>Get Fresh Meals</div></md-button>
         </section>
 
     </div>
