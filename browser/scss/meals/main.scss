@@ -5,6 +5,13 @@
     justify-content: center;
     width: 100vw;
     height: 85vh;
+    .heading {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        width: 100vw;
+    }
     .mealsMain {
         display: flex;
         align-items: center;
@@ -18,23 +25,18 @@
         }
     }
     .slick-container {
-        width: 60vw;
+        width: 50vw;
     }
     .slick-prev,
     .slick-next {
         display: none !important;
     }
-    .days {
+    .meals {
+        display: flex;
         align-items: center;
+        flex-direction: column;
         justify-content: center;
-        .btn {
-            display: flex;
-            align-self: center;
-            fill: white;
-        }
-        .numbtn {
-            font-size: 30px;
-        }
+        width: 30vw;
     }
     md-card {
         md-card-content .md-media-xl {
@@ -52,4 +54,3 @@
         padding-left: 5px;
     }
 }
-

@@ -1,13 +1,8 @@
 <md-content flex>
     <div id="meals">
-        <h1>Meals Dish'ng Up This Week</h1>
-        <section layout="row">
-            <!-- these buttons need to dynamically ng-repeat and give correct num days a person plans to cook for the week -->
-            <div class="days">
-                <md-button class="md-fab"><div class="numbtn">1</div></md-button>
-                <md-button class="md-fab"><ng-md-icon class="btn" aria-label="Add" icon="add" size="40px"  ></ng-md-icon></md-button>
-            </div>
-        </section>
+    <div class="heading" flex layout="row">
+        <h1>Dish'ng Up This Week</h1>
+        </div>
         <section class="mealsMain" layout="row" flex>
             <md-button class="md-fab" aria-label="Previous" ng-click="slickConfig.method.slickPrev()">
                 <ng-md-icon class="btn" icon="navigate_before" size="40px"></ng-md-icon></md-button>
@@ -25,11 +20,10 @@
                                                 </md-card-title-text>
                                             </md-card-title>
                                             <md-card-actions layout="row">
-                                                <md-button class="md-icon-button" aria-label="Favorite">
-                                                    <ng-md-icon icon="favorite"></ng-md-icon>
+                                                <md-button class="md-icon-button" aria-label="add to my meals" ng-click="selectMeal(meal)">
+                                                    <ng-md-icon icon="add"></ng-md-icon>
                                                 </md-button>
-                                                <md-button class="md-icon-button" aria-label="Recipe" ng-click="showRecipe($ev)">
-                                                <!-- add this to md-button to open recipe link in new tab: ng-href="{{meal.sourceUrl}}" target="_blank" -->
+                                                <md-button class="md-icon-button" aria-label="Recipe" ng-href="{{meal.sourceUrl}}" target="_blank">
                                                     <i class="material-icons">room_service</i>
                                                 </md-button>
                                             </md-card-actions>
@@ -40,9 +34,25 @@
                         </slick>
                     </div>
                     <md-button class="md-fab" aria-label="Next" ng-click="slickConfig.method.slickNext()"><ng-md-icon class="btn" icon="navigate_next" size="40px"></ng-md-icon></md-button>
+                    <section class="meals" flex>
+                    <div><h3>My Meals</h3></div>
+                    <div>
+                    <ul ng-repeat="selectedMeal in selectedMeals">
+                        <li>{{ selectedMeal.title }}
+                            <md-button class="md-icon-button md-mini" ng-click="removeMeal(selectedMeal.id)" aria-label="Remove Recipe">
+                                <ng-md-icon icon="backspace"></ng-md-icon>
+                            </md-button>
+                        </li>
+                    </ul>
+                    </div>
+                    <section>
+            <md-button flex layout="row" ng-show="selectedMeals.length" ng-click="addGroceries()"><div>ADD GROCERIES</div><i class="material-icons s" >shopping_basket</i></md-button>
         </section>
-        <section>
-            <md-button flex layout="row"><div>SAVE MEALS</div><i class="material-icons s">shopping_basket</i></md-button>
+                    </section>
         </section>
+        <!-- <section>
+            <md-button flex layout="row" ui-sref="groceries"><div>SAVE MEALS</div><i class="material-icons s">shopping_basket</i></md-button>
+        </section> -->
+
     </div>
 </md-content>

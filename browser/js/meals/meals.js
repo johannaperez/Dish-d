@@ -1,4 +1,4 @@
-app.config(function ($stateProvider) {
+app.config(function($stateProvider) {
     $stateProvider.state('meals', {
         url: '/meals',
         templateUrl: 'js/meals/meals.html',
@@ -6,20 +6,24 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog){
+app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog, $log, $state) {
 
     $scope.meals = [];
+    $scope.selectedMeals = [];
 
+    //fetch meals to display
     MealFactory.getMealPlan(Session.user.id)
-    .then(function(meals){
-        $scope.meals = meals;
-        console.log($scope.meals)
-    })
-    .then(function(){
-        $scope.mealsLoaded = true;
-    })
-    // todo add error handling here.
+        .then(function(meals) {
+            $scope.meals = meals;
+        })
+        .then(function() {
+            $scope.mealsLoaded = true;
+        })
+        .catch($log.error);
 
+
+
+    //slick functionality
     $scope.slickConfig = {
         adaptiveHeight: true,
         // initialSlide: 0,
@@ -29,10 +33,37 @@ app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog){
         method: {}
     }
 
-     $scope.showRecipe = function(ev) {
-    $mdDialog.show({
-      // controller: MealsCtrl,
-      template: `<md-dialog aria-label="Recipe" > <md-content class="md-padding"> <md-card>
+    //select meals
+    $scope.selectMeal = function(meal) {
+        let chosenIds = $scope.selectedMeals.map(meal => meal.id);
+        if (!chosenIds.includes(meal.id)) {
+            $scope.selectedMeals.push(meal);
+        }
+    }
+
+    $scope.removeMeal = function(mealId) {
+        $scope.selectedMeals.forEach((meal, i) => {
+            if (meal.id === mealId) {
+                $scope.selectedMeals.splice(i, 1);
+            }
+        })
+    }
+
+    $scope.addGroceries = function() {
+        console.log(Session.user.id)
+        MealFactory.addMealPlan(Session.user.id, $scope.selectedMeals)
+            .then(function() {
+                $state.go('groceries');
+            })
+            .catch($log.error)
+    }
+
+    //card to show a recipe detail
+    //todo move template to separate file
+    $scope.showRecipe = function(ev) {
+        $mdDialog.show({
+                // controller: MealsCtrl,
+                template: `<md-dialog aria-label="Recipe" > <md-content class="md-padding"> <md-card>
                                     <md-card-content layout="row" layout-align="space-between">
                                         <div class="md-media-xl card-media" style="background: url({{meal.image}}) center; background-size: cover; background-position: center; ">
                                         </div>
@@ -54,26 +85,32 @@ app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog){
                                         </div>
                                     </md-card-content>
                                 </md-card></md-content> <div class="md-dialog-actions" layout="row"> <span flex></span> <md-button ng-click="answer(\'not useful\')"> Cancel </md-button> <md-button ng-click="answer(\'useful\')" class="md-primary"> Save </md-button> </div></md-dialog>`,
-      targetEvent: ev,
-    })
-    .then(function(answer) {
-      $scope.alert = 'You said the information was "' + answer + '".';
-    }, function() {
-      $scope.alert = 'You cancelled the dialog.';
-    });
-  };
+                targetEvent: ev,
+            })
+            .then(function(answer) {
+                $scope.alert = 'You said the information was "' + answer + '".';
+            }, function() {
+                $scope.alert = 'You cancelled the dialog.';
+            });
+    };
 });
 
-app.factory('MealFactory', function($http){
+app.factory('MealFactory', function($http) {
 
     let MealFactory = {};
 
-    MealFactory.getMealPlan = function(userId){
+    MealFactory.getMealPlan = function(userId) {
         return $http.get(`api/users/${userId}/meals`)
-        .then(function(response){
-            return response.data;
-        });
+            .then(function(response) {
+                return response.data;
+            });
     };
+
+    MealFactory.addMealPlan = function(userId, mealPlan) {
+        let mealIds = mealPlan.map(meal => meal.id);
+        return $http.post(`api/users/${userId}/meals`, { mealPlan: mealIds });
+    }
+
+
     return MealFactory;
 });
-
