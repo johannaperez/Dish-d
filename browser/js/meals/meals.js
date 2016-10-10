@@ -6,20 +6,24 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog){
+app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog, $log, $state){
 
     $scope.meals = [];
+    $scope.selectedMeals = [];
 
+    //fetch meals to display
     MealFactory.getMealPlan(Session.user.id)
     .then(function(meals){
         $scope.meals = meals;
-        console.log($scope.meals)
     })
     .then(function(){
         $scope.mealsLoaded = true;
     })
-    // todo add error handling here.
+    .catch($log.error);
 
+
+
+    //slick functionality
     $scope.slickConfig = {
         adaptiveHeight: true,
         // initialSlide: 0,
@@ -29,6 +33,33 @@ app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog){
         method: {}
     }
 
+    //select meals
+    $scope.selectMeal = function(meal){
+      let chosenIds = $scope.selectedMeals.map(meal => meal.id);
+          if(!chosenIds.includes(meal.id)){
+               $scope.selectedMeals.push(meal);
+          }
+    }
+
+    $scope.removeMeal = function(mealId){
+        $scope.selectedMeals.forEach((meal, i) => {
+            if (meal.id === mealId){
+                $scope.selectedMeals.splice(i, 1);
+            }
+        })
+    }
+
+    $scope.addGroceries = function(){
+        console.log(Session.user.id)
+        MealFactory.addMealPlan(Session.user.id, $scope.selectedMeals)
+        .then(function(){
+            $state.go('groceries');
+        })
+        .catch($log.error)
+    }
+
+    //card to show a recipe detail
+    //todo move template to separate file
      $scope.showRecipe = function(ev) {
     $mdDialog.show({
       // controller: MealsCtrl,
@@ -74,6 +105,13 @@ app.factory('MealFactory', function($http){
             return response.data;
         });
     };
+
+    MealFactory.addMealPlan = function(userId, mealPlan){
+        let mealIds = mealPlan.map(meal => meal.id);
+        return $http.post(`api/users/${userId}/meals`, {mealPlan: mealIds});
+    }
+
+
     return MealFactory;
 });
 
