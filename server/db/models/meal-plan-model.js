@@ -25,18 +25,21 @@ module.exports = db.define('mealPlan', {
 				recipes.forEach(function(recipe){
 					recipe.extendedIngredients.forEach(function(ingredient){
 						// ingredient has: name, amount, unitShort
+						console.log(ingredient.name, ingredient.unitShort);
 
 						// if you've never seen this ingredient before, add it to the list with the amount and unit.
 						if (!groceryList[ingredient.name]){
 							groceryList[ingredient.name] = {
 								amount: ingredient.amount,
-								unit: ingredient.unitShort //
+								unit: ingredient.unitShort,
+								unitLong: ingredient.unitLong,
+								section: ingredient.aisle
 							}
 						}
-						// if you have seen this ingredient before, conver the unit and then add the amount;
+						// if you have seen this ingredient before, convert the unit and then add the amount;
 						else {
 							let unit = groceryList[ingredient.name].unit;
-							let convertedAmount = '';
+							let convertedAmount;
 							try { //
 								convertedAmount = convert(ingredient.amount).from(ingredient.unitShort).to(unit);
 							}
@@ -44,7 +47,7 @@ module.exports = db.define('mealPlan', {
 								convertedAmount = ingredient.unitShort;
 							}
 
-							groceryList[ingredient.name].amount += convertedAmount;
+							groceryList[ingredient.name].amount +=  convertedAmount;
 						}
 					})
 				})
