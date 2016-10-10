@@ -6,12 +6,30 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('ListCtrl', function($scope) {
-  $scope.items = [
-    { name: 'Pepperoni', wanted: true },
-    { name: 'Sausage', wanted: false },
-    { name: 'Black Olives', wanted: true },
-    { name: 'Green Peppers', wanted: false }
-  ];
+app.controller('ListCtrl', function($scope, ListFactory, Session) {
+
+  $scope.items = {};
+
+
+  ListFactory.getGroceryList(Session.user.id)
+  .then(function(groceryList){
+    console.log(groceryList);
+    $scope.item = groceryList;
+  });
+
+
 });
 
+app.factory('ListFactory', function($http) {
+
+    let ListFactory = {};
+
+    ListFactory.getGroceryList = function(userId){
+        return $http.get(`api/users/${userId}/meals/grocerylist`)
+        .then(function(response){
+            return response.data;
+        });
+    }
+
+    return ListFactory;
+});
