@@ -20,7 +20,10 @@ app.controller('SpendingCtrl', ($scope) => {
             },
 
             yAxis: {
-	          	axisLabel: 'price per serving'
+	          	axisLabel: 'price per serving',
+	          	tickFormat: (d) => {
+	          		return '$' + d.toFixed(2);
+	          	}
             }
 		},
 	};
