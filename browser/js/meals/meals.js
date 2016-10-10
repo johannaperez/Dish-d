@@ -2,21 +2,29 @@ app.config(function($stateProvider) {
     $stateProvider.state('meals', {
         url: '/meals',
         templateUrl: 'js/meals/meals.html',
-        controller: 'MealsCtrl'
+        controller: 'MealsCtrl',
+        resolve: {
+            currentUser: function(AuthService){
+                return AuthService.getLoggedInUser();
+            }
+        },
+        data: {
+            authenticate: true
+        }
     });
 });
 
-app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog, $log, $state) {
+app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog, $log, $state, currentUser) {
 
+    console.log(currentUser.id);
     $scope.meals = [];
     $scope.selectedMeals = [];
 
     //fetch meals to display on page load
-    MealFactory.getMealPlan(Session.user.id)
+    MealFactory.getMealPlan(currentUser.id)
     .then(function(meals) {
         $scope.meals = meals;
         if (meals.length < 10) $scope.selectedMeals = meals;
-        console.log(meals);
     })
     .then(function() {
         $scope.mealsLoaded = true;
@@ -28,7 +36,7 @@ app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog, $l
         //prevent slick jankyness
         $scope.mealsLoaded = false;
         $scope.selectedMeals = [];
-         MealFactory.refreshMeals(Session.user.id)
+         MealFactory.refreshMeals(currentUser.id)
         .then(function(meals) {
             $scope.meals = meals;
             console.log(meals);
@@ -66,7 +74,7 @@ app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog, $l
     }
 
     $scope.addGroceries = function() {
-        console.log(Session.user.id)
+        console.log(currentUser.id)
         MealFactory.addMealPlan(Session.user.id, $scope.selectedMeals)
             .then(function() {
                 $state.go('groceries');
