@@ -25,17 +25,8 @@ app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog, $l
         })
         .catch($log.error);
     }
-    // //fetch meals to display
-    // MealFactory.getMealPlan(Session.user.id)
-    //     .then(function(meals) {
-    //         $scope.meals = meals;
-    //     })
-    //     .then(function() {
-    //         $scope.mealsLoaded = true;
-    //     })
-    //     .catch($log.error);
+    //fetch meals to display on page load
     $scope.refreshMeals();
-
 
     //slick functionality
     $scope.slickConfig = {
