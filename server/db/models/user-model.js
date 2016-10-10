@@ -1,10 +1,10 @@
 'use strict';
-var crypto = require('crypto');
-var _ = require('lodash');
-var Sequelize = require('sequelize');
+const crypto = require('crypto');
+const _ = require('lodash');
+const Sequelize = require('sequelize');
 
-var db = require('../_db');
-var UserPref = require('./user-pref-model.js');
+const db = require('../_db');
+const UserPref = require('./user-pref-model.js');
 
 module.exports = db.define('user', {
     email: {
