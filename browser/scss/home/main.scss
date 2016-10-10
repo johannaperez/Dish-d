@@ -1,10 +1,15 @@
+.bg-video {
+    width: 100vw;
+    height: 90vh;
+}
+
 #logo {
-    z-index: 100;
+    z-index: 2;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     width: 100vw;
     height: 90vh;
-    color: white;
+    // color: white;
 }
