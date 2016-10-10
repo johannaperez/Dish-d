@@ -8,13 +8,13 @@ const db = require('../_db');
 module.exports = db.define('mealPlan', {
   status: Sequelize.ENUM('active', 'complete'),
   meals: Sequelize.ARRAY(Sequelize.INTEGER),
-  groceryList: Sequelize.ARRAY(Sequelize.JSON),
+  groceryList: Sequelize.JSON
 },
 {
 	instanceMethods: {
 		getGroceryList: function(){
 
-			let groceryList = [];
+			let groceryList = {};
 
 			return Recipe.findAll({
 				where: {
@@ -49,12 +49,14 @@ module.exports = db.define('mealPlan', {
 	}, // end Instance Methods
 
 	hooks: {
-		afterValidate: function(mealPlan){
-			console.log('RUNNING BEFORE SAVE');
+		afterCreate: function(mealPlan){
+
 			return mealPlan.getGroceryList()
 			.then(function(groceryList){
 				console.log(groceryList);
-				mealPlan.groceryList = groceryList;
+				return mealPlan.update({
+					groceryList: JSON.stringify(groceryList)
+				});
 			});
 		}
 	}
