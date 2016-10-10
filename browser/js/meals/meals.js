@@ -14,7 +14,7 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog, $log, $state, currentUser) {
+app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $state, currentUser) {
 
     console.log(currentUser.id);
     $scope.meals = [];
@@ -75,7 +75,7 @@ app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog, $l
 
     $scope.addGroceries = function() {
         console.log(currentUser.id)
-        MealFactory.addMealPlan(Session.user.id, $scope.selectedMeals)
+        MealFactory.addMealPlan(currentUser.id, $scope.selectedMeals)
             .then(function() {
                 $state.go('groceries');
             })
