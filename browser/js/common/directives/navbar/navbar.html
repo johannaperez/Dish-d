@@ -3,8 +3,8 @@
         <a ui-sref="home">
             <dishd-logo></dishd-logo>
         </a>
-        <div ng-show="user" class="welcome">
-            <span>Welcome, {{ user.email }}!</span>
+        <div ng-if="header">
+            <h3>{{ header }}</h3>
         </div>
         <md-menu>
             <md-button ng-click="$mdOpenMenu($event)" class="md-icon-button" aria-label="Open sample menu">
