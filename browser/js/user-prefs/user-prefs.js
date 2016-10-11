@@ -2,15 +2,20 @@ app.config(function ($stateProvider){
     $stateProvider.state('prefs', {
         url: '/users/:userId/preferences',
         templateUrl: 'js/user-prefs/user-prefs.html',
-        controller: 'PrefsCtrl'
+        controller: 'PrefsCtrl',
+        resolve: {
+            currentUser: function(AuthService){
+                return AuthService.getLoggedInUser();
+            }
+        },
+        data: {
+            authenticate: true
+        }
     });
 });
 
-app.controller('PrefsCtrl', function ($scope, $log, $state, PrefsFactory, $stateParams, Session) {
-
-    // console.log('Session id', Session.user.id);
-    // console.log('State params', $stateParams.userId);
-    $scope.userId = Session.user.id;
+app.controller('PrefsCtrl', function ($scope, $log, $state, PrefsFactory, $stateParams, currentUser) {
+    $scope.userId = currentUser.id;
     PrefsFactory.getInitialPrefs($stateParams.userId)
     .then(prefs => {
         $scope.myPrefs = prefs;

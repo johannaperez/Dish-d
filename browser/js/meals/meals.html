@@ -45,7 +45,8 @@
                                     <img ng-src="{{ selectedMeal.image }}" class="md-avatar">
                                     <p>{{ selectedMeal.title | limitTo : 25}}{{ selectedMeal.title.length > 25 ? '...' : ''}}</p>
                                     <md-button class="md-icon-button md-mini" ng-click="removeMeal(selectedMeal.id)" aria-label="Remove Recipe">
-                                        <ng-md-icon icon="backspace"></ng-md-icon>
+                                        <i class="material-icons">close</i>
+                                        <!-- <ng-md-icon icon="backspace"></ng-md-icon> -->
                                     </md-button>
                                 </md-list-item>
                             </md-list>
