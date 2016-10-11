@@ -12,7 +12,7 @@ app.controller('SpendingCtrl', ($scope) => {
 			x: (d) => { return d[0] },
 			y: (d) => { return d[1] },
 
-			color: d3.scale.category10().range(),
+			color: d3.scale.category20c().range(),
             useInteractiveGuideline: true,
 
             xAxis: {
@@ -20,10 +20,13 @@ app.controller('SpendingCtrl', ($scope) => {
             },
 
             yAxis: {
-            	axisLabel: 'price per serving'
+	          	axisLabel: 'price per serving',
+	          	tickFormat: (d) => {
+	          		return '$' + d.toFixed(2);
+	          	}
             }
 		},
-	}
+	};
 
 	$scope.data = [{
 		key: 'Marley Spoon',

@@ -1,0 +1,795 @@
+[
+  {
+    "importantIngredients": [],
+    "id": 76,
+    "apiRecipeId": 619384,
+    "title": "Baked Falafel Burgers",
+    "readyInMinutes": 60,
+    "image": "https://spoonacular.com/recipeImages/Baked-Falafel-Burgers-619384.jpg",
+    "imageType": "jpg",
+    "instructions": "Add parsley, garlic, lemon juice, cumin and a healthy pinch each salt and pepper to a food processor and mix to combine.Add chickpeas and pulse until incorporated but still slightly chunky. You want to maintain a bit of texture.Transfer to a mixing bowl and add nut meal (or oat flour) and mix again until a loose dough is formed that's firm enough to be handled. Taste and adjust seasonings as needed. I added a touch more salt.Draw an x in the dough to form 4 sections, then use your hands to form into 4 large patties roughly 1/2-inch thick.Place on a foil-lined baking sheet and refrigerate or freeze for 15 minutes to firm up. Preheat oven to 375 degrees F in the meantime.OPTIONAL STEP: For a little extra crust on the outside, before baking heat a large skillet over medium to medium-high heat and add 2 Tbsp olive or canola oil. Swirl to coat pan, then add falafel. Carefully flip once golden brown  about 3-4 minutes - and then cook on the other side until golden brown as well - 3-4 more minutes. Return to baking sheet to continue baking. Otherwise, just add them straight to the oven for baking.Bake for a total of 30-40 minutes, flipping once at the halfway point for even cooking. The longer you bake them, the firmer theyll get!Serve warm wrapped in a pita or chard bun and desired sauces / toppings. Alternatively, serve atop a salad and use the garlic sauce as a dressing.Burgers will store in the fridge, layered with parchment paper in an airtight container, for several days. Freeze to keep longer.",
+    "vegetarian": true,
+    "vegan": true,
+    "glutenFree": true,
+    "dairyFree": true,
+    "lowFodmap": false,
+    "whole30": false,
+    "ketogenic": false,
+    "servings": 4,
+    "preparationMinutes": 20,
+    "cookingMinutes": 40,
+    "sourceUrl": "http://minimalistbaker.com/baked-falafel-burgers/",
+    "spoonacularSourceUrl": "https://spoonacular.com/baked-falafel-burgers-619384",
+    "creditText": "Minimalist Baker",
+    "sourceName": "Minimalist Baker",
+    "extendedIngredients": [
+      {
+        "id": 16058,
+        "aisle": "Canned and Jarred",
+        "pyramidCat": "meat, beans, nuts, eggs",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/chickpeas.jpg",
+        "name": "canned chickpeas",
+        "amount": 15,
+        "unit": "ounce",
+        "unitShort": "oz",
+        "unitLong": "ounces",
+        "originalString": "1 15-ounce can chickpeas, well rinsed and drained",
+        "metaInformation": [
+          "rinsed",
+          "drained",
+          "well",
+          "canned"
+        ]
+      },
+      {
+        "id": 93749,
+        "aisle": "Ethnic Foods",
+        "pyramidCat": "vegetables",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/chili-garlic-sauce.jpg",
+        "name": "chile garlic sauce",
+        "amount": 4,
+        "unit": "servings",
+        "unitShort": "servings",
+        "unitLong": "servings",
+        "originalString": "Garlic Dill sauce",
+        "metaInformation": []
+      },
+      {
+        "id": 1002014,
+        "aisle": "Spices and Seasonings",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/ground-cumin.jpg",
+        "name": "cumin",
+        "amount": 1.25,
+        "unit": "tsp",
+        "unitShort": "t",
+        "unitLong": "teaspoons",
+        "originalString": "1 1/4 tsp cumin",
+        "metaInformation": []
+      },
+      {
+        "id": 11215,
+        "aisle": "Produce",
+        "pyramidCat": "vegetables",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/garlic.jpg",
+        "name": "garlic",
+        "amount": 3,
+        "unit": "cloves",
+        "unitShort": "cloves",
+        "unitLong": "cloves",
+        "originalString": "3 large cloves garlic",
+        "metaInformation": [
+          "large"
+        ]
+      },
+      {
+        "id": 21052,
+        "aisle": "Produce",
+        "pyramidCat": "vegetables",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/mixed-greens-or-mesclun.jpg",
+        "name": "greens",
+        "amount": 4,
+        "unit": "servings",
+        "unitShort": "servings",
+        "unitLong": "servings",
+        "originalString": "Pita or sturdy greens, such as chard or collard greens",
+        "metaInformation": [
+          " such as chard or collard greens"
+        ]
+      },
+      {
+        "id": 16158,
+        "aisle": "Refrigerated",
+        "pyramidCat": "meat, beans, nuts, eggs",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/hummus.jpg",
+        "name": "hummus",
+        "amount": 5,
+        "unit": "",
+        "unitShort": "",
+        "unitLong": "",
+        "originalString": "5 minute Hummus",
+        "metaInformation": []
+      },
+      {
+        "id": 9150,
+        "aisle": "Produce",
+        "pyramidCat": "fruits",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/lemon.jpg",
+        "name": "lemon",
+        "amount": 1,
+        "unit": "",
+        "unitShort": "",
+        "unitLong": "",
+        "originalString": "1 large lemon ( - 2 1/2 Tbsp juice)",
+        "metaInformation": [
+          "large"
+        ]
+      },
+      {
+        "id": 20132,
+        "aisle": "Health Foods",
+        "pyramidCat": "carbs",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/brown-flour.jpg",
+        "name": "oat flour",
+        "amount": 0.25,
+        "unit": "cup",
+        "unitShort": "c",
+        "unitLong": "cups",
+        "originalString": "1/4 - 1/2 cup ground raw walnuts, pecans, almonds or GF oat flour",
+        "metaInformation": [
+          "raw"
+        ]
+      },
+      {
+        "id": 11297,
+        "aisle": "Produce",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/parsley.jpg",
+        "name": "parsley",
+        "amount": 2,
+        "unit": "cups",
+        "unitShort": "c",
+        "unitLong": "cups",
+        "originalString": "1 bundle fresh parsley ( - 2 cups chopped)",
+        "metaInformation": [
+          "fresh",
+          "chopped"
+        ]
+      },
+      {
+        "id": 1012047,
+        "aisle": "Spices and Seasonings",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/salt.jpg",
+        "name": "sea salt",
+        "amount": 0.5,
+        "unit": "tsp",
+        "unitShort": "t",
+        "unitLong": "teaspoons",
+        "originalString": "1/2 tsp sea salt + black pepper",
+        "metaInformation": [
+          "black"
+        ]
+      },
+      {
+        "id": 11529,
+        "aisle": "Produce",
+        "pyramidCat": "vegetables",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/tomatoes-canned.jpg",
+        "name": "tomato",
+        "amount": 4,
+        "unit": "servings",
+        "unitShort": "servings",
+        "unitLong": "servings",
+        "originalString": "Tomato, Lettuce, Onion",
+        "metaInformation": []
+      }
+    ],
+    "mealsWithSimilarIngredients": [
+      163,
+      165,
+      166,
+      37,
+      175,
+      15,
+      197,
+      200,
+      204,
+      229
+    ],
+    "createdAt": "2016-10-08T22:41:17.218Z",
+    "updatedAt": "2016-10-08T22:41:47.677Z"
+  },
+  {
+    "importantIngredients": [],
+    "id": 166,
+    "apiRecipeId": 602593,
+    "title": "Kofta Meatballs with Sweet and Sour Cherry Sauce",
+    "readyInMinutes": 25,
+    "image": "https://spoonacular.com/recipeImages/Kofta-Meatballs-with-Sweet-and-Sour-Cherry-Sauce-602593.jpg",
+    "imageType": "jpg",
+    "instructions": "To make the Cherry SauceIn a small saucepan over medium-high heat, add the olive oil and shallot and saute until tender. Add the cherries, honey, lemon juice, water and cinnamon and bring mixture to a boil. Lower the heat and allow to simmer for 5 minutes or until the sauce has thickened. Add salt and pepper to taste. Stir in the mint.To make the MeatballsPreheat oven to 375F.In a large mixing bowl, add the ground lamb, sparkling water, garlic, cloves, cinnamon, cumin, allspice, salt and pepper. Mix lightly to incorporate all ingredients. Form mixture into small meatballs.In a large frying pan over medium high, add olive oil. Add meatballs and fry, turning often to brown all over, about 5-7 minutes. You might have to cook meatballs in batches if your pan is too small. After browning all the meatballs, place meatballs on a baking sheet and bake in oven for 10 minutes to cook through. Drizzle with the cherry sauce just before serving.",
+    "vegetarian": false,
+    "vegan": false,
+    "glutenFree": true,
+    "dairyFree": true,
+    "lowFodmap": false,
+    "whole30": false,
+    "ketogenic": false,
+    "servings": 8,
+    "preparationMinutes": 5,
+    "cookingMinutes": 20,
+    "sourceUrl": "http://www.steamykitchen.com/25044-kofta-meatballs-with-sweet-and-sour-cherry-sauce-recipe-video.html",
+    "spoonacularSourceUrl": "https://spoonacular.com/kofta-meatballs-with-sweet-and-sour-cherry-sauce-602593",
+    "creditText": "Steamy Kitchen",
+    "sourceName": "Steamy Kitchen",
+    "extendedIngredients": [
+      {
+        "id": 2001,
+        "aisle": "Spices and Seasonings",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/allspice-ground.jpg",
+        "name": "allspice",
+        "amount": 0.5,
+        "unit": "teaspoon",
+        "unitShort": "t",
+        "unitLong": "teaspoons",
+        "originalString": "1/2 teaspoon allspice",
+        "metaInformation": []
+      },
+      {
+        "id": 2010,
+        "aisle": "Spices and Seasonings",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/cinnamon.jpg",
+        "name": "cinnamon",
+        "amount": 0.5,
+        "unit": "teaspoon",
+        "unitShort": "t",
+        "unitLong": "teaspoons",
+        "originalString": "1/2 teaspoon cinnamon",
+        "metaInformation": []
+      },
+      {
+        "id": 1002014,
+        "aisle": "Spices and Seasonings",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/ground-cumin.jpg",
+        "name": "cumin",
+        "amount": 0.5,
+        "unit": "teaspoon",
+        "unitShort": "t",
+        "unitLong": "teaspoons",
+        "originalString": "1/2 teaspoon cumin",
+        "metaInformation": []
+      },
+      {
+        "id": 93822,
+        "aisle": "Produce",
+        "pyramidCat": "fruits",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/cherries-dried.jpg",
+        "name": "dried cherries",
+        "amount": 1,
+        "unit": "cup",
+        "unitShort": "c",
+        "unitLong": "cup",
+        "originalString": "1 cup dried cherries",
+        "metaInformation": [
+          "dried"
+        ]
+      },
+      {
+        "id": 2064,
+        "aisle": "Produce",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/mint.jpg",
+        "name": "fresh mint",
+        "amount": 1,
+        "unit": "tablespoon",
+        "unitShort": "T",
+        "unitLong": "tablespoon",
+        "originalString": "1 tablespoon minced fresh mint",
+        "metaInformation": [
+          "fresh",
+          "minced"
+        ]
+      },
+      {
+        "id": 11297,
+        "aisle": "Produce",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/parsley.jpg",
+        "name": "fresh parsley",
+        "amount": 2,
+        "unit": "tablespoons",
+        "unitShort": "T",
+        "unitLong": "tablespoons",
+        "originalString": "2 tablespoons minced fresh parsley",
+        "metaInformation": [
+          "fresh",
+          "minced"
+        ]
+      },
+      {
+        "id": 11215,
+        "aisle": "Produce",
+        "pyramidCat": "vegetables",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/garlic.jpg",
+        "name": "garlic",
+        "amount": 2,
+        "unit": "cloves",
+        "unitShort": "cloves",
+        "unitLong": "cloves",
+        "originalString": "2 cloves garlic, minced",
+        "metaInformation": [
+          "minced"
+        ]
+      },
+      {
+        "id": 17224,
+        "aisle": "Meat",
+        "pyramidCat": "meat, beans, nuts, eggs",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/meat-ground.jpg",
+        "name": "ground lamb",
+        "amount": 1,
+        "unit": "pound",
+        "unitShort": "lb",
+        "unitLong": "pound",
+        "originalString": "1 pound ground lamb",
+        "metaInformation": []
+      },
+      {
+        "id": 19296,
+        "aisle": "Nut butters, Jams, and Honey",
+        "pyramidCat": "fats, oils, sweets",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/honey.jpg",
+        "name": "honey",
+        "amount": 3,
+        "unit": "teaspoons",
+        "unitShort": "t",
+        "unitLong": "teaspoons",
+        "originalString": "3 teaspoons honey",
+        "metaInformation": []
+      },
+      {
+        "id": 9152,
+        "aisle": "Produce",
+        "pyramidCat": "fruits",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/lemon-juice.jpg",
+        "name": "juice of lemon",
+        "amount": 0.5,
+        "unit": "",
+        "unitShort": "",
+        "unitLong": "",
+        "originalString": "1/2 lemon, juiced",
+        "metaInformation": [
+          "juiced"
+        ]
+      },
+      {
+        "id": 4053,
+        "aisle": "Oil, Vinegar, Salad Dressing",
+        "pyramidCat": "fats, oils, sweets",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/olive-oil.jpg",
+        "name": "olive oil",
+        "amount": 3,
+        "unit": "tablespoons",
+        "unitShort": "T",
+        "unitLong": "tablespoons",
+        "originalString": "3 tablespoons olive oil",
+        "metaInformation": []
+      },
+      {
+        "id": 2047,
+        "aisle": "Spices and Seasonings",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/salt.jpg",
+        "name": "salt and pepper",
+        "amount": 8,
+        "unit": "servings",
+        "unitShort": "servings",
+        "unitLong": "servings",
+        "originalString": "salt and freshly ground black pepper, to taste",
+        "metaInformation": [
+          "black",
+          "freshly ground",
+          "to taste"
+        ]
+      },
+      {
+        "id": 2047,
+        "aisle": "Spices and Seasonings",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/salt.jpg",
+        "name": "salt and pepper",
+        "amount": 8,
+        "unit": "servings",
+        "unitShort": "servings",
+        "unitLong": "servings",
+        "originalString": "salt and pepper to taste",
+        "metaInformation": [
+          "to taste"
+        ]
+      },
+      {
+        "id": 11677,
+        "aisle": "Produce",
+        "pyramidCat": "vegetables",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/shallots.jpg",
+        "name": "shallot",
+        "amount": 1,
+        "unit": "",
+        "unitShort": "",
+        "unitLong": "",
+        "originalString": "1 shallot, chopped (or 2 tablespoons diced red onion)",
+        "metaInformation": [
+          "diced",
+          "red",
+          "chopped",
+          "(or 2 tablespoons onion)"
+        ]
+      },
+      {
+        "id": 14121,
+        "aisle": "Beverages",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/water-sparkling.jpg",
+        "name": "sparkling water",
+        "amount": 0.25,
+        "unit": "cup",
+        "unitShort": "c",
+        "unitLong": "cups",
+        "originalString": "1/4 cup sparkling water",
+        "metaInformation": []
+      },
+      {
+        "id": 14412,
+        "aisle": "Beverages",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/water.jpg",
+        "name": "water",
+        "amount": 0.5,
+        "unit": "cup",
+        "unitShort": "c",
+        "unitLong": "cups",
+        "originalString": "1/2 cup water",
+        "metaInformation": []
+      }
+    ],
+    "mealsWithSimilarIngredients": [
+      150,
+      163,
+      49,
+      200,
+      229,
+      51,
+      230,
+      54,
+      56,
+      74
+    ],
+    "createdAt": "2016-10-08T22:41:18.106Z",
+    "updatedAt": "2016-10-08T22:42:03.327Z"
+  },
+  {
+    "importantIngredients": [
+      {
+        "id": 11485,
+        "aisle": "Produce",
+        "pyramidCat": "vegetables",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/butternut-squash.jpg",
+        "name": "butternut squash",
+        "amount": 4,
+        "unit": "cups",
+        "unitShort": "c",
+        "unitLong": "cups",
+        "originalString": "4 cups butternut squash, peeled and chopped",
+        "metaInformation": [
+          "peeled",
+          "chopped"
+        ]
+      },
+      {
+        "id": 12142,
+        "aisle": "Savory Snacks",
+        "pyramidCat": "meat, beans, nuts, eggs",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/pecans.jpg",
+        "name": "pecans",
+        "amount": 1,
+        "unit": "cup",
+        "unitShort": "c",
+        "unitLong": "cup",
+        "originalString": "1 cup raw pecans",
+        "metaInformation": [
+          "raw"
+        ]
+      },
+      {
+        "id": 20088,
+        "aisle": "Pasta and Rice",
+        "pyramidCat": "carbs",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/wild-rice-cooked.png",
+        "name": "wild rice",
+        "amount": 2,
+        "unit": "cups",
+        "unitShort": "c",
+        "unitLong": "cups",
+        "originalString": "2 cups wild rice",
+        "metaInformation": [
+          "wild"
+        ]
+      }
+    ],
+    "id": 37,
+    "apiRecipeId": 690403,
+    "title": "Wild Rice Stuffing with Butternut Squash, Pears, and Pecans",
+    "readyInMinutes": 85,
+    "image": "https://spoonacular.com/recipeImages/Wild-Rice-Stuffing-with-Butternut-Squash--Pears--and-Pecans-690403.jpg",
+    "imageType": "jpg",
+    "instructions": "Place dry rice in a bowl and fill with water. Soak for 10 minutes.Add the oil, onion, celery, and butternut squash to a large oven-safe pot or Dutch oven. Saute over medium heat for 5 minutes, stirring occasionally.Add the chopped pear, garlic, rice, sea salt, oregano, and cinnamon and stir, saute 3 minutes.Add the dried cranberries, water, wine, orange zest, and bring to a full boil. Reduce heat to a simmer, cover, cook 40 to 50 minutes, until most of the water has been absorbed.Preheat the oven to 350F. Uncover the dutch oven, place on the center rack of the oven, and bake 10 to 20 minutes, until all of the water has been absorbed and top is crispy.Remove from pot from the oven and stir in chopped pecans and fresh parsley. Taste the stuffing and add salt to taste. Serve alongside your holiday entree or use as turkey stuffing.",
+    "vegetarian": true,
+    "vegan": true,
+    "glutenFree": true,
+    "dairyFree": true,
+    "lowFodmap": false,
+    "whole30": false,
+    "ketogenic": false,
+    "servings": 6,
+    "preparationMinutes": 15,
+    "cookingMinutes": 70,
+    "sourceUrl": "http://www.theroastedroot.net/wild-rice-stuffing-with-butternut-squash-pears-and-pecans/",
+    "spoonacularSourceUrl": "https://spoonacular.com/wild-rice-stuffing-with-butternut-squash-pears-and-pecans-690403",
+    "creditText": "The Roasted Root",
+    "sourceName": "The Roasted Root",
+    "extendedIngredients": [
+      {
+        "id": 9252,
+        "aisle": "Produce",
+        "pyramidCat": "fruits",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/pears-bosc.jpg",
+        "name": "bosc pear",
+        "amount": 1,
+        "unit": "",
+        "unitShort": "",
+        "unitLong": "",
+        "originalString": "1 bosc pear, peeled, cored and and chopped",
+        "metaInformation": [
+          "cored",
+          "peeled",
+          "chopped"
+        ]
+      },
+      {
+        "id": 11485,
+        "aisle": "Produce",
+        "pyramidCat": "vegetables",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/butternut-squash.jpg",
+        "name": "butternut squash",
+        "amount": 4,
+        "unit": "cups",
+        "unitShort": "c",
+        "unitLong": "cups",
+        "originalString": "4 cups butternut squash, peeled and chopped",
+        "metaInformation": [
+          "peeled",
+          "chopped"
+        ]
+      },
+      {
+        "id": 11143,
+        "aisle": "Produce",
+        "pyramidCat": "vegetables",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/celery.jpg",
+        "name": "celery",
+        "amount": 2,
+        "unit": "stalks",
+        "unitShort": "stalks",
+        "unitLong": "stalks",
+        "originalString": "2 stalks celery, chopped",
+        "metaInformation": [
+          "chopped"
+        ]
+      },
+      {
+        "id": 4047,
+        "aisle": "Health Foods",
+        "pyramidCat": "fats, oils, sweets",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/oil-coconut.jpg",
+        "name": "coconut oil",
+        "amount": 3,
+        "unit": "tablespoons",
+        "unitShort": "T",
+        "unitLong": "tablespoons",
+        "originalString": "3 tablespoons olive oil or coconut oil",
+        "metaInformation": []
+      },
+      {
+        "id": 9079,
+        "aisle": "Produce",
+        "pyramidCat": "fruits",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/dried-cranberries.jpg",
+        "name": "dried cranberries",
+        "amount": 1,
+        "unit": "cup",
+        "unitShort": "c",
+        "unitLong": "cup",
+        "originalString": "1 cup dried cranberries",
+        "metaInformation": [
+          "dried"
+        ]
+      },
+      {
+        "id": 2027,
+        "aisle": "Produce",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/oregano.jpg",
+        "name": "dried oregano",
+        "amount": 1,
+        "unit": "teaspoon",
+        "unitShort": "t",
+        "unitLong": "teaspoon",
+        "originalString": "1 teaspoon dried oregano",
+        "metaInformation": [
+          "dried"
+        ]
+      },
+      {
+        "id": 14106,
+        "aisle": "Alcoholic Beverages",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/white-wine.jpg",
+        "name": "dry white wine",
+        "amount": 0.25,
+        "unit": "cup",
+        "unitShort": "c",
+        "unitLong": "cups",
+        "originalString": "¼ cup dry white wine",
+        "metaInformation": [
+          "dry white"
+        ]
+      },
+      {
+        "id": 11297,
+        "aisle": "Produce",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/parsley.jpg",
+        "name": "fresh parsley",
+        "amount": 1,
+        "unit": "cup",
+        "unitShort": "c",
+        "unitLong": "cup",
+        "originalString": "1 cup fresh parsley, chopped",
+        "metaInformation": [
+          "fresh",
+          "chopped"
+        ]
+      },
+      {
+        "id": 11215,
+        "aisle": "Produce",
+        "pyramidCat": "vegetables",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/garlic.jpg",
+        "name": "garlic",
+        "amount": 4,
+        "unit": "cloves",
+        "unitShort": "cloves",
+        "unitLong": "cloves",
+        "originalString": "4 cloves garlic",
+        "metaInformation": []
+      },
+      {
+        "id": 11215,
+        "aisle": "Produce",
+        "pyramidCat": "vegetables",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/garlic.jpg",
+        "name": "garlic",
+        "amount": 5,
+        "unit": "cloves",
+        "unitShort": "cloves",
+        "unitLong": "cloves",
+        "originalString": "5 cloves garlic, minced",
+        "metaInformation": [
+          "minced"
+        ]
+      },
+      {
+        "id": 2010,
+        "aisle": "Spices and Seasonings",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/cinnamon.jpg",
+        "name": "ground cinnamon",
+        "amount": 0.25,
+        "unit": "teaspoon",
+        "unitShort": "t",
+        "unitLong": "teaspoons",
+        "originalString": "¼ teaspoon ground cinnamon",
+        "metaInformation": []
+      },
+      {
+        "id": 9216,
+        "aisle": "Produce",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/zest-orange.jpg",
+        "name": "orange zest",
+        "amount": 2,
+        "unit": "teaspoons",
+        "unitShort": "t",
+        "unitLong": "teaspoons",
+        "originalString": "2 teaspoons orange zest",
+        "metaInformation": []
+      },
+      {
+        "id": 12142,
+        "aisle": "Savory Snacks",
+        "pyramidCat": "meat, beans, nuts, eggs",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/pecans.jpg",
+        "name": "pecans",
+        "amount": 1,
+        "unit": "cup",
+        "unitShort": "c",
+        "unitLong": "cup",
+        "originalString": "1 cup raw pecans",
+        "metaInformation": [
+          "raw"
+        ]
+      },
+      {
+        "id": 1012047,
+        "aisle": "Spices and Seasonings",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/salt.jpg",
+        "name": "sea salt",
+        "amount": 1,
+        "unit": "teaspoon",
+        "unitShort": "t",
+        "unitLong": "teaspoon",
+        "originalString": "1 teaspoon sea salt, or to taste",
+        "metaInformation": [
+          "to taste"
+        ]
+      },
+      {
+        "id": 14412,
+        "aisle": "Beverages",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/water.jpg",
+        "name": "water",
+        "amount": 3,
+        "unit": "cups",
+        "unitShort": "c",
+        "unitLong": "cups",
+        "originalString": "3-1/2 cups water (or vegetable or chicken broth)",
+        "metaInformation": [
+          "(or vegetable or chicken broth)"
+        ]
+      },
+      {
+        "id": 20088,
+        "aisle": "Pasta and Rice",
+        "pyramidCat": "carbs",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/wild-rice-cooked.png",
+        "name": "wild rice",
+        "amount": 2,
+        "unit": "cups",
+        "unitShort": "c",
+        "unitLong": "cups",
+        "originalString": "2 cups wild rice",
+        "metaInformation": [
+          "wild"
+        ]
+      },
+      {
+        "id": 10511282,
+        "aisle": "Produce",
+        "pyramidCat": "vegetables",
+        "image": "https://spoonacular.com/cdn/ingredients_100x100/brown-onion.jpg",
+        "name": "yellow onion",
+        "amount": 1,
+        "unit": "",
+        "unitShort": "",
+        "unitLong": "",
+        "originalString": "1 large yellow onion, finely chopped",
+        "metaInformation": [
+          "yellow",
+          "large",
+          "finely chopped"
+        ]
+      }
+    ],
+    "mealsWithSimilarIngredients": [
+      161,
+      61,
+      166,
+      181,
+      204,
+      230,
+      109,
+      110,
+      125,
+      155
+    ],
+    "createdAt": "2016-10-08T22:41:16.798Z",
+    "updatedAt": "2016-10-08T22:41:37.254Z"
+  }
+]

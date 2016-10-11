@@ -1,0 +1,138 @@
+{
+  "dairy": [],
+  "meat, beans, nuts, eggs": [
+    {
+      "name": "canned chickpeas",
+      "amount": 15,
+      "unit": "ounce"
+    },
+    {
+      "name": "hummus",
+      "amount": 5,
+      "unit": ""
+    },
+    {
+      "name": "ground lamb",
+      "amount": 1,
+      "unit": "pound"
+    },
+    {
+      "name": "pecans",
+      "amount": 1,
+      "unit": "cup"
+    }
+  ],
+  "fats, oils, sweets": [
+    {
+      "name": "honey",
+      "amount": 3,
+      "unit": "teaspoons"
+    },
+    {
+      "name": "olive oil",
+      "amount": 3,
+      "unit": "tablespoons"
+    },
+    {
+      "name": "coconut oil",
+      "amount": 3,
+      "unit": "tablespoons"
+    }
+  ],
+  "vegetables": [
+    {
+      "name": "chile garlic sauce",
+      "amount": 4,
+      "unit": "servings"
+    },
+    {
+      "name": "garlic",
+      "amount": 3,
+      "unit": "cloves"
+    },
+    {
+      "name": "greens",
+      "amount": 4,
+      "unit": "servings"
+    },
+    {
+      "name": "tomato",
+      "amount": 4,
+      "unit": "servings"
+    },
+    {
+      "name": "garlic",
+      "amount": 2,
+      "unit": "cloves"
+    },
+    {
+      "name": "shallot",
+      "amount": 1,
+      "unit": ""
+    },
+    {
+      "name": "butternut squash",
+      "amount": 4,
+      "unit": "cups"
+    },
+    {
+      "name": "celery",
+      "amount": 2,
+      "unit": "stalks"
+    },
+    {
+      "name": "garlic",
+      "amount": 4,
+      "unit": "cloves"
+    },
+    {
+      "name": "garlic",
+      "amount": 5,
+      "unit": "cloves"
+    },
+    {
+      "name": "yellow onion",
+      "amount": 1,
+      "unit": ""
+    }
+  ],
+  "fruits": [
+    {
+      "name": "lemon",
+      "amount": 1,
+      "unit": ""
+    },
+    {
+      "name": "dried cherries",
+      "amount": 1,
+      "unit": "cup"
+    },
+    {
+      "name": "juice of lemon",
+      "amount": 0.5,
+      "unit": ""
+    },
+    {
+      "name": "bosc pear",
+      "amount": 1,
+      "unit": ""
+    },
+    {
+      "name": "dried cranberries",
+      "amount": 1,
+      "unit": "cup"
+    }
+  ],
+  "carbs": [
+    {
+      "name": "oat flour",
+      "amount": 0.25,
+      "unit": "cup"
+    },
+    {
+      "name": "wild rice",
+      "amount": 2,
+      "unit": "cups"
+    }
+  ]
+}
