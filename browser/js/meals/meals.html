@@ -1,12 +1,12 @@
 <md-content flex>
 <navbar></navbar>
-<!--choosing meals view -->
     <div id="meals">
     <div class="heading" flex layout="row">
         <h1>Dish'ng Up This Week</h1>
         <md-button flex class="md-raised" layout="row" ng-click="refreshMeals()"><div>Get Fresh Meals</div></md-button>
         </div>
-        <section class="mealsMain" layout="row" flex>
+<!--choosing meals view -->
+        <section ng-if="showSlider" class="mealsMain" layout="row" flex>
             <md-button class="md-fab" aria-label="Previous" ng-click="slickConfig.method.slickPrev()">
                 <ng-md-icon class="btn" icon="navigate_before" size="40px"></ng-md-icon></md-button>
                     <div class="slick-container">
@@ -53,6 +53,28 @@
         </section>
         </section>
         </section>
-    </div>
 <!-- view chosen meals view -->
+    <section ng-if="!showSlider">
+        <div ng-repeat="meal in meals">
+            <md-card>
+                <md-card-content layout="row" layout-align="space-between">
+                    <div class="md-media-xl card-media" style="background: url({{meal.image}}) center; background-size: cover; background-position: center; ">
+                    </div>
+                    <div class="recipe" layout="column">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{meal.title}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-actions layout="row">
+                            <md-button class="md-icon-button" aria-label="Recipe" ng-href="{{meal.sourceUrl}}" target="_blank">
+                                <i class="material-icons">room_service</i>
+                            </md-button>
+                        </md-card-actions>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+    </section>
+    </div>
 </md-content>
