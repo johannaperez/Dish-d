@@ -1,10 +1,12 @@
 <md-content id="myacct">
+<navbar></navbar>
     <section class="container">
         <div class="item">
             <section>
-                <h1>My Account Prefs</h1>
-                <dishd-logo></dishd-logo>
-                <div>Prefs Buttons</div>
+                <h1>My Account</h1>
+                <div>
+                    <dishd-logo></dishd-logo>
+                </div>
                 <md-button ui-sref="meals">My Meals</md-button>
                 <md-button ui-sref="prefs({userId: userId})">Edit Preferences</md-button>
             </section>
@@ -12,8 +14,11 @@
         <div class="item">
             <section>
                 <h1>I Ate</h1>
-                <dishd-logo></dishd-logo>
-                <div>Data Visualization for foods eaten</div>
+                <div id="categoriesVis">
+                    <div ng-controller="CategoriesCtrl">
+                        <nvd3 options="options" data="data"></nvd3>
+                    </div>
+                </div>
             </section>
         </div>
     </section>
@@ -30,9 +35,9 @@
         </div>
         <div class="item">
             <section>
-                <h1>My average price per meal</h1>
+                <h1>I Recycled</h1>
                 <dishd-logo></dishd-logo>
-                <div>How many meals did I make based on the amt spent on groceries</div>
+                <div>chord (?) diagram of ingredient overlap</div>
             </section>
         </div>
     </section>
