@@ -2,8 +2,8 @@
 <navbar header="My Meals"></navbar>
     <div id="meals">
     <div class="heading" flex layout="row">
-        <md-button flex class="md-raised" layout="row" ng-click="refreshMeals()"><div>Get Fresh Meals</div></md-button>
-        </div>
+        <md-button flex class="md-raised" layout="row" ng-click="refreshMeals()"><div>Don't like these meals? Dish up new ones!</div></md-button>
+    </div>
 <!--choosing meals view -->
         <section ng-if="showSlider" class="mealsMain" layout="row" flex>
             <md-button class="md-fab" aria-label="Previous" ng-click="slickConfig.method.slickPrev()">
@@ -45,7 +45,6 @@
                                     <p>{{ selectedMeal.title | limitTo : 25}}{{ selectedMeal.title.length > 25 ? '...' : ''}}</p>
                                     <md-button class="md-icon-button md-mini" ng-click="removeMeal(selectedMeal.id)" aria-label="Remove Recipe">
                                         <i class="material-icons">close</i>
-                                        <!-- <ng-md-icon icon="backspace"></ng-md-icon> -->
                                     </md-button>
                                 </md-list-item>
                             </md-list>

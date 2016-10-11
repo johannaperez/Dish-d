@@ -9,14 +9,20 @@
         align-items: center;
         flex-direction: column;
         justify-content: center;
-        width: 100vw;
+        width: 80vw;
+        .md-button{
+            width: 80vw;
+            justify-content: center;
+            background-color: #FEE778;
+        }
+
     }
     .mealsMain {
         display: flex;
         align-items: center;
         flex-driection: row;
         justify-content: center;
-        height: 75vh;
+        height: 70vh;
         .btn {
             display: flex;
             align-self: center;
