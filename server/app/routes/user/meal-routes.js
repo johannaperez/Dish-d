@@ -1,9 +1,6 @@
 
 const db = require('../../../db');
-const User = db.model('user');
 const Recipe = db.model('recipe');
-const Ingredient = db.model('ingredient');
-const UserPref = db.model('userPrefs');
 const MealPlan = db.model('mealPlan');
 const router = require('express').Router({mergeParams: true});
 const getMeals = require('./meal-generator').getMeals;
@@ -122,5 +119,3 @@ router.get('/grocerylist', (req, res, next) => {
 })
 
 module.exports = router;
-
-
