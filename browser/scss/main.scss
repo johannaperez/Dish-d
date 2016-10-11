@@ -22,7 +22,7 @@ a {
 
 #main {
   display: flex;
-  height: 85vh;
+  height: 100vh;
 }
 
 @import 'directives/main';
@@ -34,3 +34,4 @@ a {
 @import 'user-prefs/main';
 @import 'meals/main';
 @import 'my-account/my-account';
+@import 'groceries/groceries';

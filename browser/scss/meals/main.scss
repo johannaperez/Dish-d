@@ -4,32 +4,52 @@
     flex-direction: column;
     justify-content: center;
     width: 100vw;
-    height: 85vh;
+    .heading {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        width: 100vw;
+    }
     .mealsMain {
         display: flex;
         align-items: center;
         flex-driection: row;
         justify-content: center;
-        height: 100vh;
+        height: 75vh;
+        .btn {
+            display: flex;
+            align-self: center;
+            fill: white;
+        }
     }
     .slick-container {
-        width: 60vw;
+        width: 50vw;
     }
     .slick-prev,
     .slick-next {
         display: none !important;
     }
-    .days {
+    .meals {
+        display: flex;
         align-items: center;
+        flex-direction: column;
         justify-content: center;
+        width: 30vw;
     }
     md-card {
         md-card-content .md-media-xl {
             height: 50vh;
             width: 40vw;
         }
+        md-card-actions {
+            justify-content: flex-end;
+        }
         .recipe {
             width: 18vw !important
         }
+    }
+    .s {
+        padding-left: 5px;
     }
 }

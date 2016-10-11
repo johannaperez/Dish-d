@@ -1,10 +1,16 @@
-#home {
+#logo {
+    z-index: 100;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     width: 100vw;
-    height: 85vh;
+    height: 90vh;
+    // color: white;
 }
 
-
+vid-bg video{
+    object-fit: cover !important;
+    width: 100vw !important;
+    height: 100vh !important;
+}

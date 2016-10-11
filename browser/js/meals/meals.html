@@ -1,27 +1,19 @@
 <md-content flex>
+<navbar></navbar>
     <div id="meals">
-        <h1>Your Personalized Menu</h1>
-        <section layout="row">
-            <!-- these buttons need to dynamically ng-repeat and give correct days a person plans to cook for the week -->
-            <div class="days">
-                <md-button class="md-fab">today</md-button>
-                <md-button class="md-fab">fri</md-button>
-                <md-button class="md-fab">sat</md-button>
-                <md-button class="md-fab">sun</md-button>
-                <md-button class="md-fab">mon</md-button>
-                <md-button class="md-fab">tues</md-button>
-                <md-button class="md-fab">wed</md-button>
-            </div>
-        </section>
+    <div class="heading" flex layout="row">
+        <h1>Dish'ng Up This Week</h1>
+        <md-button flex class="md-raised" layout="row" ng-click="refreshMeals()"><div>Get Fresh Meals</div></md-button>
+        </div>
         <section class="mealsMain" layout="row" flex>
-            <md-button class="md-fab" ng-click="slickConfig.method.slickPrev()">
-                <</md-button>
+            <md-button class="md-fab" aria-label="Previous" ng-click="slickConfig.method.slickPrev()">
+                <ng-md-icon class="btn" icon="navigate_before" size="40px"></ng-md-icon></md-button>
                     <div class="slick-container">
                         <slick settings="slickConfig" slides-to-scroll=1 ng-if="mealsLoaded">
                             <div ng-repeat="meal in meals">
                                 <md-card>
                                     <md-card-content layout="row" layout-align="space-between">
-                                        <div class="md-media-xl card-media" style="background: url({{meal.image}}) no-repeat center; ">
+                                        <div class="md-media-xl card-media" style="background: url({{meal.image}}) center; background-size: cover; background-position: center; ">
                                         </div>
                                         <div class="recipe" layout="column">
                                             <md-card-title>
@@ -30,14 +22,11 @@
                                                 </md-card-title-text>
                                             </md-card-title>
                                             <md-card-actions layout="row">
-                                                <md-button class="md-icon-button" aria-label="Favorite">
-                                                    <ng-md-icon icon="favorite"></ng-md-icon>
+                                                <md-button class="md-icon-button" aria-label="add to my meals" ng-click="selectMeal(meal)">
+                                                    <ng-md-icon icon="add"></ng-md-icon>
                                                 </md-button>
-                                                <md-button class="md-icon-button" aria-label="Settings">
-                                                    <ng-md-icon icon="shopping_basket"></ng-md-icon>
-                                                </md-button>
-                                                <md-button class="md-icon-button" aria-label="Share">
-                                                    <ng-md-icon icon="dehaze"></ng-md-icon>
+                                                <md-button class="md-icon-button" aria-label="Recipe" ng-href="{{meal.sourceUrl}}" target="_blank">
+                                                    <i class="material-icons">room_service</i>
                                                 </md-button>
                                             </md-card-actions>
                                         </div>
@@ -46,7 +35,23 @@
                             </div>
                         </slick>
                     </div>
-                    <md-button class="md-fab" ng-click="slickConfig.method.slickNext()">></md-button>
+                    <md-button class="md-fab" aria-label="Next" ng-click="slickConfig.method.slickNext()"><ng-md-icon class="btn" icon="navigate_next" size="40px"></ng-md-icon></md-button>
+                    <section class="meals" flex>
+                    <div><h3>My Meals</h3></div>
+                    <div>
+                    <ul ng-repeat="selectedMeal in selectedMeals">
+                        <li>{{ selectedMeal.title }}
+                            <md-button class="md-icon-button md-mini" ng-click="removeMeal(selectedMeal.id)" aria-label="Remove Recipe">
+                                <ng-md-icon icon="backspace"></ng-md-icon>
+                            </md-button>
+                        </li>
+                    </ul>
+                    </div>
+                    <section>
+            <md-button flex layout="row" ng-show="selectedMeals.length" ng-click="addGroceries()"><div>ADD GROCERIES</div><i class="material-icons s" >shopping_basket</i></md-button>
         </section>
+                    </section>
+        </section>
+
     </div>
 </md-content>
