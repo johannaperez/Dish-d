@@ -16,7 +16,6 @@ app.config(function($stateProvider) {
 
 app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $state, currentUser) {
 
-    console.log(currentUser.id);
     $scope.meals = [];
     $scope.selectedMeals = [];
 
@@ -83,9 +82,8 @@ app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $stat
     }
 
     //popup to show a recipe's detail
-    $scope.showRecipe = function(ev) {
+    $scope.showRecipe = function(meal, ev) {
         $mdDialog.show({
-
             controller: DialogController,
             scope: $scope, // use parent scope in template
             preserveScope: true,
@@ -96,6 +94,13 @@ app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $stat
         })
 
         function DialogController($scope, $mdDialog) {
+            $scope.meal = meal;
+
+            $scope.formatInstructions = (instructions) => {
+                //split instructions on period and ng repeat sentences
+                return instructions.split('.');
+            };
+
             $scope.hide = function() {
                 $mdDialog.hide();
             };

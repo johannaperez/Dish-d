@@ -2,7 +2,8 @@
     <form ng-cloak>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>{{meals[0].title}}</h2>
+            <!-- <pre>{{meal |json }}</pre> -->
+                <h2>{{meal.title}}</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <i class="material-icons" aria-label="Close dialog">close</i>
@@ -14,9 +15,10 @@
                 <md-card-content >
                     <div class="ings" layout="column">
                         <md-subheader class="md-no-sticky">What You'll Need</md-subheader>
-                        <pre>{{meals.extendedIngredients}}</pre>
-                        <md-list-item ng-repeat="item in items">
-                            <p> {{ item.name }} </p>
+                        <md-list-item ng-repeat="ing in meal.extendedIngredients">
+                            <ul>
+                                <li> {{ ing.originalString }} </li>
+                            </ul>
                         </md-list-item>
                         <md-card-actions layout="row">
                             <md-button class="md-icon-button" aria-label="add to my meals" ng-click="selectMeal(meal)">
@@ -31,11 +33,12 @@
                         <md-card-title>
                             <md-card-title-text>
                                 <span class="md-headline">The Prep</span>
-                                <span class="md-subhead">{{meals[0].instructions}}</span>
+                                <!-- <pre>{{formatInstructions |json}}</pre> -->
+                                <span class="md-subhead" ng-repeat="sentence in formatInstructions(meal.instructions)">{{ sentence }}.</span>
                             </md-card-title-text>
                         </md-card-title>
                     </div>
-                    <div class="md-media-xl card-media" style="background: url({{meals[0].image}}) center; background-size: cover; background-position: center; ">
+                    <div class="md-media-xl card-media" style="background: url({{meal.image}}) center; background-size: cover; background-position: center; ">
                     </div>
                 </md-card-content>
             </md-card>

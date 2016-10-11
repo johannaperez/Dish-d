@@ -1,0 +1,112 @@
+{
+  "canned chickpeas": {
+    "category": "meat, beans, nuts, eggs",
+    "amount": 15,
+    "unit": "ounce"
+  },
+  "chile garlic sauce": {
+    "category": "vegetables",
+    "amount": 4,
+    "unit": "servings"
+  },
+  "garlic": {
+    "category": "vegetables",
+    "amount": 14,
+    "unit": "cloves"
+  },
+  "greens": {
+    "category": "vegetables",
+    "amount": 4,
+    "unit": "servings"
+  },
+  "hummus": {
+    "category": "meat, beans, nuts, eggs",
+    "amount": 5,
+    "unit": ""
+  },
+  "lemon": {
+    "category": "fruits",
+    "amount": 1,
+    "unit": ""
+  },
+  "oat flour": {
+    "category": "carbs",
+    "amount": 0.25,
+    "unit": "cup"
+  },
+  "tomato": {
+    "category": "vegetables",
+    "amount": 4,
+    "unit": "servings"
+  },
+  "dried cherries": {
+    "category": "fruits",
+    "amount": 1,
+    "unit": "cup"
+  },
+  "ground lamb": {
+    "category": "meat, beans, nuts, eggs",
+    "amount": 1,
+    "unit": "pound"
+  },
+  "honey": {
+    "category": "fats, oils, sweets",
+    "amount": 3,
+    "unit": "teaspoons"
+  },
+  "juice of lemon": {
+    "category": "fruits",
+    "amount": 0.5,
+    "unit": ""
+  },
+  "olive oil": {
+    "category": "fats, oils, sweets",
+    "amount": 3,
+    "unit": "tablespoons"
+  },
+  "shallot": {
+    "category": "vegetables",
+    "amount": 1,
+    "unit": ""
+  },
+  "bosc pear": {
+    "category": "fruits",
+    "amount": 1,
+    "unit": ""
+  },
+  "butternut squash": {
+    "category": "vegetables",
+    "amount": 4,
+    "unit": "cups"
+  },
+  "celery": {
+    "category": "vegetables",
+    "amount": 2,
+    "unit": "stalks"
+  },
+  "coconut oil": {
+    "category": "fats, oils, sweets",
+    "amount": 3,
+    "unit": "tablespoons"
+  },
+  "dried cranberries": {
+    "category": "fruits",
+    "amount": 1,
+    "unit": "cup"
+  },
+  "pecans": {
+    "category": "meat, beans, nuts, eggs",
+    "amount": 1,
+    "unit": "cup"
+  },
+  "wild rice": {
+    "category": "carbs",
+    "amount": 2,
+    "unit": "cups"
+  },
+  "yellow onion": {
+    "category": "vegetables",
+    "amount": 1,
+    "unit": ""
+  }
+}
