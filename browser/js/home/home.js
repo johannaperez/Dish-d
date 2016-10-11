@@ -8,12 +8,12 @@ app.config(function ($stateProvider) {
 
 app.controller('homeCtrl', ['$scope', function ($scope) {
         $scope.resources = [
-            '*.webm',
+            // '*.webm',
             '*.ogv',
             'js/home/media/girls_cooking.mp4',
             '*.swf'
         ];
-        $scope.poster = 'http://placehold.it/2000&text=you%20may%20want%20to%20have%20a%20poster';
+        // $scope.poster = 'http://placehold.it/2000&text=you%20may%20want%20to%20have%20a%20poster';
         $scope.fullScreen = true;
         $scope.muted = true;
         $scope.zIndex = '10';

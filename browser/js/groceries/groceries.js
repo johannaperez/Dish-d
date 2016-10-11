@@ -23,21 +23,24 @@ app.controller('ListCtrl', function($scope, ListFactory, currentUser) {
   .then(function(groceryList){
     $scope.sections = groceryList;
     $scope.headers = Object.keys(groceryList);
-  });
+  })
 
-  $scope.round = function(number){
-    if (isNaN(number)){
-        return parseInt(number, 10);
-    }
-    return Math.round(number * 100) / 100;
-  }
+  $scope.round = ListFactory.round; 
 
+  $scope.makePDF = ListFactory.makePDF;
 
 });
 
 app.factory('ListFactory', function($http) {
 
     let ListFactory = {};
+
+    ListFactory.round = function(number){
+    if (isNaN(number)){
+        return parseInt(number, 10);
+    }
+    return Math.round(number * 100) / 100;
+    }
 
     ListFactory.getGroceryList = function(userId){
         return $http.get(`api/users/${userId}/meals/grocerylist`)
@@ -64,6 +67,27 @@ app.factory('ListFactory', function($http) {
 
             return formatedList;
         });
+
+
+    }
+
+    ListFactory.makePDF = function(groceryList){
+
+
+        let listToExport = [];
+        for (let aisle in groceryList){
+            listToExport.push({text: aisle, fontSize: 16, bold: true});
+            listToExport.push({
+                ul: groceryList[aisle].map(item => `${item.name}: ${ListFactory.round(item.amount)} ${item.unitLong}`)
+            })
+        }
+
+        let docDefinition = {
+            content: listToExport
+        }
+        console.log(docDefinition);
+
+        pdfMake.createPdf(docDefinition).download('grocerylist.pdf');
 
     }
 
