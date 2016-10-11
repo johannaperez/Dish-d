@@ -6,7 +6,14 @@
     justify-content: center;
     width: 100vw;
     height: 90vh;
-    // color: white;
+    navbar {
+        h1{
+        color: white;
+        }
+        ng-md-icon {
+            fill: white;
+        }
+    }
 }
 
 vid-bg video{
