@@ -13,8 +13,8 @@ app.config(function ($urlRouterProvider, $locationProvider, $mdThemingProvider) 
     });
     //Angular Material Custom Color Theme
     $mdThemingProvider.theme('default')
-    .primaryPalette('indigo')
-    .accentPalette('blue')
+    .primaryPalette('grey')
+    .accentPalette('grey')
     .backgroundPalette('grey');
 });
 
