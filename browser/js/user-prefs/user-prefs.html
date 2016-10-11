@@ -1,15 +1,15 @@
 <md-content flex>
 <navbar></navbar>
     <div id="prefspage">
-        <div class="dietary">
-            <h3>Any dietary preferences?</h3>
+        <h3>Any dietary preferences?</h3>
+        <div class="dietary" layout="row">
+
             <!-- stay highlighted when true -->
-            <md-button ng-click="myPrefs.vegetarian = !myPrefs.vegetarian" ng-class="{ chosen: myPrefs.vegetarian }">Vegetarian</md-button>
-            <md-button ng-click="myPrefs.vegan = !myPrefs.vegan" ng-class="{ chosen: myPrefs.vegan }">Vegan</md-button>
-            <md-button ng-click="myPrefs.glutenFree = !myPrefs.glutenFree" ng-class="{ chosen: myPrefs.glutenFree }">Gluten-Free</md-button>
-            <md-button ng-click="myPrefs.dairyFree = !myPrefs.dairyFree" ng-class="{ chosen: myPrefs.dairyFree }">Dairy-Free</md-button>
-            <md-button ng-click="myPrefs.lowFodmap = !myPrefs.lowFodmap" ng-class="{ chosen: myPrefs.lowFodmap }">Fodmap</md-button>
-            <md-button ng-click="myPrefs.whole30 = !myPrefs.whole30" ng-class="{ chosen: myPrefs.whole30 }">Paleo</md-button>
+            <md-button ng-click="myPrefs.vegetarian = !myPrefs.vegetarian" ng-class="{ chosen: myPrefs.vegetarian }"><img src="js/user-prefs/media/vegetarian.png" >Vegetarian</md-button>
+            <md-button ng-click="myPrefs.glutenFree = !myPrefs.glutenFree" ng-class="{ chosen: myPrefs.glutenFree }"><img src="js/user-prefs/media/gluten_free.png" >Gluten-Free</md-button>
+            <md-button ng-click="myPrefs.vegan = !myPrefs.vegan" ng-class="{ chosen: myPrefs.vegan }"><img src="js/user-prefs/media/vegan.png" >Vegan</md-button>
+            <md-button ng-click="myPrefs.dairyFree = !myPrefs.dairyFree" ng-class="{ chosen: myPrefs.dairyFree }"><img src="js/user-prefs/media/dairy_free.png" >Dairy-Free</md-button>
+            <md-button ng-click="myPrefs.whole30 = !myPrefs.whole30" ng-class="{ chosen: myPrefs.whole30 }"><img src="js/user-prefs/media/paleo.png" >Paleo</md-button>
         </div>
         <div class="dislikes">
             <h3>Any allergies or strong dislikes?</h3>
