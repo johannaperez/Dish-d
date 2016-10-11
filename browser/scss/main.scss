@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 
-body {
-  background: #fdfdfd;
-}
-
 @mixin clearfix {
   &:after {
     content: "";
@@ -23,6 +19,12 @@ a {
 #main {
   display: flex;
   height: 100vh;
+  md-content {
+    background-color: #F7F7F7;
+    // button .rectangle {
+    //   background-color: #FEE778
+    // }
+  }
 }
 
 @import 'directives/main';
@@ -35,3 +37,4 @@ a {
 @import 'meals/main';
 @import 'my-account/my-account';
 @import 'groceries/groceries';
+@import 'recipe/recipe.scss';
