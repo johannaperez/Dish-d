@@ -1,0 +1,30 @@
+md-dialog {
+    min-width: 80vw;
+    min-height: 70vh;
+    md-card {
+        md-card-content {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-between;
+            .md-media-xl {
+            // todo: @media query min-width for mobile
+            // min-width: 50vw;
+            height: 60vh;
+            width: 25vw;
+        }
+        .recipe {
+            // todo: @media query min-width for mobile
+            // min-width: 50vw;
+            width: 30vw;
+        }
+        .ings {
+            // todo: @media query min-width for mobile
+            // min-width: 50vw;
+            width: 20vw;
+        }
+    }
+        md-card-actions {
+            justify-content: flex-start;
+        }
+    }
+}
