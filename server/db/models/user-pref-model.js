@@ -62,6 +62,7 @@ let UserPref = db.define('userPrefs', {
             })
             // filter out recipes with disliked ingredients
 			.then(boolRecipes => {
+
 				let dislikeFilteredRecipes = [];
 				let dislikeNames = dislikes.map(dislike => {
 					return dislike.name;
