@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 
-body {
-  background: #fdfdfd;
-}
-
 @mixin clearfix {
   &:after {
     content: "";
@@ -23,6 +19,9 @@ a {
 #main {
   display: flex;
   height: 100vh;
+  md-content {
+    background-color: #dae5e8;
+  }
 }
 
 @import 'directives/main';
