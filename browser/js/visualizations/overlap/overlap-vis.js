@@ -24,7 +24,7 @@ var svg = d3.select("body").append("svg")
 var link = svg.append("g").selectAll(".link"),
     node = svg.append("g").selectAll(".node");
 
-d3.json("overlap-imports.json", function(error, classes) {
+d3.json("/js/visualizations/overlap/overlap-imports.json", function(error, classes) {
   if (error) throw error;
 
   var nodes = cluster.nodes(packageHierarchy(classes)),
