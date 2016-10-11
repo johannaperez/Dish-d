@@ -29,7 +29,7 @@
             </md-autocomplete>
             <section id="dislike" layout="row">
                 <div ng-show="myPrefs.dislikes.length" ng-repeat="ing in myPrefs.dislikes">
-                    <md-button>{{ing.name}}<md-button ng-click="removeDislike(ing)" class="delete">x</md-button></md-button>
+                    <md-button>{{ing.name}}<md-button ng-click="removeDislike(ing)" class="delete"><i class="material-icons">close</i></md-button></md-button>
                 </div>
             </section>
         </div>
@@ -44,7 +44,7 @@
             </md-slider>
         </div>
         <div>
-            <md-button ng-click="savePrefs()">SAVE PREFERENCES</md-button>
+            <md-button class="save" ng-click="savePrefs()">SAVE PREFERENCES</md-button>
         </div>
     </div>
 </md-content>
