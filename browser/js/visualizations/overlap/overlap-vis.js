@@ -1,88 +1,121 @@
-app.controller('OverlapCtrl', ($scope) => {
-	// $scope.options = {
-	// 	chart: {
-	// 		type: 'bundle',
-	// 		size: [360, 360],
-	// 		sort: null
-	// 	}
-	// };
+var diameter = 400,
+    radius = diameter / 2,
+    innerRadius = radius - 120;
 
-	// let diameter = 600,
-	// 	radius = diameter / 2,
-	// 	innerRadius = radius - 120;
+var cluster = d3.layout.cluster()
+    .size([360, innerRadius])
+    .sort(null)
+    .value(function(d) { return d.size; });
 
-	// let cluster = d3.layout.cluster()
-	// 	.size([300, innerRadius])
-	// 	.sort(null)
-	// 	.value(d => { return d.size });
+var bundle = d3.layout.bundle();
 
-	// let bundle = d3.layout.bundle();
+var line = d3.svg.line.radial()
+    .interpolate("bundle")
+    .tension(.85)
+    .radius(function(d) { return d.y; })
+    .angle(function(d) { return d.x / 180 * Math.PI; });
 
-	// let line = d3.svg.line.radial()
-	// 	.interpolate('bundle')
-	// 	.tension(.85)
-	// 	.radius(d => { return d.y })
-	// 	.angle(d => { return d.x / 180 * Math.PI });
+var svg = d3.select("body").append("svg")
+    .attr("width", diameter)
+    .attr("height", diameter)
+  .append("g")
+    .attr("transform", "translate(" + radius + "," + radius + ")");
 
+var link = svg.append("g").selectAll(".link"),
+    node = svg.append("g").selectAll(".node");
 
-	// $scope.data = [{
-	// 	name: 'Recycled Ingredients',
-	// 	children: [
-	// 		{
-	// 			name: 'Baked falafel burger',
-	// 			children: [
-	// 				{name: 'fresh parsley', size: 3000},
-	// 				{name: 'salt', size: 3000},
-	// 				{name: 'cumin', size: 3000},
-	// 				{name: 'garlic', size: 3000},
-	// 				{name: 'lemon', size: 3000},
-	// 				{name: 'chickpeas', size: 3000},
-	// 				{name: 'chili garlic sauce', size: 3000},
-	// 				{name: 'oat flour', size: 3000},
-	// 				{name: 'tomato', size: 3000},
-	// 				{name: 'greens', size: 3000},
-	// 				{name: 'hummus', size: 3000},
-	// 			]
-	// 		}, {
-	// 			name: 'Kofta meatballs',
-	// 			children: [
-	// 				{name: 'fresh parsley', size: 3000},
-	// 				{name: 'salt', size: 3000},
-	// 				{name: 'cumin', size: 3000},
-	// 				{name: 'lemon', size: 3000},
-	// 				{name: 'cinnamon', size: 3000},
-	// 				{name: 'dried cherries', size: 3000},
-	// 				{name: 'allspice', size: 3000},
-	// 				{name: 'fresh mint', size: 3000},
-	// 				{name: 'cloves', size: 3000},
-	// 				{name: 'ground lamb', size: 3000},
-	// 				{name: 'honey', size: 3000},
-	// 				{name: 'olive oil', size: 3000},
-	// 				{name: 'pepper', size: 3000},
-	// 				{name: 'shallot', size: 3000},
-	// 				{name: 'sparkling water', size: 3000},
-	// 			]
-	// 		}, {
-	// 			name: 'Wild rice stuffing',
-	// 			children: [
-	// 				{name: 'fresh parsley', size: 3000},
-	// 				{name: 'salt', size: 3000},
-	// 				{name: 'garlic', size: 3000},
-	// 				{name: 'cinnamon', size: 3000},
-	// 				{name: 'dried cranberries', size: 3000},
-	// 				{name: 'bosc pear', size: 3000},
-	// 				{name: 'butternut squash', size: 3000},
-	// 				{name: 'celery', size: 3000},
-	// 				{name: 'coconut oil', size: 3000},
-	// 				{name: 'dried oregano', size: 3000},
-	// 				{name: 'dry white wine', size: 3000},
-	// 				{name: 'orange zest', size: 3000},
-	// 				{name: 'pecans', size: 3000},
-	// 				{name: 'wild rice', size: 3000},
-	// 				{name: 'yellow onion', size: 3000},
-	// 			]
-	// 		}
-	// 	]
-	// }];	// end of data
+d3.json("overlap-imports.json", function(error, classes) {
+  if (error) throw error;
 
+  var nodes = cluster.nodes(packageHierarchy(classes)),
+      links = packageImports(nodes);
+
+  link = link
+      .data(bundle(links))
+    .enter().append("path")
+      .each(function(d) { d.source = d[0], d.target = d[d.length - 1]; })
+      .attr("class", "link")
+      .attr("d", line);
+
+  node = node
+      .data(nodes.filter(function(n) { return !n.children; }))
+    .enter().append("text")
+      .attr("class", "node")
+      .attr("dy", ".31em")
+      .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
+      .style("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+      .text(function(d) { return d.key; })
+      .on("mouseover", mouseovered)
+      .on("mouseout", mouseouted);
 });
+
+function mouseovered(d) {
+  node
+      .each(function(n) { n.target = n.source = false; });
+
+  link
+      .classed("link--target", function(l) { if (l.target === d) return l.source.source = true; })
+      .classed("link--source", function(l) { if (l.source === d) return l.target.target = true; })
+    .filter(function(l) { return l.target === d || l.source === d; })
+      .each(function() { this.parentNode.appendChild(this); });
+
+  node
+      .classed("node--target", function(n) { return n.target; })
+      .classed("node--source", function(n) { return n.source; });
+}
+
+function mouseouted(d) {
+  link
+      .classed("link--target", false)
+      .classed("link--source", false);
+
+  node
+      .classed("node--target", false)
+      .classed("node--source", false);
+}
+
+d3.select(self.frameElement).style("height", diameter + "px");
+
+// Lazily construct the package hierarchy from class names.
+function packageHierarchy(classes) {
+  var map = {};
+
+  function find(name, data) {
+    var node = map[name], i;
+    if (!node) {
+      node = map[name] = data || {name: name, children: []};
+      if (name.length) {
+        node.parent = find(name.substring(0, i = name.lastIndexOf(".")));
+        node.parent.children.push(node);
+        node.key = name.substring(i + 1);
+      }
+    }
+    return node;
+  }
+
+  classes.forEach(function(d) {
+    find(d.name, d);
+  });
+
+  return map[""];
+}
+
+// Return a list of imports for the given array of nodes.
+function packageImports(nodes) {
+  var map = {},
+      imports = [];
+
+  // Compute a map from name to node.
+  nodes.forEach(function(d) {
+    map[d.name] = d;
+  });
+
+  // For each import, construct a link from the source to target node.
+  nodes.forEach(function(d) {
+    if (d.imports) d.imports.forEach(function(i) {
+      imports.push({source: map[d.name], target: map[i]});
+    });
+  });
+
+  return imports;
+}
