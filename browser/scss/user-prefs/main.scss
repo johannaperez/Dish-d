@@ -6,10 +6,24 @@
     width: 100vw;
     height: 85vh;
 	.chosen {
-		background-color: #68EFAD !important;
-	};
+		background-color: #FEE778 !important;
+	}
+    .dietary .md-button {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .delete {
+        min-height: 10px !important;
+        min-width: 10px !important;
+        .material-icons {
+            display: flex;
+        }
+    }
 	.delete:hover {
-		background-color: #68EFAD;
 		opacity: 0.8;
 	}
+    .save {
+        background-color: #FEE778;
+    }
 }
