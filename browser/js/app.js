@@ -2,7 +2,7 @@
 
 window.app = angular.module('Dishd', ['fsaPreBuilt', 'ui.router', 'ngAnimate', 'ngMaterial', 'ngMdIcons', 'ngAria', 'slickCarousel', 'ngVidBg', 'nvd3']);
 
-app.config(function ($urlRouterProvider, $locationProvider) {
+app.config(function ($urlRouterProvider, $locationProvider, $mdThemingProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
     $locationProvider.html5Mode(true);
     // If we go to a URL that ui-router doesn't have registered, go to the "/" url.
@@ -11,6 +11,11 @@ app.config(function ($urlRouterProvider, $locationProvider) {
     $urlRouterProvider.when('/auth/:provider', function () {
         window.location.reload();
     });
+    //Angular Material Custom Color Theme
+    $mdThemingProvider.theme('default')
+    .primaryPalette('grey')
+    .accentPalette('grey')
+    .backgroundPalette('grey');
 });
 
 // This app.run is for listening to errors broadcasted by ui-router, usually originating from resolves
