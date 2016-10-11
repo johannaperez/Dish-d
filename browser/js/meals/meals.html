@@ -38,16 +38,16 @@
                     </div>
                     <md-button class="md-fab" aria-label="Next" ng-click="slickConfig.method.slickNext()"><ng-md-icon class="btn" icon="navigate_next" size="40px"></ng-md-icon></md-button>
                     <section class="meals" flex>
-                    <div><h3>Choose up to 5 meals:</h3></div>
-                    <div>
-                    <ul ng-repeat="selectedMeal in selectedMeals">
-                        <li>{{ selectedMeal.title }}
-                            <md-button class="md-icon-button md-mini" ng-click="removeMeal(selectedMeal.id)" aria-label="Remove Recipe">
-                                <ng-md-icon icon="backspace"></ng-md-icon>
-                            </md-button>
-                        </li>
-                    </ul>
-                    </div>
+                        <div><h3>Choose up to 5 meals:</h3></div>
+                        <div>
+                            <ul ng-repeat="selectedMeal in selectedMeals">
+                                <li>{{ selectedMeal.title }}
+                                    <md-button class="md-icon-button md-mini" ng-click="removeMeal(selectedMeal.id)" aria-label="Remove Recipe">
+                                        <ng-md-icon icon="backspace"></ng-md-icon>
+                                    </md-button>
+                                </li>
+                            </ul>
+                        </div>
                     <section>
             <md-button flex layout="row" ng-show="selectedMeals.length" ng-click="addGroceries()"><div>ADD GROCERIES</div><i class="material-icons s" >shopping_basket</i></md-button>
         </section>
