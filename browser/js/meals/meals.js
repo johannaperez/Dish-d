@@ -15,7 +15,6 @@ app.config(function($stateProvider) {
 });
 
 app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $state, currentUser) {
-
     $scope.meals = [];
     $scope.selectedMeals = [];
 
@@ -23,7 +22,12 @@ app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $stat
     MealFactory.getMealPlan(currentUser.id)
     .then(function(meals) {
         $scope.meals = meals;
-        if (meals.length < 10) $scope.selectedMeals = meals;
+        //change display depending on whether meals are user-selected
+        if (meals.length < 10) {
+            $scope.showSlider = false;
+        } else {
+            $scope.showSlider = true;
+        }
     })
     .then(function() {
         $scope.mealsLoaded = true;
@@ -38,10 +42,10 @@ app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $stat
          MealFactory.refreshMeals(currentUser.id)
         .then(function(meals) {
             $scope.meals = meals;
-            console.log(meals);
         })
         .then(function() {
             $scope.mealsLoaded = true;
+            $scope.showSlider = true;
         })
         .catch($log.error);
     }
@@ -97,7 +101,6 @@ app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $stat
             $scope.meal = meal;
 
             $scope.formatInstructions = (instructions) => {
-                //split instructions on period and ng repeat sentences
                 return instructions.split('.');
             };
 
