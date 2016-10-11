@@ -40,13 +40,15 @@
                     <section class="meals" flex>
                         <div><h3>Choose up to 5 meals:</h3></div>
                         <div>
-                            <ul ng-repeat="selectedMeal in selectedMeals">
-                                <li>{{ selectedMeal.title }}
+                            <md-list flex ng-repeat="selectedMeal in selectedMeals">
+                                <md-list-item>
+                                    <img ng-src="{{ selectedMeal.image }}" class="md-avatar">
+                                    <p>{{ selectedMeal.title | limitTo : 25}}{{ selectedMeal.title.length > 25 ? '...' : ''}}</p>
                                     <md-button class="md-icon-button md-mini" ng-click="removeMeal(selectedMeal.id)" aria-label="Remove Recipe">
                                         <ng-md-icon icon="backspace"></ng-md-icon>
                                     </md-button>
-                                </li>
-                            </ul>
+                                </md-list-item>
+                            </md-list>
                         </div>
                     <section>
             <md-button flex layout="row" ng-show="selectedMeals.length" ng-click="addGroceries()"><div>ADD GROCERIES</div><i class="material-icons s" >shopping_basket</i></md-button>

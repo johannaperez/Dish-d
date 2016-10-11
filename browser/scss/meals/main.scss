@@ -34,8 +34,15 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        width: 30vw;
-        height: 50vh;
+        margin-left: 2vw;
+        width: 28vw;
+        height: 55vh;
+        .md-list-item{
+            .md-button {
+                display: flex;
+                align-self: flex-end;
+            }
+        }
     }
     md-card {
         md-card-content .md-media-xl {
