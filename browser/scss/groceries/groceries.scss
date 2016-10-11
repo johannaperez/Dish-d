@@ -5,5 +5,9 @@
     height: 85vh;
     .groceries {
         width: 60vw;
+        h4{
+          display: flex;
+          justify-content: flex-end
+        }
     }
 }
