@@ -3,24 +3,22 @@ app.config(function ($stateProvider) {
     $stateProvider.state('myAccount', {
         url: '/my-account',
         templateUrl: 'js/my-account/my-account.html',
-        // controller: function ($scope, SecretStash) {
-        //     SecretStash.getStash().then(function (stash) {
-        //         $scope.stash = stash;
-        //     });
-        // },
-        // The following data.authenticate is read by an event listener
-        // that controls access to this state. Refer to app.js.
         data: {
             authenticate: true
         },
-        controller: 'MyAccountCtrl'
+        controller: 'MyAccountCtrl',
+        resolve: {
+            currentUser: function(AuthService){
+                return AuthService.getLoggedInUser();
+            }
+        }
     });
 
 });
 
-app.controller('MyAccountCtrl', function($scope, Session){
+app.controller('MyAccountCtrl', function($scope, currentUser){
 
-    $scope.userId = Session.user.id;
+    $scope.userId = currentUser.id;
 })
 
 app.factory('SecretStash', function ($http) {

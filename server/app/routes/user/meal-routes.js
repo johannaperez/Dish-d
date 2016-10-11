@@ -104,6 +104,23 @@ router.post('', (req, res, next) => {
 
 })
 
+//create a new active meal plan for user
+//req.body.mealPlan = array of recipe ids
+router.get('/grocerylist', (req, res, next) => {
+  //if the user already has a meal plan, close it
+  MealPlan.findOne({
+    where: {
+      userId: req.params.userId,
+      status: 'active'
+    }
+  })
+  .then(function(plan){
+    res.send(plan.groceryList);
+  })
+  .catch(next);
+
+})
+
 module.exports = router;
 
 

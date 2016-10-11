@@ -3,10 +3,14 @@
     <div id="groceries">
         <div class="groceries">
             <md-subheader class="md-no-sticky">Grocery List</md-subheader>
-            <md-list-item ng-repeat="item in items">
-                <p> {{ item.name }} </p>
-                <md-checkbox class="md-secondary" ng-model="item.wanted"></md-checkbox>
-            </md-list-item>
+            <div ng-repeat="section in headers | orderBy : section">
+                <h3> {{ section }} </h3>
+                <br />
+                <md-list-item ng-repeat="item in sections[section] | orderBy: 'name'">
+                    <p> {{item.name}} || {{round(item.amount)}} {{item.unitLong}} </p>
+                    <md-checkbox class="md-secondary" ng-model="item.wanted"></md-checkbox>
+                </md-list-item>
+            </div>
         </div>
     </div>
 </md-content>

@@ -2,25 +2,50 @@ app.config(function($stateProvider) {
     $stateProvider.state('meals', {
         url: '/meals',
         templateUrl: 'js/meals/meals.html',
-        controller: 'MealsCtrl'
+        controller: 'MealsCtrl',
+        resolve: {
+            currentUser: function(AuthService){
+                return AuthService.getLoggedInUser();
+            }
+        },
+        data: {
+            authenticate: true
+        }
     });
 });
 
-app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog, $log, $state) {
+app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $state, currentUser) {
 
+    console.log(currentUser.id);
     $scope.meals = [];
     $scope.selectedMeals = [];
-    $scope.name = "JOHANNA";
 
-    //fetch meals to display
-    MealFactory.getMealPlan(Session.user.id)
+    //fetch meals to display on page load
+    MealFactory.getMealPlan(currentUser.id)
+    .then(function(meals) {
+        $scope.meals = meals;
+        if (meals.length < 10) $scope.selectedMeals = meals;
+    })
+    .then(function() {
+        $scope.mealsLoaded = true;
+    })
+    .catch($log.error);
+
+    //Fetch a fresh set of meals
+    $scope.refreshMeals = function(){
+        //prevent slick jankyness
+        $scope.mealsLoaded = false;
+        $scope.selectedMeals = [];
+         MealFactory.refreshMeals(currentUser.id)
         .then(function(meals) {
             $scope.meals = meals;
+            console.log(meals);
         })
         .then(function() {
             $scope.mealsLoaded = true;
         })
         .catch($log.error);
+    }
 
     //slick functionality
     $scope.slickConfig = {
@@ -49,8 +74,8 @@ app.controller('MealsCtrl', function($scope, MealFactory, Session, $mdDialog, $l
     }
 
     $scope.addGroceries = function() {
-        console.log(Session.user.id)
-        MealFactory.addMealPlan(Session.user.id, $scope.selectedMeals)
+        console.log(currentUser.id)
+        MealFactory.addMealPlan(currentUser.id, $scope.selectedMeals)
             .then(function() {
                 $state.go('groceries');
             })
@@ -100,5 +125,11 @@ app.factory('MealFactory', function($http) {
         return $http.post(`api/users/${userId}/meals`, { mealPlan: mealIds });
     }
 
+    MealFactory.refreshMeals = function(userId) {
+        return $http.put(`api/users/${userId}/meals`)
+        .then(function(response) {
+                return response.data;
+        });
+    }
     return MealFactory;
 });
