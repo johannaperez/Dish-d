@@ -8,8 +8,11 @@ app.config(function ($stateProvider) {
         },
         controller: 'MyAccountCtrl',
         resolve: {
-            currentUser: function(AuthService){
-                return AuthService.getLoggedInUser();
+            currentUser: function(AuthService, MemberInfoFactory){
+                return AuthService.getLoggedInUser()
+                .then(function(user) {
+                    return MemberInfoFactory.getUser(user.id);
+                })
             }
         }
     });
@@ -17,20 +20,33 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('MyAccountCtrl', function($scope, currentUser){
-
     $scope.userId = currentUser.id;
+    $scope.userName = currentUser.firstName;
+    $scope.userDate = currentUser.createdAt;
+
+    $scope.userYear = $scope.userDate.slice(0,4);
+    $scope.userUpper = $scope.userName[0].toUpperCase() + $scope.userName.slice(1);
 })
 
-app.factory('SecretStash', function ($http) {
-
-    var getStash = function () {
-        return $http.get('/api/members/secret-stash').then(function (response) {
-            return response.data;
-        });
-    };
-
+app.factory('MemberInfoFactory', function($http){
     return {
-        getStash: getStash
-    };
-
+        getUser : function(userId){
+            return $http.get(`/api/users/${userId}`)
+            .then(function(response){
+                // console.log('RES??', response);
+                return response.data;
+            })
+        }
+    }
 });
+
+// app.factory('SecretStash', function ($http) {
+//     var getStash = function () {
+//         return $http.get('/api/members/secret-stash').then(function (response) {
+//             return response.data;
+//         });
+//     };
+//     return {
+//         getStash: getStash
+//     };
+// });

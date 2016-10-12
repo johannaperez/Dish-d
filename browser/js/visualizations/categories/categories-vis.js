@@ -2,7 +2,7 @@ app.controller('CategoriesCtrl', ($scope) => {
 	$scope.options = {
 		chart: {
 			type: 'sunburstChart',
-			height: 300,
+			height: 500,
 			color: d3.scale.category20b(),
 			duration: 250
 		}

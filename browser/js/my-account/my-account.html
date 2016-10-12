@@ -3,10 +3,12 @@
     <div class="container" layout="column">
         <div class="item">
             <section class="banner">
-                <p>DANI! Your Dish'd Stats...</p>
-                <md-button ui-sref="meals">My Meals</md-button>
-                <md-button ui-sref="prefs({userId: userId})">Edit Preferences</md-button>
-                <p>Member Since 1859</p>
+                <p><strong>{{ userUpper }}</strong>, check out your dish'd stats!</p>
+                    <div>
+                    <md-button ui-sref="meals">My Meals</md-button>
+                    <md-button ui-sref="prefs({userId: userId})">Edit Preferences</md-button>
+                    </div>
+                <p>Member Since {{ userYear }}</p>
             </section>
         </div>
         <div class="item">
@@ -19,8 +21,6 @@
                 </div>
             </section>
         </div>
-    <!-- </section>
-    <section class="container"> -->
         <div class="item">
             <section class="spending">
                 <h1>I Saved</h1>
@@ -33,7 +33,7 @@
         </div>
         <div class="item">
             <section>
-                <h1>I Recycled</h1>
+                <h1>I Reused</h1>
                 <div id="overlapVis">
                   <script src="/js/visualizations/overlap/overlap-vis.js"></script>
                 </div>

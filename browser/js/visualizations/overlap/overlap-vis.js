@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-var diameter = 400,
+var diameter = 700,
     radius = diameter / 2,
     innerRadius = radius - 120;
 
@@ -35,7 +35,7 @@ d3.json("/js/visualizations/overlap/overlap-imports.json", function(error, class
   link = link
       .data(bundle(links))
     .enter().append("path")
-      .each(function(d) { 
+      .each(function(d) {
         d.source = d[0];
         d.target = d[d.length - 1];
       })
