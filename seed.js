@@ -9,19 +9,7 @@ const Ingredient = require('./server/db/models/ingredient-model.js');
 const User = require('./server/db/models/user-model.js');
 
 
-let data = require('./server/db-setup/api-responses.json');
-let data2 = require('./server/db-setup/api-responses2.json');
-let data3 = require('./server/db-setup/api-responses3.json');
-let data4 = require('./server/db-setup/api-responses4.json');
-let data5 = require('./server/db-setup/api-responses5.json');
-let data6 = require('./server/db-setup/api-responses6.json');
-let data7 = require('./server/db-setup/api-responses7.json');
-let data8 = require('./server/db-setup/api-responses8.json');
-let data9 = require('./server/db-setup/api-responses9.json');
-let data10 = require('./server/db-setup/api-responses10.json');
-let data11 = require('./server/db-setup/api-responses11.json');
-
-data = [... data.recipes, ...data2.recipes, ...data3.recipes, ...data4.recipes, ...data5.recipes, ...data6.recipes, ...data7.recipes, ...data8.recipes, ...data9.recipes, ...data10.recipes, ...data11.recipes];
+let data = require('./server/db-setup/theFINAL.json');
 
 let ingredients = [];
 
