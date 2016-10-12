@@ -2,12 +2,12 @@ app.controller('SpendingCtrl', ($scope) => {
 	$scope.options = {
 		chart: {
 			type: 'lineChart',
-			height: 300,
+			height: 500,
 			margin: {
 				top: 20,
-				right: 20,
+				right: 400,
 				bottom: 50,
-				left: 65
+				left: 400
 			},
 			x: (d) => { return d[0] },
 			y: (d) => { return d[1] },
