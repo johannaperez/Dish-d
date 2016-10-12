@@ -2,18 +2,25 @@ app.config(function ($stateProvider) {
     $stateProvider.state('home', {
         url: '/',
         templateUrl: 'js/home/home.html',
-        controller: 'homeCtrl'
+        controller: 'homeCtrl',
+        resolve: {
+            currentUser: function(AuthService){
+                return AuthService.getLoggedInUser();
+            }
+        },
+        cache: false
     });
 });
 
-app.controller('homeCtrl', ['$scope', function ($scope) {
+app.controller('homeCtrl', ['$scope', function ($scope, currentUser) {
+        $scope.user = currentUser;
+        console.log("CURRENT USER:", currentUser);
+
         $scope.resources = [
-            // '*.webm',
             '*.ogv',
             'js/home/media/girls_cooking.mp4',
             '*.swf'
         ];
-        // $scope.poster = 'http://placehold.it/2000&text=you%20may%20want%20to%20have%20a%20poster';
         $scope.fullScreen = true;
         $scope.muted = true;
         $scope.zIndex = '10';
