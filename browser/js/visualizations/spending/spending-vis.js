@@ -3,6 +3,7 @@ app.controller('SpendingCtrl', ($scope) => {
 		chart: {
 			type: 'lineChart',
 			height: 300,
+			width: 500,
 			margin: {
 				top: 20,
 				right: 20,
