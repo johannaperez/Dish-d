@@ -2,13 +2,16 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
 
     return {
         restrict: 'E',
-        scope: {},
+        scope: {
+            header: '@'
+        },
         templateUrl: 'js/common/directives/navbar/navbar.html',
         link: function (scope) {
 
             scope.items = [
                 { label: 'My Account', state: 'myAccount', auth: true },
-                { label: 'Grocery List', auth: true }
+                { label: 'My Meals', state: 'meals', auth: true },
+                { label: 'Grocery List', state: 'groceries', auth: true }
             ];
 
             scope.user = null;

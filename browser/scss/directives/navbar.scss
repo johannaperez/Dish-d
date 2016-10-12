@@ -1,8 +1,12 @@
 navbar {
+    height: 10vh;
+    md-content {
+        background-color: transparent !important;
+    }
     display: flex;
     .navcontainer {
         width: 100vw;
-        height: 15vh;
+        height: 10vh;
         align-items: center;
         justify-content: space-around;
         display: flex;

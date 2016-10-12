@@ -1,11 +1,19 @@
-<md-content flex>
-<div layout="row">
-    <div flex>
-        <section id="home">
-            <dishd-logo></dishd-logo>
-            <div>Dish'd! Get your dish on.</div>
-        </section>
+<md-content>
+    <div layout="row" flex layout-align="end center">
+        <md-content>
+            <vid-bg resources="resources" poster="poster" full-screen="fullScreen" muted="muted" z-index="zIndex" play-info="playInfo" pause-play="pausePlay"></vid-bg>
+        </md-content>
+        <div id="logo" flex>
+            <navbar></navbar>
+            <section class="mainpage" flex style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;">
+                <h1>get your dish'd on</h1>
+                <md-button ui-sref="signup">start here</md-button>
+                <div class="link" ui-sref="login">already a member? login</div>
+            </section>
+        </div>
     </div>
-</div>
 </md-content>
-

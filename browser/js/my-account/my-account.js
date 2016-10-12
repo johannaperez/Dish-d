@@ -3,36 +3,50 @@ app.config(function ($stateProvider) {
     $stateProvider.state('myAccount', {
         url: '/my-account',
         templateUrl: 'js/my-account/my-account.html',
-        // controller: function ($scope, SecretStash) {
-        //     SecretStash.getStash().then(function (stash) {
-        //         $scope.stash = stash;
-        //     });
-        // },
-        // The following data.authenticate is read by an event listener
-        // that controls access to this state. Refer to app.js.
         data: {
             authenticate: true
         },
-        controller: 'MyAccountCtrl'
+        controller: 'MyAccountCtrl',
+        resolve: {
+            currentUser: function(AuthService, MemberInfoFactory){
+                return AuthService.getLoggedInUser()
+                .then(function(user) {
+                    return MemberInfoFactory.getUser(user.id);
+                })
+            }
+        }
     });
 
 });
 
-app.controller('MyAccountCtrl', function($scope, Session){
+app.controller('MyAccountCtrl', function($scope, currentUser){
+    $scope.userId = currentUser.id;
+    $scope.userName = currentUser.firstName;
+    $scope.userDate = currentUser.createdAt;
 
-    $scope.userId = Session.user.id;
+    $scope.userYear = $scope.userDate.slice(0,4);
+    $scope.userUpper = $scope.userName[0].toUpperCase() + $scope.userName.slice(1);
 })
 
-app.factory('SecretStash', function ($http) {
-
-    var getStash = function () {
-        return $http.get('/api/members/secret-stash').then(function (response) {
-            return response.data;
-        });
-    };
-
+app.factory('MemberInfoFactory', function($http){
     return {
-        getStash: getStash
-    };
-
+        getUser : function(userId){
+            return $http.get(`/api/users/${userId}`)
+            .then(function(response){
+                // console.log('RES??', response);
+                return response.data;
+            })
+        }
+    }
 });
+
+// app.factory('SecretStash', function ($http) {
+//     var getStash = function () {
+//         return $http.get('/api/members/secret-stash').then(function (response) {
+//             return response.data;
+//         });
+//     };
+//     return {
+//         getStash: getStash
+//     };
+// });

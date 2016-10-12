@@ -1,7 +1,7 @@
 #myacct {
     .container {
         display: flex;
-        height: 42.5vh;
+        height: 75vh;
         width: 100vw;
     }
     .item {
@@ -9,6 +9,19 @@
         padding: 20px;
         flex: 1;
         text-align: center;
+        .banner {
+            background-color: #FEEC91;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .spending {
+            display: flex;
+            flex-direction: column;
+            #spendingVis {
+                padding-top: 55px;
+            }
+        }
     }
     .item:nth-child(2) {
         flex: 1;
@@ -20,5 +33,33 @@
         .item:first-child {
             flex-basis: 100%;
         }
+    }
+    .node {
+        font: 300 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+        fill: grey;
+    }
+    .node:hover {
+        fill: #000;
+    }
+    .link {
+        stroke: #81925F;
+        stroke-opacity: .4;
+        fill: none;
+        pointer-events: none;
+        stroke-width: 2px;
+    }
+    .node:hover,
+    .node--source,
+    .node--target {
+        font-weight: 700;
+    }
+    .link--source,
+    .link--target {
+        stroke-opacity: 1;
+        stroke-width: 2px;
+    }
+    .link--source,
+    .link--target {
+        stroke: #FEE778;
     }
 }

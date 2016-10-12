@@ -5,3 +5,4 @@ public
 .DS_Store
 coverage
 server/db-setup/api-key.js
+browser/js/allrecipes
