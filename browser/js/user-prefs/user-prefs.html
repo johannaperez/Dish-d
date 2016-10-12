@@ -34,12 +34,12 @@
             </section>
         </div>
         <div class="num">
-            <h3>How many people are eating?</h3>
+            <h3>How many people are eating? ({{myPrefs.numPeople}})</h3>
             <md-slider flex class="md-primary" md-discrete ng-model="myPrefs.numPeople" step="1" min="1" max="6" aria-label="rating">
             </md-slider>
         </div>
         <div class="time">
-            <h3>How much time do you have? (mins)</h3>
+            <h3>How much time do you have? ({{myPrefs.availableTime}} mins)</h3>
             <md-slider flex class="md-primary" md-discrete ng-model="myPrefs.availableTime" step="5" min="10" max="60" aria-label="rating">
             </md-slider>
         </div>
