@@ -3,12 +3,12 @@
     <div class="container" layout="column">
         <div class="item">
             <section class="banner">
-                <p>DANI! Your Dish'd Stats...</p>
+                <p><strong>{{ userUpper }}</strong>, check out your dish'd stats!</p>
                     <div>
                     <md-button ui-sref="meals">My Meals</md-button>
                     <md-button ui-sref="prefs({userId: userId})">Edit Preferences</md-button>
                     </div>
-                <p>Member Since 1859</p>
+                <p>Member Since {{ userYear }}</p>
             </section>
         </div>
         <div class="item">
