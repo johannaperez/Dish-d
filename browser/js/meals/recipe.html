@@ -2,7 +2,6 @@
     <form ng-cloak>
         <md-toolbar>
             <div class="md-toolbar-tools">
-            <!-- <pre>{{meal |json }}</pre> -->
                 <h2>{{meal.title}}</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
@@ -20,20 +19,11 @@
                                 <li> {{ ing.originalString }} </li>
                             </ul>
                         </md-list-item>
-                        <md-card-actions layout="row">
-                            <md-button class="md-icon-button" aria-label="add to my meals" ng-click="selectMeal(meal)">
-                                <ng-md-icon icon="add"></ng-md-icon>
-                            </md-button>
-                            <md-button class="md-icon-button" aria-label="Recipe" ng-click="showRecipe()">
-                                <i class="material-icons">room_service</i>
-                            </md-button>
-                        </md-card-actions>
                     </div>
                     <div class="recipe" layout="column">
                         <md-card-title>
                             <md-card-title-text>
                                 <span class="md-headline">The Prep</span>
-                                <!-- <pre>{{formatInstructions |json}}</pre> -->
                                 <span class="md-subhead" ng-repeat="sentence in formatInstructions(meal.instructions)">{{ sentence }}.</span>
                             </md-card-title-text>
                         </md-card-title>
