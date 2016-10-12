@@ -1,5 +1,4 @@
 @mixin form-page {
-    background-color: #FAFAFA;
     align-items: center;
     a {
       border-bottom: 1px dotted #9a9a9a;
@@ -19,6 +18,7 @@
 
 #login-page{
   @include form-page;
+  padding-top: 20vh;
   .oauth {
     align-items: center;
     a {

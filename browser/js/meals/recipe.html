@@ -1,0 +1,47 @@
+<md-dialog aria-label="Recipe">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+            <!-- <pre>{{meal |json }}</pre> -->
+                <h2>{{meal.title}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <i class="material-icons" aria-label="Close dialog">close</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <md-card>
+                <md-card-content >
+                    <div class="ings" layout="column">
+                        <md-subheader class="md-no-sticky">What You'll Need</md-subheader>
+                        <md-list-item ng-repeat="ing in meal.extendedIngredients">
+                            <ul>
+                                <li> {{ ing.originalString }} </li>
+                            </ul>
+                        </md-list-item>
+                        <md-card-actions layout="row">
+                            <md-button class="md-icon-button" aria-label="add to my meals" ng-click="selectMeal(meal)">
+                                <ng-md-icon icon="add"></ng-md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" aria-label="Recipe" ng-click="showRecipe()">
+                                <i class="material-icons">room_service</i>
+                            </md-button>
+                        </md-card-actions>
+                    </div>
+                    <div class="recipe" layout="column">
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">The Prep</span>
+                                <!-- <pre>{{formatInstructions |json}}</pre> -->
+                                <span class="md-subhead" ng-repeat="sentence in formatInstructions(meal.instructions)">{{ sentence }}.</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                    </div>
+                    <div class="md-media-xl card-media" style="background: url({{meal.image}}) center; background-size: cover; background-position: center; ">
+                    </div>
+                </md-card-content>
+            </md-card>
+        </md-dialog-content>
+    </form>
+</md-dialog>
