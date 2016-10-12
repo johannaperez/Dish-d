@@ -1,12 +1,12 @@
 <md-content flex>
-<navbar></navbar>
+<navbar header="Grocery List"></navbar>
 <div id="groceries">
 <div class="groceries">
-  	<h1>Grocery List
+  	<h4>Download List
 		<md-button class="md-icon-button" ng-click="makePDF(sections)">
 			<ng-md-icon icon="file_download"></ng-md-icon>
 		</md-button>
-	</h1>
+	</h4>
   <div ng-repeat="section in headers | orderBy : section">
     <h3> {{ section }} </h3> <br />
   	<md-list-item ng-repeat="item in sections[section] | orderBy: 'name'">

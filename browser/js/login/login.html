@@ -1,7 +1,6 @@
 <md-content flex>
-<navbar></navbar>
+<navbar header="Login to Dish'd!"></navbar>
     <div id="login-page" layout="column" ng-cloak>
-        <h1>Login to Dish'd!</h1>
         <form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)">
             <md-input-container class="md-block">
                 <input ng-model="login.email" type="email" placeholder="Email (required)" ng-required="true">
