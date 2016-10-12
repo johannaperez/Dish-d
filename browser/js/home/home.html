@@ -4,14 +4,15 @@
             <vid-bg resources="resources" poster="poster" full-screen="fullScreen" muted="muted" z-index="zIndex" play-info="playInfo" pause-play="pausePlay"></vid-bg>
         </md-content>
         <div id="logo" flex>
-        <navbar></navbar>
-            <section flex style="
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;">
-                <dishd-logo></dishd-logo>
-                <h1>Dish'd! Get your dish on.</h1>
+            <navbar></navbar>
+            <section class="mainpage" flex style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;">
+                <h1>get your dish'd on</h1>
+                <md-button ui-sref="signup">start here</md-button>
+                <div class="link" ui-sref="login">already a member? login</div>
             </section>
         </div>
     </div>
