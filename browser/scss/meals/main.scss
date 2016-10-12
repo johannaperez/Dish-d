@@ -10,12 +10,11 @@
         flex-direction: column;
         justify-content: center;
         width: 80vw;
-        .md-button{
-            width: 80vw;
+        .md-button {
+            width: 85vw;
             justify-content: center;
             background-color: #FEE778;
         }
-
     }
     .mealsMain {
         display: flex;
@@ -26,7 +25,15 @@
         .btn {
             display: flex;
             align-self: center;
-            fill: white;
+        }
+        .dir {
+            display: flex;
+            justify-content: center;
+            height: 60px;
+            width: 60px;
+            ng-md-icon {
+                margin-top: -7px;
+            }
         }
     }
     .slick-container {
@@ -41,9 +48,11 @@
         align-items: center;
         flex-direction: column;
         margin-left: 2vw;
-        width: 28vw;
-        height: 55vh;
-        .md-list-item{
+        width: 30vw;
+        height: 70vh;
+        // background-color: white;
+        // border-left: 1px solid grey;
+        .md-list-item {
             .md-button {
                 display: flex;
                 align-self: flex-end;
