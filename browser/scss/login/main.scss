@@ -18,7 +18,7 @@
 
 #login-page{
   @include form-page;
-  padding-top: 20vh;
+  padding-top: 30vh;
   .oauth {
     align-items: center;
     a {
@@ -34,3 +34,4 @@
 #login-form{
   @include form-body;
 }
+
