@@ -145,9 +145,16 @@ app.factory('MealFactory', function($http) {
         });
     }
 
+    MealFactory.getFavorites = function(userId){
+        return $http.get(`api/users/${userId}/favorites/`)
+    }
 
     MealFactory.addFavorite = function(userId, recipeId){
         return $http.post(`api/users/${userId}/favorites/${recipeId}`)
+    }
+
+    MealFactory.removeFavorite = function(userId, recipeId){
+        return $http.delete(`api/users/${userId}/favorites/${recipeId}`)
     }
 
     return MealFactory;
