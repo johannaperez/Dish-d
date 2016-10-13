@@ -7,6 +7,9 @@
     width: 100vw;
     height: 90vh;
     navbar {
+        position: fixed;
+        top: 0;
+        z-index: 100;
         h1 {
             color: white;
         }

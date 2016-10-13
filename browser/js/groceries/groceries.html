@@ -1,19 +1,20 @@
 <md-content flex>
-<navbar header="Grocery List"></navbar>
-<div id="groceries">
-<div class="groceries">
-  	<h4>Download List
-		<md-button class="md-icon-button" ng-click="makePDF(sections)">
-			<ng-md-icon icon="file_download"></ng-md-icon>
-		</md-button>
-	</h4>
-  <div ng-repeat="section in headers | orderBy : section">
-    <h3> {{ section }} </h3> <br />
-  	<md-list-item ng-repeat="item in sections[section] | orderBy: 'name'">
-  		<p> {{item.name}}   ||   {{round(item.amount)}} {{item.unitLong}} </p>
-    	<md-checkbox class="md-secondary" ng-model="item.wanted"></md-checkbox>
-    </md-list-item>
-  </div>
-  </div>
-</div>
+    <navbar class="nav" header="Grocery List"></navbar>
+    <div id="groceries">
+        <div class="groceries">
+            <h4>Download List
+    <md-button class="md-icon-button" ng-click="makePDF(sections)">
+      <ng-md-icon icon="file_download"></ng-md-icon>
+    </md-button>
+  </h4>
+            <div ng-repeat="section in headers | orderBy : section">
+                <h3> {{ section }} </h3>
+                <br />
+                <md-list-item ng-repeat="item in sections[section] | orderBy: 'name'">
+                    <p> {{item.name}} || {{round(item.amount)}} {{item.unitLong}} </p>
+                    <md-checkbox class="md-secondary" ng-model="item.wanted"></md-checkbox>
+                </md-list-item>
+            </div>
+        </div>
+    </div>
 </md-content>

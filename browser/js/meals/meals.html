@@ -1,5 +1,5 @@
 <md-content flex>
-    <navbar header="My Meals"></navbar>
+    <navbar class="nav" header="My Meals"></navbar>
     <div id="meals">
         <div class="heading" flex layout="row">
             <md-button flex class="md-raised" layout="row" ng-click="refreshMeals()">
@@ -25,7 +25,7 @@
                                         </md-card-title-text>
                                     </md-card-title>
                                     <md-card-actions layout="row">
-                                        <md-button class="md-icon-button" aria-label="add to my meals" ng-click="selectMeal(meal)"ng-disabled="selectedMeals.length > 4">
+                                        <md-button class="md-icon-button" aria-label="add to my meals" ng-click="selectMeal(meal)" ng-disabled="selectedMeals.length > 4">
                                             <md-tooltip>Add Meal</md-tooltip>
                                             <ng-md-icon icon="add"></ng-md-icon>
                                         </md-button>
