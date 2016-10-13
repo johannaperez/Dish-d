@@ -16,12 +16,13 @@ app.config(function ($stateProvider) {
 
 app.controller('HistoryCtrl', function($scope, HistoryFactory, currentUser){
 
-	$scope.history = {};
+	$scope.history = [];
+	$scope.details = [];
 
 	HistoryFactory.getHistory(currentUser.id)
 	.then(function(history){
-		$scope.history = history;
-		console.log(history);
+		$scope.history = history[0];
+		$scope.details = history[1];
 	})
 
 });

@@ -1,13 +1,12 @@
 <md-content flex>
     <navbar class="nav" header="My History"></navbar>
-    <div id="history">
+    <div id="history" style="{padding-top: 50px}">
         <div ng-repeat="mealPlan in history">
-            <h3> {{ mealPlan }} </h3>
-            <br>
-            <!-- <md-list-item ng-repeat="item in sections[section] | orderBy: 'name'">
-                <p> {{item.name}} || {{round(item.amount)}} {{item.unitLong}} </p>
+            <h3> {{ mealPlan.createdAt }} </h3>
+            <md-list-item ng-repeat="recipe in details[$index]">
+                <p> {{ recipe.title }} </p>
                 <md-checkbox class="md-secondary" ng-model="item.wanted"></md-checkbox>
-            </md-list-item> -->
+            </md-list-item>
         </div>
     </div>
 </md-content>
