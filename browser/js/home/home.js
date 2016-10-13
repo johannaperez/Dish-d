@@ -14,7 +14,6 @@ app.config(function ($stateProvider) {
 
 app.controller('HomeCtrl', function ($scope, currentUser) {
         $scope.user = currentUser;
-        console.log("CURRENT USER:", currentUser);
 
         $scope.resources = [
             '*.ogv',
