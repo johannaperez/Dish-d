@@ -2,7 +2,7 @@ app.config(function ($stateProvider) {
     $stateProvider.state('home', {
         url: '/',
         templateUrl: 'js/home/home.html',
-        controller: 'homeCtrl',
+        controller: 'HomeCtrl',
         resolve: {
             currentUser: function(AuthService){
                 return AuthService.getLoggedInUser();
@@ -12,7 +12,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('homeCtrl', ['$scope', function ($scope, currentUser) {
+app.controller('HomeCtrl', function ($scope, currentUser) {
         $scope.user = currentUser;
         console.log("CURRENT USER:", currentUser);
 
@@ -26,4 +26,4 @@ app.controller('homeCtrl', ['$scope', function ($scope, currentUser) {
         $scope.zIndex = '10';
         $scope.playInfo = {};
         $scope.pausePlay = true;
-    }]);
+    });
