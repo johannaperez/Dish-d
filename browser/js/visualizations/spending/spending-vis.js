@@ -1,4 +1,4 @@
-app.controller('SpendingCtrl', ($scope) => {
+app.controller('SpendingCtrl', ($scope, currentUser) => {
 	$scope.options = {
 		chart: {
 			type: 'lineChart',

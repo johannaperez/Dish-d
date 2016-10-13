@@ -63,6 +63,4 @@ router.put('/:userId/preferences', (req, res, next) => {
 });
 
 
-
-
 module.exports = router;

@@ -49,13 +49,6 @@ app.factory('MemberInfoFactory', function($http){
             .then((response) => {
                 return response.data;
             })
-        },
-
-        getAllMeals: (userId) => {
-            return $http.get(`api/users/${userId}/meals/all`)
-            .then((response) => {
-                return response.data;
-            })
         }
     }
 });
