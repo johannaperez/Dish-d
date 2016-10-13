@@ -21,9 +21,8 @@ app.controller('HistoryCtrl', function($scope, HistoryFactory, currentUser){
 	HistoryFactory.getHistory(currentUser.id)
 	.then(function(history){
 		$scope.history = history;
-		console.log(history[0]);
+		console.log(history);
 	})
-
 
 });
 
@@ -37,5 +36,13 @@ app.factory('HistoryFactory', function($http){
 			return response.data;
 		})
 	};
+
+	// HistoryFactory.getHistoryDetail = function(userId, mealPlanId){
+	// 	return $http.get(`api/users/${userId}/history/${mealPlanId}`)
+	// 	.then(function(response){
+	// 		return response.data;
+	// 	})
+	// }
+
 	return HistoryFactory;
 });

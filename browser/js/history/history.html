@@ -1,6 +1,13 @@
 <md-content flex>
     <navbar class="nav" header="My History"></navbar>
     <div id="history">
-          
+        <div ng-repeat="mealPlan in history">
+            <h3> {{ mealPlan }} </h3>
+            <br>
+            <!-- <md-list-item ng-repeat="item in sections[section] | orderBy: 'name'">
+                <p> {{item.name}} || {{round(item.amount)}} {{item.unitLong}} </p>
+                <md-checkbox class="md-secondary" ng-model="item.wanted"></md-checkbox>
+            </md-list-item> -->
+        </div>
     </div>
 </md-content>
