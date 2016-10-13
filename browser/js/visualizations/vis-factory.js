@@ -92,8 +92,19 @@ app.factory('VisFactory', function($http){
             // build data in d3 format
             let data = [];
 
+            let upperCamelCase = (str) => {
+                let strArr = str.split(' ');
+                let upperStr = '';
+                strArr.forEach(word => {
+                    upperStr += word[0].toUpperCase() + word.slice(1)
+                });
+                return upperStr;
+            }
+
             let d3Name = (mealTitle, ing) => {
-                return `meals.${mealTitle}.${ing}`;
+                let upperMealTitle = upperCamelCase(mealTitle);
+                let upperIng = upperCamelCase(ing);
+                return `meals.${upperMealTitle}.${upperIng}`;
             }
 
             mealInfo.forEach(obj => {
