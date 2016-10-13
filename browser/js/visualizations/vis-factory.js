@@ -79,7 +79,7 @@ app.factory('VisFactory', function($http){
             mealArr.forEach(meal => {
                 meal.extendedIngredients.forEach(ing => {
                     if (ingIdx[ing.name] === undefined) {
-                        mealInfo.push({ingredient: ing.name, meals: [meal.title]});
+                        mealInfo.push({ing: ing.name, meals: [meal.title]});
                         ingIdx[ing.name] = mealInfo.length - 1;
                     }
                     else {
@@ -90,7 +90,23 @@ app.factory('VisFactory', function($http){
             })
 
             // build data in d3 format
-            
+            let data = [];
+
+            let d3Name = (mealTitle, ing) => {
+                return `meals.${mealTitle}.${ing}`;
+            }
+
+            mealInfo.forEach(obj => {
+                // no ingredient overlap
+                if (obj.meals.length === 1) {
+                    data.push({name: d3Name(obj.meals[0], obj.ing), size: 500, imports: []});
+                }
+                else {
+                   for (let i = 0; i < obj.meals.length; i++) {
+                     
+                   } 
+                }
+            })
 
             return mealInfo
 
