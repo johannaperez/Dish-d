@@ -84,7 +84,7 @@ app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $stat
             })
             .catch($log.error)
     }
-    //favorite a meal
+
     $scope.addFavorite = function(mealId){
         MealFactory.addFavorite(currentUser.id, mealId)
         .catch($log.error);
@@ -144,6 +144,7 @@ app.factory('MealFactory', function($http) {
                 return response.data;
         });
     }
+
 
     MealFactory.addFavorite = function(userId, recipeId){
         return $http.post(`api/users/${userId}/favorites/${recipeId}`)
