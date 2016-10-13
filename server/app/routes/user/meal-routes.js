@@ -26,7 +26,7 @@ router.get('', (req, res, next) => {
         res.send(meals)
       })
       .catch(next);
-    } 
+    }
     else {
 
       User.findById(id)
@@ -36,8 +36,6 @@ router.get('', (req, res, next) => {
       .then(function(recipes){
 
         if (recipes.length && Math.random() > 0.5){
-          console.log(recipes);
-          console.log('YOU GOT INTO THE IFF');
           let length = recipes.length;
           let random = Math.round(Math.random() * length);
           return recipes[random];
@@ -77,13 +75,27 @@ router.put('', (req, res, next) => {
       return plan;
     })
     .then(function(){
-      return Recipe.randomRecipes(id, 1)
+      return User.findById(id)
+      .then(function(user){
+        return user.getRecipes();
+      })
+      .then(function(recipes){
+
+        if (recipes.length && Math.random() > 0.5){
+          let length = recipes.length;
+          let random = Math.round(Math.random() * length);
+          return recipes[random];
+        }
+        else {
+          return Recipe.randomRecipes(id, 1);
+        }
+      })
     })
     .then(function(rec){
-        return getMeals(rec[0], id);
+      return getMeals(rec[0], id);
     })
     .then(function(mealPlan){
-        res.send(mealPlan);
+      res.send(mealPlan);
     })
     .catch(next);
 })
