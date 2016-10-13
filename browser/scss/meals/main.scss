@@ -45,12 +45,15 @@
         display: none !important;
     }
     .meals {
+        background-color: #E8E8E8;
         display: flex;
         align-items: center;
         flex-direction: column;
         margin-left: 2vw;
+        border-left: 1px dotted #9a9a9a;
         width: 30vw;
-        height: 70vh;
+        height: 110vh;
+        padding-top: 20vh;
         .md-list-item {
             .md-button {
                 display: flex;

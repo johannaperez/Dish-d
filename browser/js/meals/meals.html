@@ -1,11 +1,11 @@
 <md-content flex>
     <navbar class="nav" header="My Meals"></navbar>
     <div id="meals">
-        <div class="heading" flex layout="row">
+<!--         <div class="heading" flex layout="row">
             <md-button flex class="md-raised" layout="row" ng-click="refreshMeals()">
                 <div>Not your taste? Dish up new ones!</div>
             </md-button>
-        </div>
+        </div> -->
         <!--choosing meals view -->
         <section ng-if="showSlider" class="mealsMain" layout="row" flex>
             <md-button class="md-icon-button dir" aria-label="Previous" ng-click="slickConfig.method.slickPrev()">
@@ -47,6 +47,7 @@
             <md-button class="md-icon-button dir" aria-label="Next" ng-click="slickConfig.method.slickNext()">
                 <ng-md-icon icon="navigate_next" size="60px"></ng-md-icon>
             </md-button>
+
             <section class="meals" flex>
                 <div>
                     <h3>Choose up to 5 meals:</h3></div>
@@ -67,7 +68,6 @@
                         <div>ADD GROCERIES</div><i class="material-icons s">shopping_basket</i></md-button>
                 </section>
             </section>
-        </section>
         <!-- view chosen meals view -->
         <section ng-if="!showSlider">
             <div ng-repeat="meal in meals">
