@@ -119,13 +119,11 @@ router.get('/grocerylist', (req, res, next) => {
 })
 
 router.get('/all', (req, res, next) => {
-  //if the user already has a meal plan, close it
   Recipe.findAll()
   .then(function(recipes){
     res.send(recipes);
   })
   .catch(next);
-
 })
 
 module.exports = router;
