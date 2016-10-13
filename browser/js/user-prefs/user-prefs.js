@@ -51,7 +51,10 @@ app.controller('PrefsCtrl', function ($scope, $log, $state, PrefsFactory, $state
     };
 
     $scope.savePrefs = () => {
-        return PrefsFactory.savePrefs($stateParams.userId, $scope.myPrefs);
+        return PrefsFactory.savePrefs($stateParams.userId, $scope.myPrefs)
+        .then(() => {
+            $state.go('meals');
+        })
     };
 });
 
