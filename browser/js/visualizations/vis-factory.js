@@ -62,6 +62,7 @@ app.factory('VisFactory', function($http){
                 }
             ];
 
+            // build data in d3 format
             mealArr.forEach(meal => {
                 meal.extendedIngredients.forEach(ing => {
                     if (catDict[ing.aisle]) {
