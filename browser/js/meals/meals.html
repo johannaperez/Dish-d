@@ -1,12 +1,10 @@
 <md-content flex>
     <navbar class="nav" header="My Meals"></navbar>
     <div id="meals">
-<!--         <div class="heading" flex layout="row">
-            <md-button flex class="md-raised" layout="row" ng-click="refreshMeals()">
-                <div>Not your taste? Dish up new ones!</div>
-            </md-button>
-        </div> -->
         <!--choosing meals view -->
+        <div class="progress" ng-if="!mealsLoaded">
+            <md-progress-circular md-diameter="100px"></md-progress-circular>
+        </div>
         <section ng-if="showSlider && mealsLoaded" layout="row">
             <section class="meals" layout="column" flex="30">
             <md-button id="refresh" class="md-icon-button" aria-label="Recipe" ng-click="refreshMeals()">

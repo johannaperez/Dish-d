@@ -5,6 +5,10 @@
     justify-content: center;
     width: 100vw;
     padding-top: 10vh;
+    .progress{
+        padding-top: 30vh;
+        color: $theme-yellow;
+    }
     .meal-list {
         md-card-actions{
             background-color: $theme-yellow;
