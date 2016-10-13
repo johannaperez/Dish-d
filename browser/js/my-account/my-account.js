@@ -26,6 +26,10 @@ app.config(function ($stateProvider) {
             spending: {
                 templateUrl: 'js/visualizations/spending/spending-vis.html',
                 controller: 'SpendingCtrl'
+            },
+            overlap: {
+                templateUrl: 'js/visualizations/overlap/overlap-vis.html',
+                controller: 'OverlapCtrl'
             }
         }
     });
