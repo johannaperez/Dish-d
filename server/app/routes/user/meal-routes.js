@@ -98,7 +98,6 @@ router.post('', (req, res, next) => {
     res.sendStatus(201);
   })
   .catch(next);
-
 })
 
 //create a new active meal plan for user
@@ -115,7 +114,6 @@ router.get('/grocerylist', (req, res, next) => {
     res.send(plan.groceryList);
   })
   .catch(next);
-
 })
 
 router.get('/all', (req, res, next) => {
@@ -125,7 +123,6 @@ router.get('/all', (req, res, next) => {
     res.send(recipes);
   })
   .catch(next);
-
 })
 
 module.exports = router;

@@ -77,7 +77,7 @@ app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $stat
     }
 
     $scope.addGroceries = function() {
-        console.log(currentUser.id)
+        // console.log(currentUser.id)
         MealFactory.addMealPlan(currentUser.id, $scope.selectedMeals)
             .then(function() {
                 $state.go('groceries');

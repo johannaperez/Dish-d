@@ -1,4 +1,5 @@
 app.controller('CategoriesCtrl', ($scope) => {
+
 	$scope.options = {
 		chart: {
 			type: 'sunburstChart',
@@ -17,44 +18,43 @@ app.controller('CategoriesCtrl', ($scope) => {
 			}, {
 				name: 'Meat, eggs, beans, nuts',
 				children: [
-					{name: 'canned chickpeas', size: 30},
-					{name: 'hummus', size: 30000},
-					{name: 'ground lamb', size: 3000},
-					{name: 'pecans', size: 3000},
+					{name: 'canned chickpeas'},
+					{name: 'hummus'},
+					{name: 'ground lamb'},
+					{name: 'pecans'},
 				]
 			}, {
 				name: 'Fats, oils, sweets',
 				children: [
-					{name: 'honey', size: 3000},
-					{name: 'olive oil', size: 30},
-					{name: 'coconut oil', size: 30}
-				]
+					{name: 'honey'},
+					{name: 'olive oil'},
+					{name: 'coconut oil'}				]
 			}, {
 				name: 'Vegetables',
 				children: [
-					{name: 'chile garlic sauce', size: 8000},
-					{name: 'garlic', size: 300000},
-					{name: 'greens', size: 3000},
-					{name: 'tomato', size: 3000},
-					{name: 'shallot', size: 3000},
-					{name: 'butternut squash', size: 3000},
-					{name: 'celery', size: 3000},
-					{name: 'yellow onion', size: 3000}
+					{name: 'chile garlic sauce'},
+					{name: 'garlic'},
+					{name: 'greens'},
+					{name: 'tomato'},
+					{name: 'shallot'},
+					{name: 'butternut squash'},
+					{name: 'celery'},
+					{name: 'yellow onion'}
 				]
 			}, {
 				name: 'Fruits',
 				children: [
-					{name: 'lemon', size: 3000},
-					{name: 'dried cherries', size: 3000},
-					{name: 'juice of lemon', size: 3000},
-					{name: 'bosc pear', size: 3000},
-					{name: 'dried cranberries', size: 3000}
+					{name: 'lemon'},
+					{name: 'dried cherries'},
+					{name: 'juice of lemon'},
+					{name: 'bosc pear'},
+					{name: 'dried cranberries'}
 				]
 			}, {
 				name: 'Carbs',
 				children: [
-					{name: 'oat flour', size: 9000},
-					{name: 'wild rice', size: 3000}
+					{name: 'oat flour'},
+					{name: 'wild rice'}
 				]
 			}
 		]
