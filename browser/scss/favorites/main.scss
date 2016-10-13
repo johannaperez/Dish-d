@@ -1,0 +1,25 @@
+#favorites{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+  padding: 8vh 0;
+  a {
+      cursor: pointer;
+      border-bottom: 1px dotted #9a9a9a;
+      color: #383838;
+  }
+  md-card {
+      md-card-content .md-media-xl {
+          height: 50vh;
+          width: 40vw;
+      }
+      md-card-actions {
+          justify-content: flex-end;
+      }
+      .recipe {
+          width: 18vw !important
+      }
+  }
+}

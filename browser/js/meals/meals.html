@@ -25,10 +25,16 @@
                                         </md-card-title-text>
                                     </md-card-title>
                                     <md-card-actions layout="row">
-                                        <md-button class="md-icon-button" aria-label="add to my meals" ng-click="selectMeal(meal)" ng-disabled="selectedMeals.length > 4">
+                                        <md-button class="md-icon-button" aria-label="add to my meals" ng-click="selectMeal(meal)"ng-disabled="selectedMeals.length > 4">
+                                            <md-tooltip>Add Meal</md-tooltip>
                                             <ng-md-icon icon="add"></ng-md-icon>
                                         </md-button>
+                                        <md-button class="md-icon-button" aria-label="add to my favorites" ng-click="addFavorite(meal.id)">
+                                            <md-tooltip>Add to Favorites</md-tooltip>
+                                            <ng-md-icon icon="favorite"></ng-md-icon>
+                                        </md-button>
                                         <md-button class="md-icon-button" aria-label="Recipe" ng-click="showRecipe(meal)">
+                                            <md-tooltip>Show Full Recipe</md-tooltip>
                                             <i class="material-icons">room_service</i>
                                         </md-button>
                                     </md-card-actions>
@@ -50,6 +56,7 @@
                             <img ng-src="{{ selectedMeal.image }}" class="md-avatar">
                             <p>{{ selectedMeal.title | limitTo : 25}}{{ selectedMeal.title.length > 25 ? '...' : ''}}</p>
                             <md-button class="md-icon-button md-mini" ng-click="removeMeal(selectedMeal.id)" aria-label="Remove Recipe">
+                                <md-tooltip>Remove Recipe</md-tooltip>
                                 <i class="material-icons">close</i>
                             </md-button>
                         </md-list-item>
@@ -76,6 +83,7 @@
                             </md-card-title>
                             <md-card-actions layout="row">
                                 <md-button class="md-icon-button" aria-label="Recipe" ng-click="showRecipe(meal)">
+                                    <md-tooltip>Show Full Recipe</md-tooltip>
                                     <i class="material-icons">room_service</i>
                                 </md-button>
                             </md-card-actions>

@@ -13,8 +13,7 @@ module.exports = {
 		//get list of 10 associated meals given the first recipe
 		let mealPlan = recipe.mealsWithSimilarIngredients;
 		//Filter that list by user restrictions
-		return UserPref.findOne(
-		{
+		return UserPref.findOne({
 			where: {
 				userId: userId
 			}

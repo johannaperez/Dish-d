@@ -11,6 +11,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
             scope.items = [
                 { label: 'My Account', state: 'myAccount.charts', auth: true },
                 { label: 'My Meals', state: 'meals', auth: true },
+                { label: 'My Favorites', state: 'favorites', auth: true },
                 { label: 'Grocery List', state: 'groceries', auth: true }
             ];
 

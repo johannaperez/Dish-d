@@ -2,7 +2,7 @@ app.controller('CategoriesCtrl', ($scope, $log, $q, currentUser, VisFactory) => 
 
 	VisFactory.getActiveMealPlan(currentUser.id)
 	.then(mealPlan => {
-		// array of recipes in mealPlan
+		// array of recipes in active mealPlan
 		$scope.activeMealPlan = mealPlan;
 		$scope.data = VisFactory.buildCategoryData($scope.activeMealPlan);
 	})

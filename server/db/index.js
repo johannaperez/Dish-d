@@ -12,7 +12,10 @@ Ingredient.belongsToMany(Recipe, { through: 'recipes_ingredients', as: 'recipes'
 Recipe.belongsToMany(Ingredient, { through: 'recipes_ingredients', as: 'ingredients' });
 
 UserPref.belongsTo(User);	// UserPref has userId column
+MealPlan.belongsTo(User);   // MealPlan has userId column
 
-MealPlan.belongsTo(User);
+// handle users having favorite recipes
+User.belongsToMany(Recipe, { through: 'user_recipes'});
+Recipe.belongsToMany(User, { through: 'user_recipes'});
 
 module.exports = db;

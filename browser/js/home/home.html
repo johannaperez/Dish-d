@@ -11,8 +11,8 @@
                 justify-content: center;
                 flex-direction: column;">
                 <h1>get your dish'd on</h1>
-                <md-button ui-sref="signup">start here</md-button>
-                <div class="link" ui-sref="login">already a member? login</div>
+                <md-button ng-hide="user" ui-sref="signup">start here</md-button>
+                <div ng-hide="user" class="link" ui-sref="login">already a member? login</div>
             </section>
         </div>
     </div>
