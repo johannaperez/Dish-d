@@ -25,4 +25,4 @@ app.controller('HomeCtrl', function ($scope, currentUser) {
         $scope.zIndex = '10';
         $scope.playInfo = {};
         $scope.pausePlay = true;
-    });
+});
