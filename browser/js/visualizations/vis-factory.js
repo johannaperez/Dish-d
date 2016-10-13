@@ -8,13 +8,6 @@ app.factory('VisFactory', function($http){
             })
         },
 
-        getMealPlanRecipes: (recId) => {
-            return $http.get(`api/recipes/${recId}`)
-            .then(res => {
-                return res.data;
-            })
-        },
-
         buildCategoryData: (mealArr) => {
             // eventually build a fruit/veg dict to discriminate
             // use to map api aisle to chart categories
@@ -74,8 +67,60 @@ app.factory('VisFactory', function($http){
             })
 
             let data = [{name: 'Your Ingredients', children: dataChildren}];
-
             return data;
+        },
+
+        buildOverlapData: (mealArr) => {
+            // get all ings for all meals for further filtering
+            let mealInfo = [];
+            let ingIdx = {};
+            // [{ing: parsley, meals: [falafel burger, meatballs]}, {ing: thing, meals:[]}]
+
+            mealArr.forEach(meal => {
+                meal.extendedIngredients.forEach(ing => {
+                    if (ingIdx[ing.name] === undefined) {
+                        mealInfo.push({ingredient: ing.name, meals: [meal.title]});
+                        ingIdx[ing.name] = mealInfo.length - 1;
+                    }
+                    else {
+                        let idx = ingIdx[ing.name];
+                        mealInfo[idx].meals.push(meal.title);
+                    }
+                })
+            })
+
+            // build data in d3 format
+            
+
+            return mealInfo
+
+
+            /*
+                go through each ing in meal1
+                    check if ing1 is INCLUDED in meal2.ings
+                        if yes: {name:meals.meal1.ing1, size:500, imports:[meals.meal2.ing1]}
+                        * create the backward loop!
+                    check if ing2 is INCLUDED in meal3.ings
+                    ...
+                    meali.ings
+            */
+
         }
+
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

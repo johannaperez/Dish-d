@@ -1,4 +1,13 @@
-app.controller('OverlapCtrl', ($scope) => {
+/* eslint-disable */
+
+app.controller('OverlapCtrl', ($scope, $log, currentUser, VisFactory) => {
+
+	VisFactory.getActiveMealPlan(currentUser.id)
+	.then(mealPlan => {
+		$scope.activeMealPlan = mealPlan;
+		$scope.testData = VisFactory.buildOverlapData($scope.activeMealPlan)
+	})
+	.catch($log.error);
 
 	$scope.data = [
 		{"name":"meals.baked-falafel-burger.parsley","size":500,"imports":["meals.kofta-meatballs.parsely","meals.wild-rice-stuffing.parsely"]},
@@ -77,7 +86,7 @@ app.controller('OverlapCtrl', ($scope) => {
 	  link = link
 	      .data(bundle(links))
 	    .enter().append("path")
-	      .each(function(d) {ß
+	      .each(function(d) {
 	      	d.source = d[0];
 	      	d.target = d[d.length - 1]
 	      })
@@ -168,6 +177,3 @@ app.controller('OverlapCtrl', ($scope) => {
 	}
 
 });
-
-/* eslint-disable */
-
