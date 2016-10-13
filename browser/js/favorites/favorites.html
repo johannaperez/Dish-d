@@ -1,71 +1,31 @@
 <md-content flex>
-    <navbar header="My Favorites"></navbar>
-    <div id="meals">
-        <div class="heading" flex layout="row">
-            <md-button flex class="md-raised" layout="row" ng-click="refreshMeals()">
-                <div>Not your taste? Dish up new ones!</div>
-            </md-button>
-        </div>
-        <section ng-if="showSlider" class="mealsMain" layout="row" flex>
-            <md-button class="md-icon-button dir" aria-label="Previous" ng-click="slickConfig.method.slickPrev()">
-                <ng-md-icon icon="navigate_before" size="60px"></ng-md-icon>
-            </md-button>
-            <div class="slick-container">
-                <slick settings="slickConfig" slides-to-scroll=1 ng-if="mealsLoaded">
-                    <div ng-repeat="meal in meals">
-                        <md-card>
-                            <md-card-content layout="row" layout-align="space-between">
-                                <div class="md-media-xl card-media" style="background: url({{meal.image}}) center; background-size: cover; background-position: center; ">
-                                </div>
-                                <div class="recipe" layout="column">
-                                    <md-card-title>
-                                        <md-card-title-text>
-                                            <span class="md-headline">{{meal.title}}</span>
-                                        </md-card-title-text>
-                                    </md-card-title>
-                                    <md-card-actions layout="row">
-                                        <md-button class="md-icon-button" aria-label="add to my meals" ng-click="selectMeal(meal)" ng-disabled="selectedMeals.length > 4">
-                                            <md-tooltip>Add Meal</md-tooltip>
-                                            <ng-md-icon icon="add"></ng-md-icon>
-                                        </md-button>
-                                        <md-button class="md-icon-button" aria-label="add to my favorites" ng-click="addFavorite(meal.id)">
-                                            <md-tooltip>Remove from Favorites</md-tooltip>
-                                            <ng-md-icon icon="delete"></ng-md-icon>
-                                        </md-button>
-                                        <md-button class="md-icon-button" aria-label="Recipe" ng-click="showRecipe(meal)">
-                                            <md-tooltip>Show Full Recipe</md-tooltip>
-                                            <i class="material-icons">room_service</i>
-                                        </md-button>
-                                    </md-card-actions>
-                                </div>
-                            </md-card-content>
-                        </md-card>
-                    </div>
-                </slick>
+<navbar header="My Favorites"></navbar>
+<p ng-if="!meals.length">Add some meals to your favorites to see them here!</p>
+ <div ng-repeat="meal in meals">
+                <md-card>
+                    <md-card-content layout="row" layout-align="space-between">
+                        <div class="md-media-xl card-media" style="background: url({{meal.image}}) center; background-size: cover; background-position: center; ">
+                        </div>
+                        <div class="recipe" layout="column">
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline">{{meal.title}}</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-actions layout="row">
+                                <md-button class="md-icon-button" aria-label="Recipe" ng-click="showRecipe(meal)">
+                                    <md-tooltip>Show Full Recipe</md-tooltip>
+                                    <i class="material-icons">room_service</i>
+                                </md-button>
+                                 <md-button class="md-icon-button" aria-label="Recipe" ng-click="removeRecipe(meal.id)">
+                                    <md-tooltip>Remove from Favorites</md-tooltip>
+                                    <ng-md-icon icon="delete"></ng-md-icon>
+                                </md-button>
+                            </md-card-actions>
+                        </div>
+                    </md-card-content>
+                </md-card>
             </div>
-            <md-button class="md-icon-button dir" aria-label="Next" ng-click="slickConfig.method.slickNext()">
-                <ng-md-icon icon="navigate_next" size="60px"></ng-md-icon>
-            </md-button>
-            <section class="meals" flex>
-                <div>
-                    <h3>Choose up to 5 meals:</h3></div>
-                <div>
-                    <md-list flex ng-repeat="selectedMeal in selectedMeals">
-                        <md-list-item>
-                            <img ng-src="{{ selectedMeal.image }}" class="md-avatar">
-                            <p>{{ selectedMeal.title | limitTo : 25}}{{ selectedMeal.title.length > 25 ? '...' : ''}}</p>
-                            <md-button class="md-icon-button md-mini" ng-click="removeMeal(selectedMeal.id)" aria-label="Remove Recipe">
-                                <md-tooltip>Remove Recipe</md-tooltip>
-                                <i class="material-icons">close</i>
-                            </md-button>
-                        </md-list-item>
-                    </md-list>
-                </div>
-                <section>
-                    <md-button flex layout="row" ng-show="selectedMeals.length" ng-click="addGroceries()">
-                        <div>ADD GROCERIES</div><i class="material-icons s">shopping_basket</i></md-button>
-                </section>
-            </section>
         </section>
     </div>
 </md-content>
