@@ -25,7 +25,6 @@ app.controller('FavoritesCtrl', function($scope, FavoritesFactory, currentUser, 
     $scope.removeRecipe = function(mealId){
         FavoritesFactory.removeFavorite(currentUser.id, mealId)
         .then(function(){
-            console.log('HEY I GOT INTO THE THEN!!!')
            return FavoritesFactory.getFavorites(currentUser.id)
         })
         .then(function(favorites){
