@@ -17,7 +17,12 @@
       }
       md-card-actions {
           justify-content: flex-end;
+          background-color: $theme-yellow;
+          margin-left: 7vw;
+          border: 1px dotted #9a9a9a;
+          border-radius: 2px;
       }
+
       .recipe {
           width: 18vw !important
       }

@@ -5,6 +5,14 @@
     justify-content: center;
     width: 100vw;
     padding-top: 10vh;
+    .meal-list {
+        md-card-actions{
+            background-color: $theme-yellow;
+            margin-left: 7vw;
+            border: 1px dotted #9a9a9a;
+            border-radius: 2px;
+        }
+    }
     .title {
         justify-content: center;
     }
