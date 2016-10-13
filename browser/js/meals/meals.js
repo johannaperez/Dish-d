@@ -18,6 +18,7 @@ app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $stat
     $scope.meals = [];
     $scope.selectedMeals = [];
 
+
     //fetch meals to display on page load
     MealFactory.getMealPlan(currentUser.id)
     .then(function(meals) {
@@ -53,7 +54,6 @@ app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $stat
     //slick functionality
     $scope.slickConfig = {
         adaptiveHeight: true,
-        // initialSlide: 0,
         mobileFirst: true,
         slidesToScroll: 1,
         slideToShow: 1,
