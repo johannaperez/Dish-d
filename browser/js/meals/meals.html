@@ -75,9 +75,19 @@
                 <ng-md-icon icon="navigate_next" size="60px"></ng-md-icon>
             </md-button>
             </section>
+            </section>
         <!-- view chosen meals view -->
         <section ng-if="!showSlider">
-            <div ng-repeat="meal in meals">
+            <div layout="row" class="title">
+                <h2>
+                    <md-button id="refresh" class="md-icon-button" aria-label="Recipe" ng-click="refreshMeals()">
+                        <md-tooltip>See Different Meals</md-tooltip>
+                        <ng-md-icon icon="refresh"></ng-md-icon>
+                    </md-button>
+                    Currently Selected Meals
+                </h2>
+            </div>
+            <div ng-repeat="meal in meals" layout="row">
                 <md-card>
                     <md-card-content layout="row" layout-align="space-between">
                         <div class="md-media-xl card-media" style="background: url({{meal.image}}) center; background-size: cover; background-position: center; ">

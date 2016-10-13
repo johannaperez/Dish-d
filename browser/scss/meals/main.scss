@@ -5,6 +5,9 @@
     justify-content: center;
     width: 100vw;
     padding-top: 10vh;
+    .title {
+        justify-content: center;
+    }
     .mealsMain {
         display: flex;
         align-items: center;
@@ -41,8 +44,7 @@
         display: none !important;
     }
     .meals {
-        //background-color: #E8E8E8;
-        background-color: #cce5cc;
+        background-color: #E8E8E8;
         display: flex;
         align-items: center;
         flex-direction: column;
