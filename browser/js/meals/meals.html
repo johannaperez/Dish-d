@@ -7,7 +7,34 @@
             </md-button>
         </div> -->
         <!--choosing meals view -->
-        <section ng-if="showSlider" class="mealsMain" layout="row" flex>
+        <section ng-if="showSlider" layout="row">
+            <section class="meals" layout="column" flex="30">
+            <md-button id="refresh" class="md-icon-button" aria-label="Recipe" ng-click="refreshMeals()">
+                <md-tooltip>See Different Meals</md-tooltip>
+                <ng-md-icon icon="refresh" size="40"></ng-md-icon>
+            </md-button>
+                <div class="meals-header">
+                    <h3>Choose up to 5 meals:</h3></div>
+                <div>
+                    <md-list flex ng-repeat="selectedMeal in selectedMeals">
+                        <md-list-item>
+                            <img ng-src="{{ selectedMeal.image }}" class="md-avatar">
+                            <p>{{ selectedMeal.title | limitTo : 15}}{{ selectedMeal.title.length > 15 ? '...' : ''}}</p>
+                            <md-button class="md-icon-button md-mini" ng-click="removeMeal(selectedMeal.id)" aria-label="Remove Recipe">
+                                <md-tooltip>Remove Recipe</md-tooltip>
+                                <i class="material-icons">close</i>
+                            </md-button>
+                        </md-list-item>
+                    </md-list>
+                </div>
+                <section>
+                    <md-button flex class="grocery-btn md-raised" layout="row" ng-show="selectedMeals.length" ng-click="addGroceries()">
+                        <div>ADD GROCERIES</div>
+                    </md-button>
+                </section>
+            </section>
+
+            <section layout="column" class="mealsMain" flex="70">
             <md-button class="md-icon-button dir" aria-label="Previous" ng-click="slickConfig.method.slickPrev()">
                 <ng-md-icon icon="navigate_before" size="60px"></ng-md-icon>
             </md-button>
@@ -47,26 +74,6 @@
             <md-button class="md-icon-button dir" aria-label="Next" ng-click="slickConfig.method.slickNext()">
                 <ng-md-icon icon="navigate_next" size="60px"></ng-md-icon>
             </md-button>
-
-            <section class="meals" flex>
-                <div>
-                    <h3>Choose up to 5 meals:</h3></div>
-                <div>
-                    <md-list flex ng-repeat="selectedMeal in selectedMeals">
-                        <md-list-item>
-                            <img ng-src="{{ selectedMeal.image }}" class="md-avatar">
-                            <p>{{ selectedMeal.title | limitTo : 25}}{{ selectedMeal.title.length > 25 ? '...' : ''}}</p>
-                            <md-button class="md-icon-button md-mini" ng-click="removeMeal(selectedMeal.id)" aria-label="Remove Recipe">
-                                <md-tooltip>Remove Recipe</md-tooltip>
-                                <i class="material-icons">close</i>
-                            </md-button>
-                        </md-list-item>
-                    </md-list>
-                </div>
-                <section>
-                    <md-button flex layout="row" ng-show="selectedMeals.length" ng-click="addGroceries()">
-                        <div>ADD GROCERIES</div><i class="material-icons s">shopping_basket</i></md-button>
-                </section>
             </section>
         <!-- view chosen meals view -->
         <section ng-if="!showSlider">

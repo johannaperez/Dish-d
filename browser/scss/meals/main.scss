@@ -5,24 +5,20 @@
     justify-content: center;
     width: 100vw;
     padding-top: 10vh;
-    .heading {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: center;
-        width: 80vw;
-        .md-button {
-            width: 85vw;
-            justify-content: center;
-            background-color: #FEE778;
-        }
-    }
     .mealsMain {
         display: flex;
         align-items: center;
-        flex-driection: row;
+        flex-direction: row;
+        padding-top: 15vh;
         justify-content: center;
+        width: 70vw;
         height: 70vh;
+        md-card-actions{
+            background-color: $theme-yellow;
+            margin-left: 2vw;
+            border: 1px dotted #9a9a9a;
+            border-radius: 2px;
+        }
         .btn {
             display: flex;
             align-self: center;
@@ -45,19 +41,31 @@
         display: none !important;
     }
     .meals {
-        background-color: #E8E8E8;
+        //background-color: #E8E8E8;
+        background-color: #cce5cc;
         display: flex;
         align-items: center;
         flex-direction: column;
-        margin-left: 2vw;
-        border-left: 1px dotted #9a9a9a;
+        margin-right: 2vw;
+        border-right: 1px dotted #9a9a9a;
         width: 30vw;
         height: 110vh;
-        padding-top: 20vh;
+        .grocery-btn{
+            background-color: $theme-yellow;
+        }
+        #refresh{
+            width: 60px;
+            height: 60px;
+        }
+        .meals-header {
+            border-top: 1px dotted #9a9a9a;
+            border-bottom: 1px dotted #9a9a9a;
+        }
         .md-list-item {
             .md-button {
                 display: flex;
                 align-self: flex-end;
+                background-color: $theme-yellow;
             }
         }
     }
