@@ -1,6 +1,7 @@
 
 const db = require('../../../db');
 const Recipe = db.model('recipe');
+const User = db.model('user');
 const MealPlan = db.model('mealPlan');
 const router = require('express').Router({mergeParams: true});
 const getMeals = require('./meal-generator').getMeals;
@@ -25,11 +26,30 @@ router.get('', (req, res, next) => {
         res.send(meals)
       })
       .catch(next);
-    } else {
-      // todo once user has favorites, use this as starting meal
-      Recipe.randomRecipes(id, 1)
+    } 
+    else {
+
+      User.findById(id)
+      .then(function(user){
+        return user.getRecipes();
+      })
+      .then(function(recipes){
+
+        if (recipes.length && Math.random() > 0.5){
+          console.log(recipes);
+          console.log('YOU GOT INTO THE IFF');
+          let length = recipes.length;
+          let random = Math.round(Math.random() * length);
+          return recipes[random];
+        }
+        else {
+          return Recipe.randomRecipes(id, 1);
+        }
+
+      })
       .then(function(rec){
-        return getMeals(rec[0], id);
+        if (Array.isArray(rec)) rec = rec[0];
+        return getMeals(rec, id);
       })
       .then(function(mealPlan){
         res.send(mealPlan);
