@@ -1,8 +1,47 @@
 #about {
+    z-index: 100;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     width: 100vw;
-    height: 85vh;
+    height: 90vh;
+    navbar {
+        h1 {
+            color: white;
+        }
+        ng-md-icon {
+            fill: white;
+        }
+    }
+    .aboutpage {
+        background-image: none;
+        background-color: rgba(255,255,255,0.5);
+        .md-button {
+            border: 1px dotted white;
+        }
+        h1 {
+            padding: 5px;
+        }
+        span {
+            font-size: 20px;
+        }
+        .link {
+            color: #FDFDFD;
+            cursor: pointer;
+            border-bottom: 1px dotted #9a9a9a;
+            font-size: 16px;
+        }
+    }
 }
+
+md-content #aboutpic {
+    background: url('https://d16cs9nbg8x6iq.cloudfront.net/p/?url=https%3A%2F%2Fd16cs9nbg8x6iq.cloudfront.net%2Fi%2F38755cca9990961867659007f4605c32%2F&q=75&w=3000&h=1000&opt=1&fmt=webp') center;
+    background-size: cover;
+    object-fit: cover !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 10;
+}
+
+

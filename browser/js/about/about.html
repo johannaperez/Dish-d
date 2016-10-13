@@ -1,11 +1,24 @@
-<md-content flex>
-  <navbar header="About Dish'd"></navbar>
-    <div layout="row">
-        <div flex>
-            <section id="about">
-                <p>
-                    Dish'd! Get your dish on.
-                </p>
+<md-content>
+    <div layout="row" flex layout-align="end center">
+        <md-content>
+            <div id="aboutpic"> </vid-bg>
+        </md-content>
+        <div id="about" flex>
+            <navbar></navbar>
+            <section class="aboutpage" flex style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;">
+                <h1>Dish'd is the meal planning app that simplifies cooking at home</h1>
+                <h3>Dish'd curates meals based on your lifestyle</h3>
+                <p>No more scouring the internet for the perfect recipe to make a delicious, home-cooked meal</p>
+                <h3>Dish'd helps you save money on food costs</h3>
+                <p>In New York City alone, ~36% of our income goes to food alone, 2nd to rent cost</p>
+                <h3>Dish'd makes you a smarter, super human</h3>
+                <p>See real time stats of what you ate and how you minimized food waste</p>
+                <md-button ng-hide="user" ui-sref="signup">start here</md-button>
+                <!-- <div ng-hide="user" class="link" ui-sref="login">already a member? login</div> -->
             </section>
         </div>
     </div>
