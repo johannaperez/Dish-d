@@ -25,7 +25,7 @@ app.controller('ListCtrl', function($scope, ListFactory, currentUser) {
     $scope.headers = Object.keys(groceryList);
   })
 
-  $scope.round = ListFactory.round; 
+  $scope.round = ListFactory.round;
 
   $scope.makePDF = ListFactory.makePDF;
 
