@@ -8,7 +8,7 @@ app.config(function ($stateProvider) {
                 return AuthService.getLoggedInUser();
             }
         },
-        cache: false
+        cache: true
     });
 });
 
