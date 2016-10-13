@@ -7,6 +7,9 @@
     width: 100vw;
     height: 90vh;
     navbar {
+        position: fixed;
+        top: 0;
+        z-index: 100;
         h1 {
             color: white;
         }
@@ -17,6 +20,7 @@
     .aboutpage {
         background-image: none;
         background-color: rgba(255,255,255,0.5);
+        max-height: 60vh;
         .md-button {
             border: 1px dotted white;
         }
