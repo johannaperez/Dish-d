@@ -1,5 +1,5 @@
 <md-content flex>
-    <navbar header="My Favorites"></navbar>
+    <navbar class="nav" header="My Favorites"></navbar>
     <div id="favorites">
         <p ng-if="!meals.length"><a ui-sref="meals">Add some meals</a> to your favorites to see them here!</p>
         <div ng-repeat="meal in meals">
@@ -14,13 +14,13 @@
                             </md-card-title-text>
                         </md-card-title>
                         <md-card-actions layout="row">
-                            <md-button class="md-icon-button" aria-label="Recipe" ng-click="showRecipe(meal)">
-                                <md-tooltip>Show Full Recipe</md-tooltip>
-                                <i class="material-icons">room_service</i>
-                            </md-button>
                             <md-button class="md-icon-button" aria-label="Recipe" ng-click="removeRecipe(meal.id)">
                                 <md-tooltip>Remove from Favorites</md-tooltip>
                                 <ng-md-icon icon="delete"></ng-md-icon>
+                            </md-button>
+                            <md-button class="md-icon-button" aria-label="Recipe" ng-click="showRecipe(meal)">
+                                <md-tooltip>Show Full Recipe</md-tooltip>
+                                <i class="material-icons">room_service</i>
                             </md-button>
                         </md-card-actions>
                     </div>

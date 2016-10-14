@@ -1,14 +1,14 @@
 <md-content id="myacct">
-    <navbar header="My Account"></navbar>
+    <navbar class="nav" header="My Account"></navbar>
     <div class="container" layout="column">
 
         <div class="item">
             <section class="banner">
                 <p><strong>{{ userUpper }}</strong>, check out your dish'd stats!</p>
-                    <div>
+                <div>
                     <md-button ui-sref="meals">My Meals</md-button>
                     <md-button ui-sref="prefs({userId: userId})">Edit Preferences</md-button>
-                    </div>
+                </div>
                 <p>Member Since {{ userYear }}</p>
             </section>
         </div>

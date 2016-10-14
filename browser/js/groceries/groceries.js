@@ -17,15 +17,16 @@ app.config(function ($stateProvider) {
 app.controller('ListCtrl', function($scope, ListFactory, currentUser) {
 
   $scope.sections = {};
-
+  $scope.showList = false;
 
   ListFactory.getGroceryList(currentUser.id)
   .then(function(groceryList){
     $scope.sections = groceryList;
     $scope.headers = Object.keys(groceryList);
+    $scope.showList = $scope.headers.length;
   })
 
-  $scope.round = ListFactory.round; 
+  $scope.round = ListFactory.round;
 
   $scope.makePDF = ListFactory.makePDF;
 

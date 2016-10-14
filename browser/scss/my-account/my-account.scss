@@ -3,6 +3,7 @@
         display: flex;
         height: 75vh;
         width: 100vw;
+        padding-top: 10vh;
     }
     .item {
         box-sizing: border-box;
@@ -14,6 +15,7 @@
             display: flex;
             flex-direction: row;
             justify-content: space-around;
+            max-width: 90vw;
         }
         .spending {
             display: flex;
@@ -26,13 +28,8 @@
     .item:nth-child(2) {
         flex: 1;
     }
-    @media screen and (max-width:990px) {
-        .container {
-            flex-wrap: wrap;
-        }
-        .item:first-child {
-            flex-basis: 100%;
-        }
+    .item:first-child {
+        flex-basis: 100%;
     }
     .node {
         font: 300 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -60,6 +57,6 @@
     }
     .link--source,
     .link--target {
-        stroke: #FEE778;
+        stroke: $theme-yellow;
     }
 }

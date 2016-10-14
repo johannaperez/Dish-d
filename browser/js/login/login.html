@@ -1,5 +1,5 @@
 <md-content flex>
-<navbar header="Login to Dish'd!"></navbar>
+    <navbar class="nav" header="Login to Dish'd!"></navbar>
     <div id="login-page" layout="column" ng-cloak>
         <form id="login-form" name="loginForm" ng-submit="loginForm.$valid && sendLogin(login)">
             <md-input-container class="md-block">
@@ -12,8 +12,7 @@
                 <md-button type="submit">Submit</md-button>
             </div>
             <div class="oauth">
-                <p>New to Dish'd? <a id="signup" ui-sref="signup">Sign up here! </a>
-                Or, with: </p>
+                <p>New to Dish'd? <a id="signup" ui-sref="signup">Sign up here! </a> Or, with: </p>
                 <a href="/auth/google">
                     <ng-md-icon icon="google-plus-box" size="40"></ng-md-icon>
                 </a>
@@ -24,4 +23,3 @@
         </form>
     </div>
 </md-content>
-
