@@ -15,27 +15,11 @@ app.config(function($stateProvider) {
 });
 
 app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $state, currentUser, $mdMedia) {
-    console.log('R U EVEN HERE ')
-    console.log($scope.buttons)
+
 
     $scope.smallScreen = $mdMedia('xs');
     $scope.meals = [];
     $scope.selectedMeals = [];
-    $scope.buttons = [{
-          icon: 'add',
-          clickFunction: $scope.selectMeal,
-          tooltip: "Add to Groceries"
-        },
-        {
-          icon: 'favorite',
-          clickFunction: $scope.addFavorite,
-          tooltip: "Add to Favorites"
-        },
-        {
-          icon: 'aspect_ratio',
-          clickFunction: $scope.showRecipe,
-          tooltip: 'Show Full Recipe'
-    }];
 
     //fetch meals to display on page load
     MealFactory.getMealPlan(currentUser.id)
@@ -136,6 +120,22 @@ app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $stat
 
         }
     };
+
+    $scope.buttons = [{
+          icon: 'add',
+          click: $scope.selectMeal,
+          tooltip: "Add to Groceries"
+        },
+        {
+          icon: 'favorite',
+          click: $scope.addFavorite,
+          tooltip: "Add to Favorites"
+        },
+        {
+          icon: 'aspect_ratio',
+          click: $scope.showRecipe,
+          tooltip: 'Show Full Recipe'
+    }];
 });
 
 
