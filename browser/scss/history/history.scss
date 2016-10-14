@@ -38,6 +38,10 @@
         }
         md-card-actions {
             justify-content: flex-end;
+            // background-color: $theme-yellow;
+            margin-left: 7vw;
+            // border: $theme-border;
+            border-radius: 2px;
         }
         .recipe {
             width: 18vw !important

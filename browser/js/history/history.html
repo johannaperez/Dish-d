@@ -3,7 +3,7 @@
     <div id="history">
         <div ng-repeat="mealPlan in history">
             <div layout="row">
-                <h3> {{ mealPlan.createdAt }} </h3></div>
+                <h3> {{ mealPlan.createdAt | date }} </h3></div>
             <div ng-repeat="meal in details[$index]" layout="row">
                 <md-card>
                     <md-card-content layout="row" layout-align="space-between">
