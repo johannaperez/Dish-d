@@ -4,14 +4,16 @@
     flex-direction: column;
     justify-content: center;
     width: 100vw;
-    // height: 85vh;
-	.chosen {
-		background-color: $theme-yellow !important;
-	}
-    .dietary .md-button {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+    .chosen {
+        background-color: $theme-yellow !important;
+    }
+    .dietary {
+        flex-wrap: wrap;
+        .md-button {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
     }
     .delete {
         min-height: 10px !important;
@@ -20,10 +22,19 @@
             display: flex;
         }
     }
-	.delete:hover {
-		opacity: 0.8;
-	}
+    .delete:hover {
+        opacity: 0.8;
+    }
     .save {
         background-color: $theme-yellow;
+    }
+    .dislikes {
+        justify-content: center;
+        align-items: center;
+    }
+    #dislikes {
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 80vw;
     }
 }

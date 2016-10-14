@@ -53,8 +53,8 @@ app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $stat
 
     //slick functionality
     $scope.slickConfig = {
-        adaptiveHeight: true,
-        mobileFirst: true,
+        // adaptiveHeight: true,
+        // mobileFirst: true,
         slidesToScroll: 1,
         slideToShow: 1,
         method: {}
