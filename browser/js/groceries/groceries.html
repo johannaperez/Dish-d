@@ -1,7 +1,9 @@
 <md-content flex>
     <navbar class="nav" header="Grocery List"></navbar>
+
     <div id="groceries" layout="row">
-        <section class="grocery-list">
+        <p ng-if="!showList"><a ui-sref="meals">Add some meals</a> to your grocery list to see your personalized shopping list here!</p>
+        <section class="grocery-list"  ng-if="showList">
             <md-button class="md-icon-button" ng-click="makePDF(sections)">
               <md-tooltip md-direction="right">Download this list as a PDF</md-tooltip>
               <ng-md-icon icon="file_download"></ng-md-icon>

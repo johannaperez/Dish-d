@@ -3,13 +3,20 @@
     justify-content: center;
     width: 100vw;
     padding-top: 10vh;
+        a {
+          border-bottom: $theme-border;
+        }
         .grocery-list{
-          width: 80vw;
+          width: 75vw;
           background-color: white;
           margin: 5vh 0;
           padding-top: 1vh;
           padding-bottom: 5vh;
           border: $theme-border;
+          .md-button {
+            border: $theme-border;
+            justify-self: flex-end;
+          }
         }
         div{
           h3{
