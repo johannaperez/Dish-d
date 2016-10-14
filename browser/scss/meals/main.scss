@@ -7,7 +7,7 @@
     padding-top: 10vh;
     #refresh{
         position: absolute;
-        margin-left: 60vw;
+        margin-left: 65vw;
         margin-top: 2vh;
         width: 60px;
         border: $theme-border;
@@ -21,7 +21,7 @@
         md-card-actions{
             background-color: $theme-yellow;
             margin-left: 7vw;
-            border: 1px dotted #9a9a9a;
+            border: $theme-border;
             border-radius: 2px;
         }
     }
@@ -39,7 +39,7 @@
         md-card-actions{
             background-color: $theme-yellow;
             margin-left: 2vw;
-            border: 1px dotted #9a9a9a;
+            border: $theme-border;
             border-radius: 2px;
         }
         .btn {
@@ -69,14 +69,15 @@
         align-items: center;
         flex-direction: column;
         margin-left: 2vw;
-        border-left: 1px dotted #9a9a9a;
+        border-left: $theme-border;
         width: 30vw;
         height: 110vh;
         .grocery-btn{
             background-color: $theme-yellow;
         }
         .meals-header {
-            border-bottom: 1px dotted #9a9a9a;
+            margin-top: 2vh;
+            border-bottom: $theme-border;
         }
         md-list-item {
             width: 100%;

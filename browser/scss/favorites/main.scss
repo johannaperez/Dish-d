@@ -7,7 +7,7 @@
   padding-top: 10vh;
   a {
       cursor: pointer;
-      border-bottom: 1px dotted #9a9a9a;
+      border-bottom: $theme-border;
       color: #383838;
   }
   md-card {
@@ -19,7 +19,7 @@
           justify-content: flex-end;
           background-color: $theme-yellow;
           margin-left: 7vw;
-          border: 1px dotted #9a9a9a;
+          border: $theme-border;
           border-radius: 2px;
       }
 
