@@ -1,0 +1,34 @@
+    <md-content flex>
+    <navbar class="nav" header="My History"></navbar>
+    <div id="history">
+        <div ng-repeat="mealPlan in history">
+            <div layout="row">
+                <h3> {{ mealPlan.createdAt | date }} </h3></div>
+            <div ng-repeat="meal in details[$index]" layout="row">
+                <md-card>
+                    <md-card-content layout="row" layout-align="space-between">
+                        <div class="md-media-xl card-media" style="background: url({{meal.image}}) center; background-size: cover; background-position: center; ">
+                        </div>
+                        <div class="recipe" layout="column">
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline">{{meal.title}}</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-actions layout="row">
+                                <md-button class="md-icon-button" aria-label="add to my favorites" ng-click="addFavorite(meal.id)">
+                                    <md-tooltip>Add to Favorites</md-tooltip>
+                                    <ng-md-icon icon="favorite"></ng-md-icon>
+                                </md-button>
+                                <md-button class="md-icon-button" aria-label="Recipe" ng-click="showRecipe(meal)">
+                                    <md-tooltip>Show Full Recipe</md-tooltip>
+                                    <i class="material-icons">room_service</i>
+                                </md-button>
+                            </md-card-actions>
+                        </div>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </div>
+</md-content>

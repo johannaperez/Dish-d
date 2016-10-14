@@ -1,9 +1,6 @@
 const db = require('../../../db');
-const User = db.model('user');
 const Recipe = db.model('recipe');
-const Ingredient = db.model('ingredient');
 const UserPref = db.model('userPrefs');
-const router = require('express').Router();
 const Promise = require('bluebird');
 
 // both recipe and user are sequelize instances
