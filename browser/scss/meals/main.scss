@@ -60,8 +60,8 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        margin-right: 2vw;
-        border-right: 1px dotted #9a9a9a;
+        margin-left: 2vw;
+        border-left: 1px dotted #9a9a9a;
         width: 30vw;
         height: 110vh;
         .grocery-btn{
@@ -75,12 +75,16 @@
             border-top: 1px dotted #9a9a9a;
             border-bottom: 1px dotted #9a9a9a;
         }
-        .md-list-item {
+        md-list-item {
+            width: 100%;
+            border-bottom: $theme-border;
             .md-button {
                 display: flex;
                 align-self: flex-end;
-                background-color: $theme-yellow;
             }
+        }
+        md-list-item:first{
+            border-top: $theme-border;
         }
     }
     md-card {
