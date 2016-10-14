@@ -14,7 +14,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('HistoryCtrl', function($scope, HistoryFactory, currentUser){
+app.controller('HistoryCtrl', function($scope, HistoryFactory, currentUser, MealFactory, $log, $mdDialog){
 
 	$scope.history = [];
 	$scope.details = [];
@@ -24,6 +24,41 @@ app.controller('HistoryCtrl', function($scope, HistoryFactory, currentUser){
 		$scope.history = history[0];
 		$scope.details = history[1];
 	})
+
+    $scope.addFavorite = function(mealId){
+    MealFactory.addFavorite(currentUser.id, mealId)
+    .catch($log.error);
+	}
+
+	$scope.showRecipe = function(meal, ev) {
+		
+        $mdDialog.show({
+            controller: DialogController,
+            scope: $scope, // use parent scope in template
+            preserveScope: true,
+            templateUrl: 'js/meals/recipe.html',
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+
+        function DialogController($scope, $mdDialog) {
+            $scope.meal = meal;
+
+            $scope.formatInstructions = (instructions) => {
+                return instructions.split('.');
+            };
+
+            $scope.hide = function() {
+                $mdDialog.hide();
+            };
+
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+
+        }
+    };
 
 });
 
@@ -37,13 +72,6 @@ app.factory('HistoryFactory', function($http){
 			return response.data;
 		})
 	};
-
-	// HistoryFactory.getHistoryDetail = function(userId, mealPlanId){
-	// 	return $http.get(`api/users/${userId}/history/${mealPlanId}`)
-	// 	.then(function(response){
-	// 		return response.data;
-	// 	})
-	// }
 
 	return HistoryFactory;
 });
