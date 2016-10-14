@@ -14,7 +14,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('ListCtrl', function($scope, ListFactory, currentUser) {
+app.controller('ListCtrl', function($scope, ListFactory, currentUser, $mdDialog) {
 
   $scope.sections = {};
   $scope.showList = false;
@@ -29,6 +29,27 @@ app.controller('ListCtrl', function($scope, ListFactory, currentUser) {
   $scope.round = ListFactory.round;
 
   $scope.makePDF = ListFactory.makePDF;
+
+  $scope.submitPrice = ListFactory.submitPrice;
+
+  //popup to show grocery cost input form
+    $scope.showCostForm = function(ev) {
+        $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'js/groceries/groceries_cost.html',
+            targetEvent: ev,
+            clickOutsideToClose: true
+        })
+
+        function DialogController($scope, $mdDialog) {
+            $scope.hide = function() {
+                $mdDialog.hide();
+            };
+            $scope.cancel = function() {
+                $mdDialog.cancel();
+            };
+        }
+    };
 
 });
 
@@ -90,6 +111,13 @@ app.factory('ListFactory', function($http) {
 
         pdfMake.createPdf(docDefinition).download('grocerylist.pdf');
 
+    }
+
+    ListFactory.submitPrice = function(price, userId, mealPlanId){
+        return $http.put(`api/users/${userId}/meals/${mealPlanId}`, {price: price})
+        .then(function(response){
+            return response.data;
+        })
     }
 
     return ListFactory;

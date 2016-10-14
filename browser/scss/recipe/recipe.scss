@@ -1,6 +1,11 @@
 md-dialog {
     min-width: 85vw;
     min-height: 80vh;
+    //need to work on this to resize dialog for cost input
+    // .grocery-cost {
+    //     max-width: 20vw;
+    //     max-height: 20vh;
+    // }
     md-toolbar {
         background-color: $theme-yellow !important;
     }
@@ -10,22 +15,22 @@ md-dialog {
             flex-flow: row wrap;
             justify-content: space-between;
             .md-media-xl {
-            // todo: @media query min-width for mobile
-            // min-width: 50vw;
-            height: 60vh;
-            width: 25vw;
+                // todo: @media query min-width for mobile
+                // min-width: 50vw;
+                height: 60vh;
+                width: 25vw;
+            }
+            .recipe {
+                // todo: @media query min-width for mobile
+                // min-width: 50vw;
+                width: 30vw;
+            }
+            .ings {
+                // todo: @media query min-width for mobile
+                // min-width: 50vw;
+                width: 20vw;
+            }
         }
-        .recipe {
-            // todo: @media query min-width for mobile
-            // min-width: 50vw;
-            width: 30vw;
-        }
-        .ings {
-            // todo: @media query min-width for mobile
-            // min-width: 50vw;
-            width: 20vw;
-        }
-    }
         md-card-actions {
             justify-content: flex-start;
         }

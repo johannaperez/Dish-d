@@ -1,29 +1,35 @@
-#groceries {
+    #groceries {
     display: flex;
     justify-content: center;
     width: 100vw;
     padding-top: 10vh;
-        a {
-          border-bottom: $theme-border;
-        }
-        .grocery-list{
-          width: 75vw;
-          background-color: white;
-          margin: 5vh 0;
-          padding-top: 1vh;
-          padding-bottom: 5vh;
-          border: $theme-border;
-          .md-button {
+    a {
+        border-bottom: $theme-border;
+    }
+    .grocery-list {
+        width: 75vw;
+        background-color: white;
+        margin: 5vh 0;
+        padding-top: 1vh;
+        padding-bottom: 5vh;
+        border: $theme-border;
+        .md-button {
             border: $theme-border;
             justify-self: flex-end;
-          }
         }
-        div{
-          h3{
+    }
+    div {
+        h3 {
             background-color: $theme-yellow;
             text-align: center;
             padding: 8px;
             border: $theme-border;
-          }
         }
-}
+    }
+    md-dialog .grocery-cost {
+        max-width: 20vw;
+        max-height: 20vh;
+        md-toolbar {
+            background-color: $theme-yellow !important;
+        }
+    }
