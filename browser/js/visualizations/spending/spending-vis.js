@@ -1,13 +1,14 @@
-app.controller('SpendingCtrl', ($scope) => {
+app.controller('SpendingCtrl', ($scope, currentUser) => {
+
 	$scope.options = {
 		chart: {
 			type: 'lineChart',
 			height: 500,
 			margin: {
 				top: 20,
-				right: 400,
-				bottom: 50,
-				left: 400
+				// right: 400,
+				bottom: 50
+				// left: 400
 			},
 			x: (d) => { return d[0] },
 			y: (d) => { return d[1] },
@@ -40,4 +41,35 @@ app.controller('SpendingCtrl', ($scope) => {
 			[1, 2.99], [2, 7.34], [3, 1.52], [4, 2.57], [5, 3.87], [6, 4.70]]
 	}]
 
+	// nv.utils.windowResize = function(scope, handler) {
+	//     // Legacy support
+	//     if (typeof scope === 'function') {
+	//         handler = scope;
+	//         scope = undefined;
+	//         nv.deprecated('WARNING: Failed to pass $scope when binding to windowResize event');
+	//     }
+
+	//     if (window.addEventListener) {
+	//         window.addEventListener('resize', handler);
+	//     } else {
+	//         nv.log("ERROR: Failed to bind to window.resize with: ", handler);
+	//     }
+	//     // return object with clear function to remove the single added callback.
+	//     var retObj = {
+	//         callback: handler,
+	//         clear: function() {
+	//             window.removeEventListener('resize', handler);
+	//         }
+	//     };
+
+	//     // Hookup our auto-destroy if passed scope
+	//     if (scope){
+	//         scope.$on('$destroy', function(){
+	//             'use strict';
+	//             retObj.clear();
+	//         });
+	//     }
+
+	//     return retObj;
+	// };
 });
