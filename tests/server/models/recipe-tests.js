@@ -9,7 +9,7 @@ var Recipe = db.model('recipe');
 var Ingredient = db.model('ingredient');
 var Promise = require('bluebird');
 
-xdescribe('Recipe model', function () {
+describe('Recipe model', function () {
 
     beforeEach('Sync DB', function () {
        return db.sync({force: true});
@@ -28,7 +28,7 @@ xdescribe('Recipe model', function () {
         var recipes = [
             {title: "Chocolate Cake",
             instructions: 'make it!',
-            image:'img.jpg',
+            image: 'img.jpg',
             preparationMinutes: 10,
             cookingMinutes: 10,
             extendedIngredients: [
@@ -38,7 +38,7 @@ xdescribe('Recipe model', function () {
             },
             {title: "Chocolate Chip Cookies",
             instructions: 'make it!',
-            image:'img.jpg',
+            image: 'img.jpg',
             preparationMinutes: 10,
             cookingMinutes: 10,
             extendedIngredients: [
@@ -48,7 +48,7 @@ xdescribe('Recipe model', function () {
             },
             {title: "Chicken Nuggets",
             instructions: 'make it!',
-            image:'img.jpg',
+            image: 'img.jpg',
             preparationMinutes: 10,
             cookingMinutes: 10,
             extendedIngredients: [
@@ -92,7 +92,7 @@ xdescribe('Recipe model', function () {
         var recipes = [
             {title: "Chocolate Cake",
             instructions: 'make it!',
-            image:'img.jpg',
+            image: 'img.jpg',
             preparationMinutes: 10,
             cookingMinutes: 10,
             extendedIngredients: [
@@ -102,7 +102,7 @@ xdescribe('Recipe model', function () {
             },
             {title: "Chocolate Chip Cookies",
             instructions: 'make it!',
-            image:'img.jpg',
+            image: 'img.jpg',
             preparationMinutes: 10,
             cookingMinutes: 10,
             extendedIngredients: [
@@ -112,12 +112,12 @@ xdescribe('Recipe model', function () {
             },
             {title: "Chicken Nuggets",
             instructions: 'make it!',
-            image:'img.jpg',
+            image: 'img.jpg',
             preparationMinutes: 10,
             cookingMinutes: 10,
             extendedIngredients: [
-                {name: 'chicken', id: 400},
-                {name: 'nuggets', id: 323}
+                {name: 'chicken', id: 4},
+                {name: 'nuggets', id: 5}
             ]
             }
 
@@ -166,12 +166,12 @@ xdescribe('Recipe model', function () {
             });
         });
 
-        it('should return an array of recipes with the same ingredients', function () {
+        it('should return an array of recipe id with the same ingredients', function () {
             return createRecipe().then(function (rec) {
                 return rec.getMealsWithSimilarIngredients(1)
                 .then(function(result){
                     expect(result).to.be.an('array');
-                    expect(result[0].title).to.be.equals('Chocolate Chip Cookies');
+                    expect(Number(result[0])).to.be.equals(2);
                 });
             });
         });

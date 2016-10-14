@@ -10,7 +10,7 @@ var UserPref = db.model('userPrefs');
 var Recipe = db.model('recipe');
 
 
-xdescribe('User Preference model', function() {
+describe('User Preference model', function() {
 
     var newUserPref = {
         vegetarian: true,
