@@ -94,7 +94,8 @@ router.put('', (req, res, next) => {
       })
     })
     .then(function(rec){
-      return getMeals(rec[0], id);
+        if (Array.isArray(rec)) rec = rec[0];
+        return getMeals(rec, id);
     })
     .then(function(mealPlan){
       res.send(mealPlan);
