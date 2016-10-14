@@ -35,6 +35,7 @@ app.factory('VisFactory', function($http){
                 'meat, beans, & nuts': 4
             };
 
+            // d3 data structure
             let dataChildren = [
                 {
                     name: 'fruits & veggies',
@@ -61,6 +62,8 @@ app.factory('VisFactory', function($http){
                         let chartCat = catDict[ing.aisle];
                         let childIdx = catIdx[chartCat];
                         // ADD MEAL TITLE AS EXTRA LAYER!
+                        // Cannot create property 'dx0' on string 'Sweet Onion Carbonara' when adding  children: [meal.title]
+                        // console.log('MEAL: ', meal)
                         dataChildren[childIdx].children.push({name: ing.name});
                     }
                 })
