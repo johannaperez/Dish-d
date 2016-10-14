@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-app.controller('OverlapCtrl', ($scope, $log, currentUser, VisFactory) => {
+app.controller('OverlapCtrl', ($scope, $log, currentUser, activeMealPlan, VisFactory) => {
 
 	$scope.diameter = 600;
 
@@ -21,8 +21,6 @@ app.controller('OverlapCtrl', ($scope, $log, currentUser, VisFactory) => {
 	    .angle(function(d) { return d.x / 180 * Math.PI; });
 
 	var svg = d3.select("svg")
-	    // .attr("width", $scope.diameter)
-	    // .attr("height", $scope.diameter)
 	    .attr("preserveAspectRatio", "xMinYMin meet")
 	    .attr("viewBox", "0 0 600 600")
 	  .append("g")
@@ -32,37 +30,33 @@ app.controller('OverlapCtrl', ($scope, $log, currentUser, VisFactory) => {
 	    node = svg.append("g").selectAll(".node");
 
 	// get user data
-	VisFactory.getActiveMealPlan(currentUser.id)
-	.then(mealPlan => {
-		$scope.activeMealPlan = mealPlan;
-		$scope.data = VisFactory.buildOverlapData($scope.activeMealPlan)
+	$scope.activeMealPlan = activeMealPlan[0];
+	$scope.data = VisFactory.buildOverlapData($scope.activeMealPlan)
 
-		// build data into chart
-	  	var nodes = cluster.nodes(packageHierarchy($scope.data)),
-	      	links = packageImports(nodes);
+	// build data into chart
+  	var nodes = cluster.nodes(packageHierarchy($scope.data)),
+      	links = packageImports(nodes);
 
-	  	link = link
-	    	  	.data(bundle(links))
-	   		.enter().append("path")
-	      		.each(function(d) {
-	      		d.source = d[0];
-	      		d.target = d[d.length - 1]
-	      	})
-	      	.attr("class", "link")
-	      	.attr("d", line);
+  	link = link
+    	  	.data(bundle(links))
+   		.enter().append("path")
+      		.each(function(d) {
+      		d.source = d[0];
+      		d.target = d[d.length - 1]
+      	})
+      	.attr("class", "link")
+      	.attr("d", line);
 
-	  	node = node
-	      		.data(nodes.filter(function(n) { return !n.children; }))
-	    	.enter().append("text")
-	      		.attr("class", "node")
-	      		.attr("dy", ".31em")
-	      		.attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
-	      		.style("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-	      		.text(function(d) { return d.key; })
-	      		.on("mouseover", mouseovered)
-	      		.on("mouseout", mouseouted);
-	})
-	.catch($log.error);
+  	node = node
+      		.data(nodes.filter(function(n) { return !n.children; }))
+    	.enter().append("text")
+      		.attr("class", "node")
+      		.attr("dy", ".31em")
+      		.attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
+      		.style("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+      		.text(function(d) { return d.key; })
+      		.on("mouseover", mouseovered)
+      		.on("mouseout", mouseouted);
 
 	function mouseovered(d) {
 	  node

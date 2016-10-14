@@ -13,6 +13,9 @@ app.config(function ($stateProvider) {
                 .then(function(user) {
                     return MemberInfoFactory.getUser(user.id);
                 })
+            },
+            activeMealPlan: function(VisFactory, currentUser) {
+                return VisFactory.getActiveMealPlan(currentUser.id)
             }
         }
     })

@@ -128,7 +128,7 @@ app.factory('MealFactory', function($http) {
     MealFactory.getMealPlan = function(userId) {
         return $http.get(`api/users/${userId}/meals`)
             .then(function(response) {
-                return response.data;
+                return response.data[0];
             });
     };
 

@@ -23,7 +23,7 @@ router.get('', (req, res, next) => {
       let planPromises = plan.meals.map(recId => Recipe.findById(recId));
       Promise.all(planPromises)
       .then(meals => {
-        res.send(meals)
+        res.send([meals, plan])
       })
       .catch(next);
     }
@@ -55,6 +55,20 @@ router.get('', (req, res, next) => {
       .catch(next);
     }
   })
+});
+
+// add price for a particular meal plan
+router.put('/:mealPlanId', (req, res, next) => {
+  MealPlan.findById(req.params.mealPlanId)
+  .then(mealPlan => {
+    return mealPlan.update({
+      price: req.body.price
+    })
+    .then(updatedPlan => {
+      res.json(updatedPlan);
+    })
+  })
+  .catch(next);
 });
 
 //mark existing plan as completed and get a fresh meal plan
