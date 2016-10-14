@@ -1,6 +1,5 @@
 app.factory('VisFactory', function($http){
     return {
-        // returns active mealPlan
         getActiveMealPlan: (userId) => {
             return $http.get(`api/users/${userId}/meals`)
             .then((response) => {
@@ -61,6 +60,7 @@ app.factory('VisFactory', function($http){
                     if (catDict[ing.aisle]) {
                         let chartCat = catDict[ing.aisle];
                         let childIdx = catIdx[chartCat];
+                        // ADD MEAL TITLE AS EXTRA LAYER!
                         dataChildren[childIdx].children.push({name: ing.name});
                     }
                 })
@@ -74,8 +74,8 @@ app.factory('VisFactory', function($http){
             // get all ings for all meals for further filtering
             let mealInfo = [];
             let ingIdx = {};
-            // [{ing: parsley, meals: [falafel burger, meatballs]}, {ing: thing, meals:[]}]
 
+            // [{ing: parsley, meals: [falafel burger, meatballs]}, {ing: thing, meals:[]}]
             mealArr.forEach(meal => {
                 meal.extendedIngredients.forEach(ing => {
                     if (ingIdx[ing.name] === undefined) {
@@ -107,47 +107,23 @@ app.factory('VisFactory', function($http){
                 return `meals.${upperMealTitle}.${upperIng}`;
             }
 
-            mealInfo.forEach(obj => {
+            mealInfo.forEach(elem => {
                 // no ingredient overlap
-                if (obj.meals.length === 1) {
-                    data.push({name: d3Name(obj.meals[0], obj.ing), size: 500, imports: []});
+                if (elem.meals.length === 1) {
+                    data.push({name: d3Name(elem.meals[0], elem.ing), size: 500, imports: []});
                 }
                 else {
-                   for (let i = 0; i < obj.meals.length; i++) {
-                     
-                   } 
+                    for (let i = 0; i < elem.meals.length; i++) {
+                        let tempArr = elem.meals.map(meal => {
+                            return d3Name(meal, elem.ing);
+                        });
+                        let currMeal = tempArr[i];
+                        tempArr.splice(elem.meals.indexOf(currMeal), 1);
+                        data.push({name: currMeal, size: 500, imports: tempArr});
+                    }
                 }
-            })
-
-            return mealInfo
-
-
-            /*
-                go through each ing in meal1
-                    check if ing1 is INCLUDED in meal2.ings
-                        if yes: {name:meals.meal1.ing1, size:500, imports:[meals.meal2.ing1]}
-                        * create the backward loop!
-                    check if ing2 is INCLUDED in meal3.ings
-                    ...
-                    meali.ings
-            */
-
+            });
+            return data;
         }
-
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

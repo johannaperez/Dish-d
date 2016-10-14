@@ -2,57 +2,6 @@
 
 app.controller('OverlapCtrl', ($scope, $log, currentUser, VisFactory) => {
 
-	VisFactory.getActiveMealPlan(currentUser.id)
-	.then(mealPlan => {
-		$scope.activeMealPlan = mealPlan;
-		$scope.testData = VisFactory.buildOverlapData($scope.activeMealPlan)
-	})
-	.catch($log.error);
-
-	$scope.data = [
-		{"name":"meals.baked-falafel-burger.parsley","size":500,"imports":["meals.kofta-meatballs.parsely","meals.wild-rice-stuffing.parsely"]},
-		{"name":"meals.baked-falafel-burger.sea-salt","size":500,"imports":["meals.kofta-meatballs.salt","meals.wild-rice-stuffing.sea-salt"]},
-		{"name":"meals.baked-falafel-burger.cumin","size":500,"imports":["meals.kofta-meatballs.cumin"]},
-		{"name":"meals.baked-falafel-burger.garlic","size":500,"imports":["meals.wild-rice-stuffing.garlic"]},
-		{"name":"meals.baked-falafel-burger.lemon","size":500,"imports":["meals.kofta-meatballs.lemon-juice"]},
-		{"name":"meals.baked-falafel-burger.chickpeas","size":500,"imports":[]},
-		{"name":"meals.baked-falafel-burger.chili-garlic-sauce","size":500,"imports":[]},
-		{"name":"meals.baked-falafel-burger.oat-flour","size":500,"imports":[]},
-		{"name":"meals.baked-falafel-burger.tomato","size":500,"imports":[]},
-		{"name":"meals.baked-falafel-burger.greens","size":500,"imports":[]},
-		{"name":"meals.baked-falafel-burger.hummus","size":500,"imports":[]},
-		{"name":"meals.kofta-meatballs.parsely","size":500,"imports":["meals.baked-falafel-burger.parsley","meals.wild-rice-stuffing.parsely"]},
-		{"name":"meals.kofta-meatballs.salt","size":500,"imports":["meals.baked-falafel-burger.sea-salt","meals.wild-rice-stuffing.sea-salt"]},
-		{"name":"meals.kofta-meatballs.cumin","size":500,"imports":["meals.baked-falafel-burger.cumin"]},
-		{"name":"meals.kofta-meatballs.lemon-juice","size":500,"imports":["meals.baked-falafel-burger.lemon"]},
-		{"name":"meals.kofta-meatballs.cinnamon","size":500,"imports":["meals.wild-rice-stuffing.cinnamon"]},
-		{"name":"meals.kofta-meatballs.dried-cherries","size":500,"imports":["meals.wild-rice-stuffing.dried-cranberries"]},
-		{"name":"meals.kofta-meatballs.allspice","size":500,"imports":[]},
-		{"name":"meals.kofta-meatballs.fresh-mint","size":500,"imports":[]},
-		{"name":"meals.kofta-meatballs.cloves","size":500,"imports":[]},
-		{"name":"meals.kofta-meatballs.ground-lamb","size":500,"imports":[]},
-		{"name":"meals.kofta-meatballs.honey","size":500,"imports":[]},
-		{"name":"meals.kofta-meatballs.olive-oil","size":500,"imports":[]},
-		{"name":"meals.kofta-meatballs.pepper","size":500,"imports":[]},
-		{"name":"meals.kofta-meatballs.shallot","size":500,"imports":[]},
-		{"name":"meals.kofta-meatballs.sparkling-water","size":500,"imports":[]},
-		{"name":"meals.wild-rice-stuffing.parsely","size":500,"imports":["meals.baked-falafel-burger.parsley","meals.kofta-meatballs.parsely"]},
-		{"name":"meals.wild-rice-stuffing.sea-salt","size":500,"imports":["meals.kofta-meatballs.salt","meals.baked-falafel-burger.sea-salt"]},
-		{"name":"meals.wild-rice-stuffing.garlic","size":500,"imports":["meals.baked-falafel-burger.garlic"]},
-		{"name":"meals.wild-rice-stuffing.cinnamon","size":500,"imports":["meals.kofta-meatballs.cinnamon"]},
-		{"name":"meals.wild-rice-stuffing.dried-cranberries","size":500,"imports":["meals.kofta-meatballs.dried-cherries"]},
-		{"name":"meals.wild-rice-stuffing.bosc-pear","size":500,"imports":[]},
-		{"name":"meals.wild-rice-stuffing.butternut-squash","size":500,"imports":[]},
-		{"name":"meals.wild-rice-stuffing.celery","size":500,"imports":[]},
-		{"name":"meals.wild-rice-stuffing.coconut-oil","size":500,"imports":[]},
-		{"name":"meals.wild-rice-stuffing.dried-oregano","size":500,"imports":[]},
-		{"name":"meals.wild-rice-stuffing.dry-white-wine","size":500,"imports":[]},
-		{"name":"meals.wild-rice-stuffing.orange-zest","size":500,"imports":[]},
-		{"name":"meals.wild-rice-stuffing.pecans","size":500,"imports":[]},
-		{"name":"meals.wild-rice-stuffing.wild-rice","size":500,"imports":[]},
-		{"name":"meals.wild-rice-stuffing.yellow-onion","size":500,"imports":[]}
-	];
-
 	var diameter = 700,
 	    radius = diameter / 2,
 	    innerRadius = radius - 120;
@@ -79,31 +28,38 @@ app.controller('OverlapCtrl', ($scope, $log, currentUser, VisFactory) => {
 	var link = svg.append("g").selectAll(".link"),
 	    node = svg.append("g").selectAll(".node");
 
-	// link data
-	  var nodes = cluster.nodes(packageHierarchy($scope.data)),
-	      links = packageImports(nodes);
+	// get user data
+	VisFactory.getActiveMealPlan(currentUser.id)
+	.then(mealPlan => {
+		$scope.activeMealPlan = mealPlan;
+		$scope.data = VisFactory.buildOverlapData($scope.activeMealPlan)
 
-	  link = link
-	      .data(bundle(links))
-	    .enter().append("path")
-	      .each(function(d) {
-	      	d.source = d[0];
-	      	d.target = d[d.length - 1]
-	      })
-	      .attr("class", "link")
-	      .attr("d", line);
+		// build data into chart
+	  	var nodes = cluster.nodes(packageHierarchy($scope.data)),
+	      	links = packageImports(nodes);
 
-	  node = node
-	      .data(nodes.filter(function(n) { return !n.children; }))
-	    .enter().append("text")
-	      .attr("class", "node")
-	      .attr("dy", ".31em")
-	      .attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
-	      .style("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-	      .text(function(d) { return d.key; })
-	      .on("mouseover", mouseovered)
-	      .on("mouseout", mouseouted);
+	  	link = link
+	    	  	.data(bundle(links))
+	   		.enter().append("path")
+	      		.each(function(d) {
+	      		d.source = d[0];
+	      		d.target = d[d.length - 1]
+	      	})
+	      	.attr("class", "link")
+	      	.attr("d", line);
 
+	  	node = node
+	      		.data(nodes.filter(function(n) { return !n.children; }))
+	    	.enter().append("text")
+	      		.attr("class", "node")
+	      		.attr("dy", ".31em")
+	      		.attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
+	      		.style("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+	      		.text(function(d) { return d.key; })
+	      		.on("mouseover", mouseovered)
+	      		.on("mouseout", mouseouted);
+	})
+	.catch($log.error);
 
 	function mouseovered(d) {
 	  node
