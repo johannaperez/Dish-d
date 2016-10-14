@@ -18,14 +18,15 @@
         }
     }
     .aboutpage {
+        display: flex;
         background-image: none;
-        background-color: rgba(255,255,255,0.5);
-        max-height: 60vh;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        color: white;
+        min-height: 60vh;
         .md-button {
             border: 1px dotted white;
-        }
-        h1 {
-            padding: 5px;
         }
         span {
             font-size: 20px;
@@ -33,7 +34,7 @@
         .link {
             color: #FDFDFD;
             cursor: pointer;
-            border-bottom: 1px dotted #9a9a9a;
+            border-bottom: $theme-border;
             font-size: 16px;
         }
     }

@@ -13,7 +13,7 @@ footer {
         .link {
             color: #FDFDFD;
             cursor: pointer;
-            border-bottom: 1px dotted #9a9a9a;
+            border-bottom: $theme-border;
             font-size: 14px;
         }
         .copyright {

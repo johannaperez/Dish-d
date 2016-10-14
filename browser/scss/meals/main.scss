@@ -5,24 +5,43 @@
     justify-content: center;
     width: 100vw;
     padding-top: 10vh;
-    .heading {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: center;
-        width: 80vw;
-        .md-button {
-            width: 85vw;
-            justify-content: center;
-            background-color: #FEE778;
+    #refresh{
+        position: absolute;
+        margin-left: 65vw;
+        margin-top: 2vh;
+        width: 60px;
+        border: $theme-border;
+        height: 60px;
+    }
+    .progress{
+        padding-top: 30vh;
+        color: $theme-yellow;
+    }
+    .meal-list {
+        md-card-actions{
+            background-color: $theme-yellow;
+            margin-left: 7vw;
+            border: $theme-border;
+            border-radius: 2px;
         }
+    }
+    .title {
+        justify-content: center;
     }
     .mealsMain {
         display: flex;
         align-items: center;
-        flex-driection: row;
+        flex-direction: row;
+        padding-top: 15vh;
         justify-content: center;
+        width: 70vw;
         height: 70vh;
+        md-card-actions{
+            background-color: $theme-yellow;
+            margin-left: 2vw;
+            border: $theme-border;
+            border-radius: 2px;
+        }
         .btn {
             display: flex;
             align-self: center;
@@ -49,13 +68,26 @@
         align-items: center;
         flex-direction: column;
         margin-left: 2vw;
+        border-left: $theme-border;
         width: 30vw;
-        height: 70vh;
-        .md-list-item {
+        height: 110vh;
+        .grocery-btn{
+            background-color: $theme-yellow;
+        }
+        .meals-header {
+            margin-top: 2vh;
+            border-bottom: $theme-border;
+        }
+        md-list-item {
+            width: 100%;
+            border-bottom: $theme-border;
             .md-button {
                 display: flex;
                 align-self: flex-end;
             }
+        }
+        md-list-item:first{
+            border-top: $theme-border;
         }
     }
     md-card {
