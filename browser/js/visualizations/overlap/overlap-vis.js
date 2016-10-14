@@ -30,8 +30,14 @@ app.controller('OverlapCtrl', ($scope, $log, currentUser, activeMealPlan, VisFac
 	    node = svg.append("g").selectAll(".node");
 
 	// get user data
-	$scope.activeMealPlan = activeMealPlan[0];
-	$scope.data = VisFactory.buildOverlapData($scope.activeMealPlan)
+	if (activeMealPlan.length < 6) {
+		$scope.activeMealPlan = activeMealPlan[0];
+		$scope.data = VisFactory.buildOverlapData($scope.activeMealPlan)
+	}
+	else {
+		// placeholder for no active/current meal plan to show (new user)
+		// or show all-time data for old users
+	}
 
 	// build data into chart
   	var nodes = cluster.nodes(packageHierarchy($scope.data)),
