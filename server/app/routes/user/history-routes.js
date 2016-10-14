@@ -5,9 +5,10 @@ const Recipe = db.model('recipe');
 const router = require('express').Router({mergeParams: true});
 const Promise = require('bluebird');
 
+// mounted on /api/users/:userId/history
+
 // get detailed history.
 router.get('', (req, res, next) => {
-
 	let id = req.params.userId;
 	let mealPlansLight = {}
 
@@ -37,7 +38,6 @@ router.get('', (req, res, next) => {
 		res.send([mealPlansLight, detailedMealPlans]);
 	})
 	.catch(next);
-
 });
 
 // get details of one meal plan.
