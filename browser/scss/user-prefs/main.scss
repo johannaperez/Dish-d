@@ -6,7 +6,7 @@
     width: 100vw;
     // height: 85vh;
 	.chosen {
-		background-color: #FEE778 !important;
+		background-color: $theme-yellow !important;
 	}
     .dietary .md-button {
         display: flex;
@@ -24,6 +24,6 @@
 		opacity: 0.8;
 	}
     .save {
-        background-color: #FEE778;
+        background-color: $theme-yellow;
     }
 }
