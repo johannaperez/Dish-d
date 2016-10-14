@@ -24,7 +24,7 @@ router.get('', (req, res, next) => {
       let planPromises = plan.meals.map(recId => Recipe.findById(recId));
       Promise.all(planPromises)
       .then(meals => {
-        res.send(meals)
+        res.send([meals, plan])
       })
       .catch(next);
     }  // the user doesn't have a meal plan currently
