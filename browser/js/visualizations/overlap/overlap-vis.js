@@ -2,8 +2,9 @@
 
 app.controller('OverlapCtrl', ($scope, $log, currentUser, VisFactory) => {
 
-	var diameter = 700,
-	    radius = diameter / 2,
+	$scope.diameter = 600;
+
+	var radius = $scope.diameter / 2,
 	    innerRadius = radius - 120;
 
 	var cluster = d3.layout.cluster()
@@ -20,8 +21,10 @@ app.controller('OverlapCtrl', ($scope, $log, currentUser, VisFactory) => {
 	    .angle(function(d) { return d.x / 180 * Math.PI; });
 
 	var svg = d3.select("svg")
-	    .attr("width", diameter)
-	    .attr("height", diameter)
+	    // .attr("width", $scope.diameter)
+	    // .attr("height", $scope.diameter)
+	    .attr("preserveAspectRatio", "xMinYMin meet")
+	    .attr("viewBox", "0 0 600 600")
 	  .append("g")
 	    .attr("transform", "translate(" + radius + "," + radius + ")");
 
@@ -86,7 +89,7 @@ app.controller('OverlapCtrl', ($scope, $log, currentUser, VisFactory) => {
 	      .classed("node--source", false);
 	}
 
-	d3.select(self.frameElement).style("height", diameter + "px");
+	d3.select(self.frameElement).style("height", $scope.diameter + "px");
 
 	// Lazily construct the package hierarchy from class names.
 	function packageHierarchy(classes) {

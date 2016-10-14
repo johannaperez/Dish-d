@@ -1,4 +1,4 @@
-app.controller('CategoriesCtrl', ($scope, $log, $q, currentUser, VisFactory) => {
+app.controller('CategoriesCtrl', ($scope, $log, currentUser, VisFactory) => {
 
 	VisFactory.getActiveMealPlan(currentUser.id)
 	.then(mealPlan => {
@@ -11,7 +11,7 @@ app.controller('CategoriesCtrl', ($scope, $log, $q, currentUser, VisFactory) => 
 	$scope.options = {
 		chart: {
 			type: 'sunburstChart',
-			height: 500,
+			height: 600,
 			color: d3.scale.category20b(),
 			duration: 250
 		}

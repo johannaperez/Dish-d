@@ -6,9 +6,9 @@ app.controller('SpendingCtrl', ($scope, currentUser) => {
 			height: 500,
 			margin: {
 				top: 20,
-				right: 400,
-				bottom: 50,
-				left: 400
+				// right: 400,
+				bottom: 50
+				// left: 400
 			},
 			x: (d) => { return d[0] },
 			y: (d) => { return d[1] },
