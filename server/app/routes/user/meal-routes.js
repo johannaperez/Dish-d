@@ -19,6 +19,7 @@ router.get('', (req, res, next) => {
     }
   })
   .then(function(plan){
+    // the user already has a meal plan, so serve that up.
     if (plan) {
       let planPromises = plan.meals.map(recId => Recipe.findById(recId));
       Promise.all(planPromises)
@@ -26,21 +27,22 @@ router.get('', (req, res, next) => {
         res.send(meals)
       })
       .catch(next);
-    }
+    }  // the user doesn't have a meal plan currently
     else {
 
       User.findById(id)
       .then(function(user){
-        return user.getRecipes();
+        return user.getRecipes(); // get all the user's favorite recipes
       })
       .then(function(recipes){
 
+        // if they have favorite recipes potentionally use those to seed.
         if (recipes.length && Math.random() > 0.5){
           let length = recipes.length;
-          let random = Math.round(Math.random() * length);
+          let random = Math.floor(Math.random() * length);
           return recipes[random];
         }
-        else {
+        else { // seed with a random recipe, not a favorite
           return Recipe.randomRecipes(id, 1);
         }
 
@@ -83,7 +85,7 @@ router.put('', (req, res, next) => {
 
         if (recipes.length && Math.random() > 0.5){
           let length = recipes.length;
-          let random = Math.round(Math.random() * length);
+          let random = Math.floor(Math.random() * length);
           return recipes[random];
         }
         else {
