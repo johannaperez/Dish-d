@@ -17,7 +17,8 @@
                 <div class="slick-container">
                     <slick settings="slickConfig" ng-if="mealsLoaded">
                         <div ng-repeat="meal in meals">
-                            <md-card>
+                        <meal-card></meal-card>
+<!--                             <md-card>
                                 <div ng-if="smallScreen" class="md-media-sm card-media" style="background: url({{meal.image}}) center; background-size: cover; background-position: center; height: 50vh">
                                 </div>
                                 <md-card-title ng-if="smallScreen">
@@ -64,7 +65,7 @@
                                         </md-card-actions>
                                     </div>
                                 </md-card-content>
-                            </md-card>
+                            </md-card> -->
                             <md-button ng-if="smallScreen" id="refresh" class="md-icon-button" aria-label="Recipe" ng-click="refreshMeals()">
                                 <md-tooltip>See Different Meals</md-tooltip>
                                 <ng-md-icon icon="refresh" size="40"></ng-md-icon>

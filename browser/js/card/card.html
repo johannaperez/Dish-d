@@ -1,0 +1,36 @@
+<md-card>
+    <div ng-if="smallScreen" class="md-media-sm card-media" style="background: url({{meal.image}}) center; background-size: cover; background-position: center; height: 50vh">
+    </div>
+    <md-card-title ng-if="smallScreen">
+        <md-card-title-text>
+            <span class="md-headline">{{meal.title}}</span>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-actions ng-if="smallScreen" layout="row" layout-align="end-center">
+         <div ng-repeat="button in buttons">
+            <md-button class="md-icon-button" aria-label="add to my meals" ng-click="button.clickFunction()" ng-disabled="selectedMeals.length > 4">
+                <md-tooltip>{{button.tooltip}}</md-tooltip>
+                <ng-md-icon icon="{{ button.icon }}"></ng-md-icon>
+            </md-button>
+        </div>
+    </md-card-actions>
+    <md-card-content ng-if="!smallScreen" layout="row" layout-align="space-between">
+        <div class="md-media-xl card-media" style="background: url({{meal.image}}) center; background-size: cover; background-position: center; ">
+        </div>
+        <div class="recipe" layout="column">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{meal.title}}</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-actions layout="row">
+            <div ng-repeat="button in buttons">
+                <md-button class="md-icon-button" aria-label="add to my meals" ng-click="button.clickFunction(meal)" ng-disabled="selectedMeals.length > 4">
+                    <md-tooltip>{{button.tooltip}}</md-tooltip>
+                    <ng-md-icon icon="{{ button.icon }}"></ng-md-icon>
+                </md-button>
+            </div>
+            </md-card-actions>
+        </div>
+    </md-card-content>
+</md-card>
