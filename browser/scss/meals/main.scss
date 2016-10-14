@@ -5,6 +5,14 @@
     justify-content: center;
     width: 100vw;
     padding-top: 10vh;
+    #refresh{
+        position: absolute;
+        margin-left: 60vw;
+        margin-top: 2vh;
+        width: 60px;
+        border: $theme-border;
+        height: 60px;
+    }
     .progress{
         padding-top: 30vh;
         color: $theme-yellow;
@@ -67,12 +75,7 @@
         .grocery-btn{
             background-color: $theme-yellow;
         }
-        #refresh{
-            width: 60px;
-            height: 60px;
-        }
         .meals-header {
-            border-top: 1px dotted #9a9a9a;
             border-bottom: 1px dotted #9a9a9a;
         }
         md-list-item {

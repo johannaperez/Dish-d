@@ -6,6 +6,10 @@
             <md-progress-circular md-diameter="100px"></md-progress-circular>
         </div>
         <section ng-if="showSlider && mealsLoaded" layout="row">
+            <md-button id="refresh" class="md-icon-button" aria-label="Recipe" ng-click="refreshMeals()">
+                <md-tooltip>See Different Meals</md-tooltip>
+                <ng-md-icon icon="refresh" size="40"></ng-md-icon>
+            </md-button>
             <section layout="column" class="mealsMain" flex="70">
             <md-button class="md-icon-button dir" aria-label="Previous" ng-click="slickConfig.method.slickPrev()">
                 <ng-md-icon icon="navigate_before" size="60px"></ng-md-icon>
@@ -49,10 +53,10 @@
             </section>
 
              <section class="meals" layout="column" flex="30">
-            <md-button id="refresh" class="md-icon-button" aria-label="Recipe" ng-click="refreshMeals()">
+        <!--     <md-button id="refresh" class="md-icon-button" aria-label="Recipe" ng-click="refreshMeals()">
                 <md-tooltip>See Different Meals</md-tooltip>
                 <ng-md-icon icon="refresh" size="40"></ng-md-icon>
-            </md-button>
+            </md-button> -->
                 <div class="meals-header">
                     <h3>Choose up to 5 meals:</h3></div>
                 <div>
