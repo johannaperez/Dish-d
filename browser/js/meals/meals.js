@@ -14,10 +14,11 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $state, currentUser) {
+app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $state, currentUser, $mdMedia) {
+
+    $scope.smallScreen = $mdMedia('xs');
     $scope.meals = [];
     $scope.selectedMeals = [];
-
 
     //fetch meals to display on page load
     MealFactory.getMealPlan(currentUser.id)
