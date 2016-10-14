@@ -5,6 +5,7 @@ var Sequelize = require('sequelize');
 
 var db = require('../../../server/db');
 
+var User = db.model('user');
 var Recipe = db.model('recipe');
 var Ingredient = db.model('ingredient');
 var Promise = require('bluebird');
@@ -171,7 +172,12 @@ describe('Recipe model', function () {
                 return rec.getMealsWithSimilarIngredients(1)
                 .then(function(result){
                     expect(result).to.be.an('array');
-                    expect(Number(result[0])).to.be.equals(2);
+                    return Recipe.findOne({
+                        where: {id: result[0]}
+                    });
+                })
+                .then(function(resultRecipe){
+                    expect(resultRecipe.title).to.be.equals('Chocolate Chip Cookies');
                 });
             });
         });
@@ -180,11 +186,8 @@ describe('Recipe model', function () {
     describe('randomRecipes', function () {
 
         var fakeUser = {
-            getAllOkayRecipes: function(){
-                return new Promise(function(resolve){
-                    return recipes;
-                })
-            }
+            email: 'chocolover@choco.com',
+            password: 'choco'
         }
 
         var recipes = [
@@ -231,11 +234,14 @@ describe('Recipe model', function () {
 
         it('should return an array of the correct length', function () {
             return createRecipes().then(function (rec) {
-                // return Recipe.randomRecipes(fakeUser, 2)
-                // .then(function(result){
-                //     expect(result).to.be.an('array');
-                //     // expect(result[0].title).to.be.equals('Chocolate Chip Cookies');
-                // })
+                User.create(fakeUser)
+                .then(function(user){
+                    return Recipe.randomRecipes(user.id, 2);
+                })
+                .then(function(result){
+                    expect(result).to.be.an('array');
+                    expect(result).to.be.have.length(2);
+                })
             });
         });
 
