@@ -32,6 +32,8 @@ app.controller('ListCtrl', function($scope, ListFactory, currentUser, $mdDialog)
 
   $scope.submitPrice = ListFactory.submitPrice;
 
+  $scope.getPlanId = ListFactory.getPlanId;
+
   //popup to show grocery cost input form
     $scope.showCostForm = function(ev) {
         $mdDialog.show({
@@ -86,16 +88,18 @@ app.factory('ListFactory', function($http) {
                 }
                 formatedList[groceryList[key].section].push(newItem)
             }
-
             return formatedList;
         });
-
-
     }
 
+    // ListFactory.getPlanId = function(userId) {
+    //     return $http.get(`api/users/${userId}/meals/grocerylist`)
+    //     .then(function(response) {
+    //         return response.data[1];
+    //     })
+    // }
+
     ListFactory.makePDF = function(groceryList){
-
-
         let listToExport = [];
         for (let aisle in groceryList){
             listToExport.push({text: aisle, fontSize: 16, bold: true});
