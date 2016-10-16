@@ -1,7 +1,9 @@
 app.controller('CategoriesCtrl', ($scope, $log, currentUser, mealPlans, VisFactory) => {
 
 	$scope.activeMealPlan = mealPlans[2];
-	$scope.data = VisFactory.buildCategoryData($scope.activeMealPlan);
+	if ($scope.activeMealPlan) {
+		$scope.data = VisFactory.buildCategoryData($scope.activeMealPlan);
+	}
 
 	$scope.options = {
 		chart: {

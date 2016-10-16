@@ -32,7 +32,10 @@ app.controller('OverlapCtrl', ($scope, $log, currentUser, mealPlans, VisFactory)
 	// THEN separate past vs. active MP and select which to show
 	// get user data
 	$scope.activeMealPlan = mealPlans[2];
-	$scope.data = VisFactory.buildOverlapData($scope.activeMealPlan);
+	console.log('AMP', $scope.activeMealPlan);
+	if ($scope.activeMealPlan) {
+		$scope.data = VisFactory.buildOverlapData($scope.activeMealPlan);
+	}
 
 	// build data into chart
   	var nodes = cluster.nodes(packageHierarchy($scope.data)),

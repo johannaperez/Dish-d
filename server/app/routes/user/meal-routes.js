@@ -65,7 +65,7 @@ router.get('', (req, res, next) => {
 router.get('/all', (req, res, next) => {
   let mealPlansLight = {};
   let activeMpIdx = -1;
-  let activeMp = null;
+  let activeMp = false;
 
   MealPlan.findAll({
     where: {
@@ -94,7 +94,7 @@ router.get('/all', (req, res, next) => {
       return Promise.all(mealPromises)
     }
     else {
-      res.json([null, null, null])
+      res.json([false, false, false])
     }
   })
   .then(function(detailedMealPlans) {

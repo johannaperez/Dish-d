@@ -1,12 +1,12 @@
 app.controller('SpendingCtrl', ($scope, $log, currentUser, mealPlans, VisFactory) => {
 
+	// ORDER BY MP.ID
 	$scope.lightMealPlans = mealPlans[0];
-	$scope.detailedMealPlans = mealPlans[1];
 
 	VisFactory.getUserPrefs(currentUser.id)
 	.then(prefs => {
 		$scope.numPeople = prefs.numPeople;
-		$scope.data = VisFactory.buildSpendingData($scope.detailedMealPlans, $scope.lightMealPlans, $scope.numPeople);
+		$scope.data = VisFactory.buildSpendingData($scope.lightMealPlans, $scope.numPeople);
 	})
 	.catch($log.error)
 

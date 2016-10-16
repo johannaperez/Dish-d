@@ -1,6 +1,7 @@
-<section>
+<section ng-show="activeMealPlan">
+	<pre>{{ activeMealPlan | json }}</pre>
     <h1>I Reused</h1>
-    <div id="overlapVis" ng-controller="OverlapCtrl">
+    <div id="overlapVis">
     	<svg></svg>
     </div>
 </section>

@@ -1,26 +1,11 @@
 app.factory('VisFactory', function($http){
     return {
-        // SWITCH VIS TO THIS ROUTER!!!
         getAllPlans: (userId) => {
             return $http.get(`api/users/${userId}/meals/all`)
             .then(response => {
                 return response.data;   // [lightMp, detailedMp, ActiveMp]
             })
         },
-
-        // getActiveMealPlan: (userId) => {
-        //     return $http.get(`api/users/${userId}/meals`)
-        //     .then(response => {
-        //         return response.data;
-        //     })
-        // },
-
-        // getCompletedMealPlans: (userId) => {
-        //     return $http.get(`api/users/${userId}/history`)
-        //     .then(response => {
-        //         return response.data;
-        //     })
-        // },
 
         getUserPrefs: (userId) => {
             return $http.get(`api/users/${userId}/preferences`)
@@ -151,7 +136,7 @@ app.factory('VisFactory', function($http){
             return data;
         },
 
-        buildSpendingData: (loadedMealArr, lightMealArr, numPeople) => {
+        buildSpendingData: (lightMealArr, numPeople) => {
             let data = [{
                 key: 'Marley Spoon',
                 values: []
@@ -166,7 +151,7 @@ app.factory('VisFactory', function($http){
             // build data in d3 format
             for (let i = 0; i < lightMealArr.length; i++) {
                 let price = +lightMealArr[i].price;
-                let divisor = loadedMealArr[i].length * numPeople;
+                let divisor = lightMealArr[i].meals.length * numPeople;
                 let pricePerServ = price / divisor;
 
                 data[0].values.push([i + 1, 10.33]);
