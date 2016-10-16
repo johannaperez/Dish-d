@@ -7,10 +7,9 @@ const router = require('express').Router({mergeParams: true});
 const getMeals = require('./meal-generator').getMeals;
 const Promise = require('bluebird');
 
-
 //get existing active plan or a new set of random meals if none exists
 router.get('', (req, res, next) => {
-	let id = req.params.userId;
+  let id = req.params.userId;
 
   MealPlan.findOne({
     where: {
@@ -24,7 +23,7 @@ router.get('', (req, res, next) => {
       let planPromises = plan.meals.map(recId => Recipe.findById(recId));
       Promise.all(planPromises)
       .then(meals => {
-        res.send([meals, plan])
+        res.send(meals)
       })
       .catch(next);
     }  // the user doesn't have a meal plan currently
@@ -58,6 +57,25 @@ router.get('', (req, res, next) => {
     }
   })
 });
+
+// get all mealPlans, active and complete, for a user
+// api/users/:userId/meals/all
+router.get('/all', (req, res, next) => {
+  MealPlan.findAll({
+    where: {
+      userId: req.params.userId
+    }
+  })
+  .then(function(plans) {
+    if (plans) {
+      res.send(plans)
+    }
+    else {
+      res.send('No meal plans found')
+    }
+  })
+  .catch(next);
+})
 
 // add price for a particular meal plan
 router.put('/:mealPlanId', (req, res, next) => {

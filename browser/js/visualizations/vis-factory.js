@@ -1,5 +1,13 @@
 app.factory('VisFactory', function($http){
     return {
+        // SWITCH VIS TO THIS ROUTER!!!
+        getAllPlans: (userId) => {
+            return $http.get(`api/users/${userId}/meals/all`)
+            .then(response => {
+                return response.data;   // array of all MPs
+            })
+        },
+
         getActiveMealPlan: (userId) => {
             return $http.get(`api/users/${userId}/meals`)
             .then(response => {

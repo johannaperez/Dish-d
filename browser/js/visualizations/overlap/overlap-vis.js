@@ -29,6 +29,8 @@ app.controller('OverlapCtrl', ($scope, $log, currentUser, activeMealPlan, VisFac
 	var link = svg.append("g").selectAll(".link"),
 	    node = svg.append("g").selectAll(".node");
 
+	// CHANGE TO api/users/:userId/meals/all route for all MPs
+	// THEN separate past vs. active MP and select which to show
 	// get user data
 	if (activeMealPlan.length < 6) {
 		$scope.activeMealPlan = activeMealPlan[0];
