@@ -1,4 +1,4 @@
-    #groceries {
+#groceries {
     display: flex;
     justify-content: center;
     width: 100vw;
@@ -26,10 +26,8 @@
             border: $theme-border;
         }
     }
-    md-dialog .grocery-cost {
-        max-width: 20vw;
-        max-height: 20vh;
-        md-toolbar {
-            background-color: $theme-yellow !important;
-        }
+}
+#cost {
+        display: flex;
+        align-items: center;
     }
