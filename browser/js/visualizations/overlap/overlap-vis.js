@@ -32,35 +32,35 @@ app.controller('OverlapCtrl', ($scope, $log, currentUser, mealPlans, VisFactory)
 	// THEN separate past vs. active MP and select which to show
 	// get user data
 	$scope.activeMealPlan = mealPlans[2];
-	console.log('AMP', $scope.activeMealPlan);
+	// console.log('AMP', $scope.activeMealPlan);
 	if ($scope.activeMealPlan) {
 		$scope.data = VisFactory.buildOverlapData($scope.activeMealPlan);
+
+		// build data into chart
+	  	var nodes = cluster.nodes(packageHierarchy($scope.data)),
+	      	links = packageImports(nodes);
+
+	  	link = link
+	    	  	.data(bundle(links))
+	   		.enter().append("path")
+	      		.each(function(d) {
+	      		d.source = d[0];
+	      		d.target = d[d.length - 1]
+	      	})
+	      	.attr("class", "link")
+	      	.attr("d", line);
+
+	  	node = node
+	      		.data(nodes.filter(function(n) { return !n.children; }))
+	    	.enter().append("text")
+	      		.attr("class", "node")
+	      		.attr("dy", ".31em")
+	      		.attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
+	      		.style("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+	      		.text(function(d) { return d.key; })
+	      		.on("mouseover", mouseovered)
+	      		.on("mouseout", mouseouted);
 	}
-
-	// build data into chart
-  	var nodes = cluster.nodes(packageHierarchy($scope.data)),
-      	links = packageImports(nodes);
-
-  	link = link
-    	  	.data(bundle(links))
-   		.enter().append("path")
-      		.each(function(d) {
-      		d.source = d[0];
-      		d.target = d[d.length - 1]
-      	})
-      	.attr("class", "link")
-      	.attr("d", line);
-
-  	node = node
-      		.data(nodes.filter(function(n) { return !n.children; }))
-    	.enter().append("text")
-      		.attr("class", "node")
-      		.attr("dy", ".31em")
-      		.attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
-      		.style("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-      		.text(function(d) { return d.key; })
-      		.on("mouseover", mouseovered)
-      		.on("mouseout", mouseouted);
 
 	function mouseovered(d) {
 	  node

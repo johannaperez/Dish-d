@@ -46,6 +46,8 @@ app.controller('MyAccountCtrl', function($scope, currentUser){
 
     $scope.userYear = $scope.userDate.slice(0, 4);
     $scope.userUpper = $scope.userName[0].toUpperCase() + $scope.userName.slice(1);
+
+    $scope.isActiveSelected = true;
 })
 
 

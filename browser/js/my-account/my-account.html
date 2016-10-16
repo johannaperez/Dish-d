@@ -14,6 +14,14 @@
         </div>
 
         <div class="item">
+            <section class="navBtns">
+                <md-button ng-click="isActiveChosen" ng-class="{chosen: isActiveChosen}">All-Time Stats</md-button>
+                <md-button ng-click="!isActiveChosen" ng-class="{chosen: !isActiveChosen}">Current Meals</md-button>
+                <pre>{{isActiveChosen | json}}</pre>
+            </section>
+        </div>
+
+        <div class="item">
             <div ui-view="categories"></div>
         </div>
         <div class="item">
