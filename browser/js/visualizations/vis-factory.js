@@ -4,23 +4,23 @@ app.factory('VisFactory', function($http){
         getAllPlans: (userId) => {
             return $http.get(`api/users/${userId}/meals/all`)
             .then(response => {
-                return response.data;   // array of all MPs
+                return response.data;   // [lightMp, detailedMp, ActiveMp]
             })
         },
 
-        getActiveMealPlan: (userId) => {
-            return $http.get(`api/users/${userId}/meals`)
-            .then(response => {
-                return response.data;
-            })
-        },
+        // getActiveMealPlan: (userId) => {
+        //     return $http.get(`api/users/${userId}/meals`)
+        //     .then(response => {
+        //         return response.data;
+        //     })
+        // },
 
-        getCompletedMealPlans: (userId) => {
-            return $http.get(`api/users/${userId}/history`)
-            .then(response => {
-                return response.data;
-            })
-        },
+        // getCompletedMealPlans: (userId) => {
+        //     return $http.get(`api/users/${userId}/history`)
+        //     .then(response => {
+        //         return response.data;
+        //     })
+        // },
 
         getUserPrefs: (userId) => {
             return $http.get(`api/users/${userId}/preferences`)

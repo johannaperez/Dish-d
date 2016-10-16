@@ -1,24 +1,14 @@
-app.controller('SpendingCtrl', ($scope, $log, currentUser, activeMealPlan, VisFactory) => {
+app.controller('SpendingCtrl', ($scope, $log, currentUser, mealPlans, VisFactory) => {
 
-	$scope.activeMealPlan = [activeMealPlan[0]];
-	$scope.lightActiveMealPlan = activeMealPlan[1];
+	$scope.lightMealPlans = mealPlans[0];
+	$scope.detailedMealPlans = mealPlans[1];
 
-	VisFactory.getCompletedMealPlans(currentUser.id)
-	.then(mpArr => {
-		$scope.lightCompletedMealPlans = mpArr[0];
-		$scope.completedMealPlans = mpArr[1];
+	VisFactory.getUserPrefs(currentUser.id)
+	.then(prefs => {
+		$scope.numPeople = prefs.numPeople;
+		$scope.data = VisFactory.buildSpendingData($scope.detailedMealPlans, $scope.lightMealPlans, $scope.numPeople);
 	})
-	.then(() => {
-		VisFactory.getUserPrefs(currentUser.id)
-		.then(prefs => {
-			$scope.numPeople = prefs.numPeople;
-			let loadedMealArr = [...$scope.completedMealPlans, ...$scope.activeMealPlan];
-			let lightMealArr = [...$scope.lightCompletedMealPlans, $scope.lightActiveMealPlan];
-			$scope.data = VisFactory.buildSpendingData(loadedMealArr, lightMealArr, $scope.numPeople);
-		})
-		.catch($log.error);
-	})
-	.catch($log.error);
+	.catch($log.error)
 
 	$scope.options = {
 		chart: {
@@ -36,11 +26,11 @@ app.controller('SpendingCtrl', ($scope, $log, currentUser, activeMealPlan, VisFa
             useInteractiveGuideline: true,
 
             xAxis: {
-            	axisLabel: 'meal'
+            	axisLabel: 'week'
             },
 
             yAxis: {
-	          	axisLabel: 'price per serving',
+	          	axisLabel: 'average price per serving',
 	          	tickFormat: (d) => {
 	          		return '$' + d.toFixed(2);
 	          	}
