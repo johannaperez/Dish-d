@@ -23,4 +23,8 @@
 
 #signup-form {
     @include form-body;
+    a {
+      border-bottom: none;
+      padding: 5px;
+    }
 }
