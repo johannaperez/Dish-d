@@ -12,9 +12,10 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('HomeCtrl', function ($scope, currentUser) {
-        $scope.user = currentUser;
+app.controller('HomeCtrl', function ($scope, currentUser, $mdMedia) {
 
+        $scope.user = currentUser;
+        // $scope.smallScreen = $mdMedia('xs');
         $scope.resources = [
             '*.ogv',
             'js/home/media/girls_cooking.mp4',
@@ -25,5 +26,5 @@ app.controller('HomeCtrl', function ($scope, currentUser) {
         $scope.zIndex = '10';
         $scope.playInfo = {};
         $scope.pausePlay = true;
-        //$scope.poster = find a pic to put here for  mobile size
+        $scope.poster = 'https://d16cs9nbg8x6iq.cloudfront.net/p/?url=https%3A%2F%2Fd16cs9nbg8x6iq.cloudfront.net%2Fi%2Ffe902e541218c945bce86f6c0f8faf01%2F&q=75&w=1928&h=868&opt=1&fmt=webp'
 });
