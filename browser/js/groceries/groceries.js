@@ -17,12 +17,10 @@ app.config(function($stateProvider) {
 app.controller('ListCtrl', function($scope, $log, ListFactory, currentUser, $mdDialog) {
 
     $scope.userId = currentUser.id;
-    // console.log('SCOPE USER ID', $scope.userId)
     $scope.getActivePlan = ListFactory.getActivePlan;
 
     $scope.sections = {};
     $scope.showList = false;
-    // $scope.price = 0;
 
     ListFactory.getGroceryList(currentUser.id)
         .then(function(groceryList) {
