@@ -7,12 +7,9 @@
     width: 100vw;
     height: 90vh;
     navbar {
-<<<<<<< HEAD
         position: fixed;
         top: 0;
         z-index: 100;
-=======
->>>>>>> master
         h1 {
             color: white;
         }
@@ -31,11 +28,7 @@
         .link {
             color: #FDFDFD;
             cursor: pointer;
-<<<<<<< HEAD
             border-bottom: $theme-border;
-=======
-            border-bottom: 1px dotted #9a9a9a;
->>>>>>> master
             font-size: 16px;
         }
     }
