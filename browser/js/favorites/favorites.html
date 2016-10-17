@@ -3,29 +3,7 @@
     <div id="favorites">
         <p ng-if="!meals.length"><a ui-sref="meals">Add some meals</a> to your favorites to see them here!</p>
         <div ng-repeat="meal in meals">
-            <md-card>
-                <md-card-content layout="row" layout-align="space-between">
-                    <div class="md-media-xl card-media" style="background: url({{meal.image}}) center; background-size: cover; background-position: center; ">
-                    </div>
-                    <div class="recipe" layout="column">
-                        <md-card-title>
-                            <md-card-title-text>
-                                <span class="md-headline">{{meal.title}}</span>
-                            </md-card-title-text>
-                        </md-card-title>
-                        <md-card-actions layout="row">
-                            <md-button class="md-icon-button" aria-label="Recipe" ng-click="removeRecipe(meal.id)">
-                                <md-tooltip>Remove from Favorites</md-tooltip>
-                                <ng-md-icon icon="delete"></ng-md-icon>
-                            </md-button>
-                            <md-button class="md-icon-button" aria-label="Recipe" ng-click="showRecipe(meal)">
-                                <md-tooltip>Show Full Recipe</md-tooltip>
-                                <i class="material-icons">room_service</i>
-                            </md-button>
-                        </md-card-actions>
-                    </div>
-                </md-card-content>
-            </md-card>
+            <meal-card></meal-card>
         </div>
         </section>
     </div>
