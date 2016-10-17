@@ -7,7 +7,7 @@ var db = require('../../../server/db');
 
 var supertest = require('supertest');
 
-xdescribe('Members Route', function () {
+describe('Members Route', function () {
 
     var app, User;
 
