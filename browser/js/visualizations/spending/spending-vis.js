@@ -2,13 +2,26 @@ app.controller('SpendingCtrl', ($scope, $log, currentUser, mealPlans, VisFactory
 
 	$scope.activeMealPlan = mealPlans[2];
 
+	// set up data
 	if (!mealPlans[0].length) {
 		$scope.data = false;
 	}
-
 	else {
-		// ORDER BY MP.ID
-		$scope.lightMealPlans = mealPlans[0];
+		let mps = mealPlans[0];
+		// sort MPs by id (~date)
+		for (let i = 0; i < mps.length - 1; i++) {
+			let swapped = false;
+
+			for (let j = 0; j < mps.length - 1; j++) {
+				if (mps[j].id > mps[j + 1].id) {
+					[mps[j], mps[j + 1]] = [mps[j + 1], mps[j]];
+					swapped = true;
+				}
+			}
+			if (!swapped) break;
+		}
+
+		$scope.lightMealPlans = mps;
 
 		VisFactory.getUserPrefs(currentUser.id)
 		.then(prefs => {
