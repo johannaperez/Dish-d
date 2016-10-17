@@ -30,29 +30,15 @@
                 align-self: flex-end;
             }
         }
-    }
-    md-card {
-        md-card-content .md-media-xl {
-            height: 50vh;
-            width: 40vw;
-        }
-        md-card-actions {
-            justify-content: flex-end;
-            // background-color: $theme-yellow;
-            margin-left: 7vw;
-            // border: $theme-border;
-            border-radius: 2px;
-        }
-        .recipe {
-            width: 18vw !important
-        }
-    }
+     }
     .s {
         padding-left: 5px;
     }
 
     h3 {
         background-color: $theme-yellow;
+        padding: 5px;
+        border: $theme-border;
     }
 }
 

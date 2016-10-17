@@ -16,50 +16,13 @@ app.config(function($stateProvider) {
 
 app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $state, currentUser, $mdMedia) {
 
-    $scope.smallScreen = $mdMedia('xs');
     $scope.meals = [];
     $scope.selectedMeals = [];
 
-    //fetch meals to display on page load
-    MealFactory.getMealPlan(currentUser.id)
-    .then(function(meals) {
-        $scope.meals = meals;
-        //change display depending on whether meals are user-selected
-        if (meals.length < 10) {
-            $scope.showSlider = false;
-        } else {
-            $scope.showSlider = true;
-        }
-    })
-    .then(function() {
-        $scope.mealsLoaded = true;
-    })
-    .catch($log.error);
+    $scope.$watch(function() { return $mdMedia('xs'); }, function(small) {
+         $scope.smallScreen = small;
+    });
 
-    //Fetch a fresh set of meals
-    $scope.refreshMeals = function(){
-        //prevent slick jankyness
-        $scope.mealsLoaded = false;
-        $scope.selectedMeals = [];
-         MealFactory.refreshMeals(currentUser.id)
-        .then(function(meals) {
-            $scope.meals = meals;
-        })
-        .then(function() {
-            $scope.mealsLoaded = true;
-            $scope.showSlider = true;
-        })
-        .catch($log.error);
-    }
-
-    //slick functionality
-    $scope.slickConfig = {
-        // adaptiveHeight: true,
-        // mobileFirst: true,
-        slidesToScroll: 1,
-        slideToShow: 1,
-        method: {}
-    }
 
     //select meals
     $scope.selectMeal = function(meal) {
@@ -69,26 +32,11 @@ app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $stat
         }
     }
 
-    $scope.removeMeal = function(mealId) {
-        $scope.selectedMeals.forEach((meal, i) => {
-            if (meal.id === mealId) {
-                $scope.selectedMeals.splice(i, 1);
-            }
-        })
-    }
-
-    $scope.addGroceries = function() {
-        MealFactory.addMealPlan(currentUser.id, $scope.selectedMeals)
-            .then(function() {
-                $state.go('groceries');
-            })
-            .catch($log.error)
-    }
-
-    $scope.addFavorite = function(mealId){
-        MealFactory.addFavorite(currentUser.id, mealId)
+    $scope.addFavorite = function(meal){
+        MealFactory.addFavorite(currentUser.id, meal.id)
         .catch($log.error);
     }
+
 
     //popup to show a recipe's detail
     $scope.showRecipe = function(meal, ev) {
@@ -119,6 +67,100 @@ app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $stat
 
         }
     };
+
+    const buttonsA = [{
+          icon: 'add',
+          click: $scope.selectMeal,
+          tooltip: "Add to Groceries"
+        },
+        {
+          icon: 'favorite',
+          click: $scope.addFavorite,
+          tooltip: "Add to Favorites"
+        },
+        {
+          icon: 'aspect_ratio',
+          click: $scope.showRecipe,
+          tooltip: 'Show Full Recipe'
+    }];
+
+    const buttonsB = [
+        {
+          icon: 'favorite',
+          click: $scope.addFavorite,
+          tooltip: "Add to Favorites"
+        },
+        {
+          icon: 'aspect_ratio',
+          click: $scope.showRecipe,
+          tooltip: 'Show Full Recipe'
+    }];
+
+    //fetch meals to display on page load
+    MealFactory.getMealPlan(currentUser.id)
+    .then(function(meals) {
+        $scope.meals = meals;
+        //change display depending on whether meals are user-selected
+        if (meals.length < 10) {
+            $scope.showSlider = false;
+        //this view has fewer buttons on card
+        $scope.buttons = buttonsB;
+
+        } else {
+            $scope.showSlider = true;
+            $scope.buttons = buttonsA;
+
+        }
+    })
+    .then(function() {
+        $scope.mealsLoaded = true;
+    })
+    .catch($log.error);
+
+    //Fetch a fresh set of meals
+    $scope.refreshMeals = function(){
+        //prevent slick jankyness
+        $scope.mealsLoaded = false;
+        $scope.selectedMeals = [];
+         MealFactory.refreshMeals(currentUser.id)
+        .then(function(meals) {
+            $scope.meals = meals;
+        })
+        .then(function() {
+            $scope.mealsLoaded = true;
+            $scope.showSlider = true;
+
+            $scope.buttons = buttonsA;
+        })
+        .catch($log.error);
+    }
+
+    //slick functionality
+    $scope.slickConfig = {
+        // adaptiveHeight: true,
+        // mobileFirst: true,
+        slidesToScroll: 1,
+        slideToShow: 1,
+        method: {}
+    }
+
+
+    $scope.removeMeal = function(mealId) {
+        $scope.selectedMeals.forEach((meal, i) => {
+            if (meal.id === mealId) {
+                $scope.selectedMeals.splice(i, 1);
+            }
+        })
+    }
+
+    $scope.addGroceries = function() {
+        MealFactory.addMealPlan(currentUser.id, $scope.selectedMeals)
+            .then(function() {
+                $state.go('groceries');
+            })
+            .catch($log.error)
+    }
+
 });
 
 

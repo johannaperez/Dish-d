@@ -1,0 +1,22 @@
+md-card{
+
+  md-card-content .md-media-xl {
+      height: 50vh;
+      width: 40vw;
+  }
+
+  .md-media-sm {
+    width: 90vw;
+  }
+  md-card-actions {
+    background-color: $theme-yellow;
+    max-width: 193px;
+    min-width: 128px;
+    align-self: center;
+    border: $theme-border;
+    border-radius: 2px;
+  }
+  .recipe {
+      width: 18vw !important
+  }
+}

@@ -13,6 +13,9 @@ app.config(function ($stateProvider) {
                 .then(function(user) {
                     return MemberInfoFactory.getUser(user.id);
                 })
+            },
+            mealPlans: function(VisFactory, currentUser) {
+                return VisFactory.getAllPlans(currentUser.id);  // [lightMP, detailedMP, activeMP]
             }
         }
     })
@@ -43,6 +46,18 @@ app.controller('MyAccountCtrl', function($scope, currentUser){
 
     $scope.userYear = $scope.userDate.slice(0, 4);
     $scope.userUpper = $scope.userName[0].toUpperCase() + $scope.userName.slice(1);
+
+    $scope.isActiveChosen = true;
+
+    $scope.activeHandler = () => {
+        $scope.isActiveChosen = true;
+        $scope.$broadcast('viewChange');
+    }
+
+    $scope.allTimeHandler = () => {
+        $scope.isActiveChosen = false;
+        $scope.$broadcast('viewChange');
+    }
 })
 
 

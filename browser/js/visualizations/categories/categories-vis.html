@@ -1,4 +1,11 @@
- <section>
+ <section ng-hide="activeMealPlan">
+ 	<h1>Eat, Save, Reuse</h1>
+ 	<p>Your plate is empty!</p>
+ 	<!-- FOR JO: link is clickable but class="link" interferes with sref?? -->
+ 	<p><a ui-sref="meals" class="alink">Select new meals here</a></p>
+ </section>
+
+ <section ng-show="activeMealPlan || !isActiveChosen">
     <h1>I Ate</h1>
     <div id="categoriesVis">
         <div>

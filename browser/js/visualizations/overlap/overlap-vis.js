@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-app.controller('OverlapCtrl', ($scope, $log, currentUser, VisFactory) => {
+app.controller('OverlapCtrl', ($scope, $log, currentUser, mealPlans, VisFactory) => {
 
 	$scope.diameter = 600;
 
@@ -21,8 +21,6 @@ app.controller('OverlapCtrl', ($scope, $log, currentUser, VisFactory) => {
 	    .angle(function(d) { return d.x / 180 * Math.PI; });
 
 	var svg = d3.select("svg")
-	    // .attr("width", $scope.diameter)
-	    // .attr("height", $scope.diameter)
 	    .attr("preserveAspectRatio", "xMinYMin meet")
 	    .attr("viewBox", "0 0 600 600")
 	  .append("g")
@@ -31,14 +29,35 @@ app.controller('OverlapCtrl', ($scope, $log, currentUser, VisFactory) => {
 	var link = svg.append("g").selectAll(".link"),
 	    node = svg.append("g").selectAll(".node");
 
-	// get user data
-	VisFactory.getActiveMealPlan(currentUser.id)
-	.then(mealPlan => {
-		$scope.activeMealPlan = mealPlan;
-		$scope.data = VisFactory.buildOverlapData($scope.activeMealPlan)
+	// get user data: active and all-time
+	$scope.activeMealPlan = mealPlans[2];
+	if ($scope.activeMealPlan) {
+		$scope.activeData = VisFactory.buildOverlapData($scope.activeMealPlan);
+	}
 
-		// build data into chart
-	  	var nodes = cluster.nodes(packageHierarchy($scope.data)),
+	$scope.allMealPlans = [];
+	mealPlans[1].forEach(mp => {
+		$scope.allMealPlans = [...$scope.allMealPlans, ...mp]
+	});
+	$scope.allData = VisFactory.buildOverlapData($scope.allMealPlans);
+
+	// start page with active data
+	$scope.data = $scope.activeData;
+
+	$scope.$on('viewChange', () => {
+		if ($scope.isActiveChosen) {
+			$scope.data = $scope.activeData;
+		}
+		else {
+			$scope.data = $scope.allData;
+		}
+		buildChart($scope.data);
+	});
+
+	if ($scope.data) { buildChart($scope.data) }
+
+	function buildChart(data) {
+	  	var nodes = cluster.nodes(packageHierarchy(data)),
 	      	links = packageImports(nodes);
 
 	  	link = link
@@ -61,8 +80,7 @@ app.controller('OverlapCtrl', ($scope, $log, currentUser, VisFactory) => {
 	      		.text(function(d) { return d.key; })
 	      		.on("mouseover", mouseovered)
 	      		.on("mouseout", mouseouted);
-	})
-	.catch($log.error);
+	}
 
 	function mouseovered(d) {
 	  node
