@@ -1,4 +1,3 @@
-
 const db = require('../../../db');
 const Recipe = db.model('recipe');
 const User = db.model('user');

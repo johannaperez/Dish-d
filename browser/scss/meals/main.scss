@@ -23,14 +23,6 @@
         padding-top: 30vh;
         color: $theme-yellow;
     }
-    // .meal-list {
-    //     md-card-actions {
-    //         background-color: $theme-yellow;
-    //         margin-left: 7vw;
-    //         border: $theme-border;
-    //         border-radius: 2px;
-    //     }
-    // }
     .title {
         justify-content: center;
     }
@@ -48,17 +40,6 @@
             width: 100vw;
             height: 100vh;
         }
-        // md-card-actions {
-        //     background-color: $theme-yellow;
-        //     @media all and (min-width: 600px) {
-        //         margin-left: 5vw;
-        //     }
-        //     @media all and (max-width: 599px) {
-        //         margin-left: 40vw;
-        //     }
-        //     border: $theme-border;
-        //     border-radius: 2px;
-        // }
         .btn {
             display: flex;
             align-self: center;

@@ -15,7 +15,6 @@ app.config(function ($stateProvider) {
 app.controller('HomeCtrl', function ($scope, currentUser, $mdMedia) {
 
         $scope.user = currentUser;
-        // $scope.smallScreen = $mdMedia('xs');
         $scope.resources = [
             '*.ogv',
             'js/home/media/girls_cooking.mp4',
