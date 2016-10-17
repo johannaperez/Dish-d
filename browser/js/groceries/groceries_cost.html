@@ -1,0 +1,28 @@
+<md-dialog aria-label="Cost">
+    <form ng-cloak id="cost">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Groceries Cost</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <i class="material-icons" aria-label="Close dialog">close</i>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <!-- COST -->
+            <md-input-container>
+                <label>Groceries Total</label>
+                <input placeholder="$" ng-model="price">
+            </md-input-container>
+        </md-dialog-content>
+        <md-dialog-actions layout="row" layout-align="end">
+            <md-button ng-click="submitPrice(+price)" type="submit">
+                Save
+            </md-button>
+            <md-button ng-click="cancel()">
+                Cancel
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>

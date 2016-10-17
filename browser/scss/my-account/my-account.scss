@@ -5,6 +5,11 @@
         width: 100vw;
         padding-top: 10vh;
     }
+    .alink {
+        cursor: pointer;
+        border-bottom: $theme-border;
+        font-size: 14px;
+        }
     .item {
         box-sizing: border-box;
         padding: 20px;
