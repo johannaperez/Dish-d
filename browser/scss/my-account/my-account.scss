@@ -3,7 +3,13 @@
         display: flex;
         height: 75vh;
         width: 100vw;
+        padding-top: 10vh;
     }
+    .alink {
+        cursor: pointer;
+        border-bottom: $theme-border;
+        font-size: 14px;
+        }
     .item {
         box-sizing: border-box;
         padding: 20px;
@@ -14,6 +20,12 @@
             display: flex;
             flex-direction: row;
             justify-content: space-around;
+            max-width: 90vw;
+        }
+        .navBtns {
+            .chosen {
+                background-color: $theme-yellow !important;
+            }
         }
         .spending {
             display: flex;
@@ -26,16 +38,11 @@
     .item:nth-child(2) {
         flex: 1;
     }
-    @media screen and (max-width:990px) {
-        .container {
-            flex-wrap: wrap;
-        }
-        .item:first-child {
-            flex-basis: 100%;
-        }
+    .item:first-child {
+        flex-basis: 100%;
     }
     .node {
-        font: 300 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font: 300 9px "Helvetica Neue", Helvetica, Arial, sans-serif;
         fill: grey;
     }
     .node:hover {
@@ -60,6 +67,6 @@
     }
     .link--source,
     .link--target {
-        stroke: #FEE778;
+        stroke: $theme-yellow;
     }
 }

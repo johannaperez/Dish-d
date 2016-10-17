@@ -5,11 +5,12 @@ var Sequelize = require('sequelize');
 
 var db = require('../../../server/db');
 
+var User = db.model('user');
 var Recipe = db.model('recipe');
 var Ingredient = db.model('ingredient');
 var Promise = require('bluebird');
 
-xdescribe('Recipe model', function () {
+describe('Recipe model', function () {
 
     beforeEach('Sync DB', function () {
        return db.sync({force: true});
@@ -28,7 +29,7 @@ xdescribe('Recipe model', function () {
         var recipes = [
             {title: "Chocolate Cake",
             instructions: 'make it!',
-            image:'img.jpg',
+            image: 'img.jpg',
             preparationMinutes: 10,
             cookingMinutes: 10,
             extendedIngredients: [
@@ -38,7 +39,7 @@ xdescribe('Recipe model', function () {
             },
             {title: "Chocolate Chip Cookies",
             instructions: 'make it!',
-            image:'img.jpg',
+            image: 'img.jpg',
             preparationMinutes: 10,
             cookingMinutes: 10,
             extendedIngredients: [
@@ -48,7 +49,7 @@ xdescribe('Recipe model', function () {
             },
             {title: "Chicken Nuggets",
             instructions: 'make it!',
-            image:'img.jpg',
+            image: 'img.jpg',
             preparationMinutes: 10,
             cookingMinutes: 10,
             extendedIngredients: [
@@ -92,7 +93,7 @@ xdescribe('Recipe model', function () {
         var recipes = [
             {title: "Chocolate Cake",
             instructions: 'make it!',
-            image:'img.jpg',
+            image: 'img.jpg',
             preparationMinutes: 10,
             cookingMinutes: 10,
             extendedIngredients: [
@@ -102,7 +103,7 @@ xdescribe('Recipe model', function () {
             },
             {title: "Chocolate Chip Cookies",
             instructions: 'make it!',
-            image:'img.jpg',
+            image: 'img.jpg',
             preparationMinutes: 10,
             cookingMinutes: 10,
             extendedIngredients: [
@@ -112,12 +113,12 @@ xdescribe('Recipe model', function () {
             },
             {title: "Chicken Nuggets",
             instructions: 'make it!',
-            image:'img.jpg',
+            image: 'img.jpg',
             preparationMinutes: 10,
             cookingMinutes: 10,
             extendedIngredients: [
-                {name: 'chicken', id: 400},
-                {name: 'nuggets', id: 323}
+                {name: 'chicken', id: 4},
+                {name: 'nuggets', id: 5}
             ]
             }
 
@@ -166,12 +167,17 @@ xdescribe('Recipe model', function () {
             });
         });
 
-        it('should return an array of recipes with the same ingredients', function () {
+        it('should return an array of recipe id with the same ingredients', function () {
             return createRecipe().then(function (rec) {
                 return rec.getMealsWithSimilarIngredients(1)
                 .then(function(result){
                     expect(result).to.be.an('array');
-                    expect(result[0].title).to.be.equals('Chocolate Chip Cookies');
+                    return Recipe.findOne({
+                        where: {id: result[0]}
+                    });
+                })
+                .then(function(resultRecipe){
+                    expect(resultRecipe.title).to.be.equals('Chocolate Chip Cookies');
                 });
             });
         });
@@ -180,11 +186,8 @@ xdescribe('Recipe model', function () {
     describe('randomRecipes', function () {
 
         var fakeUser = {
-            getAllOkayRecipes: function(){
-                return new Promise(function(resolve){
-                    return recipes;
-                })
-            }
+            email: 'chocolover@choco.com',
+            password: 'choco'
         }
 
         var recipes = [
@@ -231,11 +234,14 @@ xdescribe('Recipe model', function () {
 
         it('should return an array of the correct length', function () {
             return createRecipes().then(function (rec) {
-                // return Recipe.randomRecipes(fakeUser, 2)
-                // .then(function(result){
-                //     expect(result).to.be.an('array');
-                //     // expect(result[0].title).to.be.equals('Chocolate Chip Cookies');
-                // })
+                User.create(fakeUser)
+                .then(function(user){
+                    return Recipe.randomRecipes(user.id, 2);
+                })
+                .then(function(result){
+                    expect(result).to.be.an('array');
+                    expect(result).to.be.have.length(2);
+                })
             });
         });
 

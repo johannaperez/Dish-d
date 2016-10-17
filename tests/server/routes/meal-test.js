@@ -8,7 +8,7 @@ var Recipe = db.model('recipe');
 
 var supertest = require('supertest');
 
-xdescribe('Meal Plan Route', function () {
+describe('Meal Plan Route', function () {
 
     var app, User;
 
@@ -29,15 +29,134 @@ xdescribe('Meal Plan Route', function () {
       guestAgent = supertest.agent(app);
     });
 
-    it('should get an array of 10 recipes as a response', function (done) {
-      guestAgent.get('/api/users/1/meals')
+    beforeEach('Seed recipes', function(){
+
+          var recipes = [
+        {title: "Chocolate Cake",
+        instructions: 'make it!',
+        image: 'img.jpg',
+        preparationMinutes: 10,
+        cookingMinutes: 10,
+        extendedIngredients: [
+            {name: 'chocolate', id: 1},
+            {name: 'sugar', id: 2}
+        ]
+        },
+        {title: "Chocolate Chip Cookies",
+        instructions: 'make it!',
+        image: 'img.jpg',
+        preparationMinutes: 10,
+        cookingMinutes: 10,
+        extendedIngredients: [
+            {name: 'chocolate', id: 1},
+            {name: 'flour', id: 3}
+        ]
+        },
+        {title: "Chicken Nuggets",
+        instructions: 'make it!',
+        image: 'img.jpg',
+        preparationMinutes: 10,
+        cookingMinutes: 10,
+        extendedIngredients: [
+            {name: 'chicken', id: 400},
+            {name: 'nuggets', id: 323}
+        ]
+        },
+        {title: "Chocolate Cake2",
+        instructions: 'make it!',
+        image: 'img.jpg',
+        preparationMinutes: 10,
+        cookingMinutes: 10,
+        extendedIngredients: [
+            {name: 'chocolate', id: 1},
+            {name: 'sugar', id: 2}
+        ]
+        },
+        {title: "Chocolate Chip Cookies2",
+        instructions: 'make it!',
+        image: 'img.jpg',
+        preparationMinutes: 10,
+        cookingMinutes: 10,
+        extendedIngredients: [
+            {name: 'chocolate', id: 1},
+            {name: 'flour', id: 3}
+        ]
+        },
+        {title: "Chicken Nuggets2",
+        instructions: 'make it!',
+        image: 'img.jpg',
+        preparationMinutes: 10,
+        cookingMinutes: 10,
+        extendedIngredients: [
+            {name: 'chicken', id: 400},
+            {name: 'nuggets', id: 323}
+        ]
+        },
+        {title: "Chocolate Cake3",
+        instructions: 'make it!',
+        image: 'img.jpg',
+        preparationMinutes: 10,
+        cookingMinutes: 10,
+        extendedIngredients: [
+            {name: 'chocolate', id: 1},
+            {name: 'sugar', id: 2}
+        ]
+        },
+        {title: "Chocolate Chip Cookies3",
+        instructions: 'make it!',
+        image: 'img.jpg',
+        preparationMinutes: 10,
+        cookingMinutes: 10,
+        extendedIngredients: [
+            {name: 'chocolate', id: 1},
+            {name: 'flour', id: 3}
+        ]
+        },
+        {title: "Chicken Nuggets3",
+        instructions: 'make it!',
+        image: 'img.jpg',
+        preparationMinutes: 10,
+        cookingMinutes: 10,
+        extendedIngredients: [
+            {name: 'chicken', id: 400},
+            {name: 'nuggets', id: 323}
+        ]
+        },
+        {title: "Chicken Nuggets4",
+        instructions: 'make it!',
+        image: 'img.jpg',
+        preparationMinutes: 10,
+        cookingMinutes: 10,
+        extendedIngredients: [
+            {name: 'chicken', id: 400},
+            {name: 'nuggets', id: 323}
+        ]
+        }
+    ];
+
+     let recipePromises = [];
+        recipes.forEach(function(recipe){
+          recipePromises.push(Recipe.create(recipe));
+        });
+
+      return Promise.all(recipePromises);
+
+
+    });
+
+
+    // need to make a user.
+    // need to put recipes in the db for this to work
+    it('should get an array of 10 recipes as a response if a user has no meal plans', function(done) {
+      return guestAgent.get('/api/users/1/meals')
         .expect(200)
-        .end(function (err, response) {
-        if (err) return done(err);
-          expect(response.body).to.be.an('array');
-          expect(response.body).to.have.length(10);
-          done();
-      });
+        .end(function(err, response) {
+            if (err) return console.log(err);
+            // console.log(response.body);
+            expect(response.body).to.be.an('array');
+            expect(response.body).to.have.length(10);
+            done();
+          });
     });
 
   });

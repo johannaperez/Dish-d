@@ -4,24 +4,42 @@
     flex-direction: column;
     justify-content: center;
     width: 100vw;
-    .heading {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        justify-content: center;
-        width: 80vw;
-        .md-button {
-            width: 85vw;
-            justify-content: center;
-            background-color: #FEE778;
+    padding-top: 10vh;
+    #refresh {
+        @media all and (min-width: 600px) {
+            position: absolute;
+            margin-left: 65vw;
         }
+        @media all and (max-width: 600px) {
+            margin: auto;
+            display: flex;
+        }
+        margin-top: 2vh;
+        width: 60px;
+        border: $theme-border;
+        height: 60px;
+    }
+    .progress {
+        padding-top: 30vh;
+        color: $theme-yellow;
+    }
+    .title {
+        justify-content: center;
     }
     .mealsMain {
         display: flex;
         align-items: center;
-        flex-driection: row;
+        flex-direction: row;
         justify-content: center;
-        height: 70vh;
+        @media all and (min-width: 600px) {
+            padding-top: 15vh;
+            width: 70vw;
+            height: 70vh;
+        }
+        @media all and (max-width: 599px) {
+            width: 100vw;
+            height: 100vh;
+        }
         .btn {
             display: flex;
             align-self: center;
@@ -37,7 +55,12 @@
         }
     }
     .slick-container {
-        width: 50vw;
+        @media all and (min-width: 600px) {
+            width: 50vw;
+        }
+        @media all and (max-width: 599px) {
+            width: 90vw;
+        }
     }
     .slick-prev,
     .slick-next {
@@ -47,16 +70,32 @@
         display: flex;
         align-items: center;
         flex-direction: column;
-        margin-left: 2vw;
-        width: 30vw;
-        height: 70vh;
-        // background-color: white;
-        // border-left: 1px solid grey;
-        .md-list-item {
+        @media all and (min-width: 600px) {
+            width: 30vw;
+            margin-left: 2vw;
+            border-left: $theme-border;
+        }
+        @media all and (max-width:600px) {
+            width: 90vw;
+        }
+        height: 110vh;
+        .grocery-btn {
+            background-color: $theme-yellow;
+        }
+        .meals-header {
+            margin-top: 2vh;
+            border-bottom: $theme-border;
+        }
+        md-list-item {
+            width: 100%;
+            border-bottom: $theme-border;
             .md-button {
                 display: flex;
                 align-self: flex-end;
             }
+        }
+        md-list-item:first {
+            border-top: $theme-border;
         }
     }
     md-card {

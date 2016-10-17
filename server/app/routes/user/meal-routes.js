@@ -1,15 +1,16 @@
-
 const db = require('../../../db');
 const Recipe = db.model('recipe');
+const User = db.model('user');
 const MealPlan = db.model('mealPlan');
 const router = require('express').Router({mergeParams: true});
 const getMeals = require('./meal-generator').getMeals;
 const Promise = require('bluebird');
 
+// Mounted on api/users/:userId/meals
 
 //get existing active plan or a new set of random meals if none exists
 router.get('', (req, res, next) => {
-	let id = req.params.userId;
+  let id = req.params.userId;
 
   MealPlan.findOne({
     where: {
@@ -18,6 +19,7 @@ router.get('', (req, res, next) => {
     }
   })
   .then(function(plan){
+    // the user already has a meal plan, so serve that up.
     if (plan) {
       let planPromises = plan.meals.map(recId => Recipe.findById(recId));
       Promise.all(planPromises)
@@ -25,11 +27,29 @@ router.get('', (req, res, next) => {
         res.send(meals)
       })
       .catch(next);
-    } else {
-      // todo once user has favorites, use this as starting meal
-      Recipe.randomRecipes(id, 1)
+    }  // the user doesn't have a meal plan currently
+    else {
+
+      User.findById(id)
+      .then(function(user){
+        return user.getRecipes(); // get all the user's favorite recipes
+      })
+      .then(function(recipes){
+
+        // if they have favorite recipes potentionally use those to seed.
+        if (recipes.length && Math.random() > 0.5){
+          let length = recipes.length;
+          let random = Math.floor(Math.random() * length);
+          return recipes[random];
+        }
+        else { // seed with a random recipe, not a favorite
+          return Recipe.randomRecipes(id, 1);
+        }
+
+      })
       .then(function(rec){
-        return getMeals(rec[0], id);
+        if (Array.isArray(rec)) rec = rec[0];
+        return getMeals(rec, id);
       })
       .then(function(mealPlan){
         res.send(mealPlan);
@@ -37,6 +57,66 @@ router.get('', (req, res, next) => {
       .catch(next);
     }
   })
+});
+
+// get all mealPlans (active and complete) for a user
+// [light, detailed, (active: null or obj)]
+router.get('/all', (req, res, next) => {
+  let mealPlansLight = {};
+  let activeMpIdx = -1;
+  let activeMp = false;
+
+  MealPlan.findAll({
+    where: {
+      userId: req.params.userId
+    }
+  })
+  .then(function(plans) {
+    if (plans) {
+      mealPlansLight = plans; // arr of plan objs
+      let mealPromises = [];
+
+      // find active mp light
+      mealPlansLight.forEach((mp, i) => {
+        if (mp.status === 'active') {
+          activeMpIdx = i;
+        }
+      })
+
+      plans.forEach(plan => {
+        mealPromises.push(Recipe.findAll({
+          where: {
+            id: plan.meals
+          }
+        }))
+      })
+      return Promise.all(mealPromises)
+    }
+    else {
+      res.json([false, false, false])
+    }
+  })
+  .then(function(detailedMealPlans) {
+    if (activeMpIdx !== -1) {
+      activeMp = detailedMealPlans[activeMpIdx];
+    }
+    res.json([mealPlansLight, detailedMealPlans, activeMp]);
+  })
+  .catch(next);
+})
+
+// add price for a particular meal plan
+router.put('/:mealPlanId', (req, res, next) => {
+  MealPlan.findById(req.params.mealPlanId)
+  .then(mealPlan => {
+    return mealPlan.update({
+      price: req.body.price
+    })
+    .then(updatedPlan => {
+      res.json(updatedPlan);
+    })
+  })
+  .catch(next);
 });
 
 //mark existing plan as completed and get a fresh meal plan
@@ -57,13 +137,28 @@ router.put('', (req, res, next) => {
       return plan;
     })
     .then(function(){
-      return Recipe.randomRecipes(id, 1)
+      return User.findById(id)
+      .then(function(user){
+        return user.getRecipes();
+      })
+      .then(function(recipes){
+
+        if (recipes.length && Math.random() > 0.5){
+          let length = recipes.length;
+          let random = Math.floor(Math.random() * length);
+          return recipes[random];
+        }
+        else {
+          return Recipe.randomRecipes(id, 1);
+        }
+      })
     })
     .then(function(rec){
-        return getMeals(rec[0], id);
+        if (Array.isArray(rec)) rec = rec[0];
+        return getMeals(rec, id);
     })
     .then(function(mealPlan){
-        res.send(mealPlan);
+      res.send(mealPlan);
     })
     .catch(next);
 })
@@ -98,7 +193,6 @@ router.post('', (req, res, next) => {
     res.sendStatus(201);
   })
   .catch(next);
-
 })
 
 //create a new active meal plan for user
@@ -115,17 +209,15 @@ router.get('/grocerylist', (req, res, next) => {
     res.send(plan.groceryList);
   })
   .catch(next);
-
 })
 
 router.get('/all', (req, res, next) => {
-  //if the user already has a meal plan, close it
+
   Recipe.findAll()
   .then(function(recipes){
     res.send(recipes);
   })
   .catch(next);
-
 })
 
 module.exports = router;

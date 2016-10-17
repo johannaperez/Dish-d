@@ -10,7 +10,9 @@ const getMeals = require('./meal-generator').getMeals;
 
 // Mounted on /api/users
 
-router.use('/:userId/meals', require('./meal-routes.js')); 
+router.use('/:userId/meals', require('./meal-routes.js'));
+router.use('/:userId/favorites', require('./favorite-routes.js'));
+router.use('/:userId/history', require('./history-routes.js'));
 
 // GET all users (ADMIN)
 router.get('/', (req, res, next) => {
@@ -25,7 +27,9 @@ router.get('/', (req, res, next) => {
 router.get('/:userId', (req, res, next) => {
 	User.findById(req.params.userId)
 	.then(foundUser => {
-		if (!foundUser) res.sendStatus(404);
+		if (!foundUser) {
+			res.sendStatus(404);
+		}
 		else {
 			res.status(200).json(foundUser);
 		}
@@ -61,8 +65,5 @@ router.put('/:userId/preferences', (req, res, next) => {
 	})
 	.catch(next);
 });
-
-
-
 
 module.exports = router;

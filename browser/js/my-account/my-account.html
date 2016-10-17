@@ -1,43 +1,34 @@
 <md-content id="myacct">
-    <navbar header="My Account"></navbar>
+    <navbar class="nav" header="My Account"></navbar>
     <div class="container" layout="column">
+
         <div class="item">
             <section class="banner">
                 <p><strong>{{ userUpper }}</strong>, check out your dish'd stats!</p>
-                    <div>
+                <div>
                     <md-button ui-sref="meals">My Meals</md-button>
                     <md-button ui-sref="prefs({userId: userId})">Edit Preferences</md-button>
-                    </div>
+                </div>
                 <p>Member Since {{ userYear }}</p>
             </section>
         </div>
+
         <div class="item">
-            <section>
-                <h1>I Ate</h1>
-                <div id="categoriesVis">
-                    <div ng-controller="CategoriesCtrl">
-                        <nvd3 options="options" data="data"></nvd3>
-                    </div>
-                </div>
+            <section class="navBtns">
+                <md-button ng-click="allTimeHandler()" ng-class="{chosen: !isActiveChosen}">All-Time Stats</md-button>
+                <md-button ng-click="activeHandler()" ng-class="{chosen: isActiveChosen}">Current Meals</md-button>
             </section>
         </div>
+
         <div class="item">
-            <section class="spending">
-                <h1>I Saved</h1>
-                <div id="spendingVis">
-                    <div ng-controller="SpendingCtrl">
-                        <nvd3 options="options" data="data"></nvd3>
-                    </div>
-                </div>
-            </section>
+            <div ui-view="categories"></div>
         </div>
         <div class="item">
-            <section>
-                <h1>I Reused</h1>
-                <div id="overlapVis">
-                  <script src="/js/visualizations/overlap/overlap-vis.js"></script>
-                </div>
-            </section>
+            <div ui-view="spending"></div>
         </div>
+        <div class="item">
+            <div ui-view="overlap"></div>
+        </div>
+
     </div>
 </md-content>

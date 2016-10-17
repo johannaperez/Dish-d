@@ -1,0 +1,44 @@
+#history {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    padding-top: 10vh;
+    .heading {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        width: 80vw;
+        .md-button {
+            width: 85vw;
+            justify-content: center;
+            background-color: #FEE778;
+        }
+    }
+    .meals {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-left: 2vw;
+        width: 30vw;
+        height: 70vh;
+        .md-list-item {
+            .md-button {
+                display: flex;
+                align-self: flex-end;
+            }
+        }
+     }
+    .s {
+        padding-left: 5px;
+    }
+
+    h3 {
+        background-color: $theme-yellow;
+        padding: 5px;
+        border: $theme-border;
+    }
+}
+

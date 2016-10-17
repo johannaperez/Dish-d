@@ -2,22 +2,32 @@
     display: flex;
     justify-content: center;
     width: 100vw;
-    //height: 85vh;
-    .groceries {
-        width: 60vw;
+    padding-top: 10vh;
+    a {
+        border-bottom: $theme-border;
+    }
+    .grocery-list {
+        width: 75vw;
         background-color: white;
-        padding: 15px;
-        h4{
-          display: flex;
-          justify-content: flex-end;
-          align-items: center;
+        margin: 5vh 0;
+        padding-top: 1vh;
+        padding-bottom: 5vh;
+        border: $theme-border;
+        .md-button {
+            border: $theme-border;
+            justify-self: flex-end;
         }
-        div{
-          h3{
-            background-color: #FEE778;
+    }
+    div {
+        h3 {
+            background-color: $theme-yellow;
             text-align: center;
-            padding: 5px;
-          }
+            padding: 8px;
+            border: $theme-border;
         }
     }
 }
+#cost {
+        display: flex;
+        align-items: center;
+    }

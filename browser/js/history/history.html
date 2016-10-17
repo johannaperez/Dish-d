@@ -1,0 +1,12 @@
+    <md-content flex>
+    <navbar class="nav" header="My History"></navbar>
+    <div id="history">
+        <div ng-repeat="mealPlan in history">
+            <div layout="row">
+                <h3> {{ mealPlan.createdAt | date }} </h3></div>
+            <div ng-repeat="meal in details[$index]" layout="row">
+                <meal-card></meal-card>
+            </div>
+        </div>
+    </div>
+</md-content>

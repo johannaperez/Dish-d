@@ -1,9 +1,6 @@
 const db = require('../../../db');
-const User = db.model('user');
 const Recipe = db.model('recipe');
-const Ingredient = db.model('ingredient');
 const UserPref = db.model('userPrefs');
-const router = require('express').Router();
 const Promise = require('bluebird');
 
 // both recipe and user are sequelize instances
@@ -11,10 +8,9 @@ module.exports = {
 //maybe this is a user prefs instance method??
 	getMeals: function(recipe, userId){
 		//get list of 10 associated meals given the first recipe
-		let mealPlan = recipe.mealsWithSimilarIngredients;
+		let mealPlan = recipe.mealsWithSimilarIngredients || [recipe.id];
 		//Filter that list by user restrictions
-		return UserPref.findOne(
-		{
+		return UserPref.findOne({
 			where: {
 				userId: userId
 			}

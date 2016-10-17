@@ -1,14 +1,21 @@
 * {
+<<<<<<< HEAD
+    box-sizing: border-box;
+=======
   box-sizing: border-box;
+>>>>>>> master
 }
 
 @mixin clearfix {
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
 }
+
+$theme-yellow: #FEE778;
+$theme-border: 1px dotted #9a9a9a;
 
 a {
     text-decoration: none;
@@ -17,6 +24,20 @@ a {
 }
 
 #main {
+<<<<<<< HEAD
+    display: flex;
+    height: 100vh;
+    md-content {
+        background-color: #F7F7F7;
+        .nav {
+            background-color: #F7F7F7;
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px dotted grey;
+        }
+    }
+=======
   display: flex;
   height: 100vh;
   md-content {
@@ -25,6 +46,7 @@ a {
     //   background-color: #FEE778
     // }
   }
+>>>>>>> master
 }
 
 @import 'directives/main';
@@ -38,3 +60,9 @@ a {
 @import 'my-account/my-account';
 @import 'groceries/groceries';
 @import 'recipe/recipe.scss';
+<<<<<<< HEAD
+@import 'favorites/main.scss';
+@import 'history/history.scss';
+@import 'card/card.scss';
+=======
+>>>>>>> master

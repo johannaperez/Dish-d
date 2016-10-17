@@ -1,0 +1,11 @@
+<md-content flex>
+    <navbar class="nav" header="My Favorites"></navbar>
+    <div id="favorites">
+        <p ng-if="!meals.length"><a ui-sref="meals">Add some meals</a> to your favorites to see them here!</p>
+        <div ng-repeat="meal in meals">
+            <meal-card></meal-card>
+        </div>
+        </section>
+    </div>
+    </div>
+</md-content>
