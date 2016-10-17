@@ -17,6 +17,11 @@
             justify-content: space-around;
             max-width: 90vw;
         }
+        .navBtns {
+            .chosen {
+                background-color: $theme-yellow !important;
+            }
+        }
         .spending {
             display: flex;
             flex-direction: column;
