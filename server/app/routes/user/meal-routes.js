@@ -7,10 +7,11 @@ const router = require('express').Router({mergeParams: true});
 const getMeals = require('./meal-generator').getMeals;
 const Promise = require('bluebird');
 
+// Mounted on api/users/:userId/meals
 
 //get existing active plan or a new set of random meals if none exists
 router.get('', (req, res, next) => {
-	let id = req.params.userId;
+  let id = req.params.userId;
 
   MealPlan.findOne({
     where: {
@@ -57,6 +58,66 @@ router.get('', (req, res, next) => {
       .catch(next);
     }
   })
+});
+
+// get all mealPlans (active and complete) for a user
+// [light, detailed, (active: null or obj)]
+router.get('/all', (req, res, next) => {
+  let mealPlansLight = {};
+  let activeMpIdx = -1;
+  let activeMp = false;
+
+  MealPlan.findAll({
+    where: {
+      userId: req.params.userId
+    }
+  })
+  .then(function(plans) {
+    if (plans) {
+      mealPlansLight = plans; // arr of plan objs
+      let mealPromises = [];
+
+      // find active mp light
+      mealPlansLight.forEach((mp, i) => {
+        if (mp.status === 'active') {
+          activeMpIdx = i;
+        }
+      })
+
+      plans.forEach(plan => {
+        mealPromises.push(Recipe.findAll({
+          where: {
+            id: plan.meals
+          }
+        }))
+      })
+      return Promise.all(mealPromises)
+    }
+    else {
+      res.json([false, false, false])
+    }
+  })
+  .then(function(detailedMealPlans) {
+    if (activeMpIdx !== -1) {
+      activeMp = detailedMealPlans[activeMpIdx];
+    }
+    res.json([mealPlansLight, detailedMealPlans, activeMp]);
+  })
+  .catch(next);
+})
+
+// add price for a particular meal plan
+router.put('/:mealPlanId', (req, res, next) => {
+  MealPlan.findById(req.params.mealPlanId)
+  .then(mealPlan => {
+    return mealPlan.update({
+      price: req.body.price
+    })
+    .then(updatedPlan => {
+      res.json(updatedPlan);
+    })
+  })
+  .catch(next);
 });
 
 //mark existing plan as completed and get a fresh meal plan
