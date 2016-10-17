@@ -1,9 +1,5 @@
 * {
-<<<<<<< HEAD
-    box-sizing: border-box;
-=======
   box-sizing: border-box;
->>>>>>> master
 }
 
 @mixin clearfix {
@@ -24,7 +20,6 @@ a {
 }
 
 #main {
-<<<<<<< HEAD
     display: flex;
     height: 100vh;
     md-content {
@@ -37,16 +32,6 @@ a {
             border-bottom: 1px dotted grey;
         }
     }
-=======
-  display: flex;
-  height: 100vh;
-  md-content {
-    background-color: #F7F7F7;
-    // button .rectangle {
-    //   background-color: #FEE778
-    // }
-  }
->>>>>>> master
 }
 
 @import 'directives/main';
@@ -60,9 +45,7 @@ a {
 @import 'my-account/my-account';
 @import 'groceries/groceries';
 @import 'recipe/recipe.scss';
-<<<<<<< HEAD
 @import 'favorites/main.scss';
 @import 'history/history.scss';
 @import 'card/card.scss';
-=======
->>>>>>> master
+
