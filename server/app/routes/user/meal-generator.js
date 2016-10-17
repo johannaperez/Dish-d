@@ -8,7 +8,7 @@ module.exports = {
 //maybe this is a user prefs instance method??
 	getMeals: function(recipe, userId){
 		//get list of 10 associated meals given the first recipe
-		let mealPlan = recipe.mealsWithSimilarIngredients;
+		let mealPlan = recipe.mealsWithSimilarIngredients || [recipe.id];
 		//Filter that list by user restrictions
 		return UserPref.findOne({
 			where: {
