@@ -1,18 +1,14 @@
-/* eslint-disable */
-
 app.controller('CategoriesCtrl', ($scope, $log, currentUser, mealPlans, VisFactory) => {
 
 	$scope.activeMealPlan = mealPlans[2];
+	if ($scope.activeMealPlan) {
+		$scope.activeData = VisFactory.buildCategoryData($scope.activeMealPlan);
+	}
 
 	$scope.allMealPlans = [];
 	mealPlans[1].forEach(mp => {
 		$scope.allMealPlans = [...$scope.allMealPlans, ...mp]
 	});
-
-	if ($scope.activeMealPlan) {
-		$scope.activeData = VisFactory.buildCategoryData($scope.activeMealPlan);
-	}
-
 	$scope.allData = VisFactory.buildCategoryData($scope.allMealPlans);
 
 	$scope.data = $scope.activeData;
@@ -24,7 +20,7 @@ app.controller('CategoriesCtrl', ($scope, $log, currentUser, mealPlans, VisFacto
 		else {
 			$scope.data = $scope.allData;
 		}
-	})
+	});
 
 	$scope.options = {
 		chart: {
