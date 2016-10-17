@@ -45,6 +45,4 @@ app.controller('SpendingCtrl', ($scope, $log, currentUser, mealPlans, VisFactory
 			},
 		};
 	}
-
-
 });

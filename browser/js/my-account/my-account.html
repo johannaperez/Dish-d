@@ -15,9 +15,8 @@
 
         <div class="item">
             <section class="navBtns">
-                <md-button ng-click="isActiveChosen" ng-class="{chosen: isActiveChosen}">All-Time Stats</md-button>
-                <md-button ng-click="!isActiveChosen" ng-class="{chosen: !isActiveChosen}">Current Meals</md-button>
-                <pre>{{isActiveChosen | json}}</pre>
+                <md-button ng-click="allTimeHandler()" ng-class="{chosen: !isActiveChosen}">All-Time Stats</md-button>
+                <md-button ng-click="activeHandler()" ng-class="{chosen: isActiveChosen}">Current Meals</md-button>
             </section>
         </div>
 
