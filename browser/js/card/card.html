@@ -8,7 +8,7 @@
     </md-card-title>
     <md-card-actions ng-if="smallScreen" layout="row" layout-align="end-center">
          <div ng-repeat="button in buttons">
-            <md-button class="md-icon-button" aria-label="add to my meals" ng-click="button.clickFunction()" ng-disabled="selectedMeals.length > 4">
+            <md-button class="md-icon-button" aria-label="add to my meals" ng-click="button.click(meal)" ng-disabled="selectedMeals.length > 4">
                 <md-tooltip>{{button.tooltip}}</md-tooltip>
                 <ng-md-icon icon="{{ button.icon }}"></ng-md-icon>
             </md-button>
