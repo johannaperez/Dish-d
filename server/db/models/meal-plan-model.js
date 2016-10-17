@@ -8,7 +8,11 @@ const db = require('../_db');
 module.exports = db.define('mealPlan', {
   status: Sequelize.ENUM('active', 'complete'),
   meals: Sequelize.ARRAY(Sequelize.INTEGER),
-  groceryList: Sequelize.JSON
+  groceryList: Sequelize.JSON,
+  price: {
+  	type: Sequelize.DECIMAL,
+  	defaultValue: 0.00
+  }
 },
 {
 	instanceMethods: {
