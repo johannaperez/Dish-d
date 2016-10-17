@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-app.controller('OverlapCtrl', ($scope, $log, currentUser, activeMealPlan, VisFactory) => {
+app.controller('OverlapCtrl', ($scope, $log, currentUser, mealPlans, VisFactory) => {
 
 	$scope.diameter = 600;
 
@@ -29,34 +29,58 @@ app.controller('OverlapCtrl', ($scope, $log, currentUser, activeMealPlan, VisFac
 	var link = svg.append("g").selectAll(".link"),
 	    node = svg.append("g").selectAll(".node");
 
-	// get user data
-	$scope.activeMealPlan = activeMealPlan[0];
-	$scope.data = VisFactory.buildOverlapData($scope.activeMealPlan)
+	// get user data: active and all-time
+	$scope.activeMealPlan = mealPlans[2];
+	if ($scope.activeMealPlan) {
+		$scope.activeData = VisFactory.buildOverlapData($scope.activeMealPlan);
+	}
 
-	// build data into chart
-  	var nodes = cluster.nodes(packageHierarchy($scope.data)),
-      	links = packageImports(nodes);
+	$scope.allMealPlans = [];
+	mealPlans[1].forEach(mp => {
+		$scope.allMealPlans = [...$scope.allMealPlans, ...mp]
+	});
+	$scope.allData = VisFactory.buildOverlapData($scope.allMealPlans);
 
-  	link = link
-    	  	.data(bundle(links))
-   		.enter().append("path")
-      		.each(function(d) {
-      		d.source = d[0];
-      		d.target = d[d.length - 1]
-      	})
-      	.attr("class", "link")
-      	.attr("d", line);
+	// start page with active data
+	$scope.data = $scope.activeData;
 
-  	node = node
-      		.data(nodes.filter(function(n) { return !n.children; }))
-    	.enter().append("text")
-      		.attr("class", "node")
-      		.attr("dy", ".31em")
-      		.attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
-      		.style("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-      		.text(function(d) { return d.key; })
-      		.on("mouseover", mouseovered)
-      		.on("mouseout", mouseouted);
+	$scope.$on('viewChange', () => {
+		if ($scope.isActiveChosen) {
+			$scope.data = $scope.activeData;
+		}
+		else {
+			$scope.data = $scope.allData;
+		}
+		buildChart($scope.data);
+	});
+
+	if ($scope.data) { buildChart($scope.data) }
+
+	function buildChart(data) {
+	  	var nodes = cluster.nodes(packageHierarchy(data)),
+	      	links = packageImports(nodes);
+
+	  	link = link
+	    	  	.data(bundle(links))
+	   		.enter().append("path")
+	      		.each(function(d) {
+	      		d.source = d[0];
+	      		d.target = d[d.length - 1]
+	      	})
+	      	.attr("class", "link")
+	      	.attr("d", line);
+
+	  	node = node
+	      		.data(nodes.filter(function(n) { return !n.children; }))
+	    	.enter().append("text")
+	      		.attr("class", "node")
+	      		.attr("dy", ".31em")
+	      		.attr("transform", function(d) { return "rotate(" + (d.x - 90) + ")translate(" + (d.y + 8) + ",0)" + (d.x < 180 ? "" : "rotate(180)"); })
+	      		.style("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+	      		.text(function(d) { return d.key; })
+	      		.on("mouseover", mouseovered)
+	      		.on("mouseout", mouseouted);
+	}
 
 	function mouseovered(d) {
 	  node

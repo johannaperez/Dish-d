@@ -1,7 +1,26 @@
-app.controller('CategoriesCtrl', ($scope, $log, currentUser, activeMealPlan, VisFactory) => {
+app.controller('CategoriesCtrl', ($scope, $log, currentUser, mealPlans, VisFactory) => {
 
-	$scope.activeMealPlan = activeMealPlan[0];
-	$scope.data = VisFactory.buildCategoryData($scope.activeMealPlan);
+	$scope.activeMealPlan = mealPlans[2];
+	if ($scope.activeMealPlan) {
+		$scope.activeData = VisFactory.buildCategoryData($scope.activeMealPlan);
+	}
+
+	$scope.allMealPlans = [];
+	mealPlans[1].forEach(mp => {
+		$scope.allMealPlans = [...$scope.allMealPlans, ...mp]
+	});
+	$scope.allData = VisFactory.buildCategoryData($scope.allMealPlans);
+
+	$scope.data = $scope.activeData;
+
+	$scope.$on('viewChange', () => {
+		if ($scope.isActiveChosen) {
+			$scope.data = $scope.activeData;
+		}
+		else {
+			$scope.data = $scope.allData;
+		}
+	});
 
 	$scope.options = {
 		chart: {
