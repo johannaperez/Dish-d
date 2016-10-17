@@ -15,6 +15,14 @@ module.exports = function (app, db) {
     };
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
+        //get user's first name via fb oauth
+        let name = profile.displayName
+        let info = {
+            firstName: name.split(' ')[0],
+            lastName: name.split(' ').slice(1).join(' '),
+        };
+
+        console.log('PROFILE \n\n', profile)
 
         User.findOne({
                 where: {
@@ -26,7 +34,9 @@ module.exports = function (app, db) {
                     return user;
                 } else {
                     return User.create({
-                        facebook_id: profile.id
+                        facebook_id: profile.id,
+                        firstName: info.firstName,
+                        lastName: info.lastName
                     });
                 }
             })

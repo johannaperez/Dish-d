@@ -16,6 +16,13 @@ module.exports = function (app, db) {
     };
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
+        //get user's first name via google oauth
+        let name = profile.displayName
+        let info = {
+            firstName: name.split(' ')[0],
+            lastName: name.split(' ').slice(1).join(' '),
+            email: profile.emails[0].value
+        };
 
         User.findOne({
                 where: {
@@ -27,7 +34,10 @@ module.exports = function (app, db) {
                     return user;
                 } else {
                     return User.create({
-                        google_id: profile.id
+                        google_id: profile.id,
+                        firstName: info.firstName,
+                        lastName: info.lastName,
+                        email: info.email
                     });
                 }
             })
