@@ -1,10 +1,10 @@
-app.config(function ($stateProvider) {
+app.config(function($stateProvider) {
     $stateProvider.state('groceries', {
         url: '/groceries',
         templateUrl: 'js/groceries/groceries.html',
         controller: 'ListCtrl',
         resolve: {
-            currentUser: function(AuthService){
+            currentUser: function(AuthService) {
                 return AuthService.getLoggedInUser();
             }
         },
@@ -14,43 +14,38 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('ListCtrl', function($scope, ListFactory, currentUser, $mdDialog) {
-  // console.log('CURR USER', currentUser)
+app.controller('ListCtrl', function($scope, $log, ListFactory, currentUser, $mdDialog) {
 
-  $scope.userId = currentUser.id;
-  $scope.getActivePlan = ListFactory.getActivePlan;
+    $scope.userId = currentUser.id;
+    // console.log('SCOPE USER ID', $scope.userId)
+    $scope.getActivePlan = ListFactory.getActivePlan;
 
-  // ListFactory.getActivePlan(currentUser.userId)
-  // .then(function(activePlan) {
-  //   console.log('AMP', activePlan)
-  //   $scope.activePlanId = activePlan.id;
-  // })
+    $scope.sections = {};
+    $scope.showList = false;
+    // $scope.price = 0;
 
-  // console.log("AMP id", $scope.activePlanId)
+    ListFactory.getGroceryList(currentUser.id)
+        .then(function(groceryList) {
+            $scope.sections = groceryList;
+            $scope.headers = Object.keys(groceryList);
+            $scope.showList = $scope.headers.length;
+        })
 
-  $scope.sections = {};
-  $scope.showList = false;
+    $scope.round = ListFactory.round;
 
-  ListFactory.getGroceryList(currentUser.id)
-  .then(function(groceryList){
-    $scope.sections = groceryList;
-    $scope.headers = Object.keys(groceryList);
-    $scope.showList = $scope.headers.length;
-  })
-
-  $scope.round = ListFactory.round;
-
-  $scope.makePDF = ListFactory.makePDF;
+    $scope.makePDF = ListFactory.makePDF;
 
 
-  //popup to show grocery cost input form
+    //popup to show grocery cost input form
     $scope.showCostForm = function(ev) {
         $mdDialog.show({
             controller: DialogController,
             templateUrl: 'js/groceries/groceries_cost.html',
+            scope: $scope,
+            preserveScope: true,
             targetEvent: ev,
             clickOutsideToClose: true
-        })
+        });
 
         function DialogController($scope, $mdDialog) {
             $scope.hide = function() {
@@ -61,14 +56,19 @@ app.controller('ListCtrl', function($scope, ListFactory, currentUser, $mdDialog)
             };
             $scope.submitPrice = function(price) {
                 let ampId = -1;
-                 ListFactory.getActivePlan(currentUser.userId)
-                  .then(function(activePlan) {
-                    console.log('AMP', activePlan)
-                    ampId = activePlan.id;
-                  })
-            }
-            ListFactory.submitPrice(price, $scope.userId, ampId);
+                ListFactory.getMealPlans($scope.userId)
+                .then(function(mealPlans) {
+                    mealPlans.forEach(mp => {
+                        if (mp.status === 'active') {
+                            ampId = mp.id;
+                        }
+                    })
+                    ListFactory.submitPrice(price.toFixed(2), $scope.userId, ampId);
+                    $scope.hide();
+                })
+                .catch($log.error)
 
+            };
         }
     };
 
@@ -78,57 +78,50 @@ app.factory('ListFactory', function($http) {
 
     let ListFactory = {};
 
-    ListFactory.round = function(number){
-    if (isNaN(number)){
-        return parseInt(number, 10);
-    }
-    return Math.round(number * 100) / 100;
+    ListFactory.round = function(number) {
+        if (isNaN(number)) {
+            return parseInt(number, 10);
+        }
+        return Math.round(number * 100) / 100;
     }
 
-    ListFactory.getGroceryList = function(userId){
+    ListFactory.getGroceryList = function(userId) {
         return $http.get(`api/users/${userId}/meals/grocerylist`)
-        .then(function(response){
-            return response.data;
-            // {amount, unit, unitLong, Section}
-        })
-        .then(function(groceryList){
-            let formatedList = {};
+            .then(function(response) {
+                return response.data;
+                // {amount, unit, unitLong, Section}
+            })
+            .then(function(groceryList) {
+                let formatedList = {};
 
-            for (var key in groceryList){
-                if (!formatedList[groceryList[key].section]){
-                    formatedList[groceryList[key].section] = [];
+                for (var key in groceryList) {
+                    if (!formatedList[groceryList[key].section]) {
+                        formatedList[groceryList[key].section] = [];
+                    }
+                    let newItem = {
+                        name: key,
+                        amount: groceryList[key].amount,
+                        unit: groceryList[key].unitShort,
+                        unitLong: groceryList[key].unitLong,
+                        section: groceryList[key].aisle
+                    }
+                    formatedList[groceryList[key].section].push(newItem)
                 }
-                let newItem = {
-                    name: key,
-                    amount: groceryList[key].amount,
-                    unit: groceryList[key].unitShort,
-                    unitLong: groceryList[key].unitLong,
-                    section: groceryList[key].aisle
-                }
-                formatedList[groceryList[key].section].push(newItem)
-            }
-            return formatedList;
-        });
+                return formatedList;
+            });
     }
 
-    ListFactory.getActivePlan = function(userId) {
+    ListFactory.getMealPlans = function(userId) {
         return $http.get(`api/users/${userId}/meals/all`)
         .then(function(response) {
-            // console.log('ROUTER DATA', response.data)
-            let lightMp = response.data[0];
-            lightMp.forEach(mp => {
-                if (mp.status === 'active') {
-                    // console.log(mp)
-                    return mp;
-                }
-            })
+            return response.data[0];
         })
     }
 
-    ListFactory.makePDF = function(groceryList){
+    ListFactory.makePDF = function(groceryList) {
         let listToExport = [];
-        for (let aisle in groceryList){
-            listToExport.push({text: aisle, fontSize: 16, bold: true});
+        for (let aisle in groceryList) {
+            listToExport.push({ text: aisle, fontSize: 16, bold: true });
             listToExport.push({
                 ul: groceryList[aisle].map(item => `${item.name}: ${ListFactory.round(item.amount)} ${item.unitLong}`)
             })
@@ -143,10 +136,9 @@ app.factory('ListFactory', function($http) {
 
     }
 
-    ListFactory.submitPrice = function(price, userId, mealPlanId){
-        console.log('SUBMITTING $$$', price, userId, mealPlanId)
-        return $http.put(`api/users/${userId}/meals/${mealPlanId}`, {price: price})
-        .then(function(response){
+    ListFactory.submitPrice = function(price, userId, mealPlanId) {
+        return $http.put(`api/users/${userId}/meals/${mealPlanId}`, { price: price })
+        .then(function(response) {
             return response.data;
         })
     }
