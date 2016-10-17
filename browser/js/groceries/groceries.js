@@ -15,6 +15,18 @@ app.config(function ($stateProvider) {
 });
 
 app.controller('ListCtrl', function($scope, ListFactory, currentUser, $mdDialog) {
+  // console.log('CURR USER', currentUser)
+
+  $scope.userId = currentUser.id;
+  $scope.getActivePlan = ListFactory.getActivePlan;
+
+  // ListFactory.getActivePlan(currentUser.userId)
+  // .then(function(activePlan) {
+  //   console.log('AMP', activePlan)
+  //   $scope.activePlanId = activePlan.id;
+  // })
+
+  // console.log("AMP id", $scope.activePlanId)
 
   $scope.sections = {};
   $scope.showList = false;
@@ -30,9 +42,6 @@ app.controller('ListCtrl', function($scope, ListFactory, currentUser, $mdDialog)
 
   $scope.makePDF = ListFactory.makePDF;
 
-  $scope.submitPrice = ListFactory.submitPrice;
-
-  $scope.getPlanId = ListFactory.getPlanId;
 
   //popup to show grocery cost input form
     $scope.showCostForm = function(ev) {
@@ -50,6 +59,16 @@ app.controller('ListCtrl', function($scope, ListFactory, currentUser, $mdDialog)
             $scope.cancel = function() {
                 $mdDialog.cancel();
             };
+            $scope.submitPrice = function(price) {
+                let ampId = -1;
+                 ListFactory.getActivePlan(currentUser.userId)
+                  .then(function(activePlan) {
+                    console.log('AMP', activePlan)
+                    ampId = activePlan.id;
+                  })
+            }
+            ListFactory.submitPrice(price, $scope.userId, ampId);
+
         }
     };
 
@@ -92,12 +111,19 @@ app.factory('ListFactory', function($http) {
         });
     }
 
-    // ListFactory.getPlanId = function(userId) {
-    //     return $http.get(`api/users/${userId}/meals/grocerylist`)
-    //     .then(function(response) {
-    //         return response.data[1];
-    //     })
-    // }
+    ListFactory.getActivePlan = function(userId) {
+        return $http.get(`api/users/${userId}/meals/all`)
+        .then(function(response) {
+            // console.log('ROUTER DATA', response.data)
+            let lightMp = response.data[0];
+            lightMp.forEach(mp => {
+                if (mp.status === 'active') {
+                    // console.log(mp)
+                    return mp;
+                }
+            })
+        })
+    }
 
     ListFactory.makePDF = function(groceryList){
         let listToExport = [];
@@ -118,6 +144,7 @@ app.factory('ListFactory', function($http) {
     }
 
     ListFactory.submitPrice = function(price, userId, mealPlanId){
+        console.log('SUBMITTING $$$', price, userId, mealPlanId)
         return $http.put(`api/users/${userId}/meals/${mealPlanId}`, {price: price})
         .then(function(response){
             return response.data;

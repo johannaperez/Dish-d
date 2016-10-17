@@ -13,11 +13,11 @@
             <!-- COST -->
             <md-input-container>
                 <label>Groceries Total</label>
-                <input placeholder="$">
+                <input placeholder="$" ng-model="price">
             </md-input-container>
         </md-dialog-content>
         <md-dialog-actions layout="row" layout-align="end">
-            <md-button ng-click="submitPrice(price, userId, mealPlanId)" type="submit">
+            <md-button ng-click="submitPrice(price)" type="submit">
                 Save
             </md-button>
             <md-button ng-click="cancel()">
