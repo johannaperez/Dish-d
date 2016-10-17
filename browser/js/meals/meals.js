@@ -16,7 +16,6 @@ app.config(function($stateProvider) {
 
 app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $state, currentUser, $mdMedia) {
 
-
     $scope.smallScreen = $mdMedia('xs');
     $scope.meals = [];
     $scope.selectedMeals = [];

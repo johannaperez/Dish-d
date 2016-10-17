@@ -14,16 +14,12 @@ app.config(function($stateProvider) {
     });
 });
 
-app.controller('FavoritesCtrl', function($scope, FavoritesFactory, currentUser, $mdDialog){
+app.controller('FavoritesCtrl', function($scope, FavoritesFactory, currentUser, $mdDialog, $mdMedia){
     $scope.meals = [];
+    $scope.smallScreen = $mdMedia('xs');
 
-    FavoritesFactory.getFavorites(currentUser.id)
-    .then(function(favorites){
-        $scope.meals = favorites;
-    })
-
-    $scope.removeRecipe = function(mealId){
-        FavoritesFactory.removeFavorite(currentUser.id, mealId)
+    $scope.removeRecipe = function(meal){
+        FavoritesFactory.removeFavorite(currentUser.id, meal.id)
         .then(function(){
            return FavoritesFactory.getFavorites(currentUser.id)
         })
@@ -31,8 +27,7 @@ app.controller('FavoritesCtrl', function($scope, FavoritesFactory, currentUser, 
             $scope.meals = favorites;
         })
     }
-
-    //popup to show a recipe's detail
+     //popup to show a recipe's detail
     $scope.showRecipe = function(meal, ev) {
         $mdDialog.show({
             controller: DialogController,
@@ -61,6 +56,24 @@ app.controller('FavoritesCtrl', function($scope, FavoritesFactory, currentUser, 
 
         }
     };
+
+    $scope.buttons = [{
+          icon: 'delete',
+          click: $scope.removeRecipe,
+          tooltip: "Remove From Favorites"
+        },
+        {
+          icon: 'aspect_ratio',
+          click: $scope.showRecipe,
+          tooltip: 'Show Full Recipe'
+    }];
+
+    FavoritesFactory.getFavorites(currentUser.id)
+    .then(function(favorites){
+        $scope.meals = favorites;
+    })
+
+
 });
 
 app.factory('FavoritesFactory', function($http){

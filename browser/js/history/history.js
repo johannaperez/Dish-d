@@ -14,10 +14,12 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('HistoryCtrl', function($scope, HistoryFactory, currentUser, MealFactory, $log, $mdDialog){
+app.controller('HistoryCtrl', function($scope, HistoryFactory, currentUser, MealFactory, $log, $mdDialog, $mdMedia){
 
 	$scope.history = [];
 	$scope.details = [];
+    $scope.smallScreen = $mdMedia('xs');
+
 
 	HistoryFactory.getHistory(currentUser.id)
 	.then(function(history){
@@ -31,7 +33,7 @@ app.controller('HistoryCtrl', function($scope, HistoryFactory, currentUser, Meal
 	}
 
 	$scope.showRecipe = function(meal, ev) {
-		
+
         $mdDialog.show({
             controller: DialogController,
             scope: $scope, // use parent scope in template
@@ -59,6 +61,17 @@ app.controller('HistoryCtrl', function($scope, HistoryFactory, currentUser, Meal
 
         }
     };
+
+    $scope.buttons = [{
+          icon: 'favorite',
+          click: $scope.addFavorite,
+          tooltip: "Add To Favorites"
+        },
+        {
+          icon: 'aspect_ratio',
+          click: $scope.showRecipe,
+          tooltip: 'Show Full Recipe'
+    }];
 
 });
 
