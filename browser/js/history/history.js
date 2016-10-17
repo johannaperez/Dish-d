@@ -18,8 +18,10 @@ app.controller('HistoryCtrl', function($scope, HistoryFactory, currentUser, Meal
 
 	$scope.history = [];
 	$scope.details = [];
-    $scope.smallScreen = $mdMedia('xs');
 
+    $scope.$watch(function() { return $mdMedia('xs'); }, function(small) {
+         $scope.smallScreen = small;
+    });
 
 	HistoryFactory.getHistory(currentUser.id)
 	.then(function(history){

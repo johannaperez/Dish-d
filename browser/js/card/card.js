@@ -1,6 +1,6 @@
 app.directive('mealCard', function(){
   return {
     restrict: 'E',
-    templateUrl: 'js/card/card.html',
+    templateUrl: 'js/card/card.html'
   }
 })

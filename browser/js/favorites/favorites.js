@@ -16,7 +16,10 @@ app.config(function($stateProvider) {
 
 app.controller('FavoritesCtrl', function($scope, FavoritesFactory, currentUser, $mdDialog, $mdMedia){
     $scope.meals = [];
-    $scope.smallScreen = $mdMedia('xs');
+
+    $scope.$watch(function() { return $mdMedia('xs'); }, function(small) {
+         $scope.smallScreen = small;
+    });
 
     $scope.removeRecipe = function(meal){
         FavoritesFactory.removeFavorite(currentUser.id, meal.id)

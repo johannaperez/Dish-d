@@ -16,10 +16,12 @@ app.config(function($stateProvider) {
 
 app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $state, currentUser, $mdMedia) {
 
-    $scope.smallScreen = $mdMedia('xs');
     $scope.meals = [];
     $scope.selectedMeals = [];
 
+    $scope.$watch(function() { return $mdMedia('xs'); }, function(small) {
+         $scope.smallScreen = small;
+    });
 
 
     //select meals
