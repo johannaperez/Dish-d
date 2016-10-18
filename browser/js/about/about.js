@@ -11,6 +11,10 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('AboutCtrl', function ($scope, currentUser) {
+app.controller('AboutCtrl', function ($scope, currentUser, $mdMedia) {
         $scope.user = currentUser;
+
+        $scope.$watch(function() { return $mdMedia('xs'); }, function(small) {
+        $scope.smallScreen = small;
+    });
 });

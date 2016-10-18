@@ -14,6 +14,10 @@ app.config(function ($stateProvider) {
 
 app.controller('HomeCtrl', function ($scope, currentUser, $mdMedia) {
 
+    $scope.$watch(function() { return $mdMedia('xs'); }, function(small) {
+        $scope.smallScreen = small;
+    });
+
         $scope.user = currentUser;
         $scope.resources = [
             '*.ogv',
@@ -25,5 +29,5 @@ app.controller('HomeCtrl', function ($scope, currentUser, $mdMedia) {
         $scope.zIndex = '10';
         $scope.playInfo = {};
         $scope.pausePlay = true;
-        $scope.poster = 'https://d16cs9nbg8x6iq.cloudfront.net/p/?url=https%3A%2F%2Fd16cs9nbg8x6iq.cloudfront.net%2Fi%2Ffe902e541218c945bce86f6c0f8faf01%2F&q=75&w=1928&h=868&opt=1&fmt=webp'
+        $scope.poster = 'js/home/media/mobile-pic.png'
 });

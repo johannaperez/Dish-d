@@ -1,20 +1,20 @@
-<md-content>
+<md-content id="aboutpage">
     <div layout="row" flex layout-align="end center">
-        <md-content>
-            <div id="aboutpic"> </vid-bg>
+        <md-content id="mobile">
+            <div id="aboutpic"> </div>
         </md-content>
         <div id="about" flex>
             <navbar></navbar>
-            <section class="aboutpage" flex >
+            <section class="abouttext" flex>
                 <h3>Dish'd is the meal planning app that simplifies cooking at home</h3>
                 <h3>Dish'd curates meals based on your lifestyle</h3>
-                <p>No more scouring the internet for the perfect recipe to make a delicious, home-cooked meal</p>
+                <p ng-show="!smallScreen">No more scouring the internet for the perfect recipe to make a delicious, home-cooked meal</p>
                 <h3>Dish'd helps you save money on food costs</h3>
-                <p>In New York City alone, ~36% of our income goes to food alone, 2nd to rent cost</p>
-                <h3>Dish'd makes you a smarter, super human</h3>
-                <p>See real time stats of what you ate and how you minimized food waste</p>
+                <p ng-show="!smallScreen">In New York City alone, ~36% of our income goes to food alone, 2nd to rent cost</p>
+                <h3>Dish'd makes you a smarter super-human</h3>
+                <p ng-show="!smallScreen">See real time stats of what you ate and how you minimized food waste</p>
                 <md-button ng-hide="user" ui-sref="signup">start here</md-button>
             </section>
         </div>
-        </div>
+    </div>
 </md-content>

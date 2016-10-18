@@ -8,19 +8,22 @@ md-dialog {
             flex-flow: row wrap;
             justify-content: space-between;
             .md-media-xl {
-                // todo: @media query min-width for mobile
-                // min-width: 50vw;
+                @media all and (max-width: 750px){
+                    width: 70vw;
+                }
                 height: 60vh;
                 width: 25vw;
             }
             .recipe {
-                // todo: @media query min-width for mobile
-                // min-width: 50vw;
+                @media all and (max-width: 750px){
+                    width: 70vw !important;
+                }
                 width: 30vw;
             }
             .ings {
-                // todo: @media query min-width for mobile
-                // min-width: 50vw;
+                @media all and (max-width: 750px){
+                    width: 70vw;
+                }
                 width: 20vw;
             }
         }
