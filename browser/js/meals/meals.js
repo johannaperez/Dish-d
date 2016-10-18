@@ -19,8 +19,8 @@ app.controller('MealsCtrl', function($scope, MealFactory, $mdDialog, $log, $stat
     $scope.meals = [];
     $scope.selectedMeals = [];
 
-    $scope.$watch(function() { return $mdMedia('xs'); }, function(small) {
-         $scope.smallScreen = small;
+    $scope.$watch(function() { return $mdMedia('gt-sm'); }, function(big) {
+         $scope.smallScreen = !big;
     });
 
 
