@@ -44,14 +44,14 @@
     }
     #mobile {
         position: fixed;
-    #mobilepic {
-        background: url('js/home/media/mobile-pic.png') center;
-        background-size: cover;
-        margin: auto;
-        object-fit: cover !important;
-        width: 100vw ;
-        height: 100vh ;
-        z-index: 10;
+        #mobilepic {
+            background: url('js/home/media/mobile-pic.png') center;
+            background-size: cover;
+            margin: auto;
+            object-fit: cover !important;
+            width: 100vw;
+            height: 100vh;
+            z-index: 10;
         }
     }
 }

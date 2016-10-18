@@ -1,52 +1,55 @@
-#about {
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    width: 100vw;
-    height: 90vh;
-    navbar {
-        position: fixed;
-        top: 0;
+#aboutpage {
+    #about {
         z-index: 100;
-        h1 {
-            color: white;
-        }
-        ng-md-icon {
-            fill: white;
-        }
-    }
-    .aboutpage {
         display: flex;
-        background-image: none;
         align-items: center;
-        justify-content: center;
         flex-direction: column;
-        color: white;
-        min-height: 60vh;
-        .md-button {
-            border: 1px dotted white;
+        justify-content: center;
+        width: 100vw;
+        height: 90vh;
+        navbar {
+            position: fixed;
+            top: 0;
+            z-index: 100;
+            h1 {
+                color: white;
+            }
+            ng-md-icon {
+                fill: white;
+            }
         }
-        span {
-            font-size: 20px;
+        .abouttext {
+            display: flex;
+            background-image: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            height: 60vh;
+            width: 70vw;
+            .md-button {
+                border: 1px dotted white;
+            }
+            span {
+                font-size: 20px;
+            }
+            .link {
+                color: #FDFDFD;
+                cursor: pointer;
+                border-bottom: $theme-border;
+                font-size: 16px;
+            }
         }
-        .link {
-            color: #FDFDFD;
-            cursor: pointer;
-            border-bottom: $theme-border;
-            font-size: 16px;
+    }
+    #mobile {
+        position: fixed;
+        #aboutpic {
+            background: url('js/about/media/cherries.png') no-repeat center;
+            background-size: cover;
+            object-fit: cover !important;
+            width: 100vw;
+            height: 150vh;
+            z-index: 10;
         }
     }
 }
-
-md-content #aboutpic {
-    background: url('https://d16cs9nbg8x6iq.cloudfront.net/p/?url=https%3A%2F%2Fd16cs9nbg8x6iq.cloudfront.net%2Fi%2F38755cca9990961867659007f4605c32%2F&q=75&w=3000&h=1000&opt=1&fmt=webp') center;
-    background-size: cover;
-    object-fit: cover !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    z-index: 10;
-}
-
-
