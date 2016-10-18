@@ -1,17 +1,30 @@
-<md-content>
+<md-content id="homepage" ng-show="!smallScreen">
     <div layout="row" flex layout-align="end center">
+        <!-- show video on big screens -->
         <md-content>
             <vid-bg resources="resources" poster="poster" full-screen="fullScreen" muted="muted" z-index="zIndex" play-info="playInfo" pause-play="pausePlay"></vid-bg>
-            <!-- THIS DOESNT SEEM TO WORK WITH AN NG-IF...
-            <vid-bg ng-if="smallScreen" resources="resources" poster="poster" full-screen="fullScreen" muted="muted" z-index="zIndex" play-info="playInfo" pause-play="pausePlay"></vid-bg> -->
         </md-content>
-        <div id="logo" flex>
+
+        <div id="logo">
             <navbar></navbar>
-            <section class="mainpage" flex style="
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;">
+            <section class="mainpage">
+                <h1>get your dish'd on</h1>
+                <md-button ng-hide="user" ui-sref="signup">start here</md-button>
+                <div ng-hide="user" class="link" ui-sref="login">already a member? login</div>
+            </section>
+        </div>
+    </div>
+</md-content>
+<md-content id="homepage" ng-show="smallScreen">
+    <div layout="row" flex layout-align="end center">
+        <!-- show pic on phone portrait mode -->
+        <md-content id="mobile">
+            <div id="mobilepic"></div>
+        </md-content>
+
+        <div id="logo">
+            <navbar></navbar>
+            <section class="mainpage">
                 <h1>get your dish'd on</h1>
                 <md-button ng-hide="user" ui-sref="signup">start here</md-button>
                 <div ng-hide="user" class="link" ui-sref="login">already a member? login</div>
