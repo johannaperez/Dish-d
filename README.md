@@ -4,4 +4,4 @@ This full stack project was built by myself, Dani YoungSmith, Galen Corey, and L
 
 Built with AngularJS, Node, Express, and PostgreSQL.
 
-![Dish'd](https://github.com/johanna08/johanna08.github.io/images/dishd.png)
+http://www.dishd.us
